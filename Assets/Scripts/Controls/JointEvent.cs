@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "NewJointEvent", menuName = "ScriptableObjects/Joints/JointEvent")]
 public class JointEvent : ScriptableObject

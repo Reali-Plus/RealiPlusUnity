@@ -6,9 +6,17 @@ public class JointController : MonoBehaviour
     [SerializeField] private JointEvent jointEvent;
     [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
-    [SerializeField] private float flexTime = 1f;
+    [SerializeField, Min(5f)] private float flexSpeed = 20f;
 
+    //private Vector3 baseLocalEulers;
     private Coroutine flexCoroutine;
+    private float currentX = 0f;
+
+    /*
+    private void Awake()
+    {
+        baseLocalEulers = transform.localEulerAngles;
+    }*/
 
     private void OnEnable()
     {
@@ -39,17 +47,20 @@ public class JointController : MonoBehaviour
 
     private IEnumerator FlexCoroutine(float targetX)
     {
-        Quaternion startRot = transform.localRotation;
-        Vector3 targetEuler = new Vector3(targetX, 0f, 0f);
-        Quaternion endRot = Quaternion.Euler(targetEuler);
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < flexTime)
+        bool inProgress = true;
+        while (inProgress)
         {
-            elapsedTime += Time.deltaTime;
-            transform.localRotation = Quaternion.Lerp(startRot, endRot, elapsedTime / flexTime);
+            float angleStep = (targetX > currentX ? flexSpeed : -flexSpeed) * Time.deltaTime;
 
+            if (angleStep >= 0 && currentX + angleStep >= targetX ||
+                angleStep < 0 && currentX + angleStep <= targetX)
+            {
+                angleStep = targetX - currentX;
+                inProgress = false;
+            }
+            currentX += angleStep;
+
+            transform.Rotate(Vector3.right, angleStep, Space.Self);
             yield return null;
         }
 
