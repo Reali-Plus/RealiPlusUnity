@@ -30,13 +30,13 @@ public class XRSleeveListEntry : MonoBehaviour
         {
             case SleeveSide.Left:
                 {
-                    labelDisplay.text = "L";
+                    labelDisplay.text = "G";
                     break;
                 }
 
             case SleeveSide.Right:
                 {
-                    labelDisplay.text = "R";
+                    labelDisplay.text = "D";
                     break;
                 }
 
