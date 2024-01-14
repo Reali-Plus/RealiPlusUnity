@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(SerialController))]
+//[RequireComponent(typeof(SerialController))]
 public class ArduinoListener : MonoBehaviour
 {
     public event Action<string> OnMessageReceived;

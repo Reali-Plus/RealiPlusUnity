@@ -1,36 +1,20 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BallTest : MonoBehaviour
 {
-    [SerializeField] 
-    private ArduinoListener arduinoListener;
-
-    [SerializeField]
-    private int minSerialValue;
-    
-    [SerializeField]
-    private int maxSerialValue;
-
     [SerializeField]
     private float minXValue;
     
     [SerializeField]
     private float maxXValue;
 
-    private void OnEnable()
+    public void ControlBall(InputAction.CallbackContext input)
     {
-        arduinoListener.OnMessageReceived += ControlBall;
-    }
+        var readValue = input.ReadValue<Vector2>();
+        Debug.Log("readValue " + readValue);
 
-    private void OnDisable()
-    {
-        arduinoListener.OnMessageReceived -= ControlBall;
-    }
-
-    private void ControlBall(string msg)
-    {
-        float serialValue = int.Parse(msg);
-        transform.position = new Vector3((serialValue - minSerialValue) / maxSerialValue * (maxXValue - minXValue) + minXValue, 
+        transform.position = new Vector3((readValue.x + 1) / 2 * (maxXValue - minXValue) + minXValue, 
                                          transform.position.y, 
                                          transform.position.z);
     }
