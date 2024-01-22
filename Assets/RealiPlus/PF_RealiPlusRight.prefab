@@ -694,7 +694,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.002
-  m_Height: 0.012
+  m_Height: 0.016
   m_Direction: 1
   m_Center: {x: 0, y: 0.006, z: 0}
 --- !u!114 &3846912092953534287
@@ -853,9 +853,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.002
-  m_Height: 0.011
+  m_Height: 0.016
   m_Direction: 1
-  m_Center: {x: 0, y: 0.0055, z: 0}
+  m_Center: {x: 0, y: 0.006, z: 0}
 --- !u!114 &3846912093736023947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,7 +1141,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.002
-  m_Height: 0.01
+  m_Height: 0.015
   m_Direction: 1
   m_Center: {x: 0, y: 0.005, z: 0}
 --- !u!114 &3846912092836691588
@@ -1605,7 +1605,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.002
-  m_Height: 0.011
+  m_Height: 0.015
   m_Direction: 1
   m_Center: {x: 0, y: 0.0055, z: 0}
 --- !u!114 &3846912093930560441
