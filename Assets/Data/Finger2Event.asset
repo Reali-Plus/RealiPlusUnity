@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e4a43f1d013ad44ab6b7c4a8a075e4, type: 3}
   m_Name: Finger2Event
   m_EditorClassIdentifier: 
-  debugValue: 0.777
+  debugValue: 0
