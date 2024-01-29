@@ -63,7 +63,6 @@ public class JointController : MonoBehaviour
             transform.Rotate(Vector3.right, angleStep, Space.Self);
             yield return null;
         }
-
         flexCoroutine = null;
     }
 }

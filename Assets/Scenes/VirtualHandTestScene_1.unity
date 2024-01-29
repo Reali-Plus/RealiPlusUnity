@@ -229,8 +229,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18581282}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.1
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -359,14 +359,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130780325}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.536, z: -0.224}
+  m_LocalRotation: {x: 0.15422222, y: 0.4729849, z: -0.08780865, w: 0.86301243}
+  m_LocalPosition: {x: -0.1419, y: 0.5443, z: -0.0224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20.442, y: 57.388, z: -0.347}
 --- !u!1 &1273243110
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,25 +565,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
---- !u!1 &7036213048876466978 stripped
+--- !u!1 &3846912092582871196 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6108952950813393849, guid: 819643a3655d2a74eb8009961e04298b,
+  m_CorrespondingSourceObject: {fileID: 4153325988746511319, guid: 819643a3655d2a74eb8009961e04298b,
     type: 3}
   m_PrefabInstance: {fileID: 3846912092582871195}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &8879528567507470697
-Rigidbody:
+--- !u!114 &3846912092582871197
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7036213048876466978}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
+  m_GameObject: {fileID: 3846912092582871196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd6b680ccaa66949a55b48be322ff5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.2
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3d766013-7197-4e6f-8530-dbc833019df4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 3D Vector
+      m_Id: a0b8641c-7936-4926-8e38-b2c590e36db3
+      m_Path: 3DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: f95018f4-9bf8-4351-a8b1-e2adcda9fec1
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: dedf169c-a7f6-47dc-b906-4bd622ce5ca5
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 2673fc87-6445-4d88-8542-e415532a8811
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: ab5feca2-8f28-473f-8f29-2e58bd313d52
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: forward
+      m_Id: 8357b403-0eae-4c9c-aa46-a46f20211cb1
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: backward
+      m_Id: 0df296fb-8cf1-4189-8185-d3ee7e6b0b44
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+  raiseAction:
+    m_Name: Raise
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 36ca5333-65bf-4c3b-92b4-7c89dfd1e10b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
