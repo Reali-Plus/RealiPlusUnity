@@ -1,19 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PhysicsMoveController : MonoBehaviour
 {
+    [SerializeField] private Rigidbody target;
     [SerializeField] private float moveSpeed;
     [SerializeField] private InputAction moveAction;
 
     private Vector3 currentDirection;
-    new private Rigidbody rigidbody;
 
     private void OnEnable()
     {
-        rigidbody = GetComponent<Rigidbody>();
-
         moveAction.performed += OnMoveAction;
 
         moveAction.Enable();
@@ -28,7 +25,7 @@ public class PhysicsMoveController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.MovePosition(transform.position + currentDirection * moveSpeed * Time.fixedDeltaTime);
+        target.MovePosition(target.position + currentDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void OnMoveAction(InputAction.CallbackContext context)
