@@ -5,24 +5,24 @@ using UnityEngine.InputSystem;
 
 [Serializable]
 public struct JointInstruction
-{
-    public JointEvent Event;
-    public AnimationCurve Curve;
-    public InputAction Action;
+{    
+    [SerializeField] private JointEvent jointEvent;
+    [SerializeField] private AnimationCurve transitionCurve;
+    [SerializeField] private InputAction action;
 
     private bool toggled;
     private Coroutine executionCoroutine;
 
     public void Enable()
     {
-        Action.performed += Toggle;
-        Action.Enable();
+        action.performed += Toggle;
+        action.Enable();
     }
 
     public void Disable()
     {
-        Action.performed -= Toggle;
-        Action.Disable();
+        action.performed -= Toggle;
+        action.Disable();
     }
 
     private void Toggle(InputAction.CallbackContext context)
@@ -40,20 +40,20 @@ public struct JointInstruction
     {
         YieldInstruction wait = new WaitForFixedUpdate();
         float currentTime = 0;
-        float endTime = Curve.keys[Curve.keys.Length - 1].time;
+        float endTime = transitionCurve.keys[transitionCurve.keys.Length - 1].time;
 
-        float startVal = Event.CurrentValue;
+        float startVal = jointEvent.CurrentValue;
 
         while (currentTime < endTime)
         {
-            float curveVal = Curve.Evaluate(currentTime);
-            Event.SetValue( (1 - curveVal) * startVal + curveVal * targetVal );
+            float curveVal = transitionCurve.Evaluate(currentTime);
+            jointEvent.SetValue( (1 - curveVal) * startVal + curveVal * targetVal );
 
             yield return wait;
             currentTime += Time.fixedDeltaTime;
         }
 
-        Event.SetValue(targetVal);
+        jointEvent.SetValue(targetVal);
         executionCoroutine = null;
     }
 }

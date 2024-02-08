@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 3668255941076326765}
   - component: {fileID: 6058252800284087582}
   - component: {fileID: 8378695083800872595}
+  - component: {fileID: 2737956814345780206}
   m_Layer: 6
   m_Name: PF_RealiPlusRight
   m_TagString: Untagged
@@ -574,7 +575,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a7b378a1e74724cb82f4557f938641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 3533253706801565904}
+  root: {fileID: 2737956814345780206}
+--- !u!114 &2737956814345780206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153325988746511319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd6b680ccaa66949a55b48be322ff5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionEvent: {fileID: 11400000, guid: 58899aed54dbc724f9d472bc66ce7ee9, type: 2}
 --- !u!1 &4414334448771825891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointEvent: {fileID: 11400000, guid: 85289f70364c28e4781c56fc9cdf6f5d, type: 2}
-  minRotation: -90
+  minRotation: 0
   maxRotation: 90
 --- !u!1 &7368441150229201869
 GameObject:

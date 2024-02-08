@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RealiPlusController : MonoBehaviour
 {
-    [SerializeField] private PhysicsJoint root;
+    [SerializeField] private PhysicsController root;
 
     private void FixedUpdate()
     {
