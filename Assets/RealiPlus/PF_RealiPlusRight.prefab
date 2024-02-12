@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 6058252800284087582}
   - component: {fileID: 8378695083800872595}
   - component: {fileID: 2737956814345780206}
+  - component: {fileID: 5260908095636150528}
   m_Layer: 6
   m_Name: PF_RealiPlusRight
   m_TagString: Untagged
@@ -589,6 +590,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionEvent: {fileID: 11400000, guid: 58899aed54dbc724f9d472bc66ce7ee9, type: 2}
+--- !u!114 &5260908095636150528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153325988746511319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb12663a71574ac469fa894430cb59a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiveData: {x: 0, y: 0, z: 0}
+  indexFinger: {fileID: 3623465732682902758}
 --- !u!1 &4414334448771825891
 GameObject:
   m_ObjectHideFlags: 0
