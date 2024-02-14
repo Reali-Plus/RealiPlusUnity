@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [Serializable]
 public struct MoveInstruction
 {
-    [SerializeField] private PositionEvent positionEvent;
+    [SerializeField] private ThreeAxisEvent positionEvent;
     [SerializeField] private float speed;
     [SerializeField] private InputAction action;
 

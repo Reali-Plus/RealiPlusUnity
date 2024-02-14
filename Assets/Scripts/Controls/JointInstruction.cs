@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [Serializable]
 public struct JointInstruction
 {    
-    [SerializeField] private JointEvent jointEvent;
+    [SerializeField] private NormalizedEvent jointEvent;
     [SerializeField] private AnimationCurve transitionCurve;
     [SerializeField] private InputAction action;
 

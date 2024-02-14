@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewJointEvent", menuName = "ScriptableObjects/RealiPlus/JointEvent")]
-public class JointEvent : PhysicsEvent<float>
+[CreateAssetMenu(fileName = "NewNormalizedEvent", menuName = "ScriptableObjects/RealiPlus/NormalizedEvent")]
+public class NormalizedEvent : PhysicsEvent<float>
 {
     [SerializeField, Range(0f, 1f)] private float debugValue;
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.1796817, g: 0.22498152, b: 0.30651635, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -363,48 +363,6 @@ MonoBehaviour:
         m_Action: Action
         m_Flags: 0
       m_Flags: 1
-  - jointEvent: {fileID: 11400000, guid: 85289f70364c28e4781c56fc9cdf6f5d, type: 2}
-    transitionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    action:
-      m_Name: Action
-      m_Type: 1
-      m_ExpectedControlType: Button
-      m_Id: 38f6dff2-53d6-4e47-8a6a-500a428efb8c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 529cf58d-73c8-4385-b81f-24dbb28218f5
-        m_Path: <Keyboard>/m
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Action
-        m_Flags: 0
-      m_Flags: 1
   movements:
   - positionEvent: {fileID: 11400000, guid: 58899aed54dbc724f9d472bc66ce7ee9, type: 2}
     speed: 0.5
@@ -467,6 +425,73 @@ MonoBehaviour:
       - m_Name: backward
         m_Id: 06afe3dc-4fda-4af0-8ad1-df5716537ecb
         m_Path: <Keyboard>/s
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      m_Flags: 0
+  - positionEvent: {fileID: 11400000, guid: 85289f70364c28e4781c56fc9cdf6f5d, type: 2}
+    speed: 30
+    action:
+      m_Name: Action
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: fb43bb5a-034b-4fee-af50-b62d9fc55c0a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 3D Vector
+        m_Id: 41fffd07-26e5-4bc3-be34-67cdbad0df60
+        m_Path: 3DVector
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: up
+        m_Id: 2d0b314c-482c-465f-a99a-03cca76aa5f7
+        m_Path: <Keyboard>/z
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: down
+        m_Id: e74d63b5-1d22-46bc-9bc2-f48763bc1df2
+        m_Path: <Keyboard>/x
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: left
+        m_Id: f81a6dbb-a1eb-4323-9722-25f1e9149d28
+        m_Path: <Keyboard>/c
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: right
+        m_Id: c025c684-7da7-4839-bc40-87cea6c8fa35
+        m_Path: <Keyboard>/v
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: forward
+        m_Id: 4342147f-6a52-4fd7-8ea1-c27770c71c71
+        m_Path: <Keyboard>/b
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: backward
+        m_Id: 06afe3dc-4fda-4af0-8ad1-df5716537ecb
+        m_Path: <Keyboard>/n
         m_Interactions: 
         m_Processors: 
         m_Groups: 
@@ -579,7 +604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18581282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0099, y: 0.5083, z: -0.0395}
+  m_LocalPosition: {x: 0.0099, y: 0.5083, z: 0.034}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -824,7 +849,7 @@ Transform:
   m_GameObject: {fileID: 1155049740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -916,14 +941,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273243110}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.86721575, y: -0.113980606, z: 0.23236977, w: 0.42538154}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 127.743, y: -30, z: 0}
 --- !u!1001 &3846912092582871195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -949,7 +974,7 @@ PrefabInstance:
     - target: {fileID: 3668255941076326765, guid: 819643a3655d2a74eb8009961e04298b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.052
       objectReference: {fileID: 0}
     - target: {fileID: 3668255941076326765, guid: 819643a3655d2a74eb8009961e04298b,
         type: 3}
@@ -986,55 +1011,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3791874823790183174, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 67.739
-      objectReference: {fileID: 0}
-    - target: {fileID: 3791874823790183174, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 27.394
-      objectReference: {fileID: 0}
-    - target: {fileID: 3791874823790183174, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 29.558
-      objectReference: {fileID: 0}
     - target: {fileID: 4153325988746511319, guid: 819643a3655d2a74eb8009961e04298b,
         type: 3}
       propertyPath: m_Name
       value: RealiPlusRight
-      objectReference: {fileID: 0}
-    - target: {fileID: 6924687892183820035, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 14.652
-      objectReference: {fileID: 0}
-    - target: {fileID: 6924687892183820035, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 2.281
-      objectReference: {fileID: 0}
-    - target: {fileID: 6924687892183820035, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 7.617
-      objectReference: {fileID: 0}
-    - target: {fileID: 7242291011855431018, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -31.202
-      objectReference: {fileID: 0}
-    - target: {fileID: 7242291011855431018, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 38.421
-      objectReference: {fileID: 0}
-    - target: {fileID: 7242291011855431018, guid: 819643a3655d2a74eb8009961e04298b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -22.721
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 819643a3655d2a74eb8009961e04298b, type: 3}

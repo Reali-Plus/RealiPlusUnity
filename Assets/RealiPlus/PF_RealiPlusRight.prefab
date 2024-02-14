@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 7242291011855431018}
   - component: {fileID: 3846912092836691642}
   - component: {fileID: 487576337876593684}
-  - component: {fileID: 3533253706801565904}
+  - component: {fileID: 568088895297723096}
   m_Layer: 6
   m_Name: Wrist
   m_TagString: Untagged
@@ -1608,7 +1608,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &3533253706801565904
+--- !u!114 &568088895297723096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1617,12 +1617,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7239780256266128638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4988acb8dea926844a5266c4c1b0f7e9, type: 3}
+  m_Script: {fileID: 11500000, guid: e310890fb43b42243a66ab1020c1ab4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointEvent: {fileID: 11400000, guid: 85289f70364c28e4781c56fc9cdf6f5d, type: 2}
-  minRotation: 0
-  maxRotation: 90
+  eulerEvent: {fileID: 11400000, guid: 85289f70364c28e4781c56fc9cdf6f5d, type: 2}
 --- !u!1 &7368441150229201869
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PhysicsJoint : PhysicsController
 {
-    [SerializeField] private JointEvent jointEvent;
+    [SerializeField] private NormalizedEvent jointEvent;
     [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
 

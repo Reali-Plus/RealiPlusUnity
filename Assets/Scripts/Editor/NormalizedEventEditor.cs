@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(JointEvent))]
-public class JointEventEditor : Editor
+[CustomEditor(typeof(NormalizedEvent))]
+public class NormalizedEventEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        JointEvent jointEvent = (JointEvent)target;
+        NormalizedEvent jointEvent = (NormalizedEvent)target;
 
         if (GUILayout.Button("Debug"))
         {

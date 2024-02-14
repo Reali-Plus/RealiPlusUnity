@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PhysicsMove : PhysicsController
 {
-    [SerializeField] private PositionEvent positionEvent;
+    [SerializeField] private ThreeAxisEvent positionEvent;
 
     protected override void ApplySelfTransform(ref Matrix4x4 globalTRS, ref Quaternion globalRot)
     {
