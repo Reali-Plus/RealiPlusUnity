@@ -30,19 +30,14 @@ public class DataConversion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //handData.Index = new Vector3(1.0f, 2.0f, 3.0f);
-
-        //handData.Index += new Vector3(0, 0.001f, 0); //mais part du bas..
-        //handData.Index += new Vector3(0.001f, 0, 0); //translate
-        //handData.Index += new Vector3(0, 0, 0.001f);
-        //handData.Index = receiveData;
-        //indexFinger.transform.position = handData.Index;
-        //print(handData.Index);
+        handData.Index = receiveData;
+        indexFinger.transform.position = handData.Index;
+        print(handData.Index);
     }
     public void SetFingerPosition(Vector3 newPosition)
     {
         handData.Index = newPosition;
-        indexFinger.transform.position = handData.Index;
+        //indexFinger.transform.position = handData.Index;
     }
 
 }
