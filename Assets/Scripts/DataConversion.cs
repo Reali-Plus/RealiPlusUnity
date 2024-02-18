@@ -7,10 +7,10 @@ public class DataConversion : MonoBehaviour
 {
     [SerializeField] private GameObject indexFinger;
     [SerializeField] private float vitesseRotation = 1f;
-    [SerializeField] private Vector3 receiveData = new Vector3(); //ici je vais recevoir une coordonnee
+    //[SerializeField] private Vector3 receiveData = new Vector3(); //ici je vais recevoir une coordonnee
 
-    //[SerializeField] private List<GameObject> fingers;
-    //[SerializeField] private List<Vector3> receiveData = new List<Vector3>(); 
+    [SerializeField] private List<GameObject> fingers;
+    [SerializeField] private List<Vector3> receiveData = new List<Vector3>();  //ici jai une liste de coordonnees 
 
     public struct HandData
     {
@@ -26,28 +26,27 @@ public class DataConversion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        handData.Index = receiveData;
-        Quaternion rotationVoulue = Quaternion.LookRotation(receiveData.normalized);
-        indexFinger.transform.rotation = Quaternion.Slerp(indexFinger.transform.rotation, rotationVoulue, Time.deltaTime * vitesseRotation);
-        print(handData.Index);
+        /*Code pour un doigt*/
+        //handData.Index = receiveData;
+        //Quaternion rotationVoulue = Quaternion.LookRotation(receiveData.normalized);
+        //indexFinger.transform.rotation = Quaternion.Slerp(indexFinger.transform.rotation, rotationVoulue, Time.deltaTime * vitesseRotation);
+        //print(handData.Index);
 
-        //if (receiveData.Count == fingers.Count)
-        //{
-        //    handData.Thumb = receiveData[0];
-        //    handData.Index = receiveData[1];
-        //    handData.Middle = receiveData[2];
-        //    handData.Ring = receiveData[3];
-        //    handData.Pinky = receiveData[4];
+        /*Code pour tous les doigts*/
+        handData.Thumb = receiveData[0];
+        handData.Index = receiveData[1];
+        handData.Middle = receiveData[2];
+        handData.Ring = receiveData[3];
+        handData.Pinky = receiveData[4];
 
-        //    for (int i = 0; i < fingers.Count; i++)
-        //    {
-        //        Quaternion rotationVoulue = Quaternion.LookRotation(receiveData[i].normalized);
-        //        fingers[i].transform.rotation = Quaternion.Slerp(fingers[i].transform.rotation, rotationVoulue, Time.deltaTime * vitesseRotation);
-        //    }
-        //}
-        //print("Thumb Position: " + handData.Thumb);
-        //print("Index Position: " + handData.Index);
-        //print("Middle Position: " + handData.Middle);
-        //print("Pinky Position: " + handData.Pinky);
+        for (int i = 0; i < fingers.Count; i++)
+        {
+            Quaternion rotationVoulue = Quaternion.LookRotation(receiveData[i].normalized);
+            fingers[i].transform.rotation = Quaternion.Slerp(fingers[i].transform.rotation, rotationVoulue, Time.deltaTime * vitesseRotation);
+        }
+        print("Thumb Position: " + handData.Thumb);
+        print("Index Position: " + handData.Index);
+        print("Middle Position: " + handData.Middle);
+        print("Pinky Position: " + handData.Pinky);
     }
 }

@@ -235,7 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexFinger: {fileID: 86765892}
   vitesseRotation: 5
-  receiveData: {x: 0, y: 0, z: 0}
+  fingers: []
+  receiveData: []
 --- !u!1 &266931641
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexFinger: {fileID: 266931641}
   vitesseRotation: 5
-  receiveData: {x: 0, y: 0, z: 0}
+  fingers: []
+  receiveData: []
 --- !u!1 &803263440
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +557,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexFinger: {fileID: 1122543717}
   vitesseRotation: 5
-  receiveData: {x: 0, y: 0, z: 0}
+  fingers: []
+  receiveData: []
 --- !u!1 &1483060358
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexFinger: {fileID: 1483060358}
   vitesseRotation: 1
-  receiveData: {x: 0, y: 0, z: 0}
+  fingers: []
+  receiveData: []
 --- !u!1 &1633056977
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +785,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexFinger: {fileID: 1633056977}
   vitesseRotation: 5
-  receiveData: {x: 0, y: 0, z: 0}
+  fingers: []
+  receiveData: []
 --- !u!1 &1896740881
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,7 +818,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indexFinger: {fileID: 1483060358}
   vitesseRotation: 1
-  receiveData: {x: 0, y: 0, z: 0}
+  fingers:
+  - {fileID: 266931641}
+  - {fileID: 1483060358}
+  - {fileID: 1633056977}
+  - {fileID: 1122543717}
+  - {fileID: 86765892}
+  receiveData:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!4 &1896740883
 Transform:
   m_ObjectHideFlags: 0
