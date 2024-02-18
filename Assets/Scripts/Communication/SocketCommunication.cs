@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -8,6 +9,7 @@ public class SocketCommunication : MonoBehaviour
     private UdpClient udpClient;
     private const int port = 8000;
 
+    private System.Diagnostics.Process process;
     private string lastReceivedMessage = "";
 
     private float roll = 0f;
@@ -18,17 +20,32 @@ public class SocketCommunication : MonoBehaviour
     void Start()
     {
         udpClient = new UdpClient(port);
+
+        DirectoryInfo dir = Directory.GetParent(Application.dataPath);
+        string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", "communication-daemon-socket.py");
+
+        RunProcess(daemonPath);
     }
+
+    void RunProcess(string daemonPath)
+    {
+        process = new System.Diagnostics.Process();
+
+        process.StartInfo.FileName = "python";
+        process.StartInfo.Arguments = daemonPath;
+        process.StartInfo.UseShellExecute = false;
+        process.StartInfo.CreateNoWindow = true;
+
+        process.Start();
+    }   
 
     void Update()
     {
         while (udpClient.Available > 0) 
         {
-            // Debug.Log("Available: " + udpClient.Available);
             IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, port);
             byte[] receivedBytes = udpClient.Receive(ref remoteEndPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
-            // Debug.Log("Received: " + receivedString);
 
             if (receivedString != lastReceivedMessage)
             {
@@ -40,7 +57,6 @@ public class SocketCommunication : MonoBehaviour
 
     void FixedUpdate()
     {
-        // TODO : only update if the rotation has changed
         if (transform.rotation.eulerAngles.x == pitch && transform.rotation.eulerAngles.y == yaw && transform.rotation.eulerAngles.z == roll)
         {
             return;
@@ -51,9 +67,10 @@ public class SocketCommunication : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        if (udpClient != null)
+        udpClient?.Close();
+        if (process != null && !process.HasExited)
         {
-            udpClient.Close();
+            process.Kill();
         }
     }
 
@@ -67,9 +84,7 @@ public class SocketCommunication : MonoBehaviour
             pitch = ParseRotation(rotations[1]);
             yaw = ParseRotation(rotations[2]);
 
-            UnityEngine.Debug.Log("roll " + roll);
-            UnityEngine.Debug.Log("pitch " + pitch);
-            UnityEngine.Debug.Log("yaw " + yaw);
+            Debug.Log("roll " + roll + "pitch " + pitch + "yaw " + yaw);
         }
     }
 

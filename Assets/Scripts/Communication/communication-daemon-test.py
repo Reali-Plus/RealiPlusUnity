@@ -1,18 +1,8 @@
 import simplepyble
-import socket
-import numpy as np
 import time
 
 CHARACTERISTIC_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
 SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-SOCKET_PORT = 8000
-
-
-def initialize_socket():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(('127.0.0.1', SOCKET_PORT))
-
-    return s
 
 def connect_to_sleeve():
     print(f"Running on {simplepyble.get_operating_system()}")
@@ -37,26 +27,21 @@ def connect_to_sleeve():
     
     index = 0
     for i, peripheral in enumerate(peripherals):
+        # print(f"Peripheral: {peripheral.address()} [{peripheral.identifier()}]")
         if peripheral.identifier() == "MyESP32":
             index = i
             break
 
     peripheral = peripherals[index]
+    # print(f"Connecting to {peripheral.address()} [{peripheral.identifier()}]")
     peripheral.connect()
+    print("CONNECTED")
 
-    return peripheral
-
-
-def send_data(sleeve, s):
-    while sleeve.is_connected():
-        message = str(sleeve.read(SERVICE_UUID, CHARACTERISTIC_UUID), 'UTF-8')
+    while peripheral.is_connected():
+        message = str(peripheral.read(SERVICE_UUID, CHARACTERISTIC_UUID), 'UTF-8')
         print(message)
-        s.send(bytes(message, 'utf-8'))
         time.sleep(0.05)
 
+    # peripheral.disconnect()
 
-s = initialize_socket()
-sleeve = connect_to_sleeve()
-send_data(sleeve, s)
-
-s.close()
+connect_to_sleeve()
