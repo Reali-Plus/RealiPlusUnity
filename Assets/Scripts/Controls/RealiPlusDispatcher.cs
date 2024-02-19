@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class RealiPlusDispatcher : MonoBehaviour
 {
-    [SerializeField] private JointInstruction[] joints;
+    [SerializeField] private JointToggleInstruction[] joints;
+    [SerializeField] private JointInstruction[] smoothJoints;
     [SerializeField] private MoveInstruction[] movements;
 
     private void OnEnable()
@@ -16,6 +17,11 @@ public class RealiPlusDispatcher : MonoBehaviour
         {
             movement.Enable();
         }
+
+        foreach (var smoothJoint in smoothJoints)
+        {
+            smoothJoint.Enable();
+        }
     }
 
     private void OnDisable()
@@ -28,6 +34,11 @@ public class RealiPlusDispatcher : MonoBehaviour
         foreach (var movement in movements)
         {
             movement.Disable();
+        }
+
+        foreach (var smoothJoint in smoothJoints)
+        {
+            smoothJoint.Disable();
         }
     }
 }

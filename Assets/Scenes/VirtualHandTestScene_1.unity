@@ -152,220 +152,186 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b831782ecec6dc47aca30897ee2ce8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joints:
+  joints: []
+  smoothJoints:
   - jointEvent: {fileID: 11400000, guid: fa33a2707bfa6f44f8b835ddd9765bd9, type: 2}
-    transitionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    speed: 0.5
     action:
       m_Name: Action
-      m_Type: 1
-      m_ExpectedControlType: Button
-      m_Id: 38f6dff2-53d6-4e47-8a6a-500a428efb8c
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 318c1ae2-6f0a-4dcb-9bec-01df42b8c98e
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 529cf58d-73c8-4385-b81f-24dbb28218f5
+      - m_Name: 1D Axis
+        m_Id: 3942b2a0-8a1a-4902-ad97-907f858b8c54
+        m_Path: 1DAxis
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: negative
+        m_Id: 9cd3fd96-e250-423b-a1e2-0c5a6d802231
+        m_Path: <Keyboard>/t
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: positive
+        m_Id: 4cb08506-5a65-4d27-b65d-f45b7ce1294b
+        m_Path: <Keyboard>/g
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      m_Flags: 1
+  - jointEvent: {fileID: 11400000, guid: 4e4a0fae119c9b643933e17217616bae, type: 2}
+    speed: 0.5
+    action:
+      m_Name: Action
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 318c1ae2-6f0a-4dcb-9bec-01df42b8c98e
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 1D Axis
+        m_Id: 3942b2a0-8a1a-4902-ad97-907f858b8c54
+        m_Path: 1DAxis
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: negative
+        m_Id: 9cd3fd96-e250-423b-a1e2-0c5a6d802231
+        m_Path: <Keyboard>/y
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
+      - m_Name: positive
+        m_Id: 4cb08506-5a65-4d27-b65d-f45b7ce1294b
         m_Path: <Keyboard>/h
         m_Interactions: 
         m_Processors: 
         m_Groups: 
         m_Action: Action
-        m_Flags: 0
+        m_Flags: 8
       m_Flags: 1
-  - jointEvent: {fileID: 11400000, guid: 4e4a0fae119c9b643933e17217616bae, type: 2}
-    transitionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  - jointEvent: {fileID: 11400000, guid: 08b7913732d913f4d889ec1fa5a40ac6, type: 2}
+    speed: 0.5
     action:
       m_Name: Action
-      m_Type: 1
-      m_ExpectedControlType: Button
-      m_Id: 38f6dff2-53d6-4e47-8a6a-500a428efb8c
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 318c1ae2-6f0a-4dcb-9bec-01df42b8c98e
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 529cf58d-73c8-4385-b81f-24dbb28218f5
+      - m_Name: 1D Axis
+        m_Id: 3942b2a0-8a1a-4902-ad97-907f858b8c54
+        m_Path: 1DAxis
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: negative
+        m_Id: 9cd3fd96-e250-423b-a1e2-0c5a6d802231
         m_Path: <Keyboard>/u
         m_Interactions: 
         m_Processors: 
         m_Groups: 
         m_Action: Action
-        m_Flags: 0
+        m_Flags: 8
+      - m_Name: positive
+        m_Id: 4cb08506-5a65-4d27-b65d-f45b7ce1294b
+        m_Path: <Keyboard>/j
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
       m_Flags: 1
-  - jointEvent: {fileID: 11400000, guid: 08b7913732d913f4d889ec1fa5a40ac6, type: 2}
-    transitionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  - jointEvent: {fileID: 11400000, guid: da1a8c074117b574793257a687db0a4a, type: 2}
+    speed: 0.5
     action:
       m_Name: Action
-      m_Type: 1
-      m_ExpectedControlType: Button
-      m_Id: 38f6dff2-53d6-4e47-8a6a-500a428efb8c
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 318c1ae2-6f0a-4dcb-9bec-01df42b8c98e
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 529cf58d-73c8-4385-b81f-24dbb28218f5
+      - m_Name: 1D Axis
+        m_Id: 3942b2a0-8a1a-4902-ad97-907f858b8c54
+        m_Path: 1DAxis
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: negative
+        m_Id: 9cd3fd96-e250-423b-a1e2-0c5a6d802231
         m_Path: <Keyboard>/i
         m_Interactions: 
         m_Processors: 
         m_Groups: 
         m_Action: Action
-        m_Flags: 0
+        m_Flags: 8
+      - m_Name: positive
+        m_Id: 4cb08506-5a65-4d27-b65d-f45b7ce1294b
+        m_Path: <Keyboard>/k
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 8
       m_Flags: 1
-  - jointEvent: {fileID: 11400000, guid: da1a8c074117b574793257a687db0a4a, type: 2}
-    transitionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  - jointEvent: {fileID: 11400000, guid: 68f0daa9b12f6d64dafc8d1072cd9176, type: 2}
+    speed: 0.5
     action:
       m_Name: Action
-      m_Type: 1
-      m_ExpectedControlType: Button
-      m_Id: 38f6dff2-53d6-4e47-8a6a-500a428efb8c
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 318c1ae2-6f0a-4dcb-9bec-01df42b8c98e
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 529cf58d-73c8-4385-b81f-24dbb28218f5
+      - m_Name: 1D Axis
+        m_Id: 3942b2a0-8a1a-4902-ad97-907f858b8c54
+        m_Path: 1DAxis
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 4
+      - m_Name: negative
+        m_Id: 9cd3fd96-e250-423b-a1e2-0c5a6d802231
         m_Path: <Keyboard>/o
         m_Interactions: 
         m_Processors: 
         m_Groups: 
         m_Action: Action
-        m_Flags: 0
-      m_Flags: 1
-  - jointEvent: {fileID: 11400000, guid: 68f0daa9b12f6d64dafc8d1072cd9176, type: 2}
-    transitionCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    action:
-      m_Name: Action
-      m_Type: 1
-      m_ExpectedControlType: Button
-      m_Id: 38f6dff2-53d6-4e47-8a6a-500a428efb8c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 529cf58d-73c8-4385-b81f-24dbb28218f5
-        m_Path: <Keyboard>/p
+        m_Flags: 8
+      - m_Name: positive
+        m_Id: 4cb08506-5a65-4d27-b65d-f45b7ce1294b
+        m_Path: <Keyboard>/l
         m_Interactions: 
         m_Processors: 
         m_Groups: 
         m_Action: Action
-        m_Flags: 0
+        m_Flags: 8
       m_Flags: 1
   movements:
   - positionEvent: {fileID: 11400000, guid: 58899aed54dbc724f9d472bc66ce7ee9, type: 2}
-    speed: 0.5
+    speed: 0.2
     action:
       m_Name: Action
       m_Type: 0
