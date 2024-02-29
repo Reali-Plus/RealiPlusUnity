@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 982463852179156751}
   - component: {fileID: 3846912093881322112}
   - component: {fileID: 1977101946}
+  - component: {fileID: 5267886969093231355}
   - component: {fileID: 1977101945}
   m_Layer: 6
   m_Name: Finger3_4
@@ -65,6 +66,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &5267886969093231355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377669466805599070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1977101945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +295,7 @@ GameObject:
   - component: {fileID: 5288554315301737057}
   - component: {fileID: 3846912092877770625}
   - component: {fileID: 706474634}
+  - component: {fileID: 4730670147025548449}
   - component: {fileID: 706474633}
   m_Layer: 6
   m_Name: Finger1_4
@@ -336,6 +350,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &4730670147025548449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623465732682902758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &706474633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +843,6 @@ GameObject:
   - component: {fileID: 2318254959145880506}
   - component: {fileID: 3846912092953534286}
   - component: {fileID: 637215539}
-  - component: {fileID: 2080636688660839477}
   - component: {fileID: 637215538}
   m_Layer: 6
   m_Name: Finger2_1
@@ -872,18 +897,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &2080636688660839477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5120199100701090831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &637215538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,7 +1034,6 @@ GameObject:
   - component: {fileID: 5950067041247892404}
   - component: {fileID: 3846912093736023946}
   - component: {fileID: 1698129751}
-  - component: {fileID: 3242825286986567830}
   - component: {fileID: 1698129750}
   m_Layer: 6
   m_Name: Finger3_1
@@ -1076,18 +1088,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &3242825286986567830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5976947180584632212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1698129750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 4748805917145731107}
   - component: {fileID: 3846912093329387729}
   - component: {fileID: 480438144}
+  - component: {fileID: 2171687116125872383}
   - component: {fileID: 480438143}
   m_Layer: 6
   m_Name: Finger2_4
@@ -1168,6 +1169,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &2171687116125872383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106822688555439946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &480438143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,6 +1319,7 @@ GameObject:
   - component: {fileID: 4241313040333762791}
   - component: {fileID: 3846912094143241956}
   - component: {fileID: 206152348}
+  - component: {fileID: 2478528581525628178}
   - component: {fileID: 206152347}
   m_Layer: 6
   m_Name: Thumb_3
@@ -1360,6 +1374,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &2478528581525628178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661277540773365984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &206152347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,7 +1412,6 @@ GameObject:
   - component: {fileID: 6924687892183820035}
   - component: {fileID: 3846912092836691641}
   - component: {fileID: 659665048}
-  - component: {fileID: 5890351921792161942}
   - component: {fileID: 659665047}
   m_Layer: 6
   m_Name: Finger1_1
@@ -1441,18 +1466,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &5890351921792161942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6726009828983792687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &659665047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,6 +1523,7 @@ GameObject:
   - component: {fileID: 272477958187933313}
   - component: {fileID: 3846912093776915021}
   - component: {fileID: 650362115}
+  - component: {fileID: 3125870993272349982}
   - component: {fileID: 650362114}
   m_Layer: 6
   m_Name: Finger4_4
@@ -1564,6 +1578,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &3125870993272349982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143695715737091458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &650362114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1862,7 +1888,6 @@ GameObject:
   - component: {fileID: 6686876942758214592}
   - component: {fileID: 3846912092692160348}
   - component: {fileID: 1031107845}
-  - component: {fileID: 7937082123972277417}
   - component: {fileID: 1031107844}
   m_Layer: 6
   m_Name: Thumb_1
@@ -1917,18 +1942,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &7937082123972277417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8623457509817906585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1031107844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,7 +2000,6 @@ GameObject:
   - component: {fileID: 8432856159425917507}
   - component: {fileID: 3846912093930560440}
   - component: {fileID: 714461518}
-  - component: {fileID: 6277939974960229818}
   - component: {fileID: 714461517}
   m_Layer: 6
   m_Name: Finger4_1
@@ -2042,18 +2054,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &6277939974960229818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9167477957155004418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &714461517
 MonoBehaviour:
   m_ObjectHideFlags: 0
