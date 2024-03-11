@@ -68,6 +68,8 @@ public abstract class PhysicsController : MonoBehaviour
 
     protected abstract void ApplySelfTransform(ref Matrix4x4 globalTRS, ref Quaternion globalRot);
 
+    //protected abstract void ComputeJacobian();
+
     private List<PhysicsController> FindNextController(Transform root)
     {
         List<PhysicsController> joints = new List<PhysicsController>();
