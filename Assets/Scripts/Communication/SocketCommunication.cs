@@ -23,9 +23,9 @@ public class SocketCommunication : MonoBehaviour
         udpClient = new UdpClient(port);
 
         DirectoryInfo dir = Directory.GetParent(Application.dataPath);
-        string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", "communication-daemon-socket.py");
+        string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", "communication-daemon-socket-send-receive.py");
 
-        RunProcess(daemonPath);
+        // RunProcess(daemonPath);
     }
 
     void RunProcess(string daemonPath)
@@ -47,6 +47,7 @@ public class SocketCommunication : MonoBehaviour
             IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, port);
             byte[] receivedBytes = udpClient.Receive(ref remoteEndPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
+            Debug.Log(receivedString);
 
             if (receivedString != lastReceivedMessage)
             {
