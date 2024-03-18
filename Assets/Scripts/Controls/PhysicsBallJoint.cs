@@ -29,28 +29,31 @@ public class PhysicsBallJoint : PhysicsController
             Vector3 targetRelPos = targets[i].transform.position - transform.position;
 
             Vector3 movementX = Vector3.Cross(transform.right, targetRelPos);
+            Vector3 rotationX = transform.localToWorldMatrix * transform.right;
             jacobian[d,   jointIndex] = Vector3.Dot(movementX, Vector3.right);
             jacobian[d+1, jointIndex] = Vector3.Dot(movementX, Vector3.up);
             jacobian[d+2, jointIndex] = Vector3.Dot(movementX, Vector3.forward);
-            jacobian[d+3, jointIndex] = 0f;
-            jacobian[d+4, jointIndex] = 0f;
-            jacobian[d+5, jointIndex] = 0f;
+            jacobian[d+3, jointIndex] = rotationX.x;
+            jacobian[d+4, jointIndex] = rotationX.y;
+            jacobian[d+5, jointIndex] = rotationX.z;
 
             Vector3 movementY = Vector3.Cross(transform.up, targetRelPos);
+            Vector3 rotationY = transform.localToWorldMatrix * transform.up;
             jacobian[d,   jointIndex+1] = Vector3.Dot(movementY, Vector3.right);
             jacobian[d+1, jointIndex+1] = Vector3.Dot(movementY, Vector3.up);
             jacobian[d+2, jointIndex+1] = Vector3.Dot(movementY, Vector3.forward);
-            jacobian[d+3, jointIndex+1] = 0f;
-            jacobian[d+4, jointIndex+1] = 0f;
-            jacobian[d+5, jointIndex+1] = 0f;
+            jacobian[d+3, jointIndex+1] = rotationY.x;
+            jacobian[d+4, jointIndex+1] = rotationY.y;
+            jacobian[d+5, jointIndex+1] = rotationY.z;
 
             Vector3 movementZ = Vector3.Cross(transform.forward, targetRelPos);
+            Vector3 rotationZ = transform.localToWorldMatrix * transform.forward;
             jacobian[d,   jointIndex+2] = Vector3.Dot(movementZ, Vector3.right);
             jacobian[d+1, jointIndex+2] = Vector3.Dot(movementZ, Vector3.up);
             jacobian[d+2, jointIndex+2] = Vector3.Dot(movementZ, Vector3.forward);
-            jacobian[d+3, jointIndex+2] = 0f;
-            jacobian[d+4, jointIndex+2] = 0f;
-            jacobian[d+5, jointIndex+2] = 0f;
+            jacobian[d+3, jointIndex+2] = rotationZ.x;
+            jacobian[d+4, jointIndex+2] = rotationZ.y;
+            jacobian[d+5, jointIndex+2] = rotationZ.z;
         }
     }
 }
