@@ -1,3 +1,4 @@
+using MathNet.Numerics.LinearAlgebra;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,17 @@ public class CostTransform : MonoBehaviour
     private void OnDisable()
     {
         allCostTransform.Remove(this);
+    }
+
+    public Vector<float> GetErrorVector()
+    {
+        Vector<float> error = Vector<float>.Build.Dense(6);
+        error.SetSubVector(0, 3, (target.position - transform.position).ToMNVector());
+
+        (Quaternion.Inverse(target.rotation) * transform.rotation).ToAngleAxis(out float angle, out Vector3 axis);
+        error.SetSubVector(3, 3, (Mathf.Deg2Rad * angle * axis).ToMNVector());
+
+        return error;
     }
 
     public float GetCost()
