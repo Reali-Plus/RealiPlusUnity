@@ -7,12 +7,13 @@ public class CostTransform : MonoBehaviour
     private static readonly List<CostTransform> allCostTransform = new List<CostTransform>();
 
     [SerializeField] private Transform target;
-    [SerializeField] private float positionWeight = 1f;
-    [SerializeField] private float orientationWeight = 1f;
+    [SerializeField] private float positionWeight = 10f;
+    [SerializeField] private float orientationWeight = 0.1f;
 
     private void OnEnable()
     {
         allCostTransform.Add(this);
+        Debug.Log($"{gameObject} cost: {GetCost()}, Total cost: {GetTotalCost()}");
     }
 
     private void OnDisable()
