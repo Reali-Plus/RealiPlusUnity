@@ -1,3 +1,4 @@
+using MathNet.Numerics.LinearAlgebra;
 using UnityEngine;
 
 public static class VectorExtension
@@ -8,5 +9,10 @@ public static class VectorExtension
     public static Vector3 Invert(this Vector3 v)
     {
         return new Vector3(1f/v.x, 1f/v.y, 1f/v.z);
+    }
+
+    public static Vector<float> ToMNVector(this Vector3 v)
+    {
+        return Vector<float>.Build.Dense(new float[] { v.x, v.y, v.z });
     }
 }
