@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 1
-  orientationWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &1159770392
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 1
-  orientationWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &1594519472
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,8 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 1
-  orientationWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &1746700382
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 1
-  orientationWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &2072123718
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,8 +233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 1
-  orientationWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1001 &1853633106413353556
 PrefabInstance:
   m_ObjectHideFlags: 0

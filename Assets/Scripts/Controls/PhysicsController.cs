@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using MathNet.Numerics.LinearAlgebra;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public abstract class PhysicsController : MonoBehaviour
 {
+    public abstract int DOFs { get; }
+
     new private Rigidbody rigidbody;
     private List<PhysicsController> nextControllers;
 
@@ -68,7 +71,7 @@ public abstract class PhysicsController : MonoBehaviour
 
     protected abstract void ApplySelfTransform(ref Matrix4x4 globalTRS, ref Quaternion globalRot);
 
-    //protected abstract void ComputeJacobian();
+    public abstract void UpdateJacobian(ref Matrix<float> jacobian, in List<CostTransform> targets, int jointIndex);
 
     private List<PhysicsController> FindNextController(Transform root)
     {

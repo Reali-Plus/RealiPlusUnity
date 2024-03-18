@@ -1,7 +1,11 @@
+using MathNet.Numerics.LinearAlgebra;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicsJoint : PhysicsController
 {
+    public override int DOFs => 1;
+
     [SerializeField] private NormalizedEvent jointEvent;
     [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
@@ -15,5 +19,10 @@ public class PhysicsJoint : PhysicsController
 
         globalTRS *= Matrix4x4.Rotate(localRot);
         globalRot = transformRot * globalRot;
+    }
+
+    public override void UpdateJacobian(ref Matrix<float> jacobian, in List<CostTransform> targets, int jointIndex)
+    {
+        throw new System.NotImplementedException();
     }
 }
