@@ -592,7 +592,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 2
 --- !u!1 &59017033
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +926,46 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 206152348, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 480438144, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 637215539, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 650362115, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 659665048, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 706474634, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 714461518, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031107845, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698129751, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977101946, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3668255941076326765, guid: 819643a3655d2a74eb8009961e04298b,
         type: 3}
       propertyPath: m_RootOrder
@@ -985,6 +1025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RealiPlusRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058252800284087582, guid: 819643a3655d2a74eb8009961e04298b,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 819643a3655d2a74eb8009961e04298b, type: 3}
