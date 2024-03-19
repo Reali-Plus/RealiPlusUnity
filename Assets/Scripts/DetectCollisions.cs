@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
+    private Dictionary<int, GameObject> fingerIds = new Dictionary<int, GameObject>();
+
     struct Feedback
     {
         // pour la rétroaction
-        public List<GameObject> fingersOnCollision; // liste des doigt(s) en jeux dans la collision
+        public List<int> fingersOnCollisionIds;     // liste des ID en collision
         public int intensity;                       // intensité/force 
         public int textureCoeff;                    // chiffre/coefficient texture (largeur contact)
         
@@ -16,17 +18,37 @@ public class DetectCollisions : MonoBehaviour
         public int jointsPosition;                  // position des joints // pas sur de son format vecteur?
     }
 
+    private void Start()
+    {
+        //voir si c'est la meilleure facon de le mapper
+        fingerIds.Add(0, GameObject.Find("Thumb_3"));
+        fingerIds.Add(1, GameObject.Find("Finger1_4"));
+        fingerIds.Add(2, GameObject.Find("Finger2_4"));
+        fingerIds.Add(3, GameObject.Find("Finger3_4"));
+        fingerIds.Add(4, GameObject.Find("Finger4_4"));
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         Feedback feedback = new Feedback();
-        feedback.fingersOnCollision = new List<GameObject>();
+        feedback.fingersOnCollisionIds = new List<int>();
 
         foreach (ContactPoint contact in collision.contacts)
         {
-            print("COLLISIONS WITH: "+ gameObject.name + "\n At this point:" + contact.point);
-            feedback.fingersOnCollision.Add(collision.gameObject);
+            //Debug.Log("COLLISION WITH: " + gameObject.name + "\n At this point:" + contact.point);
+            int fingerId = GetFingerIdFromGameObject(gameObject);
+
+            if (fingerId != -1)
+            {
+                feedback.fingersOnCollisionIds.Add(fingerId);
+            }
         }
-        Debug.Log("feedback.fingersOnCollision" + feedback.fingersOnCollision);
+
+        // Affichage du contenu de la liste
+        foreach (int id in feedback.fingersOnCollisionIds)
+        {
+            Debug.Log("ID EN COLLISION: " + id);
+        }
     }
 
     // Lorsqu'il n'y a plus de collision on remet 
@@ -34,13 +56,25 @@ public class DetectCollisions : MonoBehaviour
     {
         Feedback feedback = new Feedback();
 
-        feedback.fingersOnCollision = null;
+        feedback.fingersOnCollisionIds = null;
         feedback.intensity = 0;
         feedback.textureCoeff = 0;
 
         feedback.isOpen = true;
         feedback.jointsPosition = 0;
-        Debug.Log("feedback.fingersOnCollision" + feedback.fingersOnCollision);
-
     }
+
+    // Fonction pour obtenir l'ID du doigt à partir du GameObject
+    int GetFingerIdFromGameObject(GameObject fingerObject)
+    {
+        foreach (KeyValuePair<int, GameObject> pair in fingerIds)
+        {
+            if (pair.Value == fingerObject)
+            {
+                return pair.Key;
+            }
+        }
+        return -1;
+    }
+
 }
