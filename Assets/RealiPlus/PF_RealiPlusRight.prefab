@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 2074904404}
   m_Layer: 6
   m_Name: Finger3_3
-  m_TagString: Untagged
+  m_TagString: Ring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 14271431}
   m_Layer: 6
   m_Name: Finger1_3
-  m_TagString: Untagged
+  m_TagString: Index
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 1476967121}
   m_Layer: 6
   m_Name: Finger4_3
-  m_TagString: Untagged
+  m_TagString: Pinky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1323,7 +1323,7 @@ GameObject:
   - component: {fileID: 206152347}
   m_Layer: 6
   m_Name: Thumb_3
-  m_TagString: Untagged
+  m_TagString: Thumb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1700,7 +1700,7 @@ GameObject:
   - component: {fileID: 36386865}
   m_Layer: 6
   m_Name: Finger2_3
-  m_TagString: Untagged
+  m_TagString: Middle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
