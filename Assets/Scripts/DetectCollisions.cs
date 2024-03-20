@@ -5,19 +5,20 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
     private Dictionary<int, GameObject> fingerIds = new Dictionary<int, GameObject>();
-
+    public List<GameObject> list = new();
 
     struct Feedback
     {
         // pour la rétroaction
         public List<int> fingersOnCollisionIds;     // liste des ID en collision
-        //public Dictionary<int, >                    //dictionnaire de l'id et de la position (coordonnees)
         public int intensity;                       // intensité/force 
         public int textureCoeff;                    // chiffre/coefficient texture (largeur contact)
         
         // pour la restriction
         public bool isOpen;                         // ouvert/fermé pour la restriction
         public int jointsPosition;                  // position des joints // pas sur de son format vecteur?
+
+        //public Dictionary<int, >                    //dictionnaire de l'id et de la position (coordonnees)
     }
 
     private void Start()
@@ -27,6 +28,7 @@ public class DetectCollisions : MonoBehaviour
         fingerIds.Add(2, GameObject.FindGameObjectWithTag("Middle"));
         fingerIds.Add(3, GameObject.FindGameObjectWithTag("Ring"));
         fingerIds.Add(4, GameObject.FindGameObjectWithTag("Pinky"));
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -73,8 +75,8 @@ public class DetectCollisions : MonoBehaviour
             {
                 return pair.Key;
             }
+            list.Add(pair.Value);
         }
         return -1;
     }
-
 }
