@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    private Dictionary<int, GameObject> fingerIds = new Dictionary<int, GameObject>();
+    private List<GameObject> fingerObjects = new List<GameObject>();
     public List<GameObject> list = new();
 
     struct Feedback
@@ -17,18 +17,15 @@ public class DetectCollisions : MonoBehaviour
         // pour la restriction
         public bool isOpen;                         // ouvert/fermé pour la restriction
         public int jointsPosition;                  // position des joints // pas sur de son format vecteur?
-
-        //public Dictionary<int, >                    //dictionnaire de l'id et de la position (coordonnees)
     }
 
     private void Start()
     {
-        fingerIds.Add(0, GameObject.FindGameObjectWithTag("Thumb"));
-        fingerIds.Add(1, GameObject.FindGameObjectWithTag("Index"));
-        fingerIds.Add(2, GameObject.FindGameObjectWithTag("Middle"));
-        fingerIds.Add(3, GameObject.FindGameObjectWithTag("Ring"));
-        fingerIds.Add(4, GameObject.FindGameObjectWithTag("Pinky"));
-
+        fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
+        fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
+        fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
+        fingerObjects.Add(GameObject.FindGameObjectWithTag("Ring"));
+        fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
     }
 
     void OnCollisionEnter(Collision collision)
@@ -39,6 +36,7 @@ public class DetectCollisions : MonoBehaviour
         foreach (ContactPoint contact in collision.contacts)
         {
             //Debug.Log("COLLISION WITH: " + gameObject.name + "\n At this point:" + contact.point);
+            Debug.Log("Impulse:" + collision.impulse);
             int fingerId = GetFingerIdFromGameObject(gameObject);
             if (fingerId != -1)
             {
@@ -50,7 +48,6 @@ public class DetectCollisions : MonoBehaviour
         {
             Debug.Log("ID EN COLLISION: " + id);
         }
-        //print((feedback.fingersOnCollisionIds).Count);
     }
 
     // Lorsqu'il n'y a plus de collision on remet 
@@ -58,7 +55,7 @@ public class DetectCollisions : MonoBehaviour
     {
         Feedback feedback = new Feedback();
 
-        feedback.fingersOnCollisionIds = null;
+        feedback.fingersOnCollisionIds = new List<int>();
         feedback.intensity = 0;
         feedback.textureCoeff = 0;
 
@@ -69,13 +66,13 @@ public class DetectCollisions : MonoBehaviour
     // Fonction pour obtenir l'ID du doigt à partir du GameObject
     int GetFingerIdFromGameObject(GameObject fingerObject)
     {
-        foreach (KeyValuePair<int, GameObject> pair in fingerIds)
+        for (int i = 0; i < fingerObjects.Count; i++)
         {
-            if (pair.Value == fingerObject)
+            if (fingerObjects[i] == fingerObject)
             {
-                return pair.Key;
+                //list.Add(fingerObject);
+                return i;
             }
-            list.Add(pair.Value);
         }
         return -1;
     }
