@@ -22,12 +22,13 @@ def initialize_socket():
 def connect_to_unity(queue2Send, queueRcv):
     unity_socket = initialize_socket()
     print("Connect to Unity")
-
-    while True: # valider que ca l'existe
+    while True: 
+        # print(f"UNITY - Queue size: {queueRcv.qsize()}")
         if not queueRcv.empty():
             msg = queueRcv.get()
+            print(msg)
             print(f"Sending: {msg}")
-            unity_socket.send(bytes(msg, 'utf-8'))
+            unity_socket.send(msg)
 
         # time.sleep(0.05)
 
@@ -55,7 +56,8 @@ async def connect_to_sleeve(queue2Send, queueRcv):
             while client.is_connected:
                 message = await client.read_gatt_char(CHARACTERISTIC_UUID)
                 await queueRcv.put(message)
-                print(str(message, 'utf-8'))
+                # print(str(message, 'utf-8'))
+                print(f"SLEEVE - Queue size: {queueRcv.qsize()}")
                 
                 if not queue2Send.empty():
                     msg = await queue2Send.get()
@@ -66,8 +68,6 @@ async def connect_to_sleeve(queue2Send, queueRcv):
 
             print("Client disconnected")
 
-
-    # return peripheral
 
 async def add_to_queue(queue, msg):
     await queue.put(msg)
@@ -80,34 +80,12 @@ async def main():
     await add_to_queue(queue2Send.async_q, "Hello from python")
     await add_to_queue(queue2Send.async_q, "Hello from python again")
 
-    sleeve_connection_task =  asyncio.create_task(connect_to_sleeve(queue2Send.async_q, queueRcv.async_q))
-    threading.Thread(target=connect_to_unity, args=(queue2Send.sync_q, queueRcv.sync_q)).start()
+    sleeve_connection_task = asyncio.create_task(connect_to_sleeve(queue2Send.async_q, queueRcv.async_q))
+    thread = threading.Thread(target=connect_to_unity, args=(queue2Send.sync_q, queueRcv.sync_q))
+    thread.start()
 
     await sleeve_connection_task
 
 asyncio.run(main())
 
 # probleme en ce moment : je recoie les messages de la sleeve, je suis capable d'envoyer des messages a la sleeve, mais je ne suis pas capable d'envoyer les messages de la queue de janus
-
-
-# loop = asyncio.get_event_loop()
-# queueRcv = janus.Queue()
-# queue2Send = janus.Queue()
-
-# asyncio.run(add_to_queue(queue2Send, "Hello from python"))
-# asyncio.run(add_to_queue(queue2Send, "Hello from python again"))
-
-# asyncio.create_task(connect_to_sleeve(queue2Send.sync_q, queueRcv.sync_q))
-# threading.Thread(target=connect_to_unity, args=(queue2Send.sync_q, queueRcv.sync_q)).start()
-# loop.run_forever()
-
-# je suis rendue : utiliser la queue de janus a la place de asyncio.Queue (c'est thread safe)
-# https://stackoverflow.com/questions/32889527/is-there-a-way-to-use-asyncio-queue-in-multiple-threads
-# https://github.com/aio-libs/janus
-# explorer aussi https://stackoverflow.com/questions/55027940/is-run-in-executor-optimized-for-running-in-a-loop-with-coroutines
-
-# unity_socket = initialize_socket()
-# asyncio.run(connect_to_sleeve(queue2Send, queueRcv))
-# send_data(sleeve, unity_socket)
-
-# unity_socket.close()
