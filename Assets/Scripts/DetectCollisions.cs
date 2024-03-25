@@ -5,7 +5,6 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
     private List<GameObject> fingerObjects = new List<GameObject>();
-    public List<GameObject> list = new();
 
     struct Feedback
     {
@@ -35,8 +34,6 @@ public class DetectCollisions : MonoBehaviour
 
         foreach (ContactPoint contact in collision.contacts)
         {
-            //Debug.Log("COLLISION WITH: " + gameObject.name + "\n At this point:" + contact.point);
-            Debug.Log("Impulse:" + collision.impulse);
             int fingerId = GetFingerIdFromGameObject(gameObject);
             if (fingerId != -1)
             {
@@ -50,7 +47,6 @@ public class DetectCollisions : MonoBehaviour
         }
     }
 
-    // Lorsqu'il n'y a plus de collision on remet 
     private void OnCollisionExit(Collision collision)
     {
         Feedback feedback = new Feedback();
@@ -63,14 +59,12 @@ public class DetectCollisions : MonoBehaviour
         feedback.jointsPosition = 0;
     }
 
-    // Fonction pour obtenir l'ID du doigt à partir du GameObject
     int GetFingerIdFromGameObject(GameObject fingerObject)
     {
         for (int i = 0; i < fingerObjects.Count; i++)
         {
             if (fingerObjects[i] == fingerObject)
             {
-                //list.Add(fingerObject);
                 return i;
             }
         }
