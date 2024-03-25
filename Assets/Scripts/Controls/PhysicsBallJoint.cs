@@ -6,9 +6,6 @@ public class PhysicsBallJoint : PhysicsController
 
     protected override void ApplySelfTransform(ref Matrix4x4 globalTRS, ref Quaternion globalRot)
     {
-        //Quaternion transformRot = Quaternion.AngleAxis(targetAngle, globalRot * Vector3.right);
-        //Quaternion localRot = Quaternion.AngleAxis(targetAngle, Vector3.right);
-
         Quaternion localRot = Quaternion.Euler(eulerEvent.CurrentValue);
 
         float angle;
