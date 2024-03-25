@@ -17,7 +17,7 @@ public class SocketCommunication : MonoBehaviour
 
     private System.Diagnostics.Process process;
 
-    void Start()
+    private void Start()
     {
         Debug.Log("Starting socket communication");
         udpClient = new UdpClient(port);
@@ -29,7 +29,7 @@ public class SocketCommunication : MonoBehaviour
         RunProcess(daemonPath);
     }
 
-    void RunProcess(string daemonPath)
+    private void RunProcess(string daemonPath)
     {
         process = new System.Diagnostics.Process();
 
@@ -68,7 +68,7 @@ public class SocketCommunication : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
         udpClient?.Close();
         if (process != null && !process.HasExited)

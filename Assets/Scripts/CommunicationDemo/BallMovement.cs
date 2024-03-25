@@ -5,7 +5,7 @@ public class BallMovement : MonoBehaviour
     [SerializeField]
     private float speed = 1f;
 
-    void Update()
+    private void Update()
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
 

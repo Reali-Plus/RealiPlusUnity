@@ -7,7 +7,7 @@ public class BallFeedback : MonoBehaviour
 
     private SocketCommunication socketCommunication;
 
-    void Start()
+    private void Start()
     {
         socketCommunication = GameObject.FindGameObjectWithTag(communicationTag).GetComponent<SocketCommunication>();
     }
