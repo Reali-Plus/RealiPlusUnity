@@ -49,7 +49,7 @@ public class SocketCommunication : MonoBehaviour
             return sleeveData;
         }
 
-        if (udpClient.Available > 0) // TODO: maybe change to if
+        if (udpClient.Available > 0)
         {
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
