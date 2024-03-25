@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -8,7 +7,6 @@ using UnityEngine;
 public class SocketCommunication : MonoBehaviour
 {
     private const int port = 8000;
-    // private const string adress = "127.0.0.1";
 
     private UdpClient udpClient;
     private IPEndPoint endPoint;
@@ -16,20 +14,11 @@ public class SocketCommunication : MonoBehaviour
     private System.Diagnostics.Process process;
     private string lastReceivedMessage = "";
 
-    private float roll = 0f;
-    private float pitch = 0f;
-    private float yaw = 0f;
-    //private Vector3 acceleration;
-
-
     void Start()
     {
         Debug.Log("Starting socket communication");
         udpClient = new UdpClient(port);
-        // string to byte array
-        // endPoint = new IPEndPoint(new IPAddress(Encoding.UTF8.GetBytes(adress)), port);
         endPoint = new IPEndPoint(IPAddress.Loopback, port);
-
 
         DirectoryInfo dir = Directory.GetParent(Application.dataPath);
         string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", "communication-daemon-socket-send-receive.py");
@@ -49,13 +38,15 @@ public class SocketCommunication : MonoBehaviour
         process.Start();
     }   
 
-    void ReceiveData()
+    public SleeveData ReceiveData()
     {
+        SleeveData sleeveData = new SleeveData(0, 0, 0);
         if (udpClient == null || endPoint == null)
         {
-            return;
+            return sleeveData;
         }
-        while (udpClient.Available > 0)
+
+        while (udpClient.Available > 0) // TODO: maybe change to if
         {
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
@@ -64,48 +55,19 @@ public class SocketCommunication : MonoBehaviour
             if (receivedString != lastReceivedMessage)
             {
                 lastReceivedMessage = receivedString;
-                if(!ConvertMessage(receivedString))
-                {
-                    ResetAngles();
-                }
+                sleeveData.FromString(receivedString);
             } 
         }
+        return sleeveData;
     }
 
-    void SendData(string message)
+    public void SendData(HapticsData hapticsData)
     {
-        byte[] data = Encoding.UTF8.GetBytes(message);
-        if(udpClient != null && endPoint != null)
+        byte[] data = hapticsData.ToBytes();
+        if (udpClient != null && endPoint != null & data.Length > 0)
         {
             udpClient.Send(data, data.Length, endPoint);
         }
-    }
-
-    void ResetAngles()
-    {
-        roll = 0f;
-        pitch = 0f;
-        yaw = 0f;
-    }
-
-    void Update()
-    {
-        // ResetAngles();
-        ReceiveData();
-        SendData("Hello from Unity");
-    }
-
-    void FixedUpdate()
-    {
-        // transform.Translate(acceleration * Time.fixedDeltaTime);
-
-        if (transform.rotation.eulerAngles.x == pitch && transform.rotation.eulerAngles.y == yaw && transform.rotation.eulerAngles.z == roll)
-        {
-            return;
-        } 
-        
-        transform.rotation *= Quaternion.Euler(pitch * Time.fixedDeltaTime, yaw * Time.fixedDeltaTime, roll * Time.fixedDeltaTime);
-        
     }
 
     void OnApplicationQuit()
@@ -115,34 +77,5 @@ public class SocketCommunication : MonoBehaviour
         {
             process.Kill();
         }
-    }
-
-    bool ConvertMessage(string message)
-    {
-        Debug.Log(message);
-        string[] data = message.Split(" ");
-           
-        // TODO : Check if the message is valid
-        if (data.Length >= 3)
-        {
-            roll = ParseRotation(data[0]);
-            pitch = ParseRotation(data[1]);
-            yaw = ParseRotation(data[2]);
-            /*float accX = float.TryParse(data[0], out float acc) ? acc * 9.8f : 0f;
-            float accY = float.TryParse(data[1], out acc) ? acc * 9.8f : 0f;
-            float accZ = float.TryParse(data[2], out acc) ? (acc - 1) * 9.8f  : 0f;
-            acceleration = new Vector3(accX, accY, accZ);*/
-
-            // Debug.Log(acceleration);
-            Debug.Log("roll " + roll + " pitch " + pitch + " yaw " + yaw);
-            // transform.rotation *= Quaternion.Euler(pitch * Time.fixedDeltaTime, yaw * Time.fixedDeltaTime, roll * Time.fixedDeltaTime);
-            return true;
-        }
-        return false;
-    }
-
-    float ParseRotation(string strRotation)
-    {
-        return float.TryParse(strRotation, out float rotation) ? rotation : 0f;
     }
 }
