@@ -6,7 +6,7 @@ public class DetectCollisions : MonoBehaviour
 {
     private List<GameObject> fingerObjects = new List<GameObject>();
 
-    struct Feedback
+    private struct Feedback
     {
         // pour la rétroaction
         public List<int> fingersOnCollisionIds;     // liste des ID en collision
@@ -15,7 +15,16 @@ public class DetectCollisions : MonoBehaviour
         
         // pour la restriction
         public bool isOpen;                         // ouvert/fermé pour la restriction
-        public int jointsPosition;                  // position des joints // pas sur de son format vecteur?
+        public int jointsPosition;                  // position des joints
+
+        public Feedback(List<int> fingersOnCollisionIds, int intensity, int textureCoeff, bool isOpen, int jointsPosition)
+        {
+            this.fingersOnCollisionIds = fingersOnCollisionIds;
+            this.intensity = intensity;
+            this.textureCoeff = textureCoeff;
+            this.isOpen = isOpen;
+            this.jointsPosition = jointsPosition;
+        }
     }
 
     private void Start()
@@ -27,12 +36,12 @@ public class DetectCollisions : MonoBehaviour
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         Feedback feedback = new Feedback();
         feedback.fingersOnCollisionIds = new List<int>();
 
-        foreach (ContactPoint contact in collision.contacts)
+        for (int i=0; i < collision.contacts.Length; i++)
         {
             int fingerId = GetFingerIdFromGameObject(gameObject);
             if (fingerId != -1)
@@ -40,7 +49,7 @@ public class DetectCollisions : MonoBehaviour
                 feedback.fingersOnCollisionIds.Add(fingerId);
             }
         }
-        // Affichage du contenu de la liste
+
         foreach (int id in feedback.fingersOnCollisionIds)
         {
             Debug.Log("ID EN COLLISION: " + id);
@@ -49,17 +58,10 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Feedback feedback = new Feedback();
-
-        feedback.fingersOnCollisionIds = new List<int>();
-        feedback.intensity = 0;
-        feedback.textureCoeff = 0;
-
-        feedback.isOpen = true;
-        feedback.jointsPosition = 0;
+        Feedback feedbackInstance = new Feedback(new(), 0, 0, true, 0);
     }
 
-    int GetFingerIdFromGameObject(GameObject fingerObject)
+    private int GetFingerIdFromGameObject(GameObject fingerObject)
     {
         for (int i = 0; i < fingerObjects.Count; i++)
         {
