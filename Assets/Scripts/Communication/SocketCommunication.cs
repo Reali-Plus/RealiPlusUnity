@@ -10,7 +10,7 @@ public class SocketCommunication : MonoBehaviour
     [SerializeField]
     private int port = 8000;
     [SerializeField]
-    private string dameonFileName = "communication-daemon-socket-send-receive.py";
+    private string dameonFileName = "communication-daemon.py";
 
     private UdpClient udpClient;
     private IPEndPoint endPoint;

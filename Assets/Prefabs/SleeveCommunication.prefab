@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f7e7ac23f11f34785aeba78367d3a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  port: 8000
+  dameonFileName: communication-daemon.py
