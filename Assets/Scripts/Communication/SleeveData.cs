@@ -1,4 +1,3 @@
-
 public struct SleeveData
 {
     // TODO : Add other data

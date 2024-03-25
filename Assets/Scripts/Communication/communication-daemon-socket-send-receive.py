@@ -78,23 +78,19 @@ async def connect_to_sleeve(queue_write, queue_read):
     
     if device is not None:
         async with BleakClient(device) as client:
-            print("Connecting to MyESP32")
-
+            await client.write_gatt_char(CHARACTERISTIC_UUID, bytes("200 Daemon connected to sleeve", 'utf-8'))
             while client.is_connected:
                 message = await client.read_gatt_char(CHARACTERISTIC_UUID)
                 await queue_read.put(message)
-                # print(str(message, 'utf-8'))
                 
                 if not queue_write.empty():
                     msg = await queue_write.get()
-                    # print(f"Sending to sleeve: {msg}")
                     await client.write_gatt_char(CHARACTERISTIC_UUID, msg)
 
-            print("Client disconnected")
+            await client.write_gatt_char(CHARACTERISTIC_UUID, bytes("400 Daemon disconnected from sleeve", 'utf-8'))
 
 
 async def main():
-
     queue_read = janus.Queue()
     queue_write = janus.Queue()
 

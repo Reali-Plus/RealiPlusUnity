@@ -4,15 +4,18 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
+// TODO: make this class a singleton
 public class SocketCommunication : MonoBehaviour
 {
-    private const int port = 8000;
+    [SerializeField]
+    private int port = 8000;
+    [SerializeField]
+    private string dameonFileName = "communication-daemon-socket-send-receive.py";
 
     private UdpClient udpClient;
     private IPEndPoint endPoint;
 
     private System.Diagnostics.Process process;
-    private string lastReceivedMessage = "";
 
     void Start()
     {
@@ -21,9 +24,9 @@ public class SocketCommunication : MonoBehaviour
         endPoint = new IPEndPoint(IPAddress.Loopback, port);
 
         DirectoryInfo dir = Directory.GetParent(Application.dataPath);
-        string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", "communication-daemon-socket-send-receive.py");
+        string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", dameonFileName);
 
-        // RunProcess(daemonPath);
+        RunProcess(daemonPath);
     }
 
     void RunProcess(string daemonPath)
@@ -46,17 +49,12 @@ public class SocketCommunication : MonoBehaviour
             return sleeveData;
         }
 
-        while (udpClient.Available > 0) // TODO: maybe change to if
+        if (udpClient.Available > 0) // TODO: maybe change to if
         {
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
-            Debug.Log(receivedString);
 
-            if (receivedString != lastReceivedMessage)
-            {
-                lastReceivedMessage = receivedString;
-                sleeveData.FromString(receivedString);
-            } 
+            sleeveData.FromString(receivedString);
         }
         return sleeveData;
     }
