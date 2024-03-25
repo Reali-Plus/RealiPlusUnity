@@ -64,8 +64,11 @@ public class SocketCommunication : MonoBehaviour
             if (receivedString != lastReceivedMessage)
             {
                 lastReceivedMessage = receivedString;
-                ConvertMessage(receivedString);
-            }
+                if(!ConvertMessage(receivedString))
+                {
+                    ResetAngles();
+                }
+            } 
         }
     }
 
@@ -78,13 +81,21 @@ public class SocketCommunication : MonoBehaviour
         }
     }
 
+    void ResetAngles()
+    {
+        roll = 0f;
+        pitch = 0f;
+        yaw = 0f;
+    }
+
     void Update()
     {
+        // ResetAngles();
         ReceiveData();
         SendData("Hello from Unity");
     }
 
-    /*void FixedUpdate()
+    void FixedUpdate()
     {
         // transform.Translate(acceleration * Time.fixedDeltaTime);
 
@@ -95,7 +106,7 @@ public class SocketCommunication : MonoBehaviour
         
         transform.rotation *= Quaternion.Euler(pitch * Time.fixedDeltaTime, yaw * Time.fixedDeltaTime, roll * Time.fixedDeltaTime);
         
-    }*/
+    }
 
     void OnApplicationQuit()
     {
@@ -106,7 +117,7 @@ public class SocketCommunication : MonoBehaviour
         }
     }
 
-    void ConvertMessage(string message)
+    bool ConvertMessage(string message)
     {
         Debug.Log(message);
         string[] data = message.Split(" ");
@@ -122,10 +133,12 @@ public class SocketCommunication : MonoBehaviour
             float accZ = float.TryParse(data[2], out acc) ? (acc - 1) * 9.8f  : 0f;
             acceleration = new Vector3(accX, accY, accZ);*/
 
-            //Debug.Log(acceleration);
+            // Debug.Log(acceleration);
             Debug.Log("roll " + roll + " pitch " + pitch + " yaw " + yaw);
-            transform.rotation *= Quaternion.Euler(pitch * Time.fixedDeltaTime, yaw * Time.fixedDeltaTime, roll * Time.fixedDeltaTime);
+            // transform.rotation *= Quaternion.Euler(pitch * Time.fixedDeltaTime, yaw * Time.fixedDeltaTime, roll * Time.fixedDeltaTime);
+            return true;
         }
+        return false;
     }
 
     float ParseRotation(string strRotation)
