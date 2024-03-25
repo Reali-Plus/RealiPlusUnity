@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class CostTransform : MonoBehaviour
 {
-    private static readonly List<CostTransform> allCostTransform = new List<CostTransform>();
+    //private static readonly List<CostTransform> allCostTransform = new List<CostTransform>();
+    public float PositionWeight => positionWeight;
+    public float OrientationWeight => orientationWeight;
 
     [SerializeField] private Transform target;
     [SerializeField] private float positionWeight = 10f;
     [SerializeField] private float orientationWeight = 0.1f;
-
+    /*
     private void OnEnable()
     {
         allCostTransform.Add(this);
@@ -20,7 +22,7 @@ public class CostTransform : MonoBehaviour
     private void OnDisable()
     {
         allCostTransform.Remove(this);
-    }
+    }*/
 
     public Vector<float> GetErrorVector()
     {
@@ -33,6 +35,7 @@ public class CostTransform : MonoBehaviour
         return error;
     }
 
+    /*
     public float GetCost()
     {
         return positionWeight * (transform.position - target.position).magnitude +
@@ -48,7 +51,7 @@ public class CostTransform : MonoBehaviour
         }
         return cost;
     }
-
+    */
     private void OnDrawGizmos()
     {
         if (target == null)
