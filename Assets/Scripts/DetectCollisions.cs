@@ -49,16 +49,11 @@ public class DetectCollisions : MonoBehaviour
                 feedback.fingersOnCollisionIds.Add(fingerId);
             }
         }
-
-        foreach (int id in feedback.fingersOnCollisionIds)
-        {
-            Debug.Log("ID EN COLLISION: " + id);
-        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        Feedback feedbackInstance = new Feedback(new(), 0, 0, true, 0);
+         new Feedback(new(), 0, 0, true, 0);
     }
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
