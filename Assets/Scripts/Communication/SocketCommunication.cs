@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -6,8 +7,11 @@ using UnityEngine;
 
 public class SocketCommunication : MonoBehaviour
 {
-    private UdpClient udpClient;
     private const int port = 8000;
+    // private const string adress = "127.0.0.1";
+
+    private UdpClient udpClient;
+    private IPEndPoint endPoint;
 
     private System.Diagnostics.Process process;
     private string lastReceivedMessage = "";
@@ -20,7 +24,12 @@ public class SocketCommunication : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Starting socket communication");
         udpClient = new UdpClient(port);
+        // string to byte array
+        // endPoint = new IPEndPoint(new IPAddress(Encoding.UTF8.GetBytes(adress)), port);
+        endPoint = new IPEndPoint(IPAddress.Loopback, port);
+
 
         DirectoryInfo dir = Directory.GetParent(Application.dataPath);
         string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", "communication-daemon-socket-send-receive.py");
@@ -40,12 +49,15 @@ public class SocketCommunication : MonoBehaviour
         process.Start();
     }   
 
-    void Update()
+    void ReceiveData()
     {
-        while (udpClient.Available > 0) 
+        if (udpClient == null || endPoint == null)
         {
-            IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, port);
-            byte[] receivedBytes = udpClient.Receive(ref remoteEndPoint);
+            return;
+        }
+        while (udpClient.Available > 0)
+        {
+            byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
             Debug.Log(receivedString);
 
@@ -57,7 +69,22 @@ public class SocketCommunication : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void SendData(string message)
+    {
+        byte[] data = Encoding.UTF8.GetBytes(message);
+        if(udpClient != null && endPoint != null)
+        {
+            udpClient.Send(data, data.Length, endPoint);
+        }
+    }
+
+    void Update()
+    {
+        ReceiveData();
+        SendData("Hello from Unity");
+    }
+
+    /*void FixedUpdate()
     {
         // transform.Translate(acceleration * Time.fixedDeltaTime);
 
@@ -68,7 +95,7 @@ public class SocketCommunication : MonoBehaviour
         
         transform.rotation *= Quaternion.Euler(pitch * Time.fixedDeltaTime, yaw * Time.fixedDeltaTime, roll * Time.fixedDeltaTime);
         
-    }
+    }*/
 
     void OnApplicationQuit()
     {
@@ -97,6 +124,7 @@ public class SocketCommunication : MonoBehaviour
 
             //Debug.Log(acceleration);
             Debug.Log("roll " + roll + " pitch " + pitch + " yaw " + yaw);
+            transform.rotation *= Quaternion.Euler(pitch * Time.fixedDeltaTime, yaw * Time.fixedDeltaTime, roll * Time.fixedDeltaTime);
         }
     }
 

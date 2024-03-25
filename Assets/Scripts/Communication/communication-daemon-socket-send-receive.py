@@ -19,16 +19,19 @@ def initialize_socket():
 
     return unity_socket
 
-def connect_to_unity(queue2Send, queueRcv):
+def connect_to_unity(queue_write, queue_read):
     unity_socket = initialize_socket()
     print("Connect to Unity")
     while True: 
-        # print(f"UNITY - Queue size: {queueRcv.qsize()}")
-        if not queueRcv.empty():
-            msg = queueRcv.get()
-            print(msg)
+        # print(f"UNITY - Queue size: {queue_read.qsize()}")
+        if not queue_read.empty():
+            msg = queue_read.get()
+            # print(msg)
             print(f"Sending: {msg}")
             unity_socket.send(msg)
+            data = unity_socket.recv(1024)
+            # print(f"Received from unity: {data}")
+            queue_write.put(data)
 
         # time.sleep(0.05)
 
@@ -45,7 +48,7 @@ async def find_sleeve():
     
     return adress
 
-async def connect_to_sleeve(queue2Send, queueRcv):
+async def connect_to_sleeve(queue_write, queue_read):
     print("Connect to sleeve")
     device = await find_sleeve()
     
@@ -55,14 +58,14 @@ async def connect_to_sleeve(queue2Send, queueRcv):
 
             while client.is_connected:
                 message = await client.read_gatt_char(CHARACTERISTIC_UUID)
-                await queueRcv.put(message)
+                await queue_read.put(message)
                 # print(str(message, 'utf-8'))
-                print(f"SLEEVE - Queue size: {queueRcv.qsize()}")
+                # print(f"SLEEVE - Queue size: {queue_read.qsize()}")
                 
-                if not queue2Send.empty():
-                    msg = await queue2Send.get()
-                    print(f"Sending: {msg}")
-                    await client.write_gatt_char(CHARACTERISTIC_UUID, msg.encode('utf-8'))
+                if not queue_write.empty():
+                    msg = await queue_write.get()
+                    # print(f"Sending to sleeve: {msg}")
+                    await client.write_gatt_char(CHARACTERISTIC_UUID, msg)
 
                 time.sleep(0.05)
 
@@ -74,14 +77,14 @@ async def add_to_queue(queue, msg):
 
 async def main():
 
-    queueRcv = janus.Queue()
-    queue2Send = janus.Queue()
+    queue_read = janus.Queue()
+    queue_write = janus.Queue()
 
-    await add_to_queue(queue2Send.async_q, "Hello from python")
-    await add_to_queue(queue2Send.async_q, "Hello from python again")
+    await add_to_queue(queue_write.async_q, bytes("Hello from python", 'utf-8'))
+    await add_to_queue(queue_write.async_q, bytes("Hello from python again", 'utf-8'))
 
-    sleeve_connection_task = asyncio.create_task(connect_to_sleeve(queue2Send.async_q, queueRcv.async_q))
-    thread = threading.Thread(target=connect_to_unity, args=(queue2Send.sync_q, queueRcv.sync_q))
+    sleeve_connection_task = asyncio.create_task(connect_to_sleeve(queue_write.async_q, queue_read.async_q))
+    thread = threading.Thread(target=connect_to_unity, args=(queue_write.sync_q, queue_read.sync_q))
     thread.start()
 
     await sleeve_connection_task
