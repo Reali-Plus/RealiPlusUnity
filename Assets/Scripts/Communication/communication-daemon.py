@@ -78,16 +78,19 @@ async def connect_to_sleeve(queue_write, queue_read):
     
     if device is not None:
         async with BleakClient(device) as client:
-            await queue_read.put(bytes("200 Daemon connected to sleeve", 'utf-8'))
+            await queue_read.put(bytes("2|Daemon connected to sleeve", 'utf-8'))
             while client.is_connected:
-                message = await client.read_gatt_char(CHARACTERISTIC_UUID)
-                await queue_read.put(message)
-                
-                if not queue_write.empty():
-                    msg = await queue_write.get()
-                    await client.write_gatt_char(CHARACTERISTIC_UUID, msg)
+                try:
+                    message = await client.read_gatt_char(CHARACTERISTIC_UUID)
+                    await queue_read.put(message)
+                    
+                    if not queue_write.empty():
+                        msg = await queue_write.get()
+                        await client.write_gatt_char(CHARACTERISTIC_UUID, msg)
+                except:
+                    break
 
-            await queue_read.put(bytes("400 Daemon disconnected from sleeve", 'utf-8'))
+            await queue_read.put(bytes("4|Daemon disconnected from sleeve", 'utf-8'))
 
 
 async def main():
