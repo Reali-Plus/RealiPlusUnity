@@ -35,4 +35,8 @@ public struct SleeveData
     {
         return float.TryParse(strRotation, out float rotation) ? rotation : 0f;
     }
+    public override string ToString()
+    {
+        return "Roll " + Roll + " Pitch " + Pitch + " Yaw " + Yaw;
+    }
 }

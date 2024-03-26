@@ -15,7 +15,7 @@ public struct HapticsData
         Message = message;
     }
 
-    public byte[] ToBytes()
+    public readonly byte[] ToBytes()
     {
         // TODO : replace with actual data format
         return Encoding.UTF8.GetBytes(Message);

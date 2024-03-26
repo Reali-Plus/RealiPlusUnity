@@ -15,7 +15,11 @@ public class CubeController : MonoBehaviour
 
     void Update()
     {
-        sleeveData = socketCommunication.ReceiveData();
+        SleeveData? data = socketCommunication.ReceiveData();
+        if (data != null)
+        {
+            sleeveData = (SleeveData)data;
+        }
     }
 
     private void FixedUpdate()

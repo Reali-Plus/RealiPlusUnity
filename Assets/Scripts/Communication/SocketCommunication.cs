@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -26,7 +27,7 @@ public class SocketCommunication : MonoBehaviour
         DirectoryInfo dir = Directory.GetParent(Application.dataPath);
         string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", dameonFileName);
 
-        RunProcess(daemonPath);
+        // RunProcess(daemonPath);
     }
 
     private void RunProcess(string daemonPath)
@@ -41,12 +42,12 @@ public class SocketCommunication : MonoBehaviour
         process.Start();
     }   
 
-    public SleeveData ReceiveData()
+    public SleeveData? ReceiveData()
     {
         SleeveData sleeveData = new SleeveData(0, 0, 0);
         if (udpClient == null || endPoint == null)
         {
-            return sleeveData;
+            return null;
         }
 
         if (udpClient.Available > 0)
@@ -54,9 +55,13 @@ public class SocketCommunication : MonoBehaviour
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
 
-            sleeveData.FromString(receivedString);
+            if(ValidateResponse(receivedString))
+            {
+                sleeveData.FromString(receivedString);
+                Debug.Log("Received data : " + sleeveData.ToString());
+            }
         }
-        return sleeveData;
+        return null;
     }
 
     public void SendData(HapticsData hapticsData)
@@ -76,4 +81,21 @@ public class SocketCommunication : MonoBehaviour
             process.Kill();
         }
     }
+
+    private bool ValidateResponse(string response)
+    {
+        bool positiveResponse = true;
+        string[] data = response.Split("|");
+        if (data.Length == 2)
+        {
+            if (data[0].Equals("4")) // Daemon disconnected from sleeve
+            {
+                positiveResponse = false;
+            }
+            Debug.Log("Response " + data[1]);
+        }
+        return positiveResponse;
+    }
+
+
 }
