@@ -31,9 +31,10 @@ public class SocketCommunication : MonoBehaviour
         string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", dameonFileName);
 
         dataQueue = new Queue<SleeveData>();
-        // RunProcess(daemonPath);
+        RunProcess(daemonPath);
     }
-
+    
+    // TODO: add validation for the daemon path and an excutable for the daemon (mode debug vs mode release)
     private void RunProcess(string daemonPath)
     {
         process = new System.Diagnostics.Process();
@@ -48,7 +49,7 @@ public class SocketCommunication : MonoBehaviour
 
     public SleeveData GetData()
     {
-        if (dataQueue.Count > 0)
+        if (HasData())
         {
             return dataQueue.Dequeue();
         }
@@ -60,26 +61,27 @@ public class SocketCommunication : MonoBehaviour
         return dataQueue.Count > 0;
     }
 
-    public void ReceiveData()
+    public bool ReceiveData()
     {
         SleeveData sleeveData = new SleeveData(0, 0, 0);
         if (udpClient == null || endPoint == null)
         {
-            return;
+            return false;
         }
 
         if (udpClient.Available > 0)
         {
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
-            Debug.Log("Received string : " + receivedString);
             if(ValidateResponse(receivedString))
             {
                 sleeveData.FromString(receivedString);
-                Debug.Log("Received data : " + sleeveData.ToString());
                 dataQueue.Enqueue(sleeveData);
+                return true;
             }
         }
+
+        return false;
     }
 
     public void SendData(HapticsData hapticsData)
@@ -110,11 +112,9 @@ public class SocketCommunication : MonoBehaviour
             {
                 isValid = false;
             }
-            Debug.Log("Response " + data[1]);
+            Debug.Log("Daemon Message: " + data[1]);
         }
 
         return isValid;
     }
-
-
 }
