@@ -5,7 +5,6 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
     [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
-    public List<GameObject> list = new();
     private Feedback currentFeeback; 
 
     private struct Feedback
@@ -52,18 +51,11 @@ public class DetectCollisions : MonoBehaviour
         {
             currentFeeback.fingersOnCollisionIds.Add(fingerId);
         }
-
-        foreach (int id in currentFeeback.fingersOnCollisionIds)
-        {
-            Debug.Log("ID EN COLLISION: " + id);
-        }
     }
 
     public void ExitCollision()
     {
         currentFeeback = new Feedback(new List<int>(), 0, 0, true, 0);
-        list.Clear();
-        print("Exit Collision");
     }
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
@@ -72,7 +64,6 @@ public class DetectCollisions : MonoBehaviour
         {
             if (fingerObjects[i] == fingerObject)
             {
-                list.Add(fingerObject);
                 return i;
             }
         }
