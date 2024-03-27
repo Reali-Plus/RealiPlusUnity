@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
+    [SerializeField]
     private SleeveData sleeveData;
+    [SerializeField]
     private SocketCommunication socketCommunication;
 
     void Start()
@@ -15,11 +17,17 @@ public class CubeController : MonoBehaviour
 
     void Update()
     {
-        SleeveData? data = socketCommunication.ReceiveData();
+        socketCommunication.ReceiveData();
+        if (socketCommunication.HasData())
+        {
+            sleeveData = socketCommunication.GetData();
+            Debug.Log(sleeveData.ToString());
+        }
+        /*SleeveData? data = socketCommunication.ReceiveData();
         if (data != null)
         {
             sleeveData = (SleeveData)data;
-        }
+        }*/
     }
 
     private void FixedUpdate()

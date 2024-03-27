@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Collections.Generic;
 using UnityEngine;
 
 // TODO: make this class a singleton
@@ -18,6 +19,8 @@ public class SocketCommunication : MonoBehaviour
 
     private System.Diagnostics.Process process;
 
+    private Queue<SleeveData> dataQueue;
+
     private void Start()
     {
         Debug.Log("Starting socket communication");
@@ -27,6 +30,7 @@ public class SocketCommunication : MonoBehaviour
         DirectoryInfo dir = Directory.GetParent(Application.dataPath);
         string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", dameonFileName);
 
+        dataQueue = new Queue<SleeveData>();
         // RunProcess(daemonPath);
     }
 
@@ -42,26 +46,40 @@ public class SocketCommunication : MonoBehaviour
         process.Start();
     }   
 
-    public SleeveData? ReceiveData()
+    public SleeveData GetData()
+    {
+        if (dataQueue.Count > 0)
+        {
+            return dataQueue.Dequeue();
+        }
+        return new SleeveData(0, 0, 0);
+    }
+
+    public bool HasData()
+    {
+        return dataQueue.Count > 0;
+    }
+
+    public void ReceiveData()
     {
         SleeveData sleeveData = new SleeveData(0, 0, 0);
         if (udpClient == null || endPoint == null)
         {
-            return null;
+            return;
         }
 
         if (udpClient.Available > 0)
         {
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
-
+            Debug.Log("Received string : " + receivedString);
             if(ValidateResponse(receivedString))
             {
                 sleeveData.FromString(receivedString);
                 Debug.Log("Received data : " + sleeveData.ToString());
+                dataQueue.Enqueue(sleeveData);
             }
         }
-        return null;
     }
 
     public void SendData(HapticsData hapticsData)
@@ -84,17 +102,18 @@ public class SocketCommunication : MonoBehaviour
 
     private bool ValidateResponse(string response)
     {
-        bool positiveResponse = true;
+        bool isValid = true;
         string[] data = response.Split("|");
         if (data.Length == 2)
         {
             if (data[0].Equals("4")) // Daemon disconnected from sleeve
             {
-                positiveResponse = false;
+                isValid = false;
             }
             Debug.Log("Response " + data[1]);
         }
-        return positiveResponse;
+
+        return isValid;
     }
 
 
