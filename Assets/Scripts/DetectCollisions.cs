@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    private List<GameObject> fingerObjects = new List<GameObject>();
+    [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
+    public List<GameObject> list = new();
 
     private struct Feedback
     {
@@ -29,32 +30,43 @@ public class DetectCollisions : MonoBehaviour
 
     private void Start()
     {
+        print("Add GameObject in the List");
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Ring"));
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
+
+        foreach (GameObject fingerObject in fingerObjects)
+        {
+            fingerObject.AddComponent<CollisionHandler>().Initialize(this);
+        }
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void HandleCollision(Collision collision, GameObject fingerObject)
     {
         Feedback feedback = new Feedback();
         feedback.fingersOnCollisionIds = new List<int>();
 
-        for (int i=0; i < collision.contacts.Length; i++)
+        int fingerId = GetFingerIdFromGameObject(fingerObject);
+        print(fingerObject);
+            
+        if (fingerId != -1)
         {
-            int fingerId = GetFingerIdFromGameObject(gameObject);
-            if (fingerId != -1)
-            {
-                feedback.fingersOnCollisionIds.Add(fingerId);
-            }
+            feedback.fingersOnCollisionIds.Add(fingerId);
+        }
+
+        foreach (int id in feedback.fingersOnCollisionIds)
+        {
+            Debug.Log("ID EN COLLISION: " + id);
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-         new Feedback(new(), 0, 0, true, 0);
-    }
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //     new Feedback(new(), 0, 0, true, 0);
+    //}
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
     {
@@ -62,6 +74,7 @@ public class DetectCollisions : MonoBehaviour
         {
             if (fingerObjects[i] == fingerObject)
             {
+                list.Add(fingerObject);
                 return i;
             }
         }
