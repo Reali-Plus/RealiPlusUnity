@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 982463852179156751}
   - component: {fileID: 3846912093881322112}
   - component: {fileID: 1977101946}
-  - component: {fileID: 5267886969093231355}
   - component: {fileID: 1977101945}
   m_Layer: 6
   m_Name: Finger3_4
@@ -66,20 +65,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &5267886969093231355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377669466805599070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  list: []
-  list2: []
 --- !u!114 &1977101945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +282,6 @@ GameObject:
   - component: {fileID: 5288554315301737057}
   - component: {fileID: 3846912092877770625}
   - component: {fileID: 706474634}
-  - component: {fileID: 4730670147025548449}
   - component: {fileID: 706474633}
   m_Layer: 6
   m_Name: Finger1_4
@@ -352,20 +336,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &4730670147025548449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3623465732682902758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  list: []
-  list2: []
 --- !u!114 &706474633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +523,7 @@ GameObject:
   - component: {fileID: 6058252800284087582}
   - component: {fileID: 8378695083800872595}
   - component: {fileID: 2737956814345780206}
+  - component: {fileID: 2145445401813120912}
   m_Layer: 6
   m_Name: PF_RealiPlusRight
   m_TagString: Untagged
@@ -619,6 +590,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionEvent: {fileID: 11400000, guid: 58899aed54dbc724f9d472bc66ce7ee9, type: 2}
+--- !u!114 &2145445401813120912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153325988746511319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fingerObjects: []
 --- !u!1 &4414334448771825891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,7 +1102,6 @@ GameObject:
   - component: {fileID: 4748805917145731107}
   - component: {fileID: 3846912093329387729}
   - component: {fileID: 480438144}
-  - component: {fileID: 2171687116125872383}
   - component: {fileID: 480438143}
   m_Layer: 6
   m_Name: Finger2_4
@@ -1173,20 +1156,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &2171687116125872383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6106822688555439946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  list: []
-  list2: []
 --- !u!114 &480438143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,7 +1294,6 @@ GameObject:
   - component: {fileID: 4241313040333762791}
   - component: {fileID: 3846912094143241956}
   - component: {fileID: 206152348}
-  - component: {fileID: 2478528581525628178}
   - component: {fileID: 206152347}
   m_Layer: 6
   m_Name: Thumb_3
@@ -1380,20 +1348,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &2478528581525628178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6661277540773365984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  list: []
-  list2: []
 --- !u!114 &206152347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1485,6 @@ GameObject:
   - component: {fileID: 272477958187933313}
   - component: {fileID: 3846912093776915021}
   - component: {fileID: 650362115}
-  - component: {fileID: 3125870993272349982}
   - component: {fileID: 650362114}
   m_Layer: 6
   m_Name: Finger4_4
@@ -1586,20 +1539,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &3125870993272349982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7143695715737091458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  list: []
-  list2: []
 --- !u!114 &650362114
 MonoBehaviour:
   m_ObjectHideFlags: 0
