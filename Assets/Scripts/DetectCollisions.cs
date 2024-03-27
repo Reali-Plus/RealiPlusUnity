@@ -6,6 +6,7 @@ public class DetectCollisions : MonoBehaviour
 {
     [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
     public List<GameObject> list = new();
+    private Feedback currentFeeback; 
 
     private struct Feedback
     {
@@ -30,7 +31,6 @@ public class DetectCollisions : MonoBehaviour
 
     private void Start()
     {
-        print("Add GameObject in the List");
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
@@ -41,32 +41,30 @@ public class DetectCollisions : MonoBehaviour
         {
             fingerObject.AddComponent<CollisionHandler>().Initialize(this);
         }
-
     }
 
-    public void HandleCollision(Collision collision, GameObject fingerObject)
+    public void HandleCollision(GameObject fingerObject)
     {
-        Feedback feedback = new Feedback();
-        feedback.fingersOnCollisionIds = new List<int>();
+        currentFeeback.fingersOnCollisionIds = new List<int>();
 
         int fingerId = GetFingerIdFromGameObject(fingerObject);
-        print(fingerObject);
-            
         if (fingerId != -1)
         {
-            feedback.fingersOnCollisionIds.Add(fingerId);
+            currentFeeback.fingersOnCollisionIds.Add(fingerId);
         }
 
-        foreach (int id in feedback.fingersOnCollisionIds)
+        foreach (int id in currentFeeback.fingersOnCollisionIds)
         {
             Debug.Log("ID EN COLLISION: " + id);
         }
     }
 
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //     new Feedback(new(), 0, 0, true, 0);
-    //}
+    public void ExitCollision()
+    {
+        currentFeeback = new Feedback(new List<int>(), 0, 0, true, 0);
+        list.Clear();
+        print("Exit Collision");
+    }
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
     {
