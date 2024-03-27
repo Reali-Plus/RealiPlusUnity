@@ -63,7 +63,6 @@ public class SocketCommunication : MonoBehaviour
 
     public bool ReceiveData()
     {
-        SleeveData sleeveData = new SleeveData(0, 0, 0);
         if (udpClient == null || endPoint == null)
         {
             return false;
@@ -75,8 +74,10 @@ public class SocketCommunication : MonoBehaviour
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
             if(ValidateResponse(receivedString))
             {
+                SleeveData sleeveData = new SleeveData(0, 0, 0);
                 sleeveData.FromString(receivedString);
                 dataQueue.Enqueue(sleeveData);
+
                 return true;
             }
         }
@@ -86,10 +87,15 @@ public class SocketCommunication : MonoBehaviour
 
     public void SendData(HapticsData hapticsData)
     {
-        byte[] data = hapticsData.ToBytes();
-        if (udpClient != null && endPoint != null & data.Length > 0)
+        if (udpClient != null && endPoint != null)
         {
-            udpClient.Send(data, data.Length, endPoint);
+            byte[] data = hapticsData.ToBytes();
+
+            if (data.Length > 0)
+            {
+                udpClient.Send(data, data.Length, endPoint);
+
+            }
         }
     }
 
