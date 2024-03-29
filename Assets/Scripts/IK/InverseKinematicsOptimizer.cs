@@ -76,7 +76,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
             jointIndex += joints[i].DOFs;
         }
 
-        //Debug.Log(jacobian);
+        //Debug.Log(jacobianMat);
     }
 
     private void UpdateErrorVector()
@@ -86,7 +86,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
             errorVec.SetSubVector(6 * i, 6, targets[i].GetErrorVector());
         }
 
-        //Debug.Log(error);
+        Debug.Log(errorVec);
     }
 
     private void UpdateEnergy()
@@ -107,6 +107,15 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
     private void TickJoints()
     {
-        
+        Vector<float> delta = dampingMat.Inverse() * torqueVec;
+
+        //Debug.Log(delta);
+
+        int jointIndex = 0;
+        for (int i = 0; i < joints.Count; i++)
+        {
+            joints[i].ApplyStepDisplacement(in delta, jointIndex);
+            jointIndex += joints[i].DOFs;
+        }
     }
 }
