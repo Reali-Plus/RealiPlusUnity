@@ -25,4 +25,9 @@ public class PhysicsJoint : PhysicsController
     {
         throw new System.NotImplementedException();
     }
+
+    public override void ApplyStepDisplacement(in Vector<float> delta, int jointIndex)
+    {
+        throw new System.NotImplementedException();
+    }
 }

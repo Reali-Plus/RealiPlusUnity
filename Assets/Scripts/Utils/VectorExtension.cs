@@ -15,4 +15,9 @@ public static class VectorExtension
     {
         return Vector<float>.Build.Dense(new float[] { v.x, v.y, v.z });
     }
+
+    public static Vector3 DeltaEuler(this Vector3 v)
+    {
+        return new Vector3(Mathf.DeltaAngle(0, v.x), Mathf.DeltaAngle(0, v.y), Mathf.DeltaAngle(0, v.z));
+    }
 }

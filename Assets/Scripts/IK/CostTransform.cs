@@ -29,8 +29,14 @@ public class CostTransform : MonoBehaviour
         Vector<float> error = Vector<float>.Build.Dense(6);
         error.SetSubVector(0, 3, (target.position - transform.position).ToMNVector());
 
-        (Quaternion.Inverse(target.rotation) * transform.rotation).ToAngleAxis(out float angle, out Vector3 axis);
-        error.SetSubVector(3, 3, (Mathf.Deg2Rad * angle * axis).ToMNVector());
+        Quaternion rotError = target.rotation * Quaternion.Inverse(transform.rotation);
+
+        // Angle Axis Method
+        //rotError.ToAngleAxis(out float angle, out Vector3 axis);
+        //error.SetSubVector(3, 3, (Mathf.Deg2Rad * angle * axis).ToMNVector());
+
+        // Euler Method
+        error.SetSubVector(3, 3, Mathf.Deg2Rad * rotError.eulerAngles.DeltaEuler().ToMNVector());
 
         return error;
     }
