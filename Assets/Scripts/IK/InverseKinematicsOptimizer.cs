@@ -59,7 +59,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
         for (int i = 0; i < maxIter; i++)
         {
-            Debug.Log($" --- Iteration {i} --- ");
+            // Debug.Log($" --- Iteration {i} --- ");
             UpdateJacobian();
             UpdateErrorVector();
             UpdateEnergy();
@@ -87,7 +87,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
             errorVec.SetSubVector(6 * i, 6, targets[i].GetErrorVector());
         }
 
-        Debug.Log(errorVec);
+        // Debug.Log(errorVec);
     }
 
     private void UpdateEnergy()
