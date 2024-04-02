@@ -9,6 +9,7 @@ TagManager:
   - Middle
   - Pinky
   - Ring
+  - SleeveCommunication
   layers:
   - Default
   - TransparentFX
