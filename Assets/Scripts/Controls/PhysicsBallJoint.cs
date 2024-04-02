@@ -40,6 +40,7 @@ public class PhysicsBallJoint : PhysicsController
 
             int d = i * 6;
             Vector3 targetRelPos = targets[i].transform.position - transform.position;
+
             Vector3 movementX = Vector3.Cross(transform.right, targetRelPos);
             jacobian[d,   jointIndex] = Vector3.Dot(movementX, Vector3.right);
             jacobian[d+1, jointIndex] = Vector3.Dot(movementX, Vector3.up);

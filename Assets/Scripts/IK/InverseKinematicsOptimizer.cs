@@ -12,7 +12,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
     [SerializeField, Min(0)] private int maxIter = 10;
     [SerializeField] private List<CostTransform> targets;
-    [SerializeField] private List<PhysicsController> joints;
+    [SerializeField] private List<TransformController> joints;
 
     private Matrix<float> jacobianMat;
     private Vector<float> errorVec;
@@ -59,6 +59,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
         for (int i = 0; i < maxIter; i++)
         {
+            Debug.Log($" --- Iteration {i} --- ");
             UpdateJacobian();
             UpdateErrorVector();
             UpdateEnergy();
