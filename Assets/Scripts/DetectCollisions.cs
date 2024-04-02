@@ -30,11 +30,12 @@ public class DetectCollisions : MonoBehaviour
 
     private void Start()
     {
+        print("START");
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Ring"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Ring"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
 
         foreach (GameObject fingerObject in fingerObjects)
         {
@@ -49,12 +50,14 @@ public class DetectCollisions : MonoBehaviour
         int fingerId = GetFingerIdFromGameObject(fingerObject);
         if (fingerId != -1)
         {
+            print("HandleCollision:"+ fingerId);
             currentFeedback.fingersOnCollisionIds.Add(fingerId);
         }
     }
 
     public void ExitCollision()
     {
+        print("EXIT COLLISION");
         currentFeedback = new Feedback(new List<int>(), 0, 0, true, 0);
     }
 

@@ -13,6 +13,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print("collision");
         parentScript.HandleCollision(gameObject);
     }
 
