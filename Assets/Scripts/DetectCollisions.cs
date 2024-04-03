@@ -6,6 +6,8 @@ public class DetectCollisions : MonoBehaviour
 {
     [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
     //private HapticsData.FingerFeedback currentFeedback;
+    [SerializeField]
+    private SocketCommunication socketCommunication;
 
 
     private void Start()
@@ -16,6 +18,8 @@ public class DetectCollisions : MonoBehaviour
         {
             fingerObject.AddComponent<CollisionHandler>().Initialize(this);
         }
+
+        socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
     }
 
     public void HandleCollision(GameObject fingerObject)
@@ -24,7 +28,12 @@ public class DetectCollisions : MonoBehaviour
 
         int fingerId = GetFingerIdFromGameObject(fingerObject);
         if (fingerId != -1)
+            Debug.Log("Finger " + fingerId + " is in collision");
         {
+            HapticsData haptics = new HapticsData();
+            haptics.AddFeedback(new FingerFeedback(fingerId, true, true));
+            socketCommunication.SendData(haptics);
+
             //haptics.UpdateData(fingerId, true, true);
             //currentFeedback.fingersOnCollisionIds.Add(fingerId);
         }

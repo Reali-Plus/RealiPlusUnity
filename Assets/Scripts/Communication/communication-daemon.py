@@ -9,7 +9,7 @@ from bleak import BleakScanner
 
 CHARACTERISTIC_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8"
 SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-SOCKET_PORT = 8000
+SOCKET_PORT = 10050
 
 
 def initialize_socket():
@@ -22,7 +22,7 @@ def initialize_socket():
 
 
 def send_to_unity(unity_socket, msg):
-    print(f"Sending to unity: {msg}")
+    # print(f"Sending to unity: {msg}")
     try:
         unity_socket.send(msg)
     except ConnectionResetError:
@@ -54,6 +54,9 @@ def connect_to_unity(queue_write, queue_read):
             send_to_unity(unity_socket, msg)
 
             data = receive_from_unity(unity_socket)
+            if (data is not None):
+                print("Received data : " + str(data))
+
             if data is not None:
                 queue_write.put(data)
 
@@ -85,6 +88,7 @@ async def connect_to_sleeve(queue_write, queue_read):
                     await queue_read.put(message)
                     
                     if not queue_write.empty():
+                        print("Send data to sleeve")
                         msg = await queue_write.get()
                         await client.write_gatt_char(CHARACTERISTIC_UUID, msg)
                 except:

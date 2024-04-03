@@ -1,40 +1,65 @@
 using System.Collections.Generic;
 using System.Text;
 
-public struct HapticsData
+public struct FingerFeedback
 {
-    // TODO : replace with actual data
-    public string Message { get; private set; }
-    public List<FingerFeedback> FeedbackList { get; private set; }
+    public int fingerId;
+    public bool retroactionResponse;
+    public bool restrictionResponse;
 
-    public struct FingerFeedback
+    public FingerFeedback(int fingerId, bool retroactionResponse, bool restrictionResponse)
     {
-        public int fingerId;
-        public bool retroactionResponse; 
-        public bool restrictionResponse; 
-
-        public FingerFeedback(int fingerId, bool retroactionResponse, bool restrictionResponse)
-        {
-            this.fingerId = fingerId;
-            this.retroactionResponse = retroactionResponse;
-            this.restrictionResponse = restrictionResponse;
-        }
+        this.fingerId = fingerId;
+        this.retroactionResponse = retroactionResponse;
+        this.restrictionResponse = restrictionResponse;
     }
 
-    public HapticsData(string message, List<FingerFeedback> feedbacks)
+    public static string BoolToString(bool value) => value ? "1" : "0";
+
+    public override string ToString()
     {
-        Message = message;
+        return fingerId + BoolToString(retroactionResponse) + BoolToString(restrictionResponse);
+    }
+}
+
+public class HapticsData
+{
+    public List<FingerFeedback> FeedbackList { get; private set; }
+
+    public HapticsData()
+    {
+        FeedbackList = new List<FingerFeedback>();
+    }
+
+    public HapticsData(List<FingerFeedback> feedbacks)
+    {
         FeedbackList = feedbacks;
     }
 
-    public void UpdateData(string message)
+    public void AddFeedback(FingerFeedback feedback)
     {
-        Message = message;
+        FeedbackList.Add(feedback);
     }
 
-    public readonly byte[] ToBytes()
+    /*public void UpdateData(string message)
     {
-        // TODO : replace with actual data format
-        return Encoding.UTF8.GetBytes(Message);
+        Message = message;
+    }*/
+
+    /* public readonly byte[] ToBytes()
+     {
+         // TODO : replace with actual data format
+         return Encoding.UTF8.GetBytes(Message);
+     }*/
+
+    public override string ToString()
+    {
+        string data = "";
+        for (int i = 0; i < FeedbackList.Count; i++)
+        {
+            data += FeedbackList[i].ToString() + " ";
+        }
+
+        return data;
     }
 }   

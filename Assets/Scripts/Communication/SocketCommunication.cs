@@ -9,8 +9,8 @@ using UnityEngine;
 // TODO: make this class a singleton
 public class SocketCommunication : MonoBehaviour
 {
-    [SerializeField]
-    private int port = 8000;
+    //[SerializeField]
+    private int port = 10050;
     [SerializeField]
     private string dameonFileName = "communication-daemon.py";
 
@@ -20,6 +20,7 @@ public class SocketCommunication : MonoBehaviour
     private System.Diagnostics.Process process;
 
     private Queue<SleeveData> dataQueue;
+    private Queue<HapticsData> hapticsQueue;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class SocketCommunication : MonoBehaviour
         string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", dameonFileName);
 
         dataQueue = new Queue<SleeveData>();
-        RunProcess(daemonPath);
+        // RunProcess(daemonPath);
     }
     
     // TODO: add validation for the daemon path and an excutable for the daemon (mode debug vs mode release)
@@ -87,21 +88,35 @@ public class SocketCommunication : MonoBehaviour
 
     public void SendData(HapticsData hapticsData)
     {
-        if (udpClient != null && endPoint != null)
+        Debug.Log("Sending data");
+        if (udpClient != null && endPoint != null) // && hapticsQueue.Count > 0)
         {
-            byte[] data = hapticsData.ToBytes();
+            // byte[] data = Encoding.UTF8.GetBytes(hapticsQueue.Dequeue().ToString());
+            // byte[] data = Encoding.UTF8.GetBytes(hapticsData.ToString());
+            byte[] data = Encoding.UTF8.GetBytes("alloooo");
 
+            Debug.Log("Sending data: " + hapticsData.ToString());
             if (data.Length > 0)
             {
+                Debug.Log("endPoint: " + endPoint.Address + " " + endPoint.Port);
+                Debug.Log("Data length: " + data.Length);
                 udpClient.Send(data, data.Length, endPoint);
 
             }
         }
     }
 
+    /*public void AddHapticsData(HapticsData hapticsData)
+    {
+        if (hapticsQueue != null)
+        {
+            hapticsQueue.Enqueue(hapticsData);
+        }
+    }*/
+
     private void OnApplicationQuit()
     {
-        udpClient?.Close();
+        udpClient.Close();
         if (process != null && !process.HasExited)
         {
             process.Kill();
@@ -123,4 +138,5 @@ public class SocketCommunication : MonoBehaviour
 
         return isValid;
     }
+
 }
