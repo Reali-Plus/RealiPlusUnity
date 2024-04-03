@@ -8,7 +8,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
     public int TargetDOFs => 6 * targets.Count;
     public int JointDOFs { get; private set; }
 
-    private const float EPSILON = 1e-6f;
+    private const float EPSILON = 1e-9f;
 
     [SerializeField, Min(0)] private int maxIter = 10;
     [SerializeField] private List<CostTransform> targets;
@@ -59,7 +59,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
         for (int i = 0; i < maxIter; i++)
         {
-            Debug.Log($" --- Iteration {i} --- ");
+            //Debug.Log($" --- Iteration {i} --- ");
             UpdateJacobian();
             UpdateErrorVector();
             UpdateEnergy();
@@ -87,7 +87,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
             errorVec.SetSubVector(6 * i, 6, targets[i].GetErrorVector());
         }
 
-        Debug.Log(errorVec);
+        //Debug.Log(errorVec);
     }
 
     private void UpdateEnergy()

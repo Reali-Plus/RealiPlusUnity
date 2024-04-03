@@ -1,14 +1,8 @@
 using MathNet.Numerics.LinearAlgebra;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class TransformMoveJoint : TransformController
 {
-    //[SerializeField] private DOFData xMove;
-    //[SerializeField] private DOFData yMove;
-    //[SerializeField] private DOFData zMove;
-
     public override int DOFs => 3;
 
     public override void ApplyStepDisplacement(in Vector<float> delta, int jointIndex)
