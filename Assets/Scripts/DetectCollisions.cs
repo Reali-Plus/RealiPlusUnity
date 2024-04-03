@@ -5,36 +5,11 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
     [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
-    private Feedback currentFeedback; 
-
-    private struct Feedback
-    {
-        // pour la rétroaction
-        public List<int> fingersOnCollisionIds;     // liste des ID en collision
-        public int intensity;                       // intensité/force 
-        public int textureCoeff;                    // chiffre/coefficient texture (largeur contact)
-        
-        // pour la restriction
-        public bool isOpen;                         // ouvert/fermé pour la restriction
-        public int jointsPosition;                  // position des joints
-
-        public Feedback(List<int> fingersOnCollisionIds, int intensity, int textureCoeff, bool isOpen, int jointsPosition)
-        {
-            this.fingersOnCollisionIds = fingersOnCollisionIds;
-            this.intensity = intensity;
-            this.textureCoeff = textureCoeff;
-            this.isOpen = isOpen;
-            this.jointsPosition = jointsPosition;
-        }
-    }
+    //private HapticsData.FingerFeedback currentFeedback;
 
     private void Start()
     {
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
-        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
-        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
-        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Ring"));
-        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
 
         foreach (GameObject fingerObject in fingerObjects)
         {
@@ -44,18 +19,20 @@ public class DetectCollisions : MonoBehaviour
 
     public void HandleCollision(GameObject fingerObject)
     {
-        currentFeedback.fingersOnCollisionIds = new List<int>();
+        //currentFeedback.fingersOnCollisionIds = new List<int>();
 
         int fingerId = GetFingerIdFromGameObject(fingerObject);
         if (fingerId != -1)
         {
-            currentFeedback.fingersOnCollisionIds.Add(fingerId);
+            //haptics.UpdateData(fingerId, true, true);
+            //currentFeedback.fingersOnCollisionIds.Add(fingerId);
         }
     }
 
     public void ExitCollision()
     {
-        currentFeedback = new Feedback(new List<int>(), 0, 0, true, 0);
+        //TODO: modifier pour faire fonctionner
+        //haptics.UpdateData(-1, false, false);
     }
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
