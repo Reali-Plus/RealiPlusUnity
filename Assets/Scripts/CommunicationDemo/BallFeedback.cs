@@ -12,12 +12,12 @@ public class BallFeedback : MonoBehaviour
         socketCommunication = GameObject.FindGameObjectWithTag(communicationTag).GetComponent<SocketCommunication>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             HapticsData hapticsData = new HapticsData("Ball Hit");
             socketCommunication.SendData(hapticsData);
         }
-    }
+    }*/
 }

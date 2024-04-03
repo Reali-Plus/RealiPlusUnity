@@ -7,6 +7,7 @@ public class DetectCollisions : MonoBehaviour
     [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
     //private HapticsData.FingerFeedback currentFeedback;
 
+
     private void Start()
     {
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
