@@ -30,7 +30,6 @@ public class DetectCollisions : MonoBehaviour
 
     private void Start()
     {
-        print("START");
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
         //fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
         //fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
@@ -50,14 +49,12 @@ public class DetectCollisions : MonoBehaviour
         int fingerId = GetFingerIdFromGameObject(fingerObject);
         if (fingerId != -1)
         {
-            print("HandleCollision:"+ fingerId);
             currentFeedback.fingersOnCollisionIds.Add(fingerId);
         }
     }
 
     public void ExitCollision()
     {
-        print("EXIT COLLISION");
         currentFeedback = new Feedback(new List<int>(), 0, 0, true, 0);
     }
 
