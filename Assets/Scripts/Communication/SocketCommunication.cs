@@ -20,7 +20,7 @@ public class SocketCommunication : MonoBehaviour
     private System.Diagnostics.Process process;
 
     private Queue<SleeveData> dataQueue;
-    private Queue<HapticsData> hapticsQueue;
+    // private Queue<HapticsData> hapticsQueue;
 
     private void Start()
     {
@@ -33,8 +33,12 @@ public class SocketCommunication : MonoBehaviour
 
         dataQueue = new Queue<SleeveData>();
         // RunProcess(daemonPath);
+        /*byte[] data = Encoding.UTF8.GetBytes("hellooo from unity");
+        udpClient.Send(data, data.Length, endPoint);*/
+        SleeveData sleeveData = new SleeveData(0, 0, 0);
+        dataQueue.Enqueue(sleeveData);
     }
-    
+
     // TODO: add validation for the daemon path and an excutable for the daemon (mode debug vs mode release)
     private void RunProcess(string daemonPath)
     {
@@ -92,9 +96,9 @@ public class SocketCommunication : MonoBehaviour
         if (udpClient != null && endPoint != null) // && hapticsQueue.Count > 0)
         {
             // byte[] data = Encoding.UTF8.GetBytes(hapticsQueue.Dequeue().ToString());
-            // byte[] data = Encoding.UTF8.GetBytes(hapticsData.ToString());
-            byte[] data = Encoding.UTF8.GetBytes("alloooo");
-
+            byte[] data = Encoding.UTF8.GetBytes(hapticsData.ToString());
+            // byte[] data = Encoding.UTF8.GetBytes("011");
+            
             Debug.Log("Sending data: " + hapticsData.ToString());
             if (data.Length > 0)
             {

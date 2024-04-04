@@ -24,6 +24,7 @@ public class DetectCollisions : MonoBehaviour
 
     public void HandleCollision(GameObject fingerObject)
     {
+        Debug.Log("Collision detected");
         //currentFeedback.fingersOnCollisionIds = new List<int>();
 
         int fingerId = GetFingerIdFromGameObject(fingerObject);
