@@ -9,7 +9,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void Start()
     {
-        socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
+        //socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
     }
 
    public void Initialize(DetectCollisions parent)
@@ -19,21 +19,25 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //if the collider is touch activer la restriction
         parentScript.HandleCollision(gameObject);
+
+
         /*HapticsData haptics = new HapticsData();
         haptics.AddFeedback(new FingerFeedback(0, true, true));
         socketCommunication.SendData(haptics);*/
-        //if the collider is touch activer la restriction
 
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        //if the collider is touch d�sactiver la restriction
         parentScript.ExitCollision();
+
+
         /*HapticsData haptics = new HapticsData();
         haptics.AddFeedback(new FingerFeedback(0, false, false));
         socketCommunication.SendData(haptics);*/
-        //if the collider is touch d�sactiver la restriction
 
     }
 
