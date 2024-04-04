@@ -8,10 +8,12 @@ public class DetectCollisions : MonoBehaviour
     //private HapticsData.FingerFeedback currentFeedback;
     [SerializeField]
     private SocketCommunication socketCommunication;
-
+    private bool restriction;
+    private bool retroaction;
 
     private void Start()
     {
+        print("START");
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
 
         foreach (GameObject fingerObject in fingerObjects)
@@ -20,6 +22,13 @@ public class DetectCollisions : MonoBehaviour
         }
 
         socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
+    }
+
+    public void HandleFeedBack(int fingerId, bool retro, bool restrict)
+    {
+        //ici faudrait update selon les collisions et les triggers qui arrivent et l'envoyer au update...
+        //haptics.UpdateData(fingerId, retro, restrict);
+        //haptics.UpdateData(-1, false, false);
     }
 
     public void HandleCollision(GameObject fingerObject)
@@ -36,15 +45,28 @@ public class DetectCollisions : MonoBehaviour
             socketCommunication.SendData(haptics);
 
             //haptics.UpdateData(fingerId, true, true);
+            //TODO AJOUTER LA LOGIQUE POUR ACTIVER LA R�TROACTION ET LA RESTRICTION
             //currentFeedback.fingersOnCollisionIds.Add(fingerId);
         }
     }
 
     public void ExitCollision()
     {
+        print("EXIT COLLISION");
         //TODO: modifier pour faire fonctionner
         //haptics.UpdateData(-1, false, false);
     }
+
+    public void HandleTrigger()
+    {
+
+    }
+
+    public void ExitTrigger()
+    {
+
+    }
+
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
     {

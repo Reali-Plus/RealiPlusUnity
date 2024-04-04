@@ -23,6 +23,8 @@ public class CollisionHandler : MonoBehaviour
         /*HapticsData haptics = new HapticsData();
         haptics.AddFeedback(new FingerFeedback(0, true, true));
         socketCommunication.SendData(haptics);*/
+        //if the collider is touch activer la restriction
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -31,5 +33,19 @@ public class CollisionHandler : MonoBehaviour
         /*HapticsData haptics = new HapticsData();
         haptics.AddFeedback(new FingerFeedback(0, false, false));
         socketCommunication.SendData(haptics);*/
+        //if the collider is touch d�sactiver la restriction
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //if the collider is touch activer le piezo
+        parentScript.HandleTrigger();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //if not in the collider desactiver le piezo
+        parentScript.ExitTrigger();
     }
 }
