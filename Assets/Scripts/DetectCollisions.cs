@@ -6,9 +6,7 @@ public class DetectCollisions : MonoBehaviour
 {
     [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
     [SerializeField] private SocketCommunication socketCommunication;
-    private bool restriction;
-    private bool retroaction;
-    HapticsData haptics = new HapticsData();
+    private HapticsData haptics = new HapticsData();
 
     private void Start()
     {
@@ -20,52 +18,42 @@ public class DetectCollisions : MonoBehaviour
             fingerObject.AddComponent<CollisionHandler>().Initialize(this);
         }
 
-        //socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
+        socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
     }
 
-    //ici faudrait update selon les collisions et les triggers qui arrivent et l'envoyer au update...
-    public void HandleFeedBack(int fingerId, bool retro, bool restrict)
+    public void HandleFeedBack()
     {
-        //haptics.AddFeedback(new FingerFeedback(fingerId, retro, restrict));
-        //socketCommunication.SendData(haptics);
+        socketCommunication.SendData(haptics);
     }
 
-    public void HandleCollision(GameObject fingerObject)
+    public void UpdateFeedback(GameObject fingerObject, bool retroaction, bool restriction)
     {
-        Debug.Log("Collision detected");
         int fingerId = GetFingerIdFromGameObject(fingerObject);
-        if (fingerId != -1)
-            Debug.Log("Finger " + fingerId + " is in collision");
-        {
-            HapticsData haptics = new HapticsData();
-            haptics.AddFeedback(new FingerFeedback(fingerId, true, true));
-            socketCommunication.SendData(haptics);
 
-            //haptics.UpdateData(fingerId, true, true);
-            //TODO AJOUTER LA LOGIQUE POUR ACTIVER LA R�TROACTION ET LA RESTRICTION
-            //currentFeedback.fingersOnCollisionIds.Add(fingerId);
-            restriction = true;
+        if (fingerId != -1)
+        {
+            haptics.AddFeedback(new FingerFeedback(fingerId, retroaction, restriction));
         }
     }
 
-    public void ExitCollision()
-    {
-        print("EXIT COLLISION");
-        restriction = false;
-        //haptics.UpdateData(-1, false, false);
-    }
+    //public void ExitCollision()
+    //{
+    //    print("EXIT COLLISION");
+    //    restriction = false;
+    //    //haptics.UpdateData(-1, false, false);
+    //}
 
-    public void HandleTrigger()
-    {
-        print("ON TRIGGER");
-        retroaction = true;
-    }
+    //public void HandleTrigger()
+    //{
+    //    print("ON TRIGGER");
+    //    retroaction = true;
+    //}
 
-    public void ExitTrigger()
-    {
-        print("EXIT TRIGGER");
-        retroaction = false;
-    }
+    //public void ExitTrigger()
+    //{
+    //    print("EXIT TRIGGER");
+    //    retroaction = false;
+    //}
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
     {
