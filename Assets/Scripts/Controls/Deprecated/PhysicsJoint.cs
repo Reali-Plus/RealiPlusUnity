@@ -1,7 +1,9 @@
 using MathNet.Numerics.LinearAlgebra;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("Single DOF joints are no longer supported.")]
 public class PhysicsJoint : PhysicsController
 {
     public override int DOFs => 1;
@@ -23,11 +25,11 @@ public class PhysicsJoint : PhysicsController
 
     public override void UpdateJacobian(ref Matrix<float> jacobian, in List<CostTransform> targets, int jointIndex)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public override void ApplyStepDisplacement(in Vector<float> delta, int jointIndex)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }

@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 179841974}
   - component: {fileID: 179841973}
   - component: {fileID: 179841972}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 185416944}
   - component: {fileID: 185416943}
   - component: {fileID: 185416942}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 459993559}
   - component: {fileID: 459993558}
   - component: {fileID: 459993557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,14 +760,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585213740}
-  m_LocalRotation: {x: -0, y: -0, z: -0.12050979, w: 0.99271214}
-  m_LocalPosition: {x: 0.377, y: 1.864, z: -0.1}
+  m_LocalRotation: {x: 0.5486097, y: -0.14029627, z: 0.25145146, w: 0.7849309}
+  m_LocalPosition: {x: -1.069, y: 2.037, z: 0.274}
   m_LocalScale: {x: 0.25, y: 0.1, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.843}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 68.717, y: 8.819, z: 41.561}
 --- !u!1 &589671311
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 589671314}
   - component: {fileID: 589671313}
   - component: {fileID: 589671312}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestIKThingyPhysics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +830,7 @@ Transform:
   - {fileID: 185416941}
   - {fileID: 1923170130}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -25.71, z: 0}
 --- !u!1 &810990699
 GameObject:
@@ -1096,7 +1096,7 @@ GameObject:
   - component: {fileID: 1040819502}
   - component: {fileID: 1040819501}
   - component: {fileID: 1040819500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1214,7 +1214,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1083651908
 MonoBehaviour:
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41df1c8e7a4c6d40916cc6cb50a09d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIter: 1
+  maxIter: 3
   targets:
   - {fileID: 1802620325}
   - {fileID: 2089322512}
@@ -1236,6 +1236,7 @@ MonoBehaviour:
   joints:
   - {fileID: 2068176126}
   - {fileID: 12127717}
+  - {fileID: 1148482526}
 --- !u!1 &1148482524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1269,7 @@ Transform:
   - {fileID: 1832273644}
   - {fileID: 2068176125}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -25.71, z: 0}
 --- !u!114 &1148482526
 MonoBehaviour:
@@ -1446,7 +1447,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1818516956
 MeshRenderer:
@@ -1608,12 +1609,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844686794}
   m_LocalRotation: {x: 0.016296858, y: 0.10966842, z: 0.14608094, w: 0.98304003}
-  m_LocalPosition: {x: -1.357, y: 2.068, z: -0.1}
+  m_LocalPosition: {x: -0.427, y: 1.3, z: -0.542}
   m_LocalScale: {x: 0.25, y: 0.1, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 12.731, z: 16.905}
 --- !u!23 &1844686796
 MeshRenderer:
@@ -1676,7 +1677,7 @@ GameObject:
   - component: {fileID: 1923170130}
   - component: {fileID: 1923170132}
   - component: {fileID: 1923170131}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Joystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1739,7 +1740,7 @@ GameObject:
   - component: {fileID: 1973937560}
   - component: {fileID: 1973937562}
   - component: {fileID: 1973937561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Joystick2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1850,7 +1851,7 @@ GameObject:
   - component: {fileID: 2068856997}
   - component: {fileID: 2068856996}
   - component: {fileID: 2068856995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

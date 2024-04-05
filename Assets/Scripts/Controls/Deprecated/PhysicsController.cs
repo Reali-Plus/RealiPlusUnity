@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra;
 using UnityEngine;
 
+[Obsolete("Use TransformController with NewPhysicsController instead. Optimization fails in physics cycle.")]
 [RequireComponent(typeof(Rigidbody))]
 public abstract class PhysicsController : MonoBehaviour
 {

@@ -1,5 +1,4 @@
 using MathNet.Numerics.LinearAlgebra;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +47,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
         }
     }
 
-    private void Update() // TODO : "Fixed" update
+    private void Update()
     {
         /*
          * Masanori Sekiguchi & Naoyuki Takesue (2020) 
@@ -59,7 +58,6 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
         for (int i = 0; i < maxIter; i++)
         {
-            //Debug.Log($" --- Iteration {i} --- ");
             UpdateJacobian();
             UpdateErrorVector();
             UpdateEnergy();
@@ -76,8 +74,6 @@ public class InverseKinematicsOptimizer : MonoBehaviour
             joints[i].UpdateJacobian(ref jacobianMat, in targets, jointIndex);
             jointIndex += joints[i].DOFs;
         }
-
-        //Debug.Log(jacobianMat);
     }
 
     private void UpdateErrorVector()
@@ -86,31 +82,23 @@ public class InverseKinematicsOptimizer : MonoBehaviour
         {
             errorVec.SetSubVector(6 * i, 6, targets[i].GetErrorVector());
         }
-
-        //Debug.Log(errorVec);
     }
 
     private void UpdateEnergy()
     {
         torqueVec = jacobianMat.Transpose() * springMat * errorVec;
         elasticEnergy = 0.5f * errorVec * springMat * errorVec;
-
-        //Debug.Log($"Torque: {torqueVec} \nEnergy: {elasticEnergy}");
     }
 
     private void UpdateDampingMatrix()
     {
         dampingMat = jacobianMat.Transpose() * springMat * jacobianMat + 
                      (0.5f * elasticEnergy + EPSILON) * Matrix<float>.Build.DiagonalIdentity(JointDOFs);
-
-        //Debug.Log(dampingMat);
     }
 
     private void TickJoints()
     {
         Vector<float> delta = dampingMat.Inverse() * torqueVec;
-
-        //Debug.Log(delta);
 
         int jointIndex = 0;
         for (int i = 0; i < joints.Count; i++)

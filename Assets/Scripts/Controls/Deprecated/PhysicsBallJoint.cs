@@ -1,7 +1,9 @@
 using MathNet.Numerics.LinearAlgebra;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("Use TransformBallJoint with NewPhysicsController instead. Optimization fails in physics cycle.")]
 public class PhysicsBallJoint : PhysicsController
 {
     public override int DOFs => 3;
@@ -23,20 +25,12 @@ public class PhysicsBallJoint : PhysicsController
 
     public override void UpdateJacobian(ref Matrix<float> jacobian, in List<CostTransform> targets, int jointIndex)
     {
-        // TODO : Constraints
         for (int i = 0; i < targets.Count; i++)
         {
             if (!childTargets.Contains(targets[i]))
             {
                 continue;
             }
-
-            // Rotation test
-            //Debug.Log($"Rotation matrix :\n{Matrix4x4.Rotate(transform.rotation)}");
-            //Debug.Log($"Inverse matrix :\n{Matrix4x4.Rotate(Quaternion.Inverse(transform.rotation))}");
-            //Debug.Log($"Transform matrix :\n{transform.localToWorldMatrix}");
-
-            // TODO : Stable when target ABSOLUTE angle is less than 45 deg -> Due to Euler sequence of application?
 
             int d = i * 6;
             Vector3 targetRelPos = targets[i].transform.position - transform.position;
@@ -69,7 +63,6 @@ public class PhysicsBallJoint : PhysicsController
 
     public override void ApplyStepDisplacement(in Vector<float> delta, int jointIndex)
     {
-        // TODO : Constraints
         float deltaX = delta[jointIndex];
         float deltaY = delta[jointIndex+1];
         float deltaZ = delta[jointIndex+2];

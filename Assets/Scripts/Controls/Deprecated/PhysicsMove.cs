@@ -1,7 +1,9 @@
 using MathNet.Numerics.LinearAlgebra;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("Use TransformMoveJoint with NewPhysicsController instead. Optimization fails in physics cycle.")]
 public class PhysicsMove : PhysicsController
 {
     public override int DOFs => 3;
