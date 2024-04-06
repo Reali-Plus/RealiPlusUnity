@@ -56,7 +56,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
          * DOI: 10.1080/01691864.2020.1780151 
          */
 
-        for (int i = 0; i < maxIter; i++)
+        for (int i = 0; i < maxIter; ++i)
         {
             UpdateJacobian();
             UpdateErrorVector();
@@ -69,7 +69,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
     private void UpdateJacobian()
     {
         int jointIndex = 0;
-        for (int i = 0; i < joints.Count; i++)
+        for (int i = 0; i < joints.Count; ++i)
         {
             joints[i].UpdateJacobian(ref jacobianMat, in targets, jointIndex);
             jointIndex += joints[i].DOFs;
@@ -78,7 +78,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
     private void UpdateErrorVector()
     {
-        for (int i = 0; i < targets.Count; i++)
+        for (int i = 0; i < targets.Count; ++i)
         {
             errorVec.SetSubVector(6 * i, 6, targets[i].GetErrorVector());
         }
@@ -101,7 +101,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
         Vector<float> delta = dampingMat.Inverse() * torqueVec;
 
         int jointIndex = 0;
-        for (int i = 0; i < joints.Count; i++)
+        for (int i = 0; i < joints.Count; ++i)
         {
             joints[i].ApplyStepDisplacement(in delta, jointIndex);
             jointIndex += joints[i].DOFs;

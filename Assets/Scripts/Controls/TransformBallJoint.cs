@@ -25,42 +25,34 @@ public class TransformBallJoint : TransformController
 
     public override void UpdateJacobian(ref Matrix<float> jacobian, in List<CostTransform> targets, int jointIndex)
     {
-        for (int i = 0; i < targets.Count; i++)
+        for (int i = 0; i < targets.Count; ++i)
         {
             if (!IsChildTarget(targets[i]))
             {
                 continue;
             }
 
-            int d = i * 6;
+            int targetIndex = i * 6;
             Vector3 targetRelPos = targets[i].transform.position - transform.position;
 
-            Vector3 movementX = Vector3.Cross(transform.right, targetRelPos);
-            jacobian[d,     jointIndex] = Vector3.Dot(movementX, Vector3.right);
-            jacobian[d + 1, jointIndex] = Vector3.Dot(movementX, Vector3.up);
-            jacobian[d + 2, jointIndex] = Vector3.Dot(movementX, Vector3.forward);
-
-            jacobian[d + 3, jointIndex] = transform.right.x;
-            jacobian[d + 4, jointIndex] = transform.right.y;
-            jacobian[d + 5, jointIndex] = transform.right.z;
-
-            Vector3 movementY = Vector3.Cross(transform.up, targetRelPos);
-            jacobian[d,     jointIndex + 1] = Vector3.Dot(movementY, Vector3.right);
-            jacobian[d + 1, jointIndex + 1] = Vector3.Dot(movementY, Vector3.up);
-            jacobian[d + 2, jointIndex + 1] = Vector3.Dot(movementY, Vector3.forward);
-
-            jacobian[d + 3, jointIndex + 1] = transform.up.x;
-            jacobian[d + 4, jointIndex + 1] = transform.up.y;
-            jacobian[d + 5, jointIndex + 1] = transform.up.z;
-
-            Vector3 movementZ = Vector3.Cross(transform.forward, targetRelPos);
-            jacobian[d,     jointIndex + 2] = Vector3.Dot(movementZ, Vector3.right);
-            jacobian[d + 1, jointIndex + 2] = Vector3.Dot(movementZ, Vector3.up);
-            jacobian[d + 2, jointIndex + 2] = Vector3.Dot(movementZ, Vector3.forward);
-
-            jacobian[d + 3, jointIndex + 2] = transform.forward.x;
-            jacobian[d + 4, jointIndex + 2] = transform.forward.y;
-            jacobian[d + 5, jointIndex + 2] = transform.forward.z;
+            for (byte b = 0; b < DOFs; ++b)
+            {
+                AffectJacobian(ref jacobian, in targetRelPos, targetIndex, jointIndex, b);
+            }
         }
+    }
+
+    private void AffectJacobian(ref Matrix<float> jacobian, in Vector3 targetPos, int targetIndex, int jointIndex, byte dofIndex)
+    {
+        Vector3 refAxis = transform.GetAxis(dofIndex);
+        Vector3 movement = Vector3.Cross(refAxis, targetPos);
+
+        jacobian[targetIndex,     jointIndex + dofIndex] = Vector3.Dot(movement, Vector3.right);
+        jacobian[targetIndex + 1, jointIndex + dofIndex] = Vector3.Dot(movement, Vector3.up);
+        jacobian[targetIndex + 2, jointIndex + dofIndex] = Vector3.Dot(movement, Vector3.forward);
+
+        jacobian[targetIndex + 3, jointIndex + dofIndex] = refAxis.x;
+        jacobian[targetIndex + 4, jointIndex + dofIndex] = refAxis.y;
+        jacobian[targetIndex + 5, jointIndex + dofIndex] = refAxis.z;
     }
 }

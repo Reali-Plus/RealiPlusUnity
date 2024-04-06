@@ -1,5 +1,6 @@
 using MathNet.Numerics.LinearAlgebra;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class TransformMoveJoint : TransformController
 {
@@ -12,35 +13,31 @@ public class TransformMoveJoint : TransformController
 
     public override void UpdateJacobian(ref Matrix<float> jacobian, in List<CostTransform> targets, int jointIndex)
     {
-        for (int i = 0; i < targets.Count; i++)
+        for (int i = 0; i < targets.Count; ++i)
         {
             if (!IsChildTarget(targets[i]))
             {
                 continue;
             }
 
-            int d = i * 6;
+            int targetIndex = i * 6;
 
-            jacobian[d, jointIndex] = transform.right.x;
-            jacobian[d + 1, jointIndex] = transform.right.y;
-            jacobian[d + 2, jointIndex] = transform.right.z;
-            jacobian[d + 3, jointIndex] = 0f;
-            jacobian[d + 4, jointIndex] = 0f;
-            jacobian[d + 5, jointIndex] = 0f;
-
-            jacobian[d, jointIndex + 1] = transform.up.x;
-            jacobian[d + 1, jointIndex + 1] = transform.up.y;
-            jacobian[d + 2, jointIndex + 1] = transform.up.z;
-            jacobian[d + 3, jointIndex + 1] = 0f;
-            jacobian[d + 4, jointIndex + 1] = 0f;
-            jacobian[d + 5, jointIndex + 1] = 0f;
-
-            jacobian[d, jointIndex + 2] = transform.forward.x;
-            jacobian[d + 1, jointIndex + 2] = transform.forward.y;
-            jacobian[d + 2, jointIndex + 2] = transform.forward.z;
-            jacobian[d + 3, jointIndex + 2] = 0f;
-            jacobian[d + 4, jointIndex + 2] = 0f;
-            jacobian[d + 5, jointIndex + 2] = 0f;
+            for (byte b = 0; b < DOFs; ++b)
+            {
+                AffectJacobian(ref jacobian, targetIndex, jointIndex, b);
+            }
         }
+    }
+
+    private void AffectJacobian(ref Matrix<float> jacobian, int targetIndex, int jointIndex, byte dofIndex)
+    {
+        Vector3 refAxis = transform.GetAxis(dofIndex);
+
+        jacobian[targetIndex,     jointIndex + dofIndex] = refAxis.x;
+        jacobian[targetIndex + 1, jointIndex + dofIndex] = refAxis.y;
+        jacobian[targetIndex + 2, jointIndex + dofIndex] = refAxis.z;
+        jacobian[targetIndex + 3, jointIndex + dofIndex] = 0f;
+        jacobian[targetIndex + 4, jointIndex + dofIndex] = 0f;
+        jacobian[targetIndex + 5, jointIndex + dofIndex] = 0f;
     }
 }
