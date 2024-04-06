@@ -1,7 +1,13 @@
+using MathNet.Numerics.LinearAlgebra;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("Single DOF joints are no longer supported.")]
 public class PhysicsJoint : PhysicsController
 {
+    public override int DOFs => 1;
+
     [SerializeField] private NormalizedEvent jointEvent;
     [SerializeField] private float minRotation;
     [SerializeField] private float maxRotation;
@@ -15,5 +21,15 @@ public class PhysicsJoint : PhysicsController
 
         globalTRS *= Matrix4x4.Rotate(localRot);
         globalRot = transformRot * globalRot;
+    }
+
+    public override void UpdateJacobian(ref Matrix<float> jacobian, in List<CostTransform> targets, int jointIndex)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void ApplyStepDisplacement(in Vector<float> delta, int jointIndex)
+    {
+        throw new NotImplementedException();
     }
 }
