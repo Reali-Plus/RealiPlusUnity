@@ -39,7 +39,7 @@ public class SleeveData
             float[] accelerations = new float[3];
             for (int i = 0; i < 3; i++)
             {
-                accelerations[i] = ParseAcceleration(data[i]);
+                accelerations[i] = ParseInput(data[i]) * 9.8f;
             }
 
             Accelerometer.UpdateData(accelerations);
@@ -50,7 +50,7 @@ public class SleeveData
                 float[] rotations = new float[3];
                 for (int i = 3; i < 6; i++)
                 {
-                    rotations[i - 3] = ParseRotation(data[i]);
+                    rotations[i - 3] = ParseInput(data[i]);
                 }
 
                 Gyroscope.UpdateData(rotations);
@@ -60,14 +60,9 @@ public class SleeveData
         return false;
     }
 
-    private float ParseRotation(string strRotation)
+    private float ParseInput(string strInput)
     {
-        return float.TryParse(strRotation, out float rotation) ? rotation : 0f;
-    }
-
-    private float ParseAcceleration(string strAcceleration)
-    {
-        return float.TryParse(strAcceleration, out float acceleration) ? acceleration * 9.8f : 0f;
+        return float.TryParse(strInput, out float input) ? input : 0f;
     }
 
     public override string ToString()
