@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CubeController : MonoBehaviour
+public class SensorController : MonoBehaviour
 {
     private SleeveData sleeveData;
     private SocketCommunication socketCommunication;
@@ -16,11 +16,18 @@ public class CubeController : MonoBehaviour
         if (socketCommunication.ReceiveData())
         {
             sleeveData = socketCommunication.GetData();
+            Debug.Log(sleeveData);
         }
     }
 
     private void FixedUpdate()
     {
+        if (sleeveData == null)
+        {
+            return;
+        }
         transform.rotation *= Quaternion.Euler(new Vector3(sleeveData.Gyroscope.X, sleeveData.Gyroscope.Y, sleeveData.Gyroscope.Z) * Time.fixedDeltaTime);
+        // TODO : add translation
+        // transform.Translate(new Vector3(sleeveData.Accelerometer.X, sleeveData.Accelerometer.Y, sleeveData.Accelerometer.Z) * Time.fixedDeltaTime);
     }
 }

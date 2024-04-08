@@ -33,7 +33,7 @@ public class SocketCommunication : MonoBehaviour
         dataQueue = new Queue<SleeveData>();
         RunProcess(daemonPath);
     }
-    
+
     // TODO: add validation for the daemon path and an excutable for the daemon (mode debug vs mode release)
     private void RunProcess(string daemonPath)
     {
@@ -45,7 +45,7 @@ public class SocketCommunication : MonoBehaviour
         process.StartInfo.CreateNoWindow = true;
 
         process.Start();
-    }   
+    }
 
     public SleeveData GetData()
     {
@@ -53,7 +53,7 @@ public class SocketCommunication : MonoBehaviour
         {
             return dataQueue.Dequeue();
         }
-        return new SleeveData(0, 0, 0);
+        return new SleeveData();
     }
 
     public bool HasData()
@@ -72,13 +72,15 @@ public class SocketCommunication : MonoBehaviour
         {
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
-            if(ValidateResponse(receivedString))
-            {
-                SleeveData sleeveData = new SleeveData(0, 0, 0);
-                sleeveData.FromString(receivedString);
-                dataQueue.Enqueue(sleeveData);
 
-                return true;
+            if (ValidateResponse(receivedString))
+            {
+                SleeveData sleeveData = new SleeveData();
+                if (sleeveData.FromString(receivedString))
+                {
+                    dataQueue.Enqueue(sleeveData);
+                    return true;
+                }
             }
         }
 
