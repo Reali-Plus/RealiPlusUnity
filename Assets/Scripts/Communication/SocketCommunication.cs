@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -91,12 +90,11 @@ public class SocketCommunication : MonoBehaviour
     {
         if (udpClient != null && endPoint != null)
         {
-            byte[] data = hapticsData.ToBytes();
+            byte[] data = Encoding.UTF8.GetBytes(hapticsData.ToString());
 
             if (data.Length > 0)
             {
                 udpClient.Send(data, data.Length, endPoint);
-
             }
         }
     }

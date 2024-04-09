@@ -1,23 +1,62 @@
+using System.Collections.Generic;
 using System.Text;
 
-public struct HapticsData
+public struct FingerFeedback
 {
-    // TODO : replace with actual data
-    public string Message { get; private set; }
+    public int fingerId;
+    public bool retroactionResponse;
+    public bool restrictionResponse;
 
-    public HapticsData(string message)
+    public FingerFeedback(int fingerId, bool retroactionResponse, bool restrictionResponse)
     {
-        Message = message;
+        this.fingerId = fingerId;
+        this.retroactionResponse = retroactionResponse;
+        this.restrictionResponse = restrictionResponse;
     }
 
-    public void UpdateData(string message)
+    public static string BoolToString(bool value) => value ? "1" : "0";
+
+    public override string ToString()
     {
-        Message = message;
+        return fingerId + BoolToString(retroactionResponse) + BoolToString(restrictionResponse);
+    }
+}
+
+public class HapticsData
+{
+    public List<FingerFeedback> FeedbackList { get; private set; }
+
+    public HapticsData()
+    {
+        FeedbackList = new List<FingerFeedback>();
     }
 
-    public readonly byte[] ToBytes()
+    public HapticsData(List<FingerFeedback> feedbacks)
     {
-        // TODO : replace with actual data format
-        return Encoding.UTF8.GetBytes(Message);
+        FeedbackList = feedbacks;
     }
-}   
+
+    public HapticsData(int fingerId, bool retroactionResponse, bool restrictionResponse)
+    {
+        FeedbackList = new List<FingerFeedback>
+        {
+            new FingerFeedback(fingerId, retroactionResponse, restrictionResponse)
+        };
+    }
+
+    public void AddFeedback(FingerFeedback feedback)
+    {
+        FeedbackList.Add(feedback);
+    }
+
+    public override string ToString()
+    {
+        string data = "";
+        for (int i = 0; i < FeedbackList.Count; i++)
+        {
+            data += FeedbackList[i].ToString() + " ";
+        }
+
+        return data;
+    }
+}
