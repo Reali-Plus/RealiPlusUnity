@@ -31,10 +31,10 @@ public class DetectCollisions : MonoBehaviour
     private void Start()
     {
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Ring"));
-        fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Index"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Middle"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Ring"));
+        //fingerObjects.Add(GameObject.FindGameObjectWithTag("Pinky"));
 
         foreach (GameObject fingerObject in fingerObjects)
         {
