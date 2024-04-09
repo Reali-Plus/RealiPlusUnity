@@ -18,6 +18,6 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        parentScript.ExitCollision();
+        parentScript.ExitCollision(gameObject);
     }
 }

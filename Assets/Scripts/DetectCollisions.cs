@@ -4,29 +4,8 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> fingerObjects = new List<GameObject>();
-    private Feedback currentFeedback; 
-
-    private struct Feedback
-    {
-        // pour la rétroaction
-        public List<int> fingersOnCollisionIds;     // liste des ID en collision
-        public int intensity;                       // intensité/force 
-        public int textureCoeff;                    // chiffre/coefficient texture (largeur contact)
-        
-        // pour la restriction
-        public bool isOpen;                         // ouvert/fermé pour la restriction
-        public int jointsPosition;                  // position des joints
-
-        public Feedback(List<int> fingersOnCollisionIds, int intensity, int textureCoeff, bool isOpen, int jointsPosition)
-        {
-            this.fingersOnCollisionIds = fingersOnCollisionIds;
-            this.intensity = intensity;
-            this.textureCoeff = textureCoeff;
-            this.isOpen = isOpen;
-            this.jointsPosition = jointsPosition;
-        }
-    }
+    private List<GameObject> fingerObjects = new List<GameObject>();
+    private SocketCommunication socketCommunication;
 
     private void Start()
     {
@@ -40,22 +19,26 @@ public class DetectCollisions : MonoBehaviour
         {
             fingerObject.AddComponent<CollisionHandler>().Initialize(this);
         }
+
+        socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
     }
 
     public void HandleCollision(GameObject fingerObject)
     {
-        currentFeedback.fingersOnCollisionIds = new List<int>();
-
         int fingerId = GetFingerIdFromGameObject(fingerObject);
         if (fingerId != -1)
         {
-            currentFeedback.fingersOnCollisionIds.Add(fingerId);
+            socketCommunication.SendData(new HapticsData(fingerId, true, true));
         }
     }
 
-    public void ExitCollision()
+    public void ExitCollision(GameObject fingerObject)
     {
-        currentFeedback = new Feedback(new List<int>(), 0, 0, true, 0);
+        int fingerId = GetFingerIdFromGameObject(fingerObject);
+        if (fingerId != -1)
+        {
+            socketCommunication.SendData(new HapticsData(fingerId, false, false));
+        }
     }
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
