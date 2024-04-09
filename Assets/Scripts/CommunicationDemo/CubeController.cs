@@ -7,7 +7,7 @@ public class CubeController : MonoBehaviour
 
     private void Start()
     {
-        sleeveData = new SleeveData(0, 0, 0);
+        sleeveData = new SleeveData();
         socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
     }
 
@@ -21,6 +21,6 @@ public class CubeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.rotation *= Quaternion.Euler(sleeveData.Pitch * Time.fixedDeltaTime, sleeveData.Yaw * Time.fixedDeltaTime, sleeveData.Roll * Time.fixedDeltaTime);
+        transform.rotation *= Quaternion.Euler(new Vector3(sleeveData.Gyroscope.X, sleeveData.Gyroscope.Y, sleeveData.Gyroscope.Z) * Time.fixedDeltaTime);
     }
 }
