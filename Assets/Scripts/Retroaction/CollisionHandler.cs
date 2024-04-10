@@ -3,11 +3,10 @@ using UnityEngine;
 public class CollisionHandler : MonoBehaviour
 {
     private DetectCollisions parentScript;
-    private SocketCommunication socketCommunication;
 
     private void Start()
     {
-        socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
+        GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
     }
 
     public void Initialize(DetectCollisions parent)

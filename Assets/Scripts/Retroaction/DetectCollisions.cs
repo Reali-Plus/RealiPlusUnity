@@ -8,7 +8,6 @@ public class DetectCollisions : MonoBehaviour
 
     private void Start()
     {
-        print("START");
         fingerObjects.Add(GameObject.FindGameObjectWithTag("Thumb"));
 
         foreach (GameObject fingerObject in fingerObjects)
