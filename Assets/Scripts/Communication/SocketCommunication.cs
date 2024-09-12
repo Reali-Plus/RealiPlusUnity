@@ -5,12 +5,9 @@ using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: make this class a singleton
-public class SocketCommunication : MonoBehaviour
+public class SocketCommunication : Communication
 {
-    [SerializeField]
     private int port = 8000;
-    [SerializeField]
     private string dameonFileName = "communication-daemon.py";
 
     private UdpClient udpClient;
@@ -18,9 +15,8 @@ public class SocketCommunication : MonoBehaviour
 
     private System.Diagnostics.Process process;
 
-    private Queue<SleeveData> dataQueue;
 
-    private void Start()
+    public override void Initialize()
     {
         Debug.Log("Starting socket communication");
         udpClient = new UdpClient(port);
@@ -46,21 +42,7 @@ public class SocketCommunication : MonoBehaviour
         process.Start();
     }
 
-    public SleeveData GetData()
-    {
-        if (HasData())
-        {
-            return dataQueue.Dequeue();
-        }
-        return new SleeveData();
-    }
-
-    public bool HasData()
-    {
-        return dataQueue.Count > 0;
-    }
-
-    public bool ReceiveData()
+    public override bool ReceiveData()
     {
         if (udpClient == null || endPoint == null)
         {
@@ -69,17 +51,13 @@ public class SocketCommunication : MonoBehaviour
 
         if (udpClient.Available > 0)
         {
+            // add try catch ?
             byte[] receivedBytes = udpClient.Receive(ref endPoint);
             string receivedString = Encoding.UTF8.GetString(receivedBytes);
 
             if (ValidateResponse(receivedString))
             {
-                SleeveData sleeveData = new SleeveData();
-                if (sleeveData.FromString(receivedString))
-                {
-                    dataQueue.Enqueue(sleeveData);
-                    return true;
-                }
+                return AddData(receivedString);
             }
         }
 
@@ -99,7 +77,12 @@ public class SocketCommunication : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    public override void OnUpdate()
+    {
+
+    }
+
+    public override void OnExit()
     {
         udpClient?.Close();
         if (process != null && !process.HasExited)

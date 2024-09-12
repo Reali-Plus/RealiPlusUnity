@@ -1,18 +1,14 @@
-using System.Collections;
 using System.IO.Ports;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SerialCommunication : MonoBehaviour
+public class SerialCommunication : Communication
 {
-    [SerializeField]
     private string portName = "COM3";
-    [SerializeField]
     private int baudRate = 115200;
     private SerialPort serialPort;
-
-    void Start()
+    
+    public override void Initialize()
     {
         serialPort = new SerialPort(portName, baudRate);
         try
@@ -26,7 +22,7 @@ public class SerialCommunication : MonoBehaviour
         }
     }
 
-    void Update()
+    public override bool ReceiveData()
     {
         if (serialPort != null && serialPort.IsOpen)
         {
@@ -34,15 +30,23 @@ public class SerialCommunication : MonoBehaviour
             {
                 string serialInput = serialPort.ReadLine();
                 Debug.Log("Received: " + serialInput);
+
+                return AddData(serialInput);
             }
             catch (TimeoutException)
             {
                 Debug.LogWarning("Serial read timeout.");
             }
         }
+        return false;
     }
 
-    private void OnApplicationQuit()
+    public override void OnUpdate()
+    {
+
+    }
+
+    public override void OnExit()
     {
         if (serialPort != null && serialPort.IsOpen)
         {
