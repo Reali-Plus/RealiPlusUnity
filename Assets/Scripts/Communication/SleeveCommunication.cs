@@ -9,6 +9,8 @@ public class SleeveCommunication : MonoBehaviour
     [SerializeField]
     private CommunicationTypes communicationType = CommunicationTypes.Serial;
     
+    // TODO : - Add a menu to choose the communication type
+    //        - Add a way to change communication type at runtime
     void Start()
     {
         if (communicationType == CommunicationTypes.Serial)
@@ -21,11 +23,6 @@ public class SleeveCommunication : MonoBehaviour
         }
 
         communication.Initialize();
-    }
-
-    void Update()
-    {
-        communication.OnUpdate();
     }
 
     private void OnApplicationQuit()
@@ -41,6 +38,11 @@ public class SleeveCommunication : MonoBehaviour
     public bool HasData()
     {
         return communication.HasData();
+    }
+
+    public void SendData(HapticsData hapticsData)
+    {
+        communication.SendData(hapticsData);
     }
 
     public bool ReceiveData()

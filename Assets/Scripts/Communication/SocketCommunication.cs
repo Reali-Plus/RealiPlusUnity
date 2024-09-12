@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class SocketCommunication : Communication
 {
+    // TODO : add a way to change the port and the daemon file name on a menu
     private int port = 8000;
     private string dameonFileName = "communication-daemon.py";
 
@@ -51,20 +52,26 @@ public class SocketCommunication : Communication
 
         if (udpClient.Available > 0)
         {
-            // add try catch ?
-            byte[] receivedBytes = udpClient.Receive(ref endPoint);
-            string receivedString = Encoding.UTF8.GetString(receivedBytes);
-
-            if (ValidateResponse(receivedString))
+            try
             {
-                return AddData(receivedString);
+                byte[] receivedBytes = udpClient.Receive(ref endPoint);
+                string receivedString = Encoding.UTF8.GetString(receivedBytes);
+
+                if (receivedString != null && ValidateResponse(receivedString))
+                {
+                    return AddData(receivedString);
+                }
+            }
+            catch (SocketException e)
+            {
+                Debug.LogError("Socket exception: " + e.Message);
             }
         }
 
         return false;
     }
 
-    public void SendData(HapticsData hapticsData)
+    public override void SendData(HapticsData hapticsData)
     {
         if (udpClient != null && endPoint != null)
         {
@@ -75,11 +82,6 @@ public class SocketCommunication : Communication
                 udpClient.Send(data, data.Length, endPoint);
             }
         }
-    }
-
-    public override void OnUpdate()
-    {
-
     }
 
     public override void OnExit()

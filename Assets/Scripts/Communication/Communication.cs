@@ -9,10 +9,10 @@ public abstract class Communication
         dataQueue = new Queue<SleeveData>();
     }
 
-    public abstract void OnUpdate();
     public abstract void Initialize();
     public abstract void OnExit();
     public abstract bool ReceiveData();
+    public abstract void SendData(HapticsData hapticsData);
 
     protected void AddData(SleeveData sleeveData)
     {

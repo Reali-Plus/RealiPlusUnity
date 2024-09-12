@@ -4,11 +4,6 @@ public class CollisionHandler : MonoBehaviour
 {
     private DetectCollisions parentScript;
 
-    private void Start()
-    {
-        GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
-    }
-
     public void Initialize(DetectCollisions parent)
     {
         parentScript = parent;

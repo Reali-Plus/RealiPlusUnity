@@ -3,7 +3,7 @@ using UnityEngine;
 public class SensorController : MonoBehaviour
 {
     [SerializeField]
-    private bool supportRotation = false;
+    private bool supportRotation = true;
     [SerializeField]
     private bool supportTranslation = false;
 

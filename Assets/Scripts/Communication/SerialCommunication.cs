@@ -4,7 +4,8 @@ using System;
 
 public class SerialCommunication : Communication
 {
-    private string portName = "COM3";
+    // TODO : List available ports and baud rates to choose from a menu
+    private string portName = "COM8";
     private int baudRate = 115200;
     private SerialPort serialPort;
     
@@ -22,6 +23,21 @@ public class SerialCommunication : Communication
         }
     }
 
+    public override void SendData(HapticsData hapticsData)
+    {
+        if (serialPort != null && serialPort.IsOpen)
+        {   
+            try
+            {
+                serialPort.WriteLine(hapticsData.ToString());
+            }
+            catch (TimeoutException)
+            {
+                Debug.LogWarning("Serial write timeout.");
+            }
+        }
+    }
+
     public override bool ReceiveData()
     {
         if (serialPort != null && serialPort.IsOpen)
@@ -29,8 +45,6 @@ public class SerialCommunication : Communication
             try
             {
                 string serialInput = serialPort.ReadLine();
-                Debug.Log("Received: " + serialInput);
-
                 return AddData(serialInput);
             }
             catch (TimeoutException)
@@ -39,11 +53,6 @@ public class SerialCommunication : Communication
             }
         }
         return false;
-    }
-
-    public override void OnUpdate()
-    {
-
     }
 
     public override void OnExit()
