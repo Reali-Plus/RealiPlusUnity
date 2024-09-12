@@ -1,14 +1,21 @@
+using System;
 using MathNet.Numerics.LinearAlgebra;
 using UnityEngine;
 
 public class CostTransform : MonoBehaviour
 {
+    public event Action OnValuesUpdated;
     public float PositionWeight => positionWeight;
     public float OrientationWeight => orientationWeight;
 
     [SerializeField] private Transform target;
-    [SerializeField] private float positionWeight = 10f;
-    [SerializeField] private float orientationWeight = 0.1f;
+    [SerializeField, Min(0f)] private float positionWeight = 10f;
+    [SerializeField, Min(0f)] private float orientationWeight = 0.1f;
+
+    private void OnValidate()
+    {
+        OnValuesUpdated?.Invoke();
+    }
 
     public Vector<float> GetErrorVector()
     {
