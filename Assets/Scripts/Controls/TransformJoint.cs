@@ -15,17 +15,28 @@ public class TransformJoint : TransformController
 
     public override int DOFs => 1;
 
-    private Vector3 startForward;
-    private Vector3 rotAxis => transform.GetAxis((byte)axis);
+    private Vector3 startRef;
+    //private Vector3 refAxis => transform.parent.worldToLocalMatrix * transform.forward;
+    //private Vector3 rotAxis => transform.GetAxis((byte)axis);
+    Quaternion startRot;
+    private Vector3 rotAxis;
+    private Vector3 refAxis;
 
     private void Start()
     {
-        startForward = transform.forward;
+        startRef = refAxis;
+        rotAxis = Vector3.zero;
+        refAxis = Vector3.zero;
+        rotAxis[(byte)axis] = 1f;
+        refAxis[((byte)axis + 1) % 3] = 1f;
+        startRot = transform.localRotation;
     }
 
     public override void ApplyStepDisplacement(in Vector<float> delta, int jointIndex)
     {
-        float currentAngle = Vector3.SignedAngle(startForward, transform.forward, rotAxis);
+        // TODO : Fix angle computation
+        //float currentAngle = Vector3.SignedAngle(startRef, refAxis, transform.parent.worldToLocalMatrix * rotAxis);
+        float currentAngle = Vector3.SignedAngle(startRot * refAxis, transform.localRotation * refAxis, transform.localRotation * rotAxis);
         float deltaDeg = Mathf.Clamp(Mathf.Rad2Deg * delta[jointIndex] + currentAngle, minRange, maxRange) - currentAngle;
 
         transform.Rotate(rotAxis, deltaDeg);
