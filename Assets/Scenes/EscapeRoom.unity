@@ -920,3 +920,5 @@ MonoBehaviour:
   - {fileID: 363719162}
   - {fileID: 526030706}
   - {fileID: 245432519}
+  sequenceDifficulty: 5
+  sequenceSpeed: 0.25

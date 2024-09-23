@@ -2,15 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-
 public class SimonManager : MonoBehaviour
 {
     [SerializeField] CubeButton[] cubes; // Tableau pour les cubes
+    [SerializeField] int sequenceDifficulty = 5; //difficulte
+    [SerializeField] float sequenceSpeed = 0.25f; //vitesse
+    private int[] randomSequence;  //sequence aleatoire
+
+    //private GameObject[] puzzleButton;
+    //List<GameObject> sequenceUser; //sequence user 
+
 
     private void Start()
     {
-      
+        randomSequence = new int[sequenceDifficulty];
+        generateSimonSequence();
+    }
+
+    //private void OnMouseDown()
+    //{
+    //    Debug.Log("Activate");
+    //}
+
+    public void generateSimonSequence()
+    {
+        int tempReference;
+        for (int i = 0; i < sequenceDifficulty; i++)
+        {
+            tempReference = Random.Range(0, cubes.Length);
+            randomSequence[i] = tempReference;
+        }
     }
 
     //public void HighlightCube(int index)

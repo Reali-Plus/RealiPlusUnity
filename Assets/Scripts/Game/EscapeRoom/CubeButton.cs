@@ -20,6 +20,7 @@ public class CubeButton : MonoBehaviour
         GetComponent<MeshRenderer>().material.color = highlightColor;
         Invoke("ResetButton", resetDelay);
     }
+
     void ResetButton()
     {
         GetComponent<MeshRenderer>().material.color = defaultColor;
