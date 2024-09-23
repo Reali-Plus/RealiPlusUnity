@@ -4,7 +4,7 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
     private List<GameObject> fingerObjects = new List<GameObject>();
-    private SocketCommunication socketCommunication;
+    private SleeveCommunication sleeveCommunication;
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class DetectCollisions : MonoBehaviour
             fingerObject.AddComponent<CollisionHandler>().Initialize(this);
         }
 
-        socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
+        sleeveCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SleeveCommunication>();
     }
 
     public void UpdateFeedback(GameObject fingerObject, bool retroaction, bool restriction)
@@ -24,13 +24,13 @@ public class DetectCollisions : MonoBehaviour
 
         if (fingerId != -1)
         {
-            socketCommunication.SendData(new HapticsData(fingerId, retroaction, restriction));
+            sleeveCommunication.SendData(new HapticsData(fingerId, retroaction, restriction));
         }
     }
 
     private int GetFingerIdFromGameObject(GameObject fingerObject)
     {
-        for (int i = 0; i < fingerObjects.Count; i++)
+        for (int i = 0; i < fingerObjects.Count; ++i)
         {
             if (fingerObjects[i] == fingerObject)
             {

@@ -3,24 +3,24 @@ using UnityEngine;
 public class SensorController : MonoBehaviour
 {
     [SerializeField]
-    private bool supportRotation = false;
+    private bool supportRotation = true;
     [SerializeField]
     private bool supportTranslation = false;
 
     private SleeveData sleeveData;
-    private SocketCommunication socketCommunication;
+    private SleeveCommunication sleeveCommunication;
 
     private void Start()
     {
         sleeveData = new SleeveData();
-        socketCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SocketCommunication>();
+        sleeveCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SleeveCommunication>();
     }
 
     private void Update()
     {
-        if (socketCommunication.ReceiveData())
+        if (sleeveCommunication.ReceiveData())
         {
-            sleeveData = socketCommunication.GetData();
+            sleeveData = sleeveCommunication.GetData();
             Debug.Log(sleeveData);
         }
     }
