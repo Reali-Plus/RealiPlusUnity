@@ -1,6 +1,10 @@
+using Assets.Scripts.Communication;
+using UnityEngine;
+
+
 public class SleeveData
 {
-    // TODO : Add other data
+    public FingerUtils.Finger FingerID { get; set; }
     public SensorData3D Accelerometer { get; private set; }
     public SensorData3D Gyroscope { get; private set; }
 
@@ -33,8 +37,11 @@ public class SleeveData
     {
         string[] data = message.Split(" ");
 
-        if (data.Length >= 3)
+        if (data.Length >= 4)
         {
+            // Finger ID
+            FingerID = (FingerUtils.Finger)int.Parse(data[0]);
+
             // Accelerometer
             float[] accelerations = new float[3];
             for (int i = 0; i < 3; i++)
@@ -45,7 +52,7 @@ public class SleeveData
             Accelerometer.UpdateData(accelerations);
 
             // Gyroscope
-            if (data.Length >= 6)
+            if (data.Length >= 7)
             {
                 float[] rotations = new float[3];
                 for (int i = 3; i < 6; i++)
@@ -57,6 +64,8 @@ public class SleeveData
             }
             return true;
         }
+
+        Debug.Log("Invalid data: " + message);
         return false;
     }
 

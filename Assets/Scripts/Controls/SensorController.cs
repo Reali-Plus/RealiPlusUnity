@@ -1,3 +1,5 @@
+using Assets.Scripts.Communication;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SensorController : MonoBehaviour
@@ -7,30 +9,25 @@ public class SensorController : MonoBehaviour
     [SerializeField]
     private bool supportTranslation = false;
 
-    private SleeveData sleeveData;
-    private SleeveCommunication sleeveCommunication;
+    [SerializeField]
+    private FingerUtils.Finger fingerID;
 
-    private void Start()
-    {
-        sleeveData = new SleeveData();
-        sleeveCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SleeveCommunication>();
-    }
+    // Check if it really needs to be a queue
+    private Queue<SleeveData> dataQueue;
 
-    private void Update()
+    private void Awake()
     {
-        if (sleeveCommunication.ReceiveData())
-        {
-            sleeveData = sleeveCommunication.GetData();
-            Debug.Log(sleeveData);
-        }
+        dataQueue = new Queue<SleeveData>();
     }
 
     private void FixedUpdate()
     {
-        if (sleeveData == null)
+        if (dataQueue.Count == 0)
         {
             return;
         }
+
+        var sleeveData = dataQueue.Dequeue();
 
         if (supportRotation)
         {
@@ -41,5 +38,15 @@ public class SensorController : MonoBehaviour
         {
             transform.Translate(new Vector3(sleeveData.Accelerometer.X, sleeveData.Accelerometer.Y, sleeveData.Accelerometer.Z) * Time.fixedDeltaTime);
         }
+    }
+
+    public void ReceiveData(SleeveData newData)
+    {
+        dataQueue.Enqueue(newData);
+    }
+
+    public FingerUtils.Finger GetFingerID()
+    {
+        return fingerID;
     }
 }

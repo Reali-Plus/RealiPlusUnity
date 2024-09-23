@@ -1,8 +1,11 @@
+using Assets.Scripts.Communication;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SleeveCommunication : MonoBehaviour
 {
     private Communication communication;
+    private Dictionary<FingerUtils.Finger, SensorController> sensors;
 
     public enum CommunicationTypes { Serial, BLE };
 
@@ -22,7 +25,26 @@ public class SleeveCommunication : MonoBehaviour
             communication = new SocketCommunication();
         }
 
+        sensors = new Dictionary<FingerUtils.Finger, SensorController>();
+        List<SensorController> sensorControllers = new List<SensorController>(FindObjectsOfType<SensorController>());
+        for (int i = 0; i < sensorControllers.Count; ++i)
+        {
+            sensors.Add(sensorControllers[i].GetFingerID(), sensorControllers[i]);
+        }
+
         communication.Initialize();
+    }
+
+    private void Update()
+    {
+        if (communication != null && communication.ReceiveData())
+        {
+            SleeveData data = communication.GetData();
+            if (sensors.ContainsKey(data.FingerID))
+            {
+                sensors[data.FingerID].ReceiveData(data);
+            }
+        }
     }
 
     private void OnApplicationQuit()
