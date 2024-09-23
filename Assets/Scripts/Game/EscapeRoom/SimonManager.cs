@@ -17,7 +17,7 @@ public class SimonManager : MonoBehaviour
     private void Start()
     {
         randomSequence = new int[sequenceDifficulty];
-        generateRandomSequence();
+        GenerateRandomSequence();
     }
 
     //private void OnMouseDown()
@@ -25,7 +25,7 @@ public class SimonManager : MonoBehaviour
     //    Debug.Log("Activate");
     //}
 
-    public void generateRandomSequence()
+    public void GenerateRandomSequence()
     {
         int tempReference;
         for (int i = 0; i < sequenceDifficulty; i++)
@@ -33,11 +33,11 @@ public class SimonManager : MonoBehaviour
             tempReference = Random.Range(0, cubes.Length);
             randomSequence[i] = tempReference;
         }
-        playSequence();
+        PlaySequence();
 
     }
 
-    void playSequence()
+    void PlaySequence()
     {
         StartCoroutine(PlaySequenceCoroutine());
     }
@@ -55,52 +55,30 @@ public class SimonManager : MonoBehaviour
     public void CheckSequence(CubeButton cube)
     {
         int cubeIndex = System.Array.IndexOf(cubes, cube);  // Trouve l'index du cube cliqué
-        Debug.Log("CubeIndex:" + cubeIndex);
         userSequence.Add(cubeIndex);
 
         if (cubeIndex == randomSequence[currentStep])
         {
-            Debug.Log("Sequence:" + randomSequence[currentStep]+ "\n------");
             currentStep++;
-            Debug.Log("CurrentStep: " + currentStep);
-            Debug.Log("randomSequence.Length: " + randomSequence.Length);
-            if (currentStep == randomSequence.Length)
+            if (currentStep >= randomSequence.Length)
             {
-                sequenceSuccess();
+                SequenceSuccess();
             }
         }
         else
         {
-            sequenceFailure();
+            SequenceFailure();
         }
     }
 
-    void sequenceFailure()
+    void SequenceFailure()
     {
         Debug.Log("Failed!");
     }
 
-    void sequenceSuccess()
+    void SequenceSuccess()
     {
         Debug.Log("Success!");
     }
-
-
-    //public void HighlightCube(int index)
-    //{
-    //    if (index >= 0 && index < cubes.Length)
-    //    {
-    //        cubes[index].Highlight(); // Appelle la méthode Highlight() du cube sélectionné
-    //    }
-    //}
-
-    //// Exemple d'une fonction pour simuler une séquence de couleurs
-    //public void PlaySequence(int[] sequence)
-    //{
-    //    foreach (int index in sequence)
-    //    {
-    //        HighlightCube(index); // Surbrillance des cubes en fonction de la séquence
-    //    }
-    //}
 }
 
