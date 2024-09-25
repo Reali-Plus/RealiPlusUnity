@@ -40,6 +40,7 @@ public class SleeveCommunication : MonoBehaviour
         if (communication != null && communication.ReceiveData())
         {
             SleeveData data = communication.GetData();
+            Debug.Log(data.ToString());
             if (sensors.ContainsKey(data.FingerID))
             {
                 sensors[data.FingerID].ReceiveData(data);

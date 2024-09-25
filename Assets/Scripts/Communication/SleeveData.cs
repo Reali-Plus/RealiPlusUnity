@@ -37,6 +37,16 @@ public class SleeveData
     {
         string[] data = message.Split(" ");
 
+        if(data.Length >=0)
+        {
+            if (data[0] == "|")
+            {
+                Debug.Log("Message received: " + message);
+
+                return false;
+            }
+        }
+
         if (data.Length >= 4)
         {
             // Finger ID
@@ -76,6 +86,6 @@ public class SleeveData
 
     public override string ToString()
     {
-        return "[Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
+        return "[ID] " + FingerID.ToString() + " [Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
     }
 }
