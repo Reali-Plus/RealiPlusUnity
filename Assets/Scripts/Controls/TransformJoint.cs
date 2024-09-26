@@ -15,27 +15,23 @@ public class TransformJoint : TransformController
 
     public override int DOFs => 1;
 
-    private Vector3 startRef;
-    //private Vector3 refAxis => transform.parent.worldToLocalMatrix * transform.forward;
-    //private Vector3 rotAxis => transform.GetAxis((byte)axis);
-    Quaternion startRot;
+    private Quaternion startRot;
     private Vector3 rotAxis;
     private Vector3 refAxis;
 
     private void Start()
     {
-        startRef = refAxis;
         rotAxis = Vector3.zero;
-        refAxis = Vector3.zero;
         rotAxis[(byte)axis] = 1f;
+
+        refAxis = Vector3.zero;
         refAxis[((byte)axis + 1) % 3] = 1f;
+
         startRot = transform.localRotation;
     }
 
     public override void ApplyStepDisplacement(in Vector<float> delta, int jointIndex)
     {
-        // TODO : Fix angle computation
-        //float currentAngle = Vector3.SignedAngle(startRef, refAxis, transform.parent.worldToLocalMatrix * rotAxis);
         float currentAngle = Vector3.SignedAngle(startRot * refAxis, transform.localRotation * refAxis, transform.localRotation * rotAxis);
         float deltaDeg = Mathf.Clamp(Mathf.Rad2Deg * delta[jointIndex] + currentAngle, minRange, maxRange) - currentAngle;
 
@@ -60,14 +56,15 @@ public class TransformJoint : TransformController
 
     private void AffectJacobian(ref Matrix<float> jacobian, in Vector3 targetPos, int targetIndex, int jointIndex)
     {
-        Vector3 movement = Vector3.Cross(rotAxis, targetPos);
+        Vector3 worldRot = transform.GetAxis((byte)axis);
+        Vector3 movement = Vector3.Cross(worldRot, targetPos);
 
         jacobian[targetIndex,     jointIndex] = Vector3.Dot(movement, Vector3.right);
         jacobian[targetIndex + 1, jointIndex] = Vector3.Dot(movement, Vector3.up);
         jacobian[targetIndex + 2, jointIndex] = Vector3.Dot(movement, Vector3.forward);
 
-        jacobian[targetIndex + 3, jointIndex] = rotAxis.x;
-        jacobian[targetIndex + 4, jointIndex] = rotAxis.y;
-        jacobian[targetIndex + 5, jointIndex] = rotAxis.z;
+        jacobian[targetIndex + 3, jointIndex] = worldRot.x;
+        jacobian[targetIndex + 4, jointIndex] = worldRot.y;
+        jacobian[targetIndex + 5, jointIndex] = worldRot.z;
     }
 }
