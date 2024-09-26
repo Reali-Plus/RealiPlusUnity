@@ -18,8 +18,11 @@ public class CubeButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Highlight();
-        simonManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
+        if (!simonManager.isSequencePlaying)
+        {
+            Highlight();
+            simonManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
+        }
     }
 
     public void Highlight()

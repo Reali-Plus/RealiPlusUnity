@@ -12,11 +12,13 @@ public class SimonManager : MonoBehaviour
     private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
     private int currentStep = 0;
     private bool playerWon = false;
+    public bool isSequencePlaying = false;
 
     private void Start()
     {
         randomSequence = new int[sequenceDifficulty];
         GenerateRandomSequence();
+        //isSequencePlaying = true;
     }
 
     public void GenerateRandomSequence()
@@ -31,20 +33,26 @@ public class SimonManager : MonoBehaviour
 
     public void PlaySequence()
     {
-        StartCoroutine(PlaySequenceCoroutine());
+        if (!isSequencePlaying)
+        {
+            StartCoroutine(PlaySequenceCoroutine());
+        }
     }
 
     IEnumerator PlaySequenceCoroutine()
     {
+        isSequencePlaying = true;
         foreach (int index in randomSequence)
         {
             cubes[index].Highlight();
             yield return new WaitForSeconds(sequenceSpeed);
         }
+        isSequencePlaying = false;
     }
 
     public void CheckSequence(CubeButton cube)
     {
+        if (isSequencePlaying) return;
         int cubeIndex = System.Array.IndexOf(cubes, cube);  // Trouve l'index du cube cliqué
         userSequence.Add(cubeIndex);
         if (!playerWon)
