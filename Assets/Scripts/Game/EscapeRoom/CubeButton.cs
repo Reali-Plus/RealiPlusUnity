@@ -34,5 +34,4 @@ public class CubeButton : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = defaultColor;
     }
-
 }

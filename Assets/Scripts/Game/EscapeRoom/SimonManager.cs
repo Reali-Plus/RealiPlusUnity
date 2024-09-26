@@ -10,20 +10,12 @@ public class SimonManager : MonoBehaviour
     [SerializeField] private int[] randomSequence;  //sequence aleatoire
     private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
     private int currentStep = 0;
-    //private GameObject[] puzzleButton;
-    //List<GameObject> sequenceUser; //sequence user 
-
 
     private void Start()
     {
         randomSequence = new int[sequenceDifficulty];
         GenerateRandomSequence();
     }
-
-    //private void OnMouseDown()
-    //{
-    //    Debug.Log("Activate");
-    //}
 
     public void GenerateRandomSequence()
     {
@@ -33,11 +25,9 @@ public class SimonManager : MonoBehaviour
             tempReference = Random.Range(0, cubes.Length);
             randomSequence[i] = tempReference;
         }
-        PlaySequence();
-
     }
 
-    void PlaySequence()
+    public void PlaySequence()
     {
         StartCoroutine(PlaySequenceCoroutine());
     }
@@ -71,12 +61,12 @@ public class SimonManager : MonoBehaviour
         }
     }
 
-    void SequenceFailure()
+    private void SequenceFailure()
     {
         Debug.Log("Failed!");
     }
 
-    void SequenceSuccess()
+    private void SequenceSuccess()
     {
         Debug.Log("Success!");
     }
