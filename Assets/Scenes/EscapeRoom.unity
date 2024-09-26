@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 245432519}
   m_Layer: 0
   m_Name: Blue
-  m_TagString: Untagged
+  m_TagString: ColorButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,6 +236,7 @@ MonoBehaviour:
   defaultColor: {r: 0.15877625, g: 0.05918475, b: 0.6603774, a: 0}
   highlightColor: {r: 0, g: 0.34117648, b: 1, a: 0}
   resetDelay: 0.25
+  simonManager: {fileID: 1384689329}
 --- !u!1 &255788462
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ GameObject:
   - component: {fileID: 363719162}
   m_Layer: 0
   m_Name: Red
-  m_TagString: Untagged
+  m_TagString: ColorButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,6 +434,7 @@ MonoBehaviour:
   defaultColor: {r: 0.5849056, g: 0.08552865, b: 0.08552865, a: 0}
   highlightColor: {r: 1, g: 0, b: 0, a: 0}
   resetDelay: 0.25
+  simonManager: {fileID: 1384689329}
 --- !u!1 &439683427
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +544,7 @@ GameObject:
   - component: {fileID: 526030706}
   m_Layer: 0
   m_Name: Yellow
-  m_TagString: Untagged
+  m_TagString: ColorButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -640,6 +642,7 @@ MonoBehaviour:
   defaultColor: {r: 0.6269681, g: 0.6415094, b: 0.003025995, a: 0}
   highlightColor: {r: 0.9519105, g: 1, b: 0, a: 0}
   resetDelay: 0.25
+  simonManager: {fileID: 1384689329}
 --- !u!1 &528933643
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +658,7 @@ GameObject:
   - component: {fileID: 528933648}
   m_Layer: 0
   m_Name: Green
-  m_TagString: Untagged
+  m_TagString: ColorButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,6 +756,7 @@ MonoBehaviour:
   defaultColor: {r: 0.03203987, g: 0.4528302, b: 0.105325714, a: 0}
   highlightColor: {r: 0, g: 1, b: 0.2004807, a: 0}
   resetDelay: 0.25
+  simonManager: {fileID: 1384689329}
 --- !u!1 &1023745910
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,10 +769,10 @@ GameObject:
   - component: {fileID: 1023745915}
   - component: {fileID: 1023745914}
   - component: {fileID: 1023745913}
-  - component: {fileID: 1023745912}
+  - component: {fileID: 1023745916}
   m_Layer: 0
   m_Name: StartButton
-  m_TagString: Untagged
+  m_TagString: StartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -788,21 +792,6 @@ Transform:
   m_Father: {fileID: 1384689328}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1023745912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023745910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0}
-  highlightColor: {r: 0.8207547, g: 0.80139726, b: 0.80139726, a: 0}
-  resetDelay: 0.25
 --- !u!65 &1023745913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -866,6 +855,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023745910}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1023745916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023745910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd4f7cbf1f5af64685600ff06d70cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1384689327
 GameObject:
   m_ObjectHideFlags: 0

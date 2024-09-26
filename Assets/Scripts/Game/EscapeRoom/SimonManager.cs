@@ -8,10 +8,10 @@ public class SimonManager : MonoBehaviour
     [SerializeField] int sequenceDifficulty = 5; //difficulte
     [SerializeField] float sequenceSpeed = 1f; //vitesse
     [SerializeField] private int[] randomSequence;  //sequence aleatoire
+
     private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
     private int currentStep = 0;
-
-    bool playerWon = false;
+    private bool playerWon = false;
 
     private void Start()
     {
