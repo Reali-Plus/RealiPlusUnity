@@ -8,6 +8,7 @@ public class SimonManager : MonoBehaviour
     [SerializeField] int sequenceDifficulty = 5; //difficulte
     [SerializeField] float sequenceSpeed = 1f; //vitesse
     [SerializeField] private int[] randomSequence;  //sequence aleatoire
+    [SerializeField] GameObject successObject;
 
     private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
     private int currentStep = 0;
@@ -16,6 +17,7 @@ public class SimonManager : MonoBehaviour
 
     private void Start()
     {
+        successObject.SetActive(false);
         randomSequence = new int[sequenceDifficulty];
         GenerateRandomSequence();
         //isSequencePlaying = true;
@@ -77,6 +79,8 @@ public class SimonManager : MonoBehaviour
     private void SequenceSuccess()
     {
         playerWon = true;
+        isSequencePlaying = true; //bloque les boutons quand on win
+        successObject.SetActive(true);
         Debug.Log("Success!");
     }
 
