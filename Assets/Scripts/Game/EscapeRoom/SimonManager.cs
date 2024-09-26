@@ -43,6 +43,7 @@ public class SimonManager : MonoBehaviour
 
     IEnumerator PlaySequenceCoroutine()
     {
+        
         isSequencePlaying = true;
         foreach (int index in randomSequence)
         {
@@ -88,6 +89,17 @@ public class SimonManager : MonoBehaviour
     {
         playerWon = false;
         Debug.Log("Failed!");
+        ResetSequence();
+    }
+    private void ResetSequence()
+    {
+        currentStep = 0;
+        userSequence.Clear();
+        isSequencePlaying = false;
+        GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire si nécessaire
+        Debug.Log("Restart sequence, play another:");
+        yield return new WaitForSeconds(30);
+        PlaySequence(); // Rejoue la nouvelle séquence
     }
 
 }
