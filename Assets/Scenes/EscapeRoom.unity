@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 1023745913}
   - component: {fileID: 1023745912}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,3 +922,4 @@ MonoBehaviour:
   - {fileID: 245432519}
   sequenceDifficulty: 5
   sequenceSpeed: 1
+  randomSequence: 

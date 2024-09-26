@@ -11,6 +11,8 @@ public class SimonManager : MonoBehaviour
     private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
     private int currentStep = 0;
 
+    bool playerWon = false;
+
     private void Start()
     {
         randomSequence = new int[sequenceDifficulty];
@@ -41,34 +43,40 @@ public class SimonManager : MonoBehaviour
         }
     }
 
-
     public void CheckSequence(CubeButton cube)
     {
         int cubeIndex = System.Array.IndexOf(cubes, cube);  // Trouve l'index du cube cliqué
         userSequence.Add(cubeIndex);
-
-        if (cubeIndex == randomSequence[currentStep])
+        if (!playerWon)
         {
-            currentStep++;
-            if (currentStep >= randomSequence.Length)
+            if (cubeIndex == randomSequence[currentStep])
             {
-                SequenceSuccess();
+                currentStep++;
+                if (currentStep >= randomSequence.Length)
+                {
+                    SequenceSuccess();
+                }
+            }
+            else
+            {
+                SequenceFailure();
             }
         }
         else
-        {
-            SequenceFailure();
-        }
-    }
-
-    private void SequenceFailure()
-    {
-        Debug.Log("Failed!");
+            Debug.Log("You already won!!");
     }
 
     private void SequenceSuccess()
     {
+        playerWon = true;
         Debug.Log("Success!");
     }
+
+    private void SequenceFailure()
+    {
+        playerWon = false;
+        Debug.Log("Failed!");
+    }
+
 }
 
