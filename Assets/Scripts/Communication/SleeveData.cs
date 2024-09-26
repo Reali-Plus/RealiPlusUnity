@@ -1,10 +1,21 @@
-using Assets.Scripts.Communication;
 using UnityEngine;
 
 
+public enum SensorID
+{
+    Logic = 0,
+    Hand = 1,
+    Shoulder = 2,
+    Index = 6,
+    Major = 5,
+    Annullar = 4,
+    Auricular = 3,
+    Thumb = 7
+}
+
 public class SleeveData
 {
-    public FingerUtils.Finger FingerID { get; set; }
+    public SensorID SensorID { get; set; }
     public SensorData3D Accelerometer { get; private set; }
     public SensorData3D Gyroscope { get; private set; }
 
@@ -37,7 +48,7 @@ public class SleeveData
     {
         string[] data = message.Split(" ");
 
-        if(data.Length >=0)
+        if(data.Length >= 0)
         {
             if (data[0] == "|")
             {
@@ -49,14 +60,14 @@ public class SleeveData
 
         if (data.Length >= 4)
         {
-            // Finger ID
-            FingerID = (FingerUtils.Finger)int.Parse(data[0]);
+            // Sensor ID
+            SensorID = (SensorID)int.Parse(data[0]);
 
             // Accelerometer
             float[] accelerations = new float[3];
-            for (int i = 0; i < 3; i++)
+            for (int i = 1; i < 4; ++i)
             {
-                accelerations[i] = ParseInput(data[i]) * 9.8f;
+                accelerations[i - 1] = ParseInput(data[i]) * 9.8f;
             }
 
             Accelerometer.UpdateData(accelerations);
@@ -65,7 +76,7 @@ public class SleeveData
             if (data.Length >= 7)
             {
                 float[] rotations = new float[3];
-                for (int i = 3; i < 6; i++)
+                for (int i = 3; i < 6; ++i)
                 {
                     rotations[i - 3] = ParseInput(data[i]);
                 }
@@ -86,6 +97,6 @@ public class SleeveData
 
     public override string ToString()
     {
-        return "[ID] " + FingerID.ToString() + " [Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
+        return "[ID] " + SensorID.ToString() + " [Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
     }
 }

@@ -1,4 +1,3 @@
-using Assets.Scripts.Communication;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,25 +9,17 @@ public class SensorController : MonoBehaviour
     private bool supportTranslation = false;
 
     [SerializeField]
-    private FingerUtils.Finger fingerID;
+    private SensorID sensorID;
 
-    // Check if it really needs to be a queue
-    private Queue<SleeveData> dataQueue;
+    private SleeveData sleeveData;
 
     private void Awake()
     {
-        dataQueue = new Queue<SleeveData>();
+        sleeveData = new SleeveData();
     }
 
     private void FixedUpdate()
     {
-        if (dataQueue.Count == 0)
-        {
-            return;
-        }
-
-        var sleeveData = dataQueue.Dequeue();
-
         if (supportRotation)
         {
             transform.rotation *= Quaternion.Euler(new Vector3(sleeveData.Gyroscope.X, sleeveData.Gyroscope.Y, sleeveData.Gyroscope.Z) * Time.fixedDeltaTime);
@@ -42,11 +33,11 @@ public class SensorController : MonoBehaviour
 
     public void ReceiveData(SleeveData newData)
     {
-        dataQueue.Enqueue(newData);
+        sleeveData = newData;
     }
 
-    public FingerUtils.Finger GetFingerID()
+    public SensorID GetSensorID()
     {
-        return fingerID;
+        return sensorID;
     }
 }
