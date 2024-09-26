@@ -97,9 +97,9 @@ public class SimonManager : MonoBehaviour
         userSequence.Clear();
         isSequencePlaying = false;
         GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire si nécessaire
-        Debug.Log("Restart sequence, play another:");
-        yield return new WaitForSeconds(30);
-        PlaySequence(); // Rejoue la nouvelle séquence
+        //Debug.Log("Restart sequence, play another:");
+        //new WaitForSeconds(30);
+        //PlaySequence(); // Rejoue la nouvelle séquence
     }
 
 }
