@@ -30,22 +30,19 @@ public class InverseKinematicsOptimizer : MonoBehaviour
 
         jacobianMat = Matrix<float>.Build.Dense(TargetDOFs, JointDOFs);
         errorVec = Vector<float>.Build.Dense(TargetDOFs);
-        springMat = Matrix<float>.Build.Diagonal(TargetDOFs, TargetDOFs, InitSpringMatrix);
+        ComputeSpringMatrix();
+
+        #if UNITY_EDITOR
+        TrackCostTransform();
+        #endif
     }
 
-    private float InitSpringMatrix(int index)
+    #if UNITY_EDITOR
+    private void OnDisable()
     {
-        int targetIndex = index / 6;
-
-        if (index % 6 < 3)
-        {
-            return targets[targetIndex].PositionWeight;
-        }
-        else
-        {
-            return targets[targetIndex].OrientationWeight;
-        }
+        UntrackCostTransform();
     }
+    #endif
 
     private void Update()
     {
@@ -63,6 +60,41 @@ public class InverseKinematicsOptimizer : MonoBehaviour
             UpdateEnergy();
             UpdateDampingMatrix();
             TickJoints();
+        }
+    }
+
+    private float InitSpringMatrix(int index)
+    {
+        int targetIndex = index / 6;
+
+        if (index % 6 < 3)
+        {
+            return targets[targetIndex].PositionWeight;
+        }
+        else
+        {
+            return targets[targetIndex].OrientationWeight;
+        }
+    }
+
+    private void ComputeSpringMatrix()
+    {
+        springMat = Matrix<float>.Build.Diagonal(TargetDOFs, TargetDOFs, InitSpringMatrix);
+    }
+
+    private void TrackCostTransform()
+    {
+        for (int i = 0; i < targets.Count; ++i)
+        {
+            targets[i].OnValuesUpdated += ComputeSpringMatrix;
+        }
+    }
+
+    private void UntrackCostTransform()
+    {
+        for (int i = 0; i < targets.Count; ++i)
+        {
+            targets[i].OnValuesUpdated -= ComputeSpringMatrix;
         }
     }
 
