@@ -10,6 +10,7 @@ public class InverseKinematicsOptimizer : MonoBehaviour
     private const float EPSILON = 1e-9f;
 
     [SerializeField, Min(0)] private int maxIter = 10;
+    [SerializeField, Range(0f, 1f)] private float targetCorrection = 0.05f;
     [SerializeField] private List<CostTransform> targets;
     [SerializeField] private List<TransformController> joints;
 
@@ -61,6 +62,8 @@ public class InverseKinematicsOptimizer : MonoBehaviour
             UpdateDampingMatrix();
             TickJoints();
         }
+
+        TickTargetCorrection();
     }
 
     private float InitSpringMatrix(int index)
@@ -137,6 +140,19 @@ public class InverseKinematicsOptimizer : MonoBehaviour
         {
             joints[i].ApplyStepDisplacement(in delta, jointIndex);
             jointIndex += joints[i].DOFs;
+        }
+    }
+
+    private void TickTargetCorrection()
+    {
+        if (targetCorrection <= 0f)
+        {
+            return;
+        }
+
+        for (int i = 0; i < targets.Count; i++)
+        {
+            targets[i].ReduceTargetError(targetCorrection);
         }
     }
 }
