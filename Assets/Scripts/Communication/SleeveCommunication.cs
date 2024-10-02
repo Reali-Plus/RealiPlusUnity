@@ -3,6 +3,21 @@ using UnityEngine;
 
 public class SleeveCommunication : MonoBehaviour
 {
+    public static SleeveCommunication Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject().AddComponent<SleeveCommunication>();
+                instance.name = instance.GetType().ToString();
+                DontDestroyOnLoad(instance.gameObject);
+            }
+            return instance;
+        }
+    }
+    private static SleeveCommunication instance;
+
     private Communication communication;
     private Dictionary<SensorID, SensorController> sensors;
 
