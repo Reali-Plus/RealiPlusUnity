@@ -15,7 +15,8 @@ public class SerialCommunication : Communication
         try
         {
             serialPort.Open();
-            serialPort.ReadTimeout = 1000;
+            serialPort.DiscardInBuffer();
+            serialPort.DiscardOutBuffer();
         }
         catch (Exception e)
         {
