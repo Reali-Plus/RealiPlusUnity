@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimonManager : MonoBehaviour
+public class MemoryGameManager : MonoBehaviour
 {
     [SerializeField] CubeButton[] cubes; // Tableau pour les cubes
     [SerializeField] SequenceManager sequenceManager;

@@ -7,7 +7,7 @@ public class CubeButton : MonoBehaviour
     [SerializeField] Color defaultColor;
     [SerializeField] Color highlightColor;
     [SerializeField] float resetDelay =.25f;
-    [SerializeField] protected SimonManager simonManager;
+    [SerializeField] protected MemoryGameManager simonManager;
     [SerializeField] protected SequenceManager sequenceManager;
     [SerializeField] AudioSource audioSource;
     private MeshRenderer meshRenderer;
