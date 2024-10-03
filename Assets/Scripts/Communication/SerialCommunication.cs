@@ -61,4 +61,16 @@ public class SerialCommunication : Communication
             serialPort.Close();
         }
     }
+
+    public override bool TestCommunication()
+    {
+        if (serialPort != null && serialPort.IsOpen)
+        {
+            serialPort.WriteLine("Test");
+            string serialInput = serialPort.ReadLine();
+            return serialInput == "Test";
+        }
+
+        return false;
+    }
 }

@@ -13,6 +13,8 @@ public abstract class Communication
     public abstract void OnExit();
     public abstract bool ReceiveData();
     public abstract void SendData(HapticsData hapticsData);
+    public abstract bool TestCommunication();
+
 
     protected void AddData(SleeveData sleeveData)
     {

@@ -21,24 +21,51 @@ public class SleeveCommunication : MonoBehaviour
     private Communication communication;
     private Dictionary<SensorID, SensorController> sensors;
 
-    public enum CommunicationTypes { Serial, BLE };
+    public enum CommunicationMode { Serial, BLE };
 
     [SerializeField]
-    private CommunicationTypes communicationType = CommunicationTypes.Serial;
+    private bool initializeOnStart = true;
+    [SerializeField]
+    private bool testMode = true;
+
+    [SerializeField]
+    private CommunicationMode communicationMode = CommunicationMode.Serial;
     
+    private bool isInitialized = false;
+
     // TODO : - Add a menu to choose the communication type
     //        - Add a way to change communication type at runtime
     void Start()
     {
-        if (communicationType == CommunicationTypes.Serial)
+        if (communicationMode == CommunicationMode.Serial)
         {
             communication = new SerialCommunication();
         }
-        else if (communicationType == CommunicationTypes.BLE)
+        else if (communicationMode == CommunicationMode.BLE)
         {
             communication = new SocketCommunication();
         }
 
+        if (initializeOnStart)
+        {
+            InitilializeCommunication();
+        }
+    }
+
+    public void TestCommunication()
+    {
+        if (isInitialized)
+        {
+            communication.TestCommunication();
+        }
+        else
+        {
+            InitilializeCommunication();
+        }
+    }
+
+    private void InitilializeCommunication()
+    {         
         sensors = new Dictionary<SensorID, SensorController>();
         List<SensorController> sensorControllers = new List<SensorController>(FindObjectsOfType<SensorController>());
         for (int i = 0; i < sensorControllers.Count; ++i)
@@ -47,6 +74,7 @@ public class SleeveCommunication : MonoBehaviour
         }
 
         communication.Initialize();
+        isInitialized = true;
     }
 
     private void Update()
