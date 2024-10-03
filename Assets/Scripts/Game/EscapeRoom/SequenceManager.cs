@@ -10,7 +10,7 @@ public class SequenceManager : MonoBehaviour
     [SerializeField] float sequenceSpeed = 1f; //vitesse
     private int[] randomSequence;  //sequence aleatoire
     private CubeButton[] cubes;
-    private bool isPlayingSequence = false;
+    public bool isSequencePlaying = false;
 
     public void SetupSequence(CubeButton[] cubes)
     {
@@ -36,13 +36,13 @@ public class SequenceManager : MonoBehaviour
 
     IEnumerator PlaySequenceCoroutine()
     {
-        isPlayingSequence = true;
+        isSequencePlaying = true; 
         foreach (int index in randomSequence)
         {
             cubes[index].Highlight();  // Met en surbrillance le cube
             yield return new WaitForSeconds(sequenceSpeed);
         }
-        isPlayingSequence = false;
+        isSequencePlaying = false;
     }
 
     public int GetCurrentSequenceStep(int stepIndex)

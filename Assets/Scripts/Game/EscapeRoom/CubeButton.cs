@@ -8,29 +8,29 @@ public class CubeButton : MonoBehaviour
     [SerializeField] Color highlightColor;
     [SerializeField] float resetDelay =.25f;
     [SerializeField] SimonManager simonManager;
-    //[SerializeField] AudioSource audioSource;
+    [SerializeField] SequenceManager sequenceManager;
+    [SerializeField] AudioSource audioSource;
     private MeshRenderer meshRenderer;
-    private Collider cubeCollider;
 
     private void Start()
     {
-        //audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         meshRenderer = GetComponent<MeshRenderer>();
         ResetButton();
     }
 
     private void OnMouseDown()
     {
-        ////if (!sequ.isSequencePlaying)
-        //{
-            //audioSource.Play();
+        if (!sequenceManager.isSequencePlaying)
+        {
             Highlight();
             simonManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
-        //}
+        }
     }
 
     public void Highlight()
     {
+        audioSource.Play();
         meshRenderer.material.color = highlightColor;
         Invoke("ResetButton", resetDelay);
     }

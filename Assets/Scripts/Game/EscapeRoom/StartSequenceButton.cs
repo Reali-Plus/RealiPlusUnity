@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class StartSequenceButton : MonoBehaviour
 {
-    SimonManager simonManager; // Référence au SimonManager
-    private void Start()
-    {
-        simonManager = FindObjectOfType<SimonManager>();
-    }
+    [SerializeField] SimonManager simonManager;
 
     private void OnMouseDown()
     {

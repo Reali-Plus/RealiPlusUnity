@@ -12,18 +12,15 @@ public class SimonManager : MonoBehaviour
     private int currentStep = 0;
     private bool playerWon = false;
 
-    public bool isSequencePlaying = false;
-
     private void Start()
     {
         sequenceManager.SetupSequence(cubes);
         successObject.SetActive(false);
-        //isSequencePlaying = true;
     }
 
     public void PlaySequence()
     {
-        if (!isSequencePlaying)
+        if (!sequenceManager.isSequencePlaying) 
         {
             sequenceManager.PlaySequence();  // Délègue à SequenceManager la gestion de la séquence
         }
@@ -31,7 +28,7 @@ public class SimonManager : MonoBehaviour
 
     public void CheckSequence(CubeButton cube)
     {
-        if (isSequencePlaying) return;
+        if (sequenceManager.isSequencePlaying) return;
         int cubeIndex = System.Array.IndexOf(cubes, cube);  // Trouve l'index du cube cliqué
         userSequence.Add(cubeIndex);
         if (!playerWon)
@@ -56,7 +53,7 @@ public class SimonManager : MonoBehaviour
     private void SequenceSuccess()
     {
         playerWon = true;
-        isSequencePlaying = true; //bloque les boutons quand on win
+        sequenceManager.isSequencePlaying = true; //bloque les boutons quand on win
         successObject.SetActive(true);
         Debug.Log("Success!");
     }
@@ -71,8 +68,8 @@ public class SimonManager : MonoBehaviour
     {
         currentStep = 0;
         userSequence.Clear();
-        isSequencePlaying = false;
-        sequenceManager.GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire si nécessaire
+        sequenceManager.isSequencePlaying = false;
+        sequenceManager.GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire 
         //Debug.Log("Restart sequence, play another:");
         //new WaitForSeconds(30);
         //PlaySequence(); // Rejoue la nouvelle séquence
