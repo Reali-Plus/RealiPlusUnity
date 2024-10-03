@@ -1,17 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MemoryGameManager : MonoBehaviour
 {
-    [SerializeField] CubeButton[] cubes; // Tableau pour les cubes
+    [SerializeField] CubeButton[] cubes;
     [SerializeField] SequenceManager sequenceManager;
     [SerializeField] GameObject successObject;
+    [SerializeField] AudioSource successSound;
+    [SerializeField] AudioSource failureSound;
 
-    private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
+    private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
-    private bool isAlreadyPlayed = false;
+    private bool isAlreadyPlayed = false; //diff/rent que isSequencePlaying car permet de ne pas add dans la list au d/part si on a jamais partie la game
 
     private void Start()
     {
@@ -33,7 +36,7 @@ public class MemoryGameManager : MonoBehaviour
     {
         if (sequenceManager.isSequencePlaying) return;
         if (!isAlreadyPlayed) return;
-        int cubeIndex = System.Array.IndexOf(cubes, cube);  // Trouve l'index du cube cliqué
+        int cubeIndex = System.Array.IndexOf(cubes, cube);
         userSequence.Add(cubeIndex);
         if (!playerWon)
         {
@@ -57,26 +60,44 @@ public class MemoryGameManager : MonoBehaviour
     private void SequenceSuccess()
     {
         playerWon = true;
-        sequenceManager.isSequencePlaying = true; //bloque les boutons quand on win
+        sequenceManager.isSequencePlaying = true;
         successObject.SetActive(true);
+        successSound.Play();
         Debug.Log("Success!");
+        //EndGame(); 
     }
 
     private void SequenceFailure()
     {
         playerWon = false;
+        failureSound.Play();
         Debug.Log("Failed!");
+        //StartCoroutine(PlayFailureEffect());
         ResetSequence();
     }
+
+    //private IEnumerator PlayFailureEffect()
+    //{
+    //    foreach (var cube in cubes)
+    //    {
+    //        cube.FailureColor(); // Méthode à ajouter dans CubeButton pour changer la couleur
+    //    }
+    //    yield return new WaitForSeconds(10f); // Attend 1 seconde
+    //    foreach (var cube in cubes)
+    //    {
+    //        cube.ResetColor(); // Réinitialise la couleur des cubes
+    //    }
+    //}
+
     private void ResetSequence()
     {
         currentStep = 0;
         userSequence.Clear();
         isAlreadyPlayed = false;
         sequenceManager.isSequencePlaying = false;
-        sequenceManager.GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire 
-        //Debug.Log("Restart sequence, play another:");
-        //new WaitForSeconds(30);
+        sequenceManager.GenerateRandomSequence();
+        Debug.Log("Restart sequence, play another:");
+        //new WaitForSeconds(30f);
         //PlaySequence(); // Rejoue la nouvelle séquence
     }
 

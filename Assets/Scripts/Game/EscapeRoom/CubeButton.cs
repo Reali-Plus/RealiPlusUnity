@@ -7,16 +7,17 @@ public class CubeButton : MonoBehaviour
     [SerializeField] Color defaultColor;
     [SerializeField] Color highlightColor;
     [SerializeField] float resetDelay =.25f;
-    [SerializeField] protected MemoryGameManager simonManager;
+    [SerializeField] protected MemoryGameManager memoryManager;
     [SerializeField] protected SequenceManager sequenceManager;
     [SerializeField] AudioSource audioSource;
     private MeshRenderer meshRenderer;
+    //private Color failureColor = Color.red;
 
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
-        ResetButton();
+        ResetColor();
     }
 
     private void OnMouseDown()
@@ -26,11 +27,11 @@ public class CubeButton : MonoBehaviour
             Highlight();
             if (gameObject.CompareTag("StartButton"))
             {
-                simonManager.PlaySequence();
+                memoryManager.PlaySequence();
             }
             else if (gameObject.CompareTag("ColorButton"))
             {
-                simonManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
+                memoryManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
             }
         }
     }
@@ -39,11 +40,16 @@ public class CubeButton : MonoBehaviour
     {
         audioSource.Play();
         meshRenderer.material.color = highlightColor;
-        Invoke("ResetButton", resetDelay);
+        Invoke("ResetColor", resetDelay);
     }
 
-    private void ResetButton()
+    public void ResetColor()
     {
         meshRenderer.material.color = defaultColor;
     }
+
+    //public void FailureColor()
+    //{
+    //    meshRenderer.material.color = failureColor;
+    //}
 }
