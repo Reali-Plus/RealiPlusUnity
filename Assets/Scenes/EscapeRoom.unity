@@ -1265,6 +1265,7 @@ GameObject:
   - component: {fileID: 1023745913}
   - component: {fileID: 1023745916}
   - component: {fileID: 1023745917}
+  - component: {fileID: 1023745918}
   m_Layer: 0
   m_Name: StartButton
   m_TagString: StartButton
@@ -1357,7 +1358,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023745910}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdd4f7cbf1f5af64685600ff06d70cdd, type: 3}
   m_Name: 
@@ -1368,7 +1369,6 @@ MonoBehaviour:
   simonManager: {fileID: 1384689329}
   sequenceManager: {fileID: 1384689330}
   audioSource: {fileID: 1023745917}
-  simonManager: {fileID: 1384689329}
 --- !u!82 &1023745917
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1376,12 +1376,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023745910}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7db53952169a405408112e79ebd5cf53, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.116
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1465,6 +1465,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1023745918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023745910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultColor: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 0}
+  highlightColor: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 0}
+  resetDelay: 0.25
+  simonManager: {fileID: 1384689329}
+  sequenceManager: {fileID: 1384689330}
+  audioSource: {fileID: 1023745917}
 --- !u!1 &1384689327
 GameObject:
   m_ObjectHideFlags: 0

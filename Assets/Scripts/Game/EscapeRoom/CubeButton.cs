@@ -14,6 +14,8 @@ public class CubeButton : MonoBehaviour
 
     private void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
         ResetButton();
     }
 
@@ -22,7 +24,14 @@ public class CubeButton : MonoBehaviour
         if (!sequenceManager.isSequencePlaying)
         {
             Highlight();
-            simonManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
+            if (gameObject.CompareTag("StartButton"))
+            {
+                simonManager.PlaySequence();
+            }
+            else if (gameObject.CompareTag("ColorButton"))
+            {
+                simonManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
+            }
         }
     }
 
@@ -33,7 +42,7 @@ public class CubeButton : MonoBehaviour
         Invoke("ResetButton", resetDelay);
     }
 
-    protected void ResetButton()
+    private void ResetButton()
     {
         meshRenderer.material.color = defaultColor;
     }

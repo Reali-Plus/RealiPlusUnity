@@ -11,11 +11,13 @@ public class SimonManager : MonoBehaviour
     private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
     private int currentStep = 0;
     private bool playerWon = false;
+    private bool isAlreadyPlayed = false;
 
     private void Start()
     {
+        isAlreadyPlayed = false;
         sequenceManager.SetupSequence(cubes);
-        successObject.SetActive(false);
+        successObject.SetActive(false); //regarder pour l'ajouter dynamiquement + asset
     }
 
     public void PlaySequence()
@@ -23,12 +25,14 @@ public class SimonManager : MonoBehaviour
         if (!sequenceManager.isSequencePlaying) 
         {
             sequenceManager.PlaySequence();  // Délègue à SequenceManager la gestion de la séquence
+            isAlreadyPlayed = true;
         }
     }
 
     public void CheckSequence(CubeButton cube)
     {
         if (sequenceManager.isSequencePlaying) return;
+        if (!isAlreadyPlayed) return;
         int cubeIndex = System.Array.IndexOf(cubes, cube);  // Trouve l'index du cube cliqué
         userSequence.Add(cubeIndex);
         if (!playerWon)
@@ -68,6 +72,7 @@ public class SimonManager : MonoBehaviour
     {
         currentStep = 0;
         userSequence.Clear();
+        isAlreadyPlayed = false;
         sequenceManager.isSequencePlaying = false;
         sequenceManager.GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire 
         //Debug.Log("Restart sequence, play another:");
