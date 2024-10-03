@@ -5,52 +5,28 @@ using UnityEngine;
 public class SimonManager : MonoBehaviour
 {
     [SerializeField] CubeButton[] cubes; // Tableau pour les cubes
-    [SerializeField] int sequenceDifficulty = 5; //difficulte
-    [SerializeField] float sequenceSpeed = 1f; //vitesse
-    [SerializeField] private int[] randomSequence;  //sequence aleatoire
+    [SerializeField] SequenceManager sequenceManager;
     [SerializeField] GameObject successObject;
 
     private List<int> userSequence = new List<int>();  // Sequence entrée par l'utilisateur
     private int currentStep = 0;
     private bool playerWon = false;
+
     public bool isSequencePlaying = false;
 
     private void Start()
     {
+        sequenceManager.SetupSequence(cubes);
         successObject.SetActive(false);
-        randomSequence = new int[sequenceDifficulty];
-        GenerateRandomSequence();
         //isSequencePlaying = true;
-    }
-
-    public void GenerateRandomSequence()
-    {
-        int tempReference;
-        for (int i = 0; i < sequenceDifficulty; i++)
-        {
-            tempReference = Random.Range(0, cubes.Length);
-            randomSequence[i] = tempReference;
-        }
     }
 
     public void PlaySequence()
     {
         if (!isSequencePlaying)
         {
-            StartCoroutine(PlaySequenceCoroutine());
+            sequenceManager.PlaySequence();  // Délègue à SequenceManager la gestion de la séquence
         }
-    }
-
-    IEnumerator PlaySequenceCoroutine()
-    {
-        
-        isSequencePlaying = true;
-        foreach (int index in randomSequence)
-        {
-            cubes[index].Highlight();
-            yield return new WaitForSeconds(sequenceSpeed);
-        }
-        isSequencePlaying = false;
     }
 
     public void CheckSequence(CubeButton cube)
@@ -60,10 +36,10 @@ public class SimonManager : MonoBehaviour
         userSequence.Add(cubeIndex);
         if (!playerWon)
         {
-            if (cubeIndex == randomSequence[currentStep])
+            if (cubeIndex == sequenceManager.GetCurrentSequenceStep(currentStep))
             {
                 currentStep++;
-                if (currentStep >= randomSequence.Length)
+                if (currentStep >= sequenceManager.GetSequenceLength())
                 {
                     SequenceSuccess();
                 }
@@ -96,7 +72,7 @@ public class SimonManager : MonoBehaviour
         currentStep = 0;
         userSequence.Clear();
         isSequencePlaying = false;
-        GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire si nécessaire
+        sequenceManager.GenerateRandomSequence(); // Génère une nouvelle séquence aléatoire si nécessaire
         //Debug.Log("Restart sequence, play another:");
         //new WaitForSeconds(30);
         //PlaySequence(); // Rejoue la nouvelle séquence
