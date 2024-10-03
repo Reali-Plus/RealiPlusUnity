@@ -7,15 +7,13 @@ public class CubeButton : MonoBehaviour
     [SerializeField] Color defaultColor;
     [SerializeField] Color highlightColor;
     [SerializeField] float resetDelay =.25f;
-    [SerializeField] SimonManager simonManager;
-    [SerializeField] SequenceManager sequenceManager;
+    [SerializeField] protected SimonManager simonManager;
+    [SerializeField] protected SequenceManager sequenceManager;
     [SerializeField] AudioSource audioSource;
     private MeshRenderer meshRenderer;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        meshRenderer = GetComponent<MeshRenderer>();
         ResetButton();
     }
 
@@ -35,7 +33,7 @@ public class CubeButton : MonoBehaviour
         Invoke("ResetButton", resetDelay);
     }
 
-    public void ResetButton()
+    protected void ResetButton()
     {
         meshRenderer.material.color = defaultColor;
     }

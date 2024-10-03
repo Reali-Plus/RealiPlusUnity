@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartSequenceButton : MonoBehaviour
+public class StartSequenceButton : CubeButton
 {
-    [SerializeField] SimonManager simonManager;
-
     private void OnMouseDown()
     {
+        Highlight();
         simonManager.PlaySequence();
     }
 }
