@@ -79,9 +79,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Mega Burger :      8$\nSpecial Burger:    12$\n              ----\nSweet
-    Potato Fries: 3.5$\nNormal Fries:          3$\n              ----\nCheesecake
-    :   5\u20AC\nCookies:        2\u20AC\n"
+  m_Text: " Fruit & l\xE9gumes\n1 .....\n1 ......\n              ---- \nProduit menager\n1
+    .....\n1 .... \n              ----\n\n"
 --- !u!1 &116824
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +296,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &11432522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,8 +476,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lunar Cats
-
-    Studio
-
-    ---------'
+  m_Text: "Liste d'\xE9picerie\n---------"
