@@ -51,4 +51,5 @@ public class ShopManager : MonoBehaviour
         groceryListText.text = listText;
         Debug.Log(listText);
     }
+
 }
