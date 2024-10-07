@@ -1,25 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] GameObject listOfObjects;
+    [SerializeField] Text groceryListText;
     [SerializeField] int nbrItemsInGroceryList = 3;//nombre d'objets dans la liste
     private List<GameObject> allItemsAvailable = new List<GameObject>(); //tout les objets disponibles à l'achat
-    private List<GameObject> groceryList = new List<GameObject>(); 
+    private List<GameObject> groceryList = new List<GameObject>();
 
     void Start()
     {
-        // Récupérer tous les objets enfants
         foreach (Transform child in listOfObjects.transform)
         {
             allItemsAvailable.Add(child.gameObject);
         }
-        // Générer la liste d'épicerie aléatoire
-        GenerateGroceryList();
 
-        // Afficher la liste d'épicerie
+        GenerateGroceryList();
         DisplayGroceryList();
     }
 
@@ -43,10 +42,13 @@ public class ShopManager : MonoBehaviour
 
     void DisplayGroceryList()
     {
-        Debug.Log("Grocery List:");
+        string listText = "Items:\n";
         foreach (GameObject item in groceryList)
         {
-            Debug.Log("- " + item.name);
+            listText += "- " + item.name + "\n";
         }
+
+        groceryListText.text = listText;
+        Debug.Log(listText);
     }
 }
