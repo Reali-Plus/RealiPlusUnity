@@ -627,8 +627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950994bbd8a84a641a778df30ffe3b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentObject: {fileID: 628148309}
-  allItems: []
+  listOfObjects: {fileID: 628148309}
+  nbObjectInList: 5
+  groceryList: []
 --- !u!1001 &595885746
 PrefabInstance:
   m_ObjectHideFlags: 0
