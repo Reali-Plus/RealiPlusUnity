@@ -11,7 +11,7 @@ public class CostTransform : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField, Min(0f)] private float positionWeight = 10f;
     [SerializeField, Min(0f)] private float orientationWeight = 0.1f;
-    [SerializeField, Min(0f)] private float errorCorrectionWeight = 1f;
+    [SerializeField, Range(0f, 1f)] private float errorCorrectionWeight = 1f;
 
     private void OnValidate()
     {

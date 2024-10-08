@@ -408,6 +408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 491936531}
+  - component: {fileID: 491936532}
   m_Layer: 0
   m_Name: IKGoalThumb
   m_TagString: Untagged
@@ -431,6 +432,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -7.279, y: 0, z: 0}
+--- !u!114 &491936532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491936530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0.0001, y: 0, z: 0}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!1 &508514733
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 508514734}
+  - component: {fileID: 508514735}
   m_Layer: 0
   m_Name: IKGoalHand
   m_TagString: Untagged
@@ -463,6 +480,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -7.279, y: 0, z: 0}
+--- !u!114 &508514735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508514733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0, y: 0.0001, z: 0}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!1 &512850944
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 585213744}
+  - component: {fileID: 585213745}
   m_Layer: 0
   m_Name: IKGoalArm
   m_TagString: Untagged
@@ -724,6 +757,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &585213745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585213740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0, y: 0, z: 0}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!114 &614448906 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8528801066776611538, guid: 226edc62438f80241b01d94ea6f43bc9,
@@ -805,6 +853,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 693813319}
+  - component: {fileID: 693813320}
   m_Layer: 0
   m_Name: IKGoalForearm
   m_TagString: Untagged
@@ -828,6 +877,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &693813320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693813318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0, y: 0, z: 0}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!1 &695577139
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 695577140}
+  - component: {fileID: 695577141}
   m_Layer: 0
   m_Name: IKGoalFinger1
   m_TagString: Untagged
@@ -860,6 +925,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -7.279, y: 0, z: 0}
+--- !u!114 &695577141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695577139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0, y: -0.00003, z: 0}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!1 &771788597
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 771788598}
+  - component: {fileID: 771788599}
   m_Layer: 0
   m_Name: IKGoalFinger3
   m_TagString: Untagged
@@ -892,6 +973,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -7.279, y: 0, z: 0}
+--- !u!114 &771788599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771788597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0, y: 0, z: 0}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!114 &954670959 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1365946941880331924, guid: 226edc62438f80241b01d94ea6f43bc9,
@@ -1247,6 +1343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286787240}
+  - component: {fileID: 1286787241}
   m_Layer: 0
   m_Name: IKGoalFinger4
   m_TagString: Untagged
@@ -1270,6 +1367,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -7.279, y: 0, z: 0}
+--- !u!114 &1286787241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286787239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0, y: -0.00005, z: -0.0002}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!114 &1455450886 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 661817641844338141, guid: 226edc62438f80241b01d94ea6f43bc9,
@@ -1303,6 +1415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580254095}
+  - component: {fileID: 1580254096}
   m_Layer: 0
   m_Name: IKGoalFinger2
   m_TagString: Untagged
@@ -1326,6 +1439,21 @@ Transform:
   m_Father: {fileID: 2009383657}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -7.279, y: 0, z: 0}
+--- !u!114 &1580254096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580254094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fdf37187cac734fb6f2fb7c0cc4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drift: {x: 0, y: 0, z: 0}
+  positionNoise: 0.0005
+  rotationNoise: 0.5
 --- !u!1 &1652101582
 GameObject:
   m_ObjectHideFlags: 0
