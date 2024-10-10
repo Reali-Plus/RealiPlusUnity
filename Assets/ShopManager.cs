@@ -5,24 +5,30 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] GameObject listOfObjects;
+    [SerializeField] GameObject itemsInStore; //Parent de tous les objets disponible
     [SerializeField] Text groceryListText;
     [SerializeField] int nbrItemsInGroceryList = 3;//nombre d'objets dans la liste
-    private List<GameObject> allItemsAvailable = new List<GameObject>(); //tout les objets disponibles à l'achat
+    public List<GameObject> allItemsAvailable = new List<GameObject>(); //tout les objets disponibles à l'achat
     private List<GameObject> groceryList = new List<GameObject>();
 
     void Start()
     {
-        foreach (Transform child in listOfObjects.transform)
-        {
-            allItemsAvailable.Add(child.gameObject);
-        }
-
+        PopulateItemList();
         GenerateGroceryList();
         DisplayGroceryList();
     }
 
-    void GenerateGroceryList()
+    // liste de tout les objets disponible à partir des enfants de ItemsInStore
+    private void PopulateItemList()
+    {
+        foreach (Transform child in itemsInStore.transform)
+        {
+            allItemsAvailable.Add(child.gameObject);
+        }
+    }
+
+    // Genere la liste d'epicerie
+    private void GenerateGroceryList()
     {
         if (allItemsAvailable.Count < nbrItemsInGroceryList)
         {
@@ -31,16 +37,23 @@ public class ShopManager : MonoBehaviour
         }
 
         List<GameObject> itemsToSelectFrom = new List<GameObject>(allItemsAvailable);
-
-        for (int i = 0; i < nbrItemsInGroceryList; i++)
-        {
-            int randomIndex = Random.Range(0, itemsToSelectFrom.Count);
-            groceryList.Add(itemsToSelectFrom[randomIndex]);
-            itemsToSelectFrom.RemoveAt(randomIndex); // pour eviter les doublons
-        }
+        groceryList = GetRandomItems(itemsToSelectFrom, nbrItemsInGroceryList);
     }
 
-    void DisplayGroceryList()
+    // Sélectionne des objets aléatoires sans répétition
+    private List<GameObject> GetRandomItems(List<GameObject> sourceList, int itemCount)
+    {
+        List<GameObject> selectedItems = new List<GameObject>();
+        for (int i = 0; i < itemCount; i++)
+        {
+            int randomIndex = Random.Range(0, sourceList.Count);
+            selectedItems.Add(sourceList[randomIndex]);
+            sourceList.RemoveAt(randomIndex);
+        }
+        return selectedItems;
+    }
+
+    private void DisplayGroceryList()
     {
         string listText = "Items:\n";
         foreach (GameObject item in groceryList)
