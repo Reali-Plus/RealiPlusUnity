@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SensorController : MonoBehaviour
@@ -7,31 +8,18 @@ public class SensorController : MonoBehaviour
     [SerializeField]
     private bool supportTranslation = false;
 
-    private SleeveData sleeveData;
-    private SleeveCommunication sleeveCommunication;
+    [SerializeField]
+    private SensorID sensorID;
 
-    private void Start()
+    private SleeveData sleeveData;
+
+    private void Awake()
     {
         sleeveData = new SleeveData();
-        sleeveCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SleeveCommunication>();
-    }
-
-    private void Update()
-    {
-        if (sleeveCommunication.ReceiveData())
-        {
-            sleeveData = sleeveCommunication.GetData();
-            Debug.Log(sleeveData);
-        }
     }
 
     private void FixedUpdate()
     {
-        if (sleeveData == null)
-        {
-            return;
-        }
-
         if (supportRotation)
         {
             transform.rotation *= Quaternion.Euler(new Vector3(sleeveData.Gyroscope.X, sleeveData.Gyroscope.Y, sleeveData.Gyroscope.Z) * Time.fixedDeltaTime);
@@ -41,5 +29,15 @@ public class SensorController : MonoBehaviour
         {
             transform.Translate(new Vector3(sleeveData.Accelerometer.X, sleeveData.Accelerometer.Y, sleeveData.Accelerometer.Z) * Time.fixedDeltaTime);
         }
+    }
+
+    public void ReceiveData(SleeveData newData)
+    {
+        sleeveData = newData;
+    }
+
+    public SensorID GetSensorID()
+    {
+        return sensorID;
     }
 }
