@@ -6,19 +6,20 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] GameObject itemsInStore; //Parent de tous les objets disponible
-    [SerializeField] Text groceryListText;
-    [SerializeField] int nbrItemsInGroceryList = 3;//nombre d'objets dans la liste
-    public List<GameObject> allItemsAvailable = new List<GameObject>(); //tout les objets disponibles à l'achat
-    private List<GameObject> groceryList = new List<GameObject>();
+    [SerializeField] GroceryListHandler groceryListHandler;
+    [SerializeField] GroceryBox groceryBox;
+    [SerializeField] int nbrItemsInGroceryList = 3;
+    private List<GameObject> allItemsAvailable = new List<GameObject>(); //tout les objets disponibles à l'achat
 
     void Start()
     {
+        allItemsAvailable.Clear();
         PopulateItemList();
-        GenerateGroceryList();
-        DisplayGroceryList();
+        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable); // Génère la liste
+        groceryListHandler.DisplayGroceryList();  // Affiche la liste
     }
 
-    // liste de tout les objets disponible à partir des enfants de ItemsInStore
+    // liste de tous les objets disponible
     private void PopulateItemList()
     {
         foreach (Transform child in itemsInStore.transform)
@@ -27,42 +28,16 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    // Genere la liste d'epicerie
-    private void GenerateGroceryList()
+    public void CheckIfAllItemsCollected(List<GameObject> collectedItems)
     {
-        if (allItemsAvailable.Count < nbrItemsInGroceryList)
+        if (collectedItems.Count == groceryListHandler.GetGroceryList().Count)
         {
-            Debug.LogWarning("Not enough items to select from!");
-            return;
+            OnAllItemsCollected(); // Signale que tous les objets ont été collectés
         }
-
-        List<GameObject> itemsToSelectFrom = new List<GameObject>(allItemsAvailable);
-        groceryList = GetRandomItems(itemsToSelectFrom, nbrItemsInGroceryList);
     }
 
-    // Sélectionne des objets aléatoires sans répétition
-    private List<GameObject> GetRandomItems(List<GameObject> sourceList, int itemCount)
+    private void OnAllItemsCollected()
     {
-        List<GameObject> selectedItems = new List<GameObject>();
-        for (int i = 0; i < itemCount; i++)
-        {
-            int randomIndex = Random.Range(0, sourceList.Count);
-            selectedItems.Add(sourceList[randomIndex]);
-            sourceList.RemoveAt(randomIndex);
-        }
-        return selectedItems;
+        Debug.Log("Niveau réussi !");
     }
-
-    private void DisplayGroceryList()
-    {
-        string listText = "Items:\n";
-        foreach (GameObject item in groceryList)
-        {
-            listText += "- " + item.name + "\n";
-        }
-
-        groceryListText.text = listText;
-        Debug.Log(listText);
-    }
-
 }
