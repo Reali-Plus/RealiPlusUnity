@@ -63,31 +63,23 @@ public class MemoryGameManager : MonoBehaviour
         sequenceManager.isSequencePlaying = true;
         successObject.SetActive(true);
         successSound.Play();
-        Debug.Log("Success!");
-        //EndGame(); 
     }
 
     private void SequenceFailure()
     {
         playerWon = false;
         failureSound.Play();
-        Debug.Log("Failed!");
-        //StartCoroutine(PlayFailureEffect());
+        ShowFailureVisuals();
         ResetSequence();
     }
 
-    //private IEnumerator PlayFailureEffect()
-    //{
-    //    foreach (var cube in cubes)
-    //    {
-    //        cube.FailureColor(); // Méthode à ajouter dans CubeButton pour changer la couleur
-    //    }
-    //    yield return new WaitForSeconds(10f); // Attend 1 seconde
-    //    foreach (var cube in cubes)
-    //    {
-    //        cube.ResetColor(); // Réinitialise la couleur des cubes
-    //    }
-    //}
+    private void ShowFailureVisuals()
+    {
+        foreach (CubeButton cube in cubes)
+        {
+            cube.ShowFailureColor();
+        }
+    }
 
     private void ResetSequence()
     {
@@ -96,10 +88,6 @@ public class MemoryGameManager : MonoBehaviour
         isAlreadyPlayed = false;
         sequenceManager.isSequencePlaying = false;
         sequenceManager.GenerateRandomSequence();
-        Debug.Log("Restart sequence, play another:");
-        //new WaitForSeconds(30f);
-        //PlaySequence(); // Rejoue la nouvelle séquence
     }
-
 }
 

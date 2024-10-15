@@ -11,7 +11,7 @@ public class CubeButton : MonoBehaviour
     [SerializeField] protected SequenceManager sequenceManager;
     [SerializeField] AudioSource audioSource;
     private MeshRenderer meshRenderer;
-    //private Color failureColor = Color.red;
+    private Color failureColor = Color.red;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class CubeButton : MonoBehaviour
             }
             else if (gameObject.CompareTag("ColorButton"))
             {
-                memoryManager.CheckSequence(this);  // Signale au SimonManager quel cube a été cliqué
+                memoryManager.CheckSequence(this);
             }
         }
     }
@@ -48,8 +48,10 @@ public class CubeButton : MonoBehaviour
         meshRenderer.material.color = defaultColor;
     }
 
-    //public void FailureColor()
-    //{
-    //    meshRenderer.material.color = failureColor;
-    //}
+    public void ShowFailureColor()
+    {
+        meshRenderer.material.color = failureColor;
+        Invoke("ResetColor", resetDelay);
+    }
+
 }

@@ -6,9 +6,9 @@ using UnityEngine;
 public class SequenceManager : MonoBehaviour
 {
 
-    [SerializeField] int sequenceDifficulty = 5; //difficulte
-    [SerializeField] float sequenceSpeed = 1f; //vitesse
-    private int[] randomSequence;  //sequence aleatoire
+    [SerializeField] int sequenceDifficulty = 5;
+    [SerializeField] float sequenceSpeed = 1f; 
+    private int[] randomSequence;  
     private CubeButton[] cubes;
     public bool isSequencePlaying = false;
 
@@ -39,7 +39,7 @@ public class SequenceManager : MonoBehaviour
         isSequencePlaying = true; 
         foreach (int index in randomSequence)
         {
-            cubes[index].Highlight();  // Met en surbrillance le cube
+            cubes[index].Highlight();
             yield return new WaitForSeconds(sequenceSpeed);
         }
         isSequencePlaying = false;
