@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
-    public GameObject itemsInStore; // Empty GameObject qui contient les objets déplaçables
+    public GameObject itemsInStore;
     private Camera mainCamera;
     private bool isDragging = false;
     private GameObject selectedObject;
@@ -30,7 +30,6 @@ public class MoveObject : MonoBehaviour
             {
                 GameObject hitObject = hit.collider.gameObject;
 
-                // Vérifier si l'objet cliqué fait partie de la liste d'épicerie (moveableItems)
                 if (moveableItems.Contains(hitObject))
                 {
                     StartDragging(hitObject);
