@@ -36,7 +36,7 @@ public class SleeveCommunication : MonoBehaviour
 
     private void Update()
     {
-        if (communication != null && communication.ReceiveData())
+        while (communication != null && communication.ReceiveData())
         {
             SleeveData data = communication.GetData();
             Debug.Log(data.ToString());

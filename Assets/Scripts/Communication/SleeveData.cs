@@ -21,13 +21,13 @@ public class SleeveData
 
     public SleeveData()
     {
-        Accelerometer = new SensorData3D(0, 0, 0);
+        Accelerometer = new SensorData3D(0, 0, 1);
         Gyroscope = new SensorData3D(0, 0, 0);
     }
 
     public SleeveData(string strMessage)
     {
-        Accelerometer = new SensorData3D(0, 0, 0);
+        Accelerometer = new SensorData3D(0, 0, 1);
         Gyroscope = new SensorData3D(0, 0, 0);
         FromString(strMessage);
     }
@@ -61,13 +61,21 @@ public class SleeveData
         if (data.Length >= 4)
         {
             // Sensor ID
-            SensorID = (SensorID)int.Parse(data[0]);
+            try
+            {
+                SensorID = (SensorID)int.Parse(data[0]);
+            }
+            catch (System.FormatException)
+            {
+                Debug.LogError($"Incorrect format : \"{data[0]}\" from message \"{message}\"");
+                return false;
+            }
 
             // Accelerometer
             float[] accelerations = new float[3];
             for (int i = 1; i < 4; ++i)
             {
-                accelerations[i - 1] = ParseInput(data[i]) * 9.8f;
+                accelerations[i - 1] = ParseInput(data[i]);
             }
 
             Accelerometer.UpdateData(accelerations);
