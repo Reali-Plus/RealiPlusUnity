@@ -44,13 +44,16 @@ public class SleeveData
         Gyroscope.UpdateData(gyro);
     }
 
+    // Data format: [SensorID] [AccX] [AccY] [AccZ] [GyroX] [GyroY] [GyroZ]
     public bool FromString(string message)
     {
+        Debug.Log("Message : " + message);
         string[] data = message.Split(" ");
 
-        if(data.Length >= 0)
+        if(data.Length >= 0) // Ignore empty messages
         {
-            if (data[0] == "|")
+            Debug.Log("data[0] " + data[0]);
+            if (data[0] == "|") // Ignore messages that start with "|"
             {
                 Debug.Log("Message received: " + message);
 
@@ -58,49 +61,44 @@ public class SleeveData
             }
         }
 
-        if (data.Length >= 4)
+        if (data.Length >= 4) // Accelerometer data (SensorID, AccX, AccY, AccZ)
         {
-            // Sensor ID
             try
             {
-                SensorID = (SensorID)int.Parse(data[0]);
+                // Sensor ID
+                SensorID = (SensorID) int.Parse(data[0]);
+
+                // Accelerometer
+                float[] accelerations = new float[3];
+                for (int i = 1; i < 4; ++i)
+                {
+                    accelerations[i - 1] = float.Parse(data[i]);
+                }
+
+                Accelerometer.UpdateData(accelerations);
+
+                // Gyroscope
+                if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
+                {
+                    float[] rotations = new float[3];
+                    for (int i = 3; i < 6; ++i)
+                    {
+                        rotations[i - 3] = float.Parse(data[i]);
+                    }
+
+                    Gyroscope.UpdateData(rotations);
+                }
             }
             catch (System.FormatException)
             {
-                Debug.LogError($"Incorrect format : \"{data[0]}\" from message \"{message}\"");
                 return false;
             }
 
-            // Accelerometer
-            float[] accelerations = new float[3];
-            for (int i = 1; i < 4; ++i)
-            {
-                accelerations[i - 1] = ParseInput(data[i]);
-            }
-
-            Accelerometer.UpdateData(accelerations);
-
-            // Gyroscope
-            if (data.Length >= 7)
-            {
-                float[] rotations = new float[3];
-                for (int i = 3; i < 6; ++i)
-                {
-                    rotations[i - 3] = ParseInput(data[i]);
-                }
-
-                Gyroscope.UpdateData(rotations);
-            }
             return true;
         }
 
         Debug.Log("Invalid data: " + message);
         return false;
-    }
-
-    private float ParseInput(string strInput)
-    {
-        return float.TryParse(strInput, out float input) ? input : 0f;
     }
 
     public override string ToString()

@@ -5,7 +5,7 @@ using System;
 public class SerialCommunication : Communication
 {
     // TODO : List available ports and baud rates to choose from a menu
-    private string portName = "COM7";
+    private string portName = "COM3";
     private int baudRate = 115200;
     private SerialPort serialPort;
     
@@ -44,15 +44,8 @@ public class SerialCommunication : Communication
     {
         if (serialPort != null && serialPort.IsOpen)
         {
-            try
-            {
-                string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
-                return AddData(serialInput);
-            }
-            catch (TimeoutException)
-            {
-                //Debug.LogWarning("Serial read timeout.");
-            }
+            string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
+            return AddData(serialInput);
         }
         return false;
     }
