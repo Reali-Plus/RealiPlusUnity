@@ -15,8 +15,8 @@ public class ShopManager : MonoBehaviour
     {
         allItemsAvailable.Clear();
         PopulateItemList();
-        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable); // Génère la liste
-        groceryListHandler.DisplayGroceryList();  // Affiche la liste
+        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
+        groceryListHandler.DisplayGroceryList();
     }
 
     // liste de tous les objets disponible

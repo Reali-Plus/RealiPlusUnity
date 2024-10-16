@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class GroceryListHandler : MonoBehaviour
 {
-    //generer la liste d<epicerie et le display dans la scene
     //pourrait ajouter un check lorsque l objet est dans la boite...
     [SerializeField] Text groceryListText;
     private List<GameObject> groceryList = new List<GameObject>();
 
-    // Genere la liste d'epicerie
     public void GenerateGroceryList(int nbrItemsInGroceryList, List<GameObject> allItems)
     {
         if (allItems.Count < nbrItemsInGroceryList)
@@ -23,7 +21,6 @@ public class GroceryListHandler : MonoBehaviour
         groceryList = GetRandomItems(itemsToSelectFrom, nbrItemsInGroceryList);
     }
 
-    // Sélectionne des objets aléatoires sans doublons
     private List<GameObject> GetRandomItems(List<GameObject> sourceList, int itemCount)
     {
         List<GameObject> selectedItems = new List<GameObject>();
@@ -48,7 +45,6 @@ public class GroceryListHandler : MonoBehaviour
         Debug.Log(listText);
     }
 
-    //a verifier l'utilite
     public List<GameObject> GetGroceryList()
     {
         return groceryList;
