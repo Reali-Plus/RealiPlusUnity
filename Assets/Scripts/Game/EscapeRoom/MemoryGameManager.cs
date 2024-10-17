@@ -5,29 +5,30 @@ using UnityEngine;
 
 public class MemoryGameManager : MonoBehaviour
 {
-    [SerializeField] CubeButton[] cubes;
-    [SerializeField] SequenceManager sequenceManager;
-    [SerializeField] GameObject successObject;
-    [SerializeField] AudioSource successSound;
-    [SerializeField] AudioSource failureSound;
+    [SerializeField] private CubeButton[] cubes;
+    [SerializeField] private GameObject successObject;
+    [SerializeField] private AudioSource successSound;
+    [SerializeField] private AudioSource failureSound;
 
+    private SequenceManager sequenceManager;
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
-    private bool isAlreadyPlayed = false; //diff/rent que isSequencePlaying car permet de ne pas add dans la list au d/part si on a jamais partie la game
+    private bool isAlreadyPlayed = false;
 
     private void Start()
     {
+        sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
         isAlreadyPlayed = false;
         sequenceManager.SetupSequence(cubes);
-        successObject.SetActive(false); //regarder pour l'ajouter dynamiquement + asset
+        successObject.SetActive(false); //TODO: regarder pour l'ajouter dynamiquement + asset
     }
 
     public void PlaySequence()
     {
         if (!sequenceManager.isSequencePlaying) 
         {
-            sequenceManager.PlaySequence();  // Délègue à SequenceManager la gestion de la séquence
+            sequenceManager.PlaySequence();
             isAlreadyPlayed = true;
         }
     }

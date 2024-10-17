@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class CubeButton : MonoBehaviour
 {
-    [SerializeField] Color defaultColor;
-    [SerializeField] Color highlightColor;
-    [SerializeField] float resetDelay =.25f;
-    [SerializeField] protected MemoryGameManager memoryManager;
-    [SerializeField] protected SequenceManager sequenceManager;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private Color highlightColor;
+    [SerializeField] private float resetDelay =.25f;
+    [SerializeField] private AudioSource audioSource;
+
     private MeshRenderer meshRenderer;
     private Color failureColor = Color.red;
 
+    protected MemoryGameManager memoryManager;
+    protected SequenceManager sequenceManager;
+
     private void Start()
     {
+        memoryManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<MemoryGameManager>();
+        sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
         meshRenderer = GetComponent<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
         ResetColor();
@@ -43,7 +47,7 @@ public class CubeButton : MonoBehaviour
         Invoke("ResetColor", resetDelay);
     }
 
-    public void ResetColor()
+    private void ResetColor()
     {
         meshRenderer.material.color = defaultColor;
     }

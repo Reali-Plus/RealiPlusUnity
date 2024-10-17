@@ -12,6 +12,7 @@ TagManager:
   - SleeveCommunication
   - StartButton
   - ColorButton
+  - MemoryManager
   layers:
   - Default
   - TransparentFX
