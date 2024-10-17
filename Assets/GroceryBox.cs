@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class GroceryBox : MonoBehaviour
 {
+    private ShopManager shopManager;
+    private GroceryListHandler groceryListHandler;
     private List<GameObject> collectedItems = new List<GameObject>();
-    [SerializeField] private ShopManager shopManager;
-    [SerializeField] private GroceryListHandler groceryListHandler;
+
+    private void Start()
+    {
+        shopManager = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<ShopManager>();
+        groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -28,6 +34,7 @@ public class GroceryBox : MonoBehaviour
             shopManager.CheckIfAllItemsCollected(collectedItems);
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (!shopManager.alreadyWon)
