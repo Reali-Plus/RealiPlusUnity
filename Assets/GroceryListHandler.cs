@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GroceryListHandler : MonoBehaviour
 {
-    [SerializeField] Text groceryListText;
+    [SerializeField] TextMeshPro groceryListText;
     private List<GameObject> groceryList = new List<GameObject>();
 
     public void GenerateGroceryList(int nbrItemsInGroceryList, List<GameObject> allItems)
