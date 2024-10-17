@@ -1,10 +1,10 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-    private DetectCollisions parentScript;
+    private DetectCollision parentScript;
 
-    public void Initialize(DetectCollisions parent)
+    public void Initialize(DetectCollision parent)
     {
         parentScript = parent;
     }
@@ -28,4 +28,4 @@ public class CollisionHandler : MonoBehaviour
     {
         parentScript.UpdateFeedback(gameObject, false, false);
     }
-}
+}*/

@@ -10,7 +10,8 @@ public enum SensorID
     Major = 5,
     Annullar = 4,
     Auricular = 3,
-    Thumb = 7
+    Thumb = 7,
+    Calibrate = 8
 }
 
 public class SleeveData
