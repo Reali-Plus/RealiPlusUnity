@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] GameObject itemsInStore;
     [SerializeField] int nbrItemsInGroceryList = 3;
 
+    private GameObject itemsInStore;
     private GameObject wonObject;
     private GroceryListHandler groceryListHandler;
     private List<GameObject> allItemsAvailable = new List<GameObject>();
@@ -18,6 +18,7 @@ public class ShopManager : MonoBehaviour
     {
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
         wonObject = GameObject.FindGameObjectWithTag("Key");
+        itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
 
         wonObject.SetActive(false);
         alreadyWon = false;
@@ -49,7 +50,7 @@ public class ShopManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Il y a des objets incorrects ou manquants dans la boîte !");
+                    Debug.Log("There are incorrect or missing items in the box!");
                 }
             }
         }
