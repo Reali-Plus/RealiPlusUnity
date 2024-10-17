@@ -10,6 +10,10 @@ TagManager:
   - Pinky
   - Ring
   - SleeveCommunication
+  - StartButton
+  - ColorButton
+  - MemoryManager
+  - Key
   layers:
   - Default
   - TransparentFX
