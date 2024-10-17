@@ -22,6 +22,7 @@ public class GroceryBox : MonoBehaviour
             }
             else
             {
+                collectedItems.Add(other.gameObject);
                 Debug.Log("Objet incorrect : " + other.gameObject.name);
             }
             shopManager.CheckIfAllItemsCollected(collectedItems);
@@ -31,11 +32,9 @@ public class GroceryBox : MonoBehaviour
     {
         if (!shopManager.alreadyWon)
         {
-            if (collectedItems.Contains(other.gameObject))
-            {
-                collectedItems.Remove(other.gameObject);
-                Debug.Log(other.gameObject.name + " retiré de la boîte et était dans la liste.");
-            }
+            collectedItems.Remove(other.gameObject);
+            Debug.Log(other.gameObject.name + " retiré de la boîte.");
         }
+        shopManager.CheckIfAllItemsCollected(collectedItems);
     }
 }
