@@ -8,14 +8,13 @@ public class GroceryBox : MonoBehaviour
     private GroceryListHandler groceryListHandler;
     private List<GameObject> collectedItems = new List<GameObject>();
 
-
     private void Start()
     {
         shopManager = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<ShopManager>();
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!shopManager.alreadyWon)
         {
@@ -31,6 +30,7 @@ public class GroceryBox : MonoBehaviour
             else
             {
                 collectedItems.Add(other.gameObject);
+                groceryListHandler.MarkItemAsIncorrect(other.gameObject);
                 Debug.Log("Objet incorrect : " + other.gameObject.name);
             }
             shopManager.CheckIfAllItemsCollected(collectedItems);
@@ -43,11 +43,18 @@ public class GroceryBox : MonoBehaviour
         {
             collectedItems.Remove(other.gameObject);
             Debug.Log(other.gameObject.name + " retiré de la boîte.");
-            if (!collectedItems.Contains(other.gameObject))
+            if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
             {
-                groceryListHandler.MarkItemAsCorrect(other.gameObject);
+                if (!collectedItems.Contains(other.gameObject))
+                {
+                    groceryListHandler.MarkItemAsCorrect(other.gameObject);
+                }
             }
+            else
+            {
+                groceryListHandler.MarkItemAsIncorrect(other.gameObject);
+            }
+            shopManager.CheckIfAllItemsCollected(collectedItems);
         }
-        shopManager.CheckIfAllItemsCollected(collectedItems);
     }
 }

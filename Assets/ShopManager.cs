@@ -14,13 +14,15 @@ public class ShopManager : MonoBehaviour
     
     public bool alreadyWon = false;
 
-    void Start()
+    private void Start()
     {
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
         wonObject = GameObject.FindGameObjectWithTag("Key");
+
         wonObject.SetActive(false);
         alreadyWon = false;
         allItemsAvailable.Clear();
+
         PopulateItemList();
         groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
     }

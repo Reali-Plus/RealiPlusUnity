@@ -6,6 +6,7 @@ using UnityEngine;
 public class GroceryListHandler : MonoBehaviour
 {
     [SerializeField] private TextMeshPro groceryListText;
+    [SerializeField] private TextMeshPro incorrectItemsText;
     private List<GameObject> groceryList = new List<GameObject>();
     private List<GameObject> correctItems = new List<GameObject>();
     private List<GameObject> incorrectItems = new List<GameObject>();
@@ -49,8 +50,19 @@ public class GroceryListHandler : MonoBehaviour
                 listText += "- " + item.name + "\n";
             }
         }
-
+        DisplayIncorrectItems();
         groceryListText.text = listText;
+    }
+
+    private void DisplayIncorrectItems()
+    {
+        string incorrectListText = "Items incorrect:\n";
+        foreach (GameObject incorrectItem in incorrectItems)
+        {
+            incorrectListText += "<color=red>" + incorrectItem.name + "</color>\n"; 
+        }
+
+        incorrectItemsText.text = incorrectListText;
     }
 
     public void MarkItemAsCorrect(GameObject item)
@@ -67,6 +79,19 @@ public class GroceryListHandler : MonoBehaviour
         }
     }
 
+    public void MarkItemAsIncorrect(GameObject incorrectItem)
+    {
+        if (!incorrectItems.Contains(incorrectItem))
+        {
+            incorrectItems.Add(incorrectItem);
+            DisplayGroceryList();
+        }
+        else
+        {
+            incorrectItems.Remove(incorrectItem);
+            DisplayGroceryList();
+        }
+    }
 
     public List<GameObject> GetGroceryList()
     {
