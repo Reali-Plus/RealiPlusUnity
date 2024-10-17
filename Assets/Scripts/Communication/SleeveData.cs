@@ -63,35 +63,28 @@ public class SleeveData
 
         if (data.Length >= 4) // Accelerometer data (SensorID, AccX, AccY, AccZ)
         {
-            try
+            // Sensor ID
+            SensorID = (SensorID) ParseIntInput(data[0]);
+
+            // Accelerometer
+            float[] accelerations = new float[3];
+            for (int i = 1; i < 4; ++i)
             {
-                // Sensor ID
-                SensorID = (SensorID) int.Parse(data[0]);
-
-                // Accelerometer
-                float[] accelerations = new float[3];
-                for (int i = 1; i < 4; ++i)
-                {
-                    accelerations[i - 1] = float.Parse(data[i]);
-                }
-
-                Accelerometer.UpdateData(accelerations);
-
-                // Gyroscope
-                if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
-                {
-                    float[] rotations = new float[3];
-                    for (int i = 3; i < 6; ++i)
-                    {
-                        rotations[i - 3] = float.Parse(data[i]);
-                    }
-
-                    Gyroscope.UpdateData(rotations);
-                }
+                accelerations[i - 1] = ParseFloatInput(data[i]);
             }
-            catch (System.FormatException)
+
+            Accelerometer.UpdateData(accelerations);
+
+            // Gyroscope
+            if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
             {
-                return false;
+                float[] rotations = new float[3];
+                for (int i = 3; i < 6; ++i)
+                {
+                    rotations[i - 3] = ParseFloatInput(data[i]);
+                }
+
+                Gyroscope.UpdateData(rotations);
             }
 
             return true;
@@ -99,6 +92,16 @@ public class SleeveData
 
         Debug.Log("Invalid data: " + message);
         return false;
+    }
+
+    private float ParseFloatInput(string strInput)
+    {
+        return float.TryParse(strInput, out float input) ? input : 0f;
+    }
+
+    private int ParseIntInput(string strInput)
+    {
+        return int.TryParse(strInput, out int input) ? input : 0;
     }
 
     public override string ToString()

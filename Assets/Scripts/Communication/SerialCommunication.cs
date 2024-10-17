@@ -34,9 +34,7 @@ public class SerialCommunication : Communication
                 serialPort.WriteLine(hapticsData.ToString());
             }
             catch (TimeoutException)
-            {
-                Debug.LogWarning("Serial write timeout.");
-            }
+            { }
         }
     }
 
@@ -44,9 +42,14 @@ public class SerialCommunication : Communication
     {
         if (serialPort != null && serialPort.IsOpen)
         {
-            string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
-            return AddData(serialInput);
+            try
+            {
+                string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
+                return AddData(serialInput);
+            }
+            catch (TimeoutException) { }
         }
+
         return false;
     }
 
