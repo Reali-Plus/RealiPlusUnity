@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
-    public GameObject itemsInStore;
     private Camera mainCamera;
     private bool isDragging = false;
     private GameObject selectedObject;
     private Vector3 offset;
     private List<GameObject> moveableItems = new List<GameObject>();
+
+    public GameObject itemsInStore;
 
     void Start()
     {
