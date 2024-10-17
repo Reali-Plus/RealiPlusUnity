@@ -233,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 2830233848371693089, guid: 6b5c801f5ca0b3e4aa2780dbe3ba0538,
         type: 3}
       propertyPath: m_Name
-      value: CoffeCup
+      value: "Caf\xE9"
       objectReference: {fileID: 0}
     - target: {fileID: 3174142855120362651, guid: 6b5c801f5ca0b3e4aa2780dbe3ba0538,
         type: 3}
@@ -511,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 3828846876288801734, guid: 1c6865324f95c004293d5d1efe86d559,
         type: 3}
       propertyPath: m_Name
-      value: Fish
+      value: Poisson
       objectReference: {fileID: 0}
     - target: {fileID: 4497155794289983868, guid: 1c6865324f95c004293d5d1efe86d559,
         type: 3}
@@ -657,7 +657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsInStore: {fileID: 628148309}
-  groceryListHandler: {fileID: 445749773}
   nbrItemsInGroceryList: 3
   alreadyWon: 0
 --- !u!114 &445749773
@@ -753,7 +752,7 @@ PrefabInstance:
     - target: {fileID: 4333536560383591219, guid: ac3960763d9ed134b93e9bf2315734f3,
         type: 3}
       propertyPath: m_Name
-      value: Carrot
+      value: Carotte
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac3960763d9ed134b93e9bf2315734f3, type: 3}
@@ -922,7 +921,7 @@ PrefabInstance:
     - target: {fileID: 7968877002816994076, guid: bb285724e2c64684b817d021a6bc867d,
         type: 3}
       propertyPath: m_Name
-      value: Cookie
+      value: Biscuit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb285724e2c64684b817d021a6bc867d, type: 3}
@@ -1176,7 +1175,7 @@ PrefabInstance:
     - target: {fileID: 2247890650161004165, guid: 31ec181664c141943b9c7bee2d073cbf,
         type: 3}
       propertyPath: m_Name
-      value: Tomato
+      value: Tomate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31ec181664c141943b9c7bee2d073cbf, type: 3}
@@ -1368,7 +1367,7 @@ PrefabInstance:
     - target: {fileID: 6930279890566018556, guid: 86ad82f45da8e2341824acdfa0861d77,
         type: 3}
       propertyPath: m_Name
-      value: Apple
+      value: Pomme
       objectReference: {fileID: 0}
     - target: {fileID: 7739045061870497606, guid: 86ad82f45da8e2341824acdfa0861d77,
         type: 3}
@@ -1528,7 +1527,7 @@ PrefabInstance:
     - target: {fileID: 865217475929600065, guid: 148f39c355dbcd342a77c5edbfb43792,
         type: 3}
       propertyPath: m_Name
-      value: Banana
+      value: Banane
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 148f39c355dbcd342a77c5edbfb43792, type: 3}
@@ -1602,7 +1601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.4567, y: 5.89}
+  m_AnchoredPosition: {x: 8.42, y: 5.89}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1335009900
@@ -1625,7 +1624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Grocery list
+  m_text: "Liste d'\xE9picerie"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1688,7 +1687,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 8.485007, w: 2.3545437}
+  m_margin: {x: 0, y: 0, z: 5.425641, w: 2.3545437}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -1929,7 +1928,7 @@ PrefabInstance:
     - target: {fileID: 4816721914606352166, guid: aa7a7f86756d6264089705ff022c30c0,
         type: 3}
       propertyPath: m_Name
-      value: Avocado
+      value: Avocat
       objectReference: {fileID: 0}
     - target: {fileID: 5301791894072929692, guid: aa7a7f86756d6264089705ff022c30c0,
         type: 3}
@@ -2111,7 +2110,7 @@ PrefabInstance:
     - target: {fileID: 839233260410868668, guid: d6846055e97b9ac42a6e11a3ea4f1237,
         type: 3}
       propertyPath: m_Name
-      value: Bread
+      value: Pain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6846055e97b9ac42a6e11a3ea4f1237, type: 3}
@@ -2181,7 +2180,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 12551519c72530748bcfb060dfc2db09, type: 3}
       propertyPath: m_Name
-      value: Box
+      value: Boite
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 12551519c72530748bcfb060dfc2db09, type: 3}
       propertyPath: m_TagString
@@ -2282,8 +2281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73940e4aa263d8468ce5203b10e8ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopManager: {fileID: 445749772}
-  groceryListHandler: {fileID: 445749773}
 --- !u!1001 &1975468896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2483,7 +2480,7 @@ PrefabInstance:
     - target: {fileID: 5233414496755891495, guid: c2004775e0ce89f48af3e88e6f9555a4,
         type: 3}
       propertyPath: m_Name
-      value: Can
+      value: Cannette
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2004775e0ce89f48af3e88e6f9555a4, type: 3}
