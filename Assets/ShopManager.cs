@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] GameObject itemsInStore;
-    [SerializeField] GroceryListHandler groceryListHandler;
     [SerializeField] int nbrItemsInGroceryList = 3;
+    private GroceryListHandler groceryListHandler;
     private List<GameObject> allItemsAvailable = new List<GameObject>();
     public bool alreadyWon = false;
 
     void Start()
     {
+        groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
         alreadyWon = false;
         allItemsAvailable.Clear();
         PopulateItemList();

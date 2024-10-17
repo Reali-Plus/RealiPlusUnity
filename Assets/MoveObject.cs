@@ -21,6 +21,8 @@ public class MoveObject : MonoBehaviour
     {
         HandleObjectDragging();
     }
+
+    //TODO: change with the hand model
     private void HandleObjectDragging()
     {
         if (Input.GetMouseButtonDown(0))
