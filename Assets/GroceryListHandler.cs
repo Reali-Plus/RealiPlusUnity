@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class GroceryListHandler : MonoBehaviour
 {
-    [SerializeField] TextMeshPro groceryListText;
+    [SerializeField] private TextMeshPro groceryListText;
     private List<GameObject> groceryList = new List<GameObject>();
+    private List<GameObject> correctItems = new List<GameObject>();
+    private List<GameObject> incorrectItems = new List<GameObject>();
 
     public void GenerateGroceryList(int nbrItemsInGroceryList, List<GameObject> allItems)
     {
@@ -38,12 +40,33 @@ public class GroceryListHandler : MonoBehaviour
         string listText = "Items:\n";
         foreach (GameObject item in groceryList)
         {
-            listText += "- " + item.name + "\n";
+            if (correctItems.Contains(item))
+            {
+                listText += "- " + "<s>" + item.name + "</s>\n";
+            }
+            else
+            {
+                listText += "- " + item.name + "\n";
+            }
         }
 
         groceryListText.text = listText;
-        Debug.Log(listText);
     }
+
+    public void MarkItemAsCorrect(GameObject item)
+    {
+        if (!correctItems.Contains(item))
+        {
+            correctItems.Add(item);
+            DisplayGroceryList();
+        }
+        else
+        {
+            correctItems.Remove(item);
+            DisplayGroceryList();
+        }
+    }
+
 
     public List<GameObject> GetGroceryList()
     {

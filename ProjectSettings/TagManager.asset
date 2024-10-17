@@ -18,6 +18,7 @@ TagManager:
   - Box
   - ItemsInStore
   - Ball
+  - Key
   layers:
   - Default
   - TransparentFX

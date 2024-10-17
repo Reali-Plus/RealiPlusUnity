@@ -7,13 +7,18 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField] GameObject itemsInStore;
     [SerializeField] int nbrItemsInGroceryList = 3;
+
+    private GameObject wonObject;
     private GroceryListHandler groceryListHandler;
     private List<GameObject> allItemsAvailable = new List<GameObject>();
+    
     public bool alreadyWon = false;
 
     void Start()
     {
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
+        wonObject = GameObject.FindGameObjectWithTag("Key");
+        wonObject.SetActive(false);
         alreadyWon = false;
         allItemsAvailable.Clear();
         PopulateItemList();
@@ -46,13 +51,12 @@ public class ShopManager : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void OnAllItemsCollected()
     {
-        Debug.Log("Niveau réussi !");
         alreadyWon = true;
+        wonObject.SetActive(true);
         foreach (Transform child in itemsInStore.transform)
         {
             //TODO: block interaction

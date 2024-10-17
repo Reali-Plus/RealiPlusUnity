@@ -8,6 +8,7 @@ public class GroceryBox : MonoBehaviour
     private GroceryListHandler groceryListHandler;
     private List<GameObject> collectedItems = new List<GameObject>();
 
+
     private void Start()
     {
         shopManager = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<ShopManager>();
@@ -23,6 +24,7 @@ public class GroceryBox : MonoBehaviour
                 if (!collectedItems.Contains(other.gameObject))
                 {
                     collectedItems.Add(other.gameObject);
+                    groceryListHandler.MarkItemAsCorrect(other.gameObject);
                     Debug.Log(other.gameObject.name + " ajouté à la boîte et est dans la liste.");
                 }
             }
@@ -41,6 +43,10 @@ public class GroceryBox : MonoBehaviour
         {
             collectedItems.Remove(other.gameObject);
             Debug.Log(other.gameObject.name + " retiré de la boîte.");
+            if (!collectedItems.Contains(other.gameObject))
+            {
+                groceryListHandler.MarkItemAsCorrect(other.gameObject);
+            }
         }
         shopManager.CheckIfAllItemsCollected(collectedItems);
     }
