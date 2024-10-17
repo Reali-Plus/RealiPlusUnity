@@ -20,18 +20,13 @@ public class GroceryBox : MonoBehaviour
         {
             if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
             {
-                if (!collectedItems.Contains(other.gameObject))
-                {
-                    collectedItems.Add(other.gameObject);
-                    groceryListHandler.MarkItemAsCorrect(other.gameObject);
-                    Debug.Log(other.gameObject.name + " ajouté à la boîte et est dans la liste.");
-                }
+                collectedItems.Add(other.gameObject);
+                groceryListHandler.MarkItemAsCorrect(other.gameObject);
             }
             else
             {
                 collectedItems.Add(other.gameObject);
                 groceryListHandler.MarkItemAsIncorrect(other.gameObject);
-                Debug.Log("Objet incorrect : " + other.gameObject.name);
             }
             shopManager.CheckIfAllItemsCollected(collectedItems);
         }
@@ -42,13 +37,9 @@ public class GroceryBox : MonoBehaviour
         if (!shopManager.alreadyWon)
         {
             collectedItems.Remove(other.gameObject);
-            Debug.Log(other.gameObject.name + " retiré de la boîte.");
             if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
             {
-                if (!collectedItems.Contains(other.gameObject))
-                {
-                    groceryListHandler.MarkItemAsCorrect(other.gameObject);
-                }
+                groceryListHandler.MarkItemAsCorrect(other.gameObject);
             }
             else
             {
