@@ -64,7 +64,6 @@ public class MoveObject : MonoBehaviour
     {
         Vector3 mousePoint = Input.mousePosition;
 
-        // Convertir les coordonnées de l'écran à celles du monde
         mousePoint.z = mainCamera.WorldToScreenPoint(selectedObject.transform.position).z;
         return mainCamera.ScreenToWorldPoint(mousePoint);
     }

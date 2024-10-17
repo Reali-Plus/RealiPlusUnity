@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GroceryListHandler : MonoBehaviour
 {
-    //pourrait ajouter un check lorsque l objet est dans la boite...
     [SerializeField] Text groceryListText;
     private List<GameObject> groceryList = new List<GameObject>();
 
@@ -19,6 +18,7 @@ public class GroceryListHandler : MonoBehaviour
 
         List<GameObject> itemsToSelectFrom = new List<GameObject>(allItems);
         groceryList = GetRandomItems(itemsToSelectFrom, nbrItemsInGroceryList);
+        DisplayGroceryList();
     }
 
     private List<GameObject> GetRandomItems(List<GameObject> sourceList, int itemCount)
@@ -33,7 +33,7 @@ public class GroceryListHandler : MonoBehaviour
         return selectedItems;
     }
 
-    public void DisplayGroceryList()
+    private void DisplayGroceryList()
     {
         string listText = "Items:\n";
         foreach (GameObject item in groceryList)

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Gestionnaire de validation des objets
 public class GroceryBox : MonoBehaviour
 {
     private List<GameObject> collectedItems = new List<GameObject>();
@@ -11,26 +10,32 @@ public class GroceryBox : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
+        if (!shopManager.alreadyWon)
         {
-            if (!collectedItems.Contains(other.gameObject))
+            if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
             {
-                collectedItems.Add(other.gameObject);
-                Debug.Log(other.gameObject.name + " ajouté à la boîte.");
-                shopManager.CheckIfAllItemsCollected(collectedItems);
+                if (!collectedItems.Contains(other.gameObject))
+                {
+                    collectedItems.Add(other.gameObject);
+                    Debug.Log(other.gameObject.name + " ajouté à la boîte et est dans la liste.");
+                }
             }
-        }
-        else
-        {
-            Debug.Log("Objet incorrect : " + other.gameObject.name);
+            else
+            {
+                Debug.Log("Objet incorrect : " + other.gameObject.name);
+            }
+            shopManager.CheckIfAllItemsCollected(collectedItems);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (collectedItems.Contains(other.gameObject))
+        if (!shopManager.alreadyWon)
         {
-            collectedItems.Remove(other.gameObject);
-            Debug.Log(other.gameObject.name + " retiré de la boîte.");
+            if (collectedItems.Contains(other.gameObject))
+            {
+                collectedItems.Remove(other.gameObject);
+                Debug.Log(other.gameObject.name + " retiré de la boîte et était dans la liste.");
+            }
         }
     }
 }
