@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 417701887}
   m_Layer: 0
   m_Name: Key
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556,7 +556,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7db53952169a405408112e79ebd5cf53, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.116
   m_Pitch: 1
@@ -657,9 +657,9 @@ MonoBehaviour:
   defaultColor: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 0}
   highlightColor: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 0}
   resetDelay: 0.25
-  memoryManager: {fileID: 1384689329}
-  sequenceManager: {fileID: 1384689330}
   audioSource: {fileID: 1023745917}
+  isStartButton: 1
+  isColorButton: 0
 --- !u!1 &1384689327
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,8 +715,6 @@ MonoBehaviour:
   - {fileID: 363719162}
   - {fileID: 526030706}
   - {fileID: 245432519}
-  sequenceManager: {fileID: 1384689330}
-  successObject: {fileID: 417701886}
   successSound: {fileID: 1384689331}
   failureSound: {fileID: 1384689332}
 --- !u!114 &1384689330

@@ -8,12 +8,14 @@ public class CubeButton : MonoBehaviour
     [SerializeField] private Color highlightColor;
     [SerializeField] private float resetDelay =.25f;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private bool isStartButton = false;
+    [SerializeField] private bool isColorButton = false;
 
     private MeshRenderer meshRenderer;
     private Color failureColor = Color.red;
 
-    protected MemoryGameManager memoryManager;
-    protected SequenceManager sequenceManager;
+    private MemoryGameManager memoryManager;
+    private SequenceManager sequenceManager;
 
     private void Start()
     {
@@ -24,16 +26,17 @@ public class CubeButton : MonoBehaviour
         ResetColor();
     }
 
+    //TODO: change with hand model
     private void OnMouseDown()
     {
         if (!sequenceManager.isSequencePlaying)
         {
             Highlight();
-            if (gameObject.CompareTag("StartButton"))
+            if (isStartButton)
             {
                 memoryManager.PlaySequence();
             }
-            else if (gameObject.CompareTag("ColorButton"))
+            else if (isColorButton)
             {
                 memoryManager.CheckSequence(this);
             }

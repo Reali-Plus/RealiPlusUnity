@@ -13,6 +13,7 @@ TagManager:
   - StartButton
   - ColorButton
   - MemoryManager
+  - Key
   layers:
   - Default
   - TransparentFX

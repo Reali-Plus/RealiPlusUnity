@@ -6,11 +6,11 @@ using UnityEngine;
 public class MemoryGameManager : MonoBehaviour
 {
     [SerializeField] private CubeButton[] cubes;
-    [SerializeField] private GameObject successObject;
     [SerializeField] private AudioSource successSound;
     [SerializeField] private AudioSource failureSound;
 
     private SequenceManager sequenceManager;
+    private GameObject successObject;        
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
@@ -19,9 +19,10 @@ public class MemoryGameManager : MonoBehaviour
     private void Start()
     {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
+        successObject = GameObject.FindGameObjectWithTag("Key");
         isAlreadyPlayed = false;
         sequenceManager.SetupSequence(cubes);
-        successObject.SetActive(false); //TODO: regarder pour l'ajouter dynamiquement + asset
+        successObject.SetActive(false);
     }
 
     public void PlaySequence()

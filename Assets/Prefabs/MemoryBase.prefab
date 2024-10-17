@@ -114,9 +114,9 @@ MonoBehaviour:
   defaultColor: {r: 0.5849056, g: 0.08552865, b: 0.08552865, a: 0}
   highlightColor: {r: 1, g: 0, b: 0, a: 0}
   resetDelay: 0.25
-  simonManager: {fileID: 0}
-  sequenceManager: {fileID: 0}
   audioSource: {fileID: 1052420178399121546}
+  isStartButton: 0
+  isColorButton: 1
 --- !u!82 &1052420178399121546
 AudioSource:
   m_ObjectHideFlags: 0
@@ -327,9 +327,9 @@ MonoBehaviour:
   defaultColor: {r: 0.6269681, g: 0.6415094, b: 0.003025995, a: 0}
   highlightColor: {r: 0.9519105, g: 1, b: 0, a: 0}
   resetDelay: 0.25
-  simonManager: {fileID: 0}
-  sequenceManager: {fileID: 0}
   audioSource: {fileID: 1052420178485816834}
+  isStartButton: 0
+  isColorButton: 1
 --- !u!82 &1052420178485816834
 AudioSource:
   m_ObjectHideFlags: 0
@@ -540,9 +540,9 @@ MonoBehaviour:
   defaultColor: {r: 0.03203987, g: 0.4528302, b: 0.105325714, a: 0}
   highlightColor: {r: 0, g: 1, b: 0.2004807, a: 0}
   resetDelay: 0.25
-  simonManager: {fileID: 0}
-  sequenceManager: {fileID: 0}
   audioSource: {fileID: 1052420178497100384}
+  isStartButton: 0
+  isColorButton: 1
 --- !u!82 &1052420178497100384
 AudioSource:
   m_ObjectHideFlags: 0
@@ -753,9 +753,9 @@ MonoBehaviour:
   defaultColor: {r: 0.15877625, g: 0.05918475, b: 0.6603774, a: 0}
   highlightColor: {r: 0, g: 0.34117648, b: 1, a: 0}
   resetDelay: 0.25
-  simonManager: {fileID: 0}
-  sequenceManager: {fileID: 0}
   audioSource: {fileID: 1052420178750618041}
+  isStartButton: 0
+  isColorButton: 1
 --- !u!82 &1052420178750618041
 AudioSource:
   m_ObjectHideFlags: 0
