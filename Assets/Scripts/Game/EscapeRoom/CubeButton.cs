@@ -11,7 +11,6 @@ public class CubeButton : Interactable
 
     private MeshRenderer meshRenderer;
     private Color failureColor = Color.red;
-
     private MemoryGameManager memoryManager;
     private SequenceManager sequenceManager;
 
@@ -25,15 +24,21 @@ public class CubeButton : Interactable
     }
 
     //TODO: change with hand model
-    private void OnMouseDown()
+    //private void OnMouseDown()
+    //{
+    //    if (IsInteractable && !sequenceManager.isSequencePlaying)
+    //    {
+    //        Interact();
+    //    }
+    //}
+    private void OnCollisionEnter(Collision collision)
     {
-        if (IsInteractable && !sequenceManager.isSequencePlaying)
+        if (IsInteractable && collision.collider.CompareTag("Ball") && !sequenceManager.isSequencePlaying)
         {
-            Interact();
+            Interact(collision.transform.position);
         }
     }
-
-    public override void Interact()
+    public override void Interact(Vector3 position)
     {
         Highlight();
 
