@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum SensorID
 {
+    Invalid = -1,
     Logic = 0,
     Hand = 1,
     Shoulder = 2,
@@ -71,7 +72,8 @@ public class SleeveData
             float[] accelerations = new float[3];
             for (int i = 1; i < 4; ++i)
             {
-                accelerations[i - 1] = ParseFloatInput(data[i]);
+                //accelerations[i - 1] = ParseFloatInput(data[i]);
+                accelerations[i - 1] = float.TryParse(data[i], out float accel) ? accel : accelerations[i - 1];
             }
 
             Accelerometer.UpdateData(accelerations);
@@ -80,9 +82,10 @@ public class SleeveData
             if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
             {
                 float[] rotations = new float[3];
-                for (int i = 3; i < 6; ++i)
+                for (int i = 4; i < 7; ++i)
                 {
-                    rotations[i - 3] = ParseFloatInput(data[i]);
+                    //rotations[i - 4] = ParseFloatInput(data[i]);
+                    rotations[i - 4] = float.TryParse(data[i], out float rot) ? rot : rotations[i - 4];
                 }
 
                 Gyroscope.UpdateData(rotations);
@@ -102,7 +105,7 @@ public class SleeveData
 
     private int ParseIntInput(string strInput)
     {
-        return int.TryParse(strInput, out int input) ? input : 0;
+        return int.TryParse(strInput, out int input) ? input : -1;
     }
 
     public override string ToString()
