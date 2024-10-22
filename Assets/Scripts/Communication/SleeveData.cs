@@ -21,13 +21,13 @@ public class SleeveData
 
     public SleeveData()
     {
-        Accelerometer = new SensorData3D(0, 0, 0);
+        Accelerometer = new SensorData3D(0, 0, 1);
         Gyroscope = new SensorData3D(0, 0, 0);
     }
 
     public SleeveData(string strMessage)
     {
-        Accelerometer = new SensorData3D(0, 0, 0);
+        Accelerometer = new SensorData3D(0, 0, 1);
         Gyroscope = new SensorData3D(0, 0, 0);
         FromString(strMessage);
     }
@@ -44,13 +44,16 @@ public class SleeveData
         Gyroscope.UpdateData(gyro);
     }
 
+    // Data format: [SensorID] [AccX] [AccY] [AccZ] [GyroX] [GyroY] [GyroZ]
     public bool FromString(string message)
     {
+        Debug.Log("Message : " + message);
         string[] data = message.Split(" ");
 
-        if(data.Length >= 0)
+        if(data.Length >= 0) // Ignore empty messages
         {
-            if (data[0] == "|")
+            Debug.Log("data[0] " + data[0]);
+            if (data[0] == "|") // Ignore messages that start with "|"
             {
                 Debug.Log("Message received: " + message);
 
@@ -58,31 +61,32 @@ public class SleeveData
             }
         }
 
-        if (data.Length >= 4)
+        if (data.Length >= 4) // Accelerometer data (SensorID, AccX, AccY, AccZ)
         {
             // Sensor ID
-            SensorID = (SensorID)int.Parse(data[0]);
+            SensorID = (SensorID) ParseIntInput(data[0]);
 
             // Accelerometer
             float[] accelerations = new float[3];
             for (int i = 1; i < 4; ++i)
             {
-                accelerations[i - 1] = ParseInput(data[i]) * 9.8f;
+                accelerations[i - 1] = ParseFloatInput(data[i]);
             }
 
             Accelerometer.UpdateData(accelerations);
 
             // Gyroscope
-            if (data.Length >= 7)
+            if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
             {
                 float[] rotations = new float[3];
                 for (int i = 3; i < 6; ++i)
                 {
-                    rotations[i - 3] = ParseInput(data[i]);
+                    rotations[i - 3] = ParseFloatInput(data[i]);
                 }
 
                 Gyroscope.UpdateData(rotations);
             }
+
             return true;
         }
 
@@ -90,9 +94,14 @@ public class SleeveData
         return false;
     }
 
-    private float ParseInput(string strInput)
+    private float ParseFloatInput(string strInput)
     {
         return float.TryParse(strInput, out float input) ? input : 0f;
+    }
+
+    private int ParseIntInput(string strInput)
+    {
+        return int.TryParse(strInput, out int input) ? input : 0;
     }
 
     public override string ToString()

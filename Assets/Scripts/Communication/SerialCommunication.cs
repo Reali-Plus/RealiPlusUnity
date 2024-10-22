@@ -5,13 +5,14 @@ using System;
 public class SerialCommunication : Communication
 {
     // TODO : List available ports and baud rates to choose from a menu
-    private string portName = "COM8";
+    private string portName = "COM3";
     private int baudRate = 115200;
     private SerialPort serialPort;
     
     public override void Initialize()
     {
         serialPort = new SerialPort(portName, baudRate);
+        serialPort.ReadTimeout = 2; // ms
         try
         {
             serialPort.Open();
@@ -33,9 +34,7 @@ public class SerialCommunication : Communication
                 serialPort.WriteLine(hapticsData.ToString());
             }
             catch (TimeoutException)
-            {
-                Debug.LogWarning("Serial write timeout.");
-            }
+            { }
         }
     }
 
@@ -45,14 +44,12 @@ public class SerialCommunication : Communication
         {
             try
             {
-                string serialInput = serialPort.ReadLine();
+                string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
                 return AddData(serialInput);
             }
-            catch (TimeoutException)
-            {
-                Debug.LogWarning("Serial read timeout.");
-            }
+            catch (TimeoutException) { }
         }
+
         return false;
     }
 
