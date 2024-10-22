@@ -71,4 +71,9 @@ public class SleeveCommunication : MonoBehaviour
     {
         return communication.ReceiveData();
     }
+
+    public void CalibrateSleeve()
+    {
+        communication.SendData(new HapticsData(SensorID.Calibrate, true, true));
+    }
 }
