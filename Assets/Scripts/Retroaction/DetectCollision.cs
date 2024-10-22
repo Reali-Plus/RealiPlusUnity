@@ -28,33 +28,37 @@ public class DetectCollision : MonoBehaviour
 
     private void Start()
     {
-        sleeveCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SleeveCommunication>();
+        //sleeveCommunication = GameObject.FindGameObjectWithTag("SleeveCommunication").GetComponent<SleeveCommunication>();
         hapticsData = new HapticsData(sensorID);
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision detected");
         hapticsData.UpdateFeedback(true, true);
-        sleeveCommunication.SendData(hapticsData);
+        //sleeveCommunication.SendData(hapticsData);
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        Debug.Log("Collision ended");
         hapticsData.UpdateFeedback(true, false);
-        sleeveCommunication.SendData(hapticsData);
+        //sleeveCommunication.SendData(hapticsData);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger detected");
         hapticsData.UpdateFeedback(true, false);
-        sleeveCommunication.SendData(hapticsData);
+        //sleeveCommunication.SendData(hapticsData);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Trigger ended");
         hapticsData.UpdateFeedback(false, false);
-        sleeveCommunication.SendData(hapticsData);
+        //sleeveCommunication.SendData(hapticsData);
     }
 
 
