@@ -25,6 +25,11 @@ public class MemoryGameManager : MonoBehaviour
         successObject.SetActive(false);
     }
 
+    public bool IsStartButton(CubeButton cube)
+    {
+        return cube.name == "StartButton";
+    }
+
     public void PlaySequence()
     {
         if (!sequenceManager.isSequencePlaying) 
@@ -36,27 +41,23 @@ public class MemoryGameManager : MonoBehaviour
 
     public void CheckSequence(CubeButton cube)
     {
-        if (sequenceManager.isSequencePlaying) return;
-        if (!isAlreadyPlayed) return;
+        if (sequenceManager.isSequencePlaying || playerWon || !isAlreadyPlayed) return;
+
         int cubeIndex = System.Array.IndexOf(cubes, cube);
         userSequence.Add(cubeIndex);
-        if (!playerWon)
+
+        if (cubeIndex == sequenceManager.GetCurrentSequenceStep(currentStep))
         {
-            if (cubeIndex == sequenceManager.GetCurrentSequenceStep(currentStep))
+            currentStep++;
+            if (currentStep >= sequenceManager.GetSequenceLength())
             {
-                currentStep++;
-                if (currentStep >= sequenceManager.GetSequenceLength())
-                {
-                    SequenceSuccess();
-                }
-            }
-            else
-            {
-                SequenceFailure();
+                SequenceSuccess();
             }
         }
         else
-            Debug.Log("You already won!!");
+        {
+            SequenceFailure();
+        }
     }
 
     private void SequenceSuccess()

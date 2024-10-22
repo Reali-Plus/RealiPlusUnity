@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeButton : MonoBehaviour
+public class CubeButton : Interactable
 {
     [SerializeField] private Color defaultColor;
     [SerializeField] private Color highlightColor;
     [SerializeField] private float resetDelay =.25f;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private bool isStartButton = false;
-    [SerializeField] private bool isColorButton = false;
 
     private MeshRenderer meshRenderer;
     private Color failureColor = Color.red;
@@ -29,17 +27,23 @@ public class CubeButton : MonoBehaviour
     //TODO: change with hand model
     private void OnMouseDown()
     {
-        if (!sequenceManager.isSequencePlaying)
+        if (IsInteractable && !sequenceManager.isSequencePlaying)
         {
-            Highlight();
-            if (isStartButton)
-            {
-                memoryManager.PlaySequence();
-            }
-            else if (isColorButton)
-            {
-                memoryManager.CheckSequence(this);
-            }
+            Interact();
+        }
+    }
+
+    public override void Interact()
+    {
+        Highlight();
+
+        if (memoryManager.IsStartButton(this))
+        {
+            memoryManager.PlaySequence();
+        }
+        else
+        {
+            memoryManager.CheckSequence(this);
         }
     }
 
@@ -60,5 +64,4 @@ public class CubeButton : MonoBehaviour
         meshRenderer.material.color = failureColor;
         Invoke("ResetColor", resetDelay);
     }
-
 }

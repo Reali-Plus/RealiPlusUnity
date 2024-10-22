@@ -661,12 +661,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsInteractable>k__BackingField: 1
   defaultColor: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 0}
   highlightColor: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 0}
   resetDelay: 0.25
   audioSource: {fileID: 1023745917}
-  isStartButton: 1
-  isColorButton: 0
 --- !u!54 &1023745919
 Rigidbody:
   m_ObjectHideFlags: 0
