@@ -9,8 +9,8 @@ public class CubeButton : Interactable
     [SerializeField] private float resetDelay =.25f;
     [SerializeField] private AudioSource audioSource;
 
-    private MeshRenderer meshRenderer;
     private Color failureColor = Color.red;
+    private MeshRenderer meshRenderer;
     private MemoryGameManager memoryManager;
     private SequenceManager sequenceManager;
 
@@ -23,14 +23,6 @@ public class CubeButton : Interactable
         ResetColor();
     }
 
-    //TODO: change with hand model
-    //private void OnMouseDown()
-    //{
-    //    if (IsInteractable && !sequenceManager.isSequencePlaying)
-    //    {
-    //        Interact();
-    //    }
-    //}
     private void OnCollisionEnter(Collision collision)
     {
         if (IsInteractable && collision.collider.CompareTag("Ball") && !sequenceManager.isSequencePlaying)
@@ -38,6 +30,7 @@ public class CubeButton : Interactable
             Interact(collision.transform.position);
         }
     }
+
     public override void Interact(Vector3 position)
     {
         Highlight();
