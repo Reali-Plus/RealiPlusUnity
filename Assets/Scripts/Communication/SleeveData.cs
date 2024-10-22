@@ -8,7 +8,7 @@ public enum SensorID
     Shoulder = 2,
     Index = 6,
     Major = 5,
-    Annullar = 4,
+    Annular = 4,
     Auricular = 3,
     Thumb = 7,
     Calibrate = 8
