@@ -11,6 +11,7 @@ public class BallMovement : MonoBehaviour
         float verticalMovement = Input.GetAxisRaw("Vertical");
 
         Vector3 movement = speed * Time.deltaTime * new Vector3(horizontalMovement, verticalMovement, 0.0f);
+
         transform.position += movement;
     }
 }
