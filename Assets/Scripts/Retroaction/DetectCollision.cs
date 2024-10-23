@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class DetectCollision : MonoBehaviour
@@ -8,6 +8,11 @@ public class DetectCollision : MonoBehaviour
 
     private HapticsData hapticsData;
     private SleeveCommunication sleeveCommunication;
+
+    public static event Action<SensorID, bool> OnFingerTouch;
+
+    [SerializeField]
+    private bool sendCollision = true;
 
     private void Start()
     {
@@ -23,11 +28,17 @@ public class DetectCollision : MonoBehaviour
         {
             interactable.Interact(transform.position);
         }
+        Debug.Log(sensorID + " Collision detected");
+
+        OnFingerTouch?.Invoke(sensorID, true);
     }
 
     private void OnCollisionExit(Collision collision)
     {
         UpdateHaptics(true, false);
+        Debug.Log(sensorID + " Collision ended");
+
+        OnFingerTouch?.Invoke(sensorID, false);
     }
 
     private void OnTriggerEnter(Collider other)

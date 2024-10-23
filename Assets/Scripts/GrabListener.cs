@@ -1,16 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GrabListener : MonoBehaviour
 {
-    private Dictionary<SensorID, bool> fingersState = new Dictionary<SensorID, bool>();
+    [SerializeField]
+    private int numberOfFingers = 3;
 
+    private Dictionary<SensorID, bool> fingersState = new Dictionary<SensorID, bool>();
     private int fingersTouching = 0;
+    private bool isGrabbing = false;
+
 
     public void OnEnable()
     {
-        CollisionHandler.OnFingerTouch += UpdateFingerState;
+        DetectCollision.OnFingerTouch += UpdateFingerState;
     }
 
     private void Start()
@@ -32,14 +35,33 @@ public class GrabListener : MonoBehaviour
 
 
         // TODO: Find a way to clip the object to the hand
-        if (ShouldGrab())
-            Debug.Log("Grabbing");
+        Debug.Log("Fingers touching: " + fingersTouching);
+
+        if (isGrabbing)
+        { 
+            if (ShouldRelease())
+            {
+                isGrabbing = false;
+                Debug.Log("Releasing grab");
+            }
+        }
         else
-            Debug.Log("Not grabbing");
+        {
+            if (ShouldGrab())
+            {
+                isGrabbing = true;
+                Debug.Log("Grabbing");
+            }
+        }
     }
 
     public bool ShouldGrab()
     {
-        return fingersTouching == 2;
+        return fingersTouching == numberOfFingers;
+    }
+
+    public bool ShouldRelease()
+    {
+        return fingersTouching - (fingersState[SensorID.Palm] ? 1 : 0) != numberOfFingers;
     }
 }

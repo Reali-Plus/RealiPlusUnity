@@ -11,7 +11,8 @@ public enum SensorID
     Annular = 5,
     Auricular = 6,
     Thumb = 7,
-    Calibrate = 8
+    Calibrate = 8,
+    Palm = 9
 }
 
 public class SleeveData
