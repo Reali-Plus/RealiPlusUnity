@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int KeysPossessed { get; set; }
+    [SerializeField] private int nbrLevel = 2;
+    public int KeysPossessed { get; set; } = 0;
 
     #region Singleton
     private static GameManager _instance;
@@ -37,5 +38,22 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameSceneManager.LoadScene("MemoryScene");
+    }
+
+    public void AddKey()
+    {
+        KeysPossessed++;
+        Debug.Log("Keys Possessed: " + KeysPossessed);
+        //TODO: Added visual content like UI for nbr of key possessed
+
+        if (KeysPossessed >= nbrLevel)
+        {
+            LoadDoorScene();
+        }
+    }
+
+    private void LoadDoorScene()
+    {
+        GameSceneManager.LoadScene("DoorScene"); 
     }
 }

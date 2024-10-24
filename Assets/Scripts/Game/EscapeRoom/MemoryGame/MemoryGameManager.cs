@@ -9,7 +9,6 @@ public class MemoryGameManager : MonoBehaviour
     [SerializeField] private AudioSource successSound;
     [SerializeField] private AudioSource failureSound;
 
-    //private GameManager gameManager;
     private SequenceManager sequenceManager;
     private GameObject successObject;        
     private List<int> userSequence = new List<int>();
@@ -20,7 +19,6 @@ public class MemoryGameManager : MonoBehaviour
     private void Start()
     {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
-        //gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         successObject = GameObject.FindGameObjectWithTag("Key");
 
         isAlreadyPlayed = false;
@@ -67,8 +65,11 @@ public class MemoryGameManager : MonoBehaviour
     {
         playerWon = true;
         sequenceManager.isSequencePlaying = true;
+       
         successObject.SetActive(true);
         successSound.Play();
+
+        GameManager.Instance.AddKey();
         GameSceneManager.LoadScene("ShoppingScene");
     }
 
