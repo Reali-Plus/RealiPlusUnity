@@ -36,34 +36,6 @@ public class GameManager : MonoBehaviour
     #endregion
     private void Start()
     {
-        // Charger la scène des règles au démarrage
-        LoadRulesScene();
-    }
-
-    public void LoadRulesScene()
-    {
-        SceneManager.LoadScene("RulesScene");
-    }
-
-    public void LoadMemoryGame()
-    {
-        SceneManager.LoadScene("MemoryGameScene");
-    }
-
-    public void LoadShoppingGame()
-    {
-        SceneManager.LoadScene("ShoppingGameScene");
-    }
-
-    public void OnMemoryGameCompleted()
-    {
-        // Charger le jeu de shopping lorsque le jeu de mémoire est réussi
-        LoadShoppingGame();
-    }
-
-    public enum GameState
-    {
-        Victory,
-        Lose
+        GameSceneManager.LoadScene("MemoryScene");
     }
 }

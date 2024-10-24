@@ -616,8 +616,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445749771}
-  - component: {fileID: 445749772}
+  - component: {fileID: 445749774}
   - component: {fileID: 445749773}
+  - component: {fileID: 445749772}
   m_Layer: 0
   m_Name: ShoppingGameManager
   m_TagString: ShopManager
@@ -653,11 +654,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 445749770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 950994bbd8a84a641a778df30ffe3b8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 00226a24111424141b60fb6edf98d2f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbrItemsInGroceryList: 3
-  alreadyWon: 0
+  itemsInStore: {fileID: 628148309}
 --- !u!114 &445749773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,11 +667,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 445749770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17dcc514ecd5b547bbbc58bb715554d, type: 3}
+  m_Script: {fileID: 11500000, guid: eea126a71f2a33745884260eb5328a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groceryListText: {fileID: 1166498457}
   incorrectItemsText: {fileID: 1859724736}
+--- !u!114 &445749774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445749770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6800491061e1ad34d963090a523023f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbrItemsInGroceryList: 3
+  alreadyWon: 0
 --- !u!1 &453012720
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +904,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628148310}
-  - component: {fileID: 628148311}
   m_Layer: 0
   m_Name: ItemsInStore
   m_TagString: ItemsInStore
@@ -925,19 +938,6 @@ Transform:
   m_Father: {fileID: 445749771}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &628148311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628148309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d432bb15f2dc4944ea09a7048e0e4984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsInStore: {fileID: 628148309}
 --- !u!1001 &641862460
 PrefabInstance:
   m_ObjectHideFlags: 0
