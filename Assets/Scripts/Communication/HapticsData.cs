@@ -35,6 +35,6 @@ public class HapticsData
 
     public override string ToString()
     {
-        return FingerId + BoolToString(RetroactionResponse) + BoolToString(RestrictionResponse);
+        return (int) FingerId + BoolToString(RetroactionResponse) + BoolToString(RestrictionResponse);
     }
 }

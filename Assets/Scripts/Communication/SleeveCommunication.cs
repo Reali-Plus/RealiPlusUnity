@@ -39,7 +39,6 @@ public class SleeveCommunication : MonoBehaviour
         while (communication != null && communication.ReceiveData())
         {
             SleeveData data = communication.GetData();
-            Debug.Log(data.ToString());
             if (sensors.ContainsKey(data.SensorID))
             {
                 sensors[data.SensorID].ReceiveData(data);

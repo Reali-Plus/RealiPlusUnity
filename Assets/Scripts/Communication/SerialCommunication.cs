@@ -5,7 +5,7 @@ using System;
 public class SerialCommunication : Communication
 {
     // TODO : List available ports and baud rates to choose from a menu
-    private string portName = "COM3";
+    private string portName = "COM11";
     private int baudRate = 115200;
     private SerialPort serialPort;
     
@@ -31,7 +31,8 @@ public class SerialCommunication : Communication
         {   
             try
             {
-                serialPort.WriteLine(hapticsData.ToString());
+                Debug.Log("Sending data: " + hapticsData.ToString());
+                serialPort.Write(hapticsData.ToString());
             }
             catch (TimeoutException)
             { }
