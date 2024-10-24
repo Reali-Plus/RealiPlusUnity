@@ -64,5 +64,6 @@ public class ShopManager : MonoBehaviour
         {
             //TODO: block interaction
         }
+        GameManager.Instance.AddKey();
     }
 }
