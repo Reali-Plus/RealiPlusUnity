@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsInteractable>k__BackingField: 1
+  <CanInteractable>k__BackingField: 1
   defaultColor: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 0}
   highlightColor: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 0}
   resetDelay: 0.25
@@ -823,7 +823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c61c75d735581344925dbb608a1ef0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDist: 0.5
 --- !u!1 &1384689327
 GameObject:
   m_ObjectHideFlags: 0

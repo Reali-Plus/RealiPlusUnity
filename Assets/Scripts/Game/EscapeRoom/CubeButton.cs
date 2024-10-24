@@ -25,7 +25,7 @@ public class CubeButton : Interactable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (IsInteractable && collision.collider.CompareTag("Ball") && !sequenceManager.isSequencePlaying)
+        if (CanInteractable && collision.collider.CompareTag("Ball") && !sequenceManager.isSequencePlaying)
         {
             Interact(collision.transform.position);
         }
