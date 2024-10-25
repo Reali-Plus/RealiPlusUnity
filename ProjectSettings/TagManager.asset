@@ -14,6 +14,10 @@ TagManager:
   - ColorButton
   - MemoryManager
   - Key
+  - ShopManager
+  - Box
+  - ItemsInStore
+  - Key
   layers:
   - Default
   - TransparentFX
