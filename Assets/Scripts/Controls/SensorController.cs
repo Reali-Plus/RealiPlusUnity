@@ -26,7 +26,6 @@ public class SensorController : MonoBehaviour
 
     private void Update()
     {
-        // Gyro.X -> [0,1] ???
         if (supportRotation)
         {
             // Apply rotation
@@ -53,7 +52,7 @@ public class SensorController : MonoBehaviour
         Vector3 oldAccel = currentAccel;
         currentAccel = new Vector3(sleeveData.Accelerometer.X, sleeveData.Accelerometer.Y, sleeveData.Accelerometer.Z);
         stabilizerError = (1 - stabilizerRate) * stabilizerError + 
-                           stabilizerRate * 100 * (oldAccel - currentAccel).sqrMagnitude; // 100:Amplify error by an arbitrary amount
+                           stabilizerRate * 100 * (oldAccel - currentAccel).sqrMagnitude; // 100 : Amplify error by an arbitrary amount
     }
 
     public SensorID GetSensorID()
@@ -63,12 +62,10 @@ public class SensorController : MonoBehaviour
 
     private float GetStabilizerFactor()
     {
-        float beta = 50; // TEMP -> Parameter?
-        float magnitude = currentAccel.magnitude;
+        float beta = 50; // TODO -> Parameter
         float kTime = Mathf.Exp(-Mathf.Pow(stabilizerError, 2));
-        float kNorm = Mathf.Exp(-Mathf.Pow(magnitude - 1, 2));
-        float kAngle = 1f;//Vector3.Dot(accel, transform.InverseTransformDirection(Vector3.down)) / magnitude;
-        float k = Mathf.Max(kAngle, 0) * kNorm * kTime;
+        float kNorm = Mathf.Exp(-Mathf.Pow(currentAccel.sqrMagnitude - 1, 2));
+        float k = kNorm * kTime;
         return Mathf.Exp(-beta * Mathf.Pow(k - 1, 2));
     }
 }
