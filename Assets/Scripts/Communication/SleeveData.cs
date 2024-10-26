@@ -82,12 +82,10 @@ public class SleeveData
     // Data format: [SensorID] [AccX] [AccY] [AccZ] [GyroX] [GyroY] [GyroZ]
     public bool FromString(string message)
     {
-        //Debug.Log("Message : " + message);
         string[] data = message.Split(" ");
 
         if(data.Length >= 0) // Ignore empty messages
         {
-            //Debug.Log("data[0] " + data[0]);
             if (data[0] == "|") // Ignore messages that start with "|"
             {
                 Debug.Log("Message received: " + message);
@@ -99,13 +97,12 @@ public class SleeveData
         if (data.Length >= 4) // Accelerometer data (SensorID, AccX, AccY, AccZ)
         {
             // Sensor ID
-            SensorID = (SensorID) ParseIntInput(data[0]);
+            SensorID = int.TryParse(data[0], out int input) ? (SensorID) input : SensorID.Invalid;
 
             // Accelerometer
             float[] accelerations = new float[3];
             for (int i = 1; i < 4; ++i)
             {
-                //accelerations[i - 1] = ParseFloatInput(data[i]);
                 accelerations[i - 1] = float.TryParse(data[i], out float accel) ? accel : accelerations[i - 1];
             }
 
@@ -117,7 +114,6 @@ public class SleeveData
                 float[] rotations = new float[3];
                 for (int i = 4; i < 7; ++i)
                 {
-                    //rotations[i - 4] = ParseFloatInput(data[i]);
                     rotations[i - 4] = float.TryParse(data[i], out float rot) ? rot : rotations[i - 4];
                 }
 
@@ -129,16 +125,6 @@ public class SleeveData
 
         Debug.Log("Invalid data: " + message);
         return false;
-    }
-
-    private float ParseFloatInput(string strInput)
-    {
-        return float.TryParse(strInput, out float input) ? input : 0f;
-    }
-
-    private int ParseIntInput(string strInput)
-    {
-        return int.TryParse(strInput, out int input) ? input : -1;
     }
 
     public override string ToString()
