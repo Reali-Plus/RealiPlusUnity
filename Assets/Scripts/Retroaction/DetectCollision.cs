@@ -9,7 +9,7 @@ public class DetectCollision : MonoBehaviour
     private HapticsData hapticsData;
     private SleeveCommunication sleeveCommunication;
 
-    public static event Action<SensorID, bool> OnFingerTouch;
+    public static event Action<SensorID, GameObject, bool> OnFingerTouch;
 
     [SerializeField]
     private bool sendCollision = true;
@@ -44,11 +44,17 @@ public class DetectCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         UpdateHaptics(true, false);
+        Debug.Log(sensorID + " Trigger detected");
+
+        OnFingerTouch?.Invoke(sensorID, other.gameObject, true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         UpdateHaptics(false, false);
+        Debug.Log(sensorID + " Trigger ended");
+     
+        OnFingerTouch?.Invoke(sensorID, other.gameObject, false);
     }
 
     private void UpdateHaptics(bool retroaction, bool restriction)

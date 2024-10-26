@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 91943501}
   - component: {fileID: 91943500}
   - component: {fileID: 91943504}
+  - component: {fileID: 91943505}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -508,14 +509,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91943499}
-  m_LocalRotation: {x: 0.016916439, y: 0.6834849, z: -0.7297582, w: -0.0039145574}
+  m_LocalRotation: {x: -0.47888616, y: 0.4879609, z: -0.5052204, w: -0.5266066}
   m_LocalPosition: {x: 0.018, y: -0.191, z: 0.701}
   m_LocalScale: {x: 0.15699556, y: 0.15699556, z: 0.15699556}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 85.887, y: -24.763, z: -203.709}
+  m_LocalEulerAnglesHint: {x: 85.887, y: -24.763, z: -295.469}
 --- !u!54 &91943504
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -532,6 +533,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &91943505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91943499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &150463015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,7 +2188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2043460381}
-  - component: {fileID: 2043460380}
+  - component: {fileID: 2043460382}
   m_Layer: 0
   m_Name: GrabListener
   m_TagString: Untagged
@@ -2183,19 +2196,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2043460380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2043460379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d51ada2e7cc8c6d4784584a54c9a5848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberOfFingers: 3
 --- !u!4 &2043460381
 Transform:
   m_ObjectHideFlags: 0
@@ -2211,6 +2211,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2043460382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043460379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7357875844c094b8beab0ba8a6c988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbFingersRequired: 3
 --- !u!114 &661817642678761194 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8074701472092083818, guid: 7dc00142cdc494247812e0434729d59d,
