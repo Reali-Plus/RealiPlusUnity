@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     #endregion
     private void Start()
     {
-        GameSceneManager.LoadScene("MemoryScene");
+        GameSceneManager.LoadScene("EscapeRoomScene");
     }
 
     public void AddKey()
@@ -50,6 +50,11 @@ public class GameManager : MonoBehaviour
         {
             LoadDoorScene();
         }
+    }
+
+    public void LoadMemoryScene()
+    {
+        GameSceneManager.LoadScene("MemoryScene");
     }
 
     private void LoadDoorScene()
