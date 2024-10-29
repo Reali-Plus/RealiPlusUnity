@@ -70,7 +70,7 @@ public class MemoryGameManager : MonoBehaviour
         successSound.Play();
 
         GameManager.Instance.AddKey();
-        GameSceneManager.LoadScene("ShoppingScene");
+        GameManager.Instance.LoadShoppingScene();
     }
 
     private void SequenceFailure()

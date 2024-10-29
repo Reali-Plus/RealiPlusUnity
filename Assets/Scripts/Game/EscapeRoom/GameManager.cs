@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         GameSceneManager.LoadScene("MemoryScene");
     }
 
+    public void LoadShoppingScene()
+    {
+        GameSceneManager.LoadScene("ShoppingScene");
+    }
+
     private void LoadDoorScene()
     {
         GameSceneManager.LoadScene("DoorScene"); 
