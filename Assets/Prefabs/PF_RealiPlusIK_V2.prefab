@@ -107,7 +107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661817641844338139}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.016, z: 0.1622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -128,9 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 1
+  orientationWeight: 0.1
 --- !u!1 &661817642130320678
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +154,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661817642130320678}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.016, z: 0.1622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -176,9 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 1
+  orientationWeight: 0.1
 --- !u!1 &661817643100755891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,9 +1254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &2401287717370706906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2917252664042234271, guid: cb7f6873722403a4d9e6e7af8030f359,
@@ -1383,9 +1380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &3659968232367235946 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4316117591435884847, guid: cb7f6873722403a4d9e6e7af8030f359,
@@ -1405,9 +1401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &4367302349666383448 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3869992835037588509, guid: cb7f6873722403a4d9e6e7af8030f359,
@@ -1448,9 +1443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &4929564190562165430 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5568255777809807603, guid: cb7f6873722403a4d9e6e7af8030f359,
@@ -1554,9 +1548,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1
 --- !u!1 &6685801054249906918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6190060254778124451, guid: cb7f6873722403a4d9e6e7af8030f359,
@@ -1687,6 +1680,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionWeight: 0
-  orientationWeight: 0.3
-  errorCorrectionWeight: 1
+  positionWeight: 10
+  orientationWeight: 0.1

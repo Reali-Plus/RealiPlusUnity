@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SensorData3D
 {
     public float X { get; private set; }
@@ -38,15 +36,9 @@ public class SensorData3D
     {
         if (data.Length >= 3)
         {
-            UpdateData(data[0], data[1], data[2]);
-        }
-    }
-
-    public void UpdateData(float[] data, Vector3 offset)
-    {
-        if (data.Length >= 3)
-        {
-            UpdateData(data[0] - offset.x, data[1] - offset.y, data[2] - offset.z);
+            X = data[0];
+            Y = data[1];
+            Z = data[2];
         }
     }
 

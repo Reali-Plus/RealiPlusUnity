@@ -36,7 +36,7 @@ public class SleeveCommunication : MonoBehaviour
 
     private void Update()
     {
-        while (communication != null && communication.ReceiveData())
+        if (communication != null && communication.ReceiveData())
         {
             SleeveData data = communication.GetData();
             if (sensors.ContainsKey(data.SensorID))
@@ -69,10 +69,5 @@ public class SleeveCommunication : MonoBehaviour
     public bool ReceiveData()
     {
         return communication.ReceiveData();
-    }
-
-    public void CalibrateSleeve()
-    {
-        communication.SendData(new HapticsData(SensorID.Calibrate, true, true));
     }
 }

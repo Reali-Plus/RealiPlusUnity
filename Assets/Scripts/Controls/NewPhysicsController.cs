@@ -14,8 +14,6 @@ public class NewPhysicsController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidBody.velocity = Vector3.zero;
-        rigidBody.angularVelocity = Vector3.zero;
         rigidBody.MovePosition(target.position);
         rigidBody.MoveRotation(target.rotation);
     }

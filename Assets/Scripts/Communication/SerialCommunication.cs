@@ -12,7 +12,6 @@ public class SerialCommunication : Communication
     public override void Initialize()
     {
         serialPort = new SerialPort(portName, baudRate);
-        serialPort.ReadTimeout = 2; // ms
         try
         {
             serialPort.Open();
@@ -35,7 +34,9 @@ public class SerialCommunication : Communication
                 serialPort.Write(hapticsData.ToString());
             }
             catch (TimeoutException)
-            { }
+            {
+                Debug.LogWarning("Serial write timeout.");
+            }
         }
     }
 
@@ -45,12 +46,14 @@ public class SerialCommunication : Communication
         {
             try
             {
-                string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
+                string serialInput = serialPort.ReadLine();
                 return AddData(serialInput);
             }
-            catch (TimeoutException) { }
+            catch (TimeoutException)
+            {
+                Debug.LogWarning("Serial read timeout.");
+            }
         }
-
         return false;
     }
 

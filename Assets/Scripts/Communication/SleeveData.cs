@@ -1,51 +1,16 @@
 using UnityEngine;
-using System.Collections.Generic;
+
 
 public enum SensorID
 {
-    Invalid = -1,
     Logic = 0,
     Hand = 1,
     Shoulder = 2,
     Index = 6,
     Major = 5,
-    Annular = 4,
+    Annullar = 4,
     Auricular = 3,
-    Thumb = 7,
-    Calibrate = 8
-}
-
-public static class SensorOffsetLookup
-{
-    private static Dictionary<SensorID, Vector3> offset;
-
-    private static void Init()
-    {
-        offset = new();
-        offset.Add(SensorID.Logic,      Vector3.zero);
-        offset.Add(SensorID.Hand,       Vector3.zero);
-        offset.Add(SensorID.Shoulder,   new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Index,      new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Major,      new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Annular,    Vector3.zero);
-        offset.Add(SensorID.Auricular,  Vector3.zero);
-        offset.Add(SensorID.Thumb,      new Vector3(0, 0, 0.35f));
-    }
-
-    public static Vector3 GetOffset(SensorID id)
-    {
-        if (offset == null)
-        {
-            Init();
-        }
-
-        if (offset.ContainsKey(id))
-        {
-            return offset[id];
-        }
-
-        return Vector3.zero;
-    }
+    Thumb = 7
 }
 
 public class SleeveData
@@ -56,13 +21,13 @@ public class SleeveData
 
     public SleeveData()
     {
-        Accelerometer = new SensorData3D(0, 0, 1);
+        Accelerometer = new SensorData3D(0, 0, 0);
         Gyroscope = new SensorData3D(0, 0, 0);
     }
 
     public SleeveData(string strMessage)
     {
-        Accelerometer = new SensorData3D(0, 0, 1);
+        Accelerometer = new SensorData3D(0, 0, 0);
         Gyroscope = new SensorData3D(0, 0, 0);
         FromString(strMessage);
     }
@@ -79,14 +44,13 @@ public class SleeveData
         Gyroscope.UpdateData(gyro);
     }
 
-    // Data format: [SensorID] [AccX] [AccY] [AccZ] [GyroX] [GyroY] [GyroZ]
     public bool FromString(string message)
     {
         string[] data = message.Split(" ");
 
-        if(data.Length >= 0) // Ignore empty messages
+        if(data.Length >= 0)
         {
-            if (data[0] == "|") // Ignore messages that start with "|"
+            if (data[0] == "|")
             {
                 Debug.Log("Message received: " + message);
 
@@ -94,37 +58,41 @@ public class SleeveData
             }
         }
 
-        if (data.Length >= 4) // Accelerometer data (SensorID, AccX, AccY, AccZ)
+        if (data.Length >= 4)
         {
             // Sensor ID
-            SensorID = int.TryParse(data[0], out int input) ? (SensorID) input : SensorID.Invalid;
+            SensorID = (SensorID)int.Parse(data[0]);
 
             // Accelerometer
             float[] accelerations = new float[3];
             for (int i = 1; i < 4; ++i)
             {
-                accelerations[i - 1] = float.TryParse(data[i], out float accel) ? accel : accelerations[i - 1];
+                accelerations[i - 1] = ParseInput(data[i]) * 9.8f;
             }
 
-            Accelerometer.UpdateData(accelerations, SensorOffsetLookup.GetOffset(SensorID));
+            Accelerometer.UpdateData(accelerations);
 
             // Gyroscope
-            if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
+            if (data.Length >= 7)
             {
                 float[] rotations = new float[3];
-                for (int i = 4; i < 7; ++i)
+                for (int i = 3; i < 6; ++i)
                 {
-                    rotations[i - 4] = float.TryParse(data[i], out float rot) ? rot : rotations[i - 4];
+                    rotations[i - 3] = ParseInput(data[i]);
                 }
 
                 Gyroscope.UpdateData(rotations);
             }
-
             return true;
         }
 
         Debug.Log("Invalid data: " + message);
         return false;
+    }
+
+    private float ParseInput(string strInput)
+    {
+        return float.TryParse(strInput, out float input) ? input : 0f;
     }
 
     public override string ToString()
