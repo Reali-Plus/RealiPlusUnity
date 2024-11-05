@@ -5,18 +5,15 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public void OnPlayButton()
+    void OnCollisionEnter()
     {
-        LoadMemoryGame();
+        GameManager.Instance.StartFirstGame();
     }
 
-    public void OnQuitButton()
+    private void OnMouseDown()
     {
-        Application.Quit();
+        GameManager.Instance.StartFirstGame();
+
     }
 
-    private void LoadMemoryGame()
-    {
-        GameManager.Instance.LoadMemoryScene();
-    }
 }

@@ -7,6 +7,14 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int nbrLevel = 2;
     public int KeysPossessed { get; set; } = 0;
+    public GameObject mainMenu;
+    public GameObject firstGame;
+    public GameObject secondGame;
+    public GameObject rotatingObject;
+
+    private enum GameState { Menu, FirstGame, SecondGame }
+    private GameState currentState;
+
 
     #region Singleton
     private static GameManager _instance;
@@ -35,9 +43,38 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    private void Start()
+
+    void Start()
     {
-        GameSceneManager.LoadScene("EscapeRoomScene");
+        currentState = GameState.Menu;
+        UpdateGameState();
+    }
+
+    public void StartFirstGame()
+    {
+        if (currentState == GameState.Menu)
+        {
+            currentState = GameState.FirstGame;
+            RotateObject();
+            UpdateGameState();
+        }
+    }
+
+    public void CompleteFirstGame()
+    {
+        if (currentState == GameState.FirstGame)
+        {
+            currentState = GameState.SecondGame;
+            RotateObject();
+            UpdateGameState();
+        }
+    }
+
+    private void UpdateGameState()
+    {
+        mainMenu.SetActive(currentState == GameState.Menu);
+        firstGame.SetActive(currentState == GameState.FirstGame);
+        secondGame.SetActive(currentState == GameState.SecondGame);
     }
 
     public void AddKey()
@@ -52,18 +89,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadMemoryScene()
+    private void RotateObject()
     {
-        GameSceneManager.LoadScene("MemoryScene");
-    }
-
-    public void LoadShoppingScene()
-    {
-        GameSceneManager.LoadScene("ShoppingScene");
+        if (rotatingObject != null)
+        {
+            rotatingObject.transform.Rotate(0, 90, 0);
+        }
     }
 
     private void LoadDoorScene()
     {
-        GameSceneManager.LoadScene("DoorScene"); 
+        GameSceneManager.LoadScene("DoorScene");
     }
 }
