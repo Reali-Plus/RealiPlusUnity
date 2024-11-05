@@ -13,7 +13,6 @@ TagManager:
   - StartButton
   - ColorButton
   - MemoryManager
-  - Key
   - ShopManager
   - Box
   - ItemsInStore

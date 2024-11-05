@@ -30,6 +30,24 @@ public class CubeButton : Interactable
             Interact(collision.transform.position);
         }
     }
+    
+    //FOR TESTING WITH MOUSE
+    private void OnMouseDown()
+    {
+        if (!sequenceManager.isSequencePlaying)
+        {
+            Highlight();
+
+            if (memoryManager.IsStartButton(this))
+            {
+                memoryManager.PlaySequence();
+            }
+            else
+            {
+                memoryManager.CheckSequence(this);
+            }
+        }
+    }
 
     public override void Interact(Vector3 position)
     {
