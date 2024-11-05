@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int nbrLevel = 2;
+    [SerializeField] private GameObject firstGame;
+    [SerializeField] private GameObject secondGame;
     public int KeysPossessed { get; set; } = 0;
     public GameObject mainMenu;
-    public GameObject firstGame;
-    public GameObject secondGame;
     public GameObject rotatingObject;
 
     private enum GameState { Menu, FirstGame, SecondGame }
@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
         currentState = GameState.Menu;
         UpdateGameState();
     }

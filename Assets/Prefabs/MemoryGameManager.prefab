@@ -293,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330042659416023422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.477, y: -0.526, z: -0.764}
+  m_LocalPosition: {x: 0.672, y: -0.526, z: -0.764}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -375,12 +375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CanInteractable>k__BackingField: 1
   defaultColor: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 0}
   highlightColor: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 0}
   resetDelay: 0.25
   audioSource: {fileID: 330042659416023413}
-  isStartButton: 1
-  isColorButton: 0
 --- !u!82 &330042659416023413
 AudioSource:
   m_ObjectHideFlags: 0
@@ -504,9 +503,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330042660013679094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.338, y: -0.574, z: -0.829}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.336, y: -0.574, z: -0.726}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 330042659038695608}
   m_RootOrder: 1
@@ -746,11 +745,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.6666666
-      objectReference: {fileID: 0}
-    - target: {fileID: 1052420178750618039, guid: da90319e1953b6e4c83c63711bedd58f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.231
       objectReference: {fileID: 0}
     - target: {fileID: 1052420180061896362, guid: da90319e1953b6e4c83c63711bedd58f,
         type: 3}
