@@ -1246,7 +1246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1083651907
 Transform:
   m_ObjectHideFlags: 0
@@ -1562,7 +1562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1358310442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,6 +1806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2009383657}
+  - component: {fileID: 2009383658}
   m_Layer: 0
   m_Name: IKGoals
   m_TagString: Untagged
@@ -1836,6 +1837,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2009383658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009383656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde1b77de76a7aa44aae180c97f8e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2028328100 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5776172111227920623, guid: 226edc62438f80241b01d94ea6f43bc9,
