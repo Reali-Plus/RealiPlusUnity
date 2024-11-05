@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int nbrLevel = 2;
     [SerializeField] private GameObject firstGame;
     [SerializeField] private GameObject secondGame;
-    public int KeysPossessed { get; set; } = 0;
-    public GameObject mainMenu;
-    public GameObject rotatingObject;
 
     private enum GameState { Menu, FirstGame, SecondGame }
     private GameState currentState;
+    private GameObject mainMenu;
+    private GameObject player;
+
+    public int KeysPossessed { get; set; } = 0;
 
 
     #region Singleton
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+        player = GameObject.FindGameObjectWithTag("Player");
         currentState = GameState.Menu;
         UpdateGameState();
     }
@@ -92,9 +94,9 @@ public class GameManager : MonoBehaviour
 
     private void RotateObject()
     {
-        if (rotatingObject != null)
+        if (player != null)
         {
-            rotatingObject.transform.Rotate(0, 90, 0);
+            player.transform.Rotate(0, 90, 0);
         }
     }
 
