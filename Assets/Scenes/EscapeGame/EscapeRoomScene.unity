@@ -130,6 +130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 975159598929780544, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.27
+      objectReference: {fileID: 0}
     - target: {fileID: 4093902059110122984, guid: 110f0440fd1e4624a83d679a12d8ef93,
         type: 3}
       propertyPath: m_RootOrder
@@ -189,6 +194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShoppingGameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366506710157345139, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8884226937762149216, guid: 110f0440fd1e4624a83d679a12d8ef93,
         type: 3}
@@ -343,6 +353,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MemoryGameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 330042659038695591, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 330042659038695608, guid: 2aaa8cecda8e9254987edad2a4991ee2,
         type: 3}
