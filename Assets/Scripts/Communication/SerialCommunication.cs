@@ -5,7 +5,7 @@ using System;
 public class SerialCommunication : Communication
 {
     // TODO : List available ports and baud rates to choose from a menu
-    private string portName = "COM11";
+    private string portName = "COM8";
     private int baudRate = 115200;
     private SerialPort serialPort;
     
