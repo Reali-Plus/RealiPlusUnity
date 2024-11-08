@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int nbrLevel = 2;
     [SerializeField] private GameObject firstGame;
     [SerializeField] private GameObject secondGame;
 
@@ -13,8 +12,6 @@ public class GameManager : MonoBehaviour
     private GameState currentState;
     private GameObject mainMenu;
     private GameObject player;
-
-    //public int KeysPossessed { get; set; } = 0;
 
 
     #region Singleton
@@ -49,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
         player = GameObject.FindGameObjectWithTag("Player");
-        currentState = GameState.Menu;
+        currentState = GameState.SecondGame;
         UpdateGameState();
     }
 
@@ -80,18 +77,6 @@ public class GameManager : MonoBehaviour
         secondGame.SetActive(currentState == GameState.SecondGame);
     }
 
-    //public void AddKey()
-    //{
-    //    KeysPossessed++;
-    //    Debug.Log("Keys Possessed: " + KeysPossessed);
-    //    //TODO: Added visual content like UI for nbr of key possessed
-
-    //    if (KeysPossessed >= nbrLevel)
-    //    {
-    //        LoadDoorScene();
-    //    }
-    //}
-
     private void RotateObject()
     {
         if (player != null)
@@ -100,8 +85,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoadDoorScene()
-    {
-        GameSceneManager.LoadScene("DoorScene");
-    }
 }

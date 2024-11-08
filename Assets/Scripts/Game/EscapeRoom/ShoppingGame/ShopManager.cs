@@ -20,12 +20,7 @@ public class ShopManager : MonoBehaviour
         wonObject = GameObject.FindGameObjectWithTag("Key");
         itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
 
-        wonObject.SetActive(false);
-        alreadyWon = false;
-        allItemsAvailable.Clear();
-
-        PopulateItemList();
-        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
+        StartingState();
     }
 
     private void PopulateItemList()
@@ -48,10 +43,6 @@ public class ShopManager : MonoBehaviour
                 {
                      OnAllItemsCollected();
                 }
-                else
-                {
-                    Debug.Log("There are incorrect or missing items in the box!");
-                }
             }
         }
     }
@@ -60,10 +51,22 @@ public class ShopManager : MonoBehaviour
     {
         alreadyWon = true;
         wonObject.SetActive(true);
-        foreach (Transform child in itemsInStore.transform)
-        {
-            //TODO: block interaction
-        }
-        //GameManager.Instance.AddKey();
+        StartCoroutine(WaitAndResetGame());
+    }
+
+    private IEnumerator WaitAndResetGame()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        StartingState();
+    }
+
+    private void StartingState()
+    {
+        wonObject.SetActive(false);
+        alreadyWon = false;
+        allItemsAvailable.Clear();
+
+        PopulateItemList();
+        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
     }
 }
