@@ -15,7 +15,7 @@ public class GroceryListHandler : MonoBehaviour
     {
         if (allItems.Count < nbrItemsInGroceryList)
         {
-            Debug.LogWarning("Not enough items to select from!");
+            Debug.LogWarning("Not enough items");
             return;
         }
 
