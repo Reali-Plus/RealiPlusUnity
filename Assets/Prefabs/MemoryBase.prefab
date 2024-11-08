@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052420178399121540}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.04, y: 0.258, z: -0.251}
-  m_LocalScale: {x: 0.39999992, y: 0.4, z: 5}
+  m_LocalPosition: {x: -2, y: 0.25, z: -0.25}
+  m_LocalScale: {x: 0.39999992, y: 0.4, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052420180061896366}
@@ -128,12 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CanInteractable>k__BackingField: 1
   defaultColor: {r: 0.5849056, g: 0.08552865, b: 0.08552865, a: 0}
   highlightColor: {r: 1, g: 0, b: 0, a: 0}
   resetDelay: 0.25
   audioSource: {fileID: 1052420178399121546}
-  isStartButton: 0
-  isColorButton: 1
 --- !u!82 &1052420178399121546
 AudioSource:
   m_ObjectHideFlags: 0
@@ -260,8 +259,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052420178485816860}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.04, y: -0.246, z: 0.249}
-  m_LocalScale: {x: 0.39999992, y: 0.4, z: 5}
+  m_LocalPosition: {x: -2, y: -0.25, z: 0.25}
+  m_LocalScale: {x: 0.39999992, y: 0.4, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052420180061896366}
@@ -358,12 +357,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CanInteractable>k__BackingField: 1
   defaultColor: {r: 0.6269681, g: 0.6415094, b: 0.003025995, a: 0}
   highlightColor: {r: 0.9519105, g: 1, b: 0, a: 0}
   resetDelay: 0.25
   audioSource: {fileID: 1052420178485816834}
-  isStartButton: 0
-  isColorButton: 1
 --- !u!82 &1052420178485816834
 AudioSource:
   m_ObjectHideFlags: 0
@@ -490,8 +488,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052420178497100410}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.04, y: 0.254, z: 0.248}
-  m_LocalScale: {x: 0.39999992, y: 0.4, z: 5}
+  m_LocalPosition: {x: -2, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.39999992, y: 0.4, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052420180061896366}
@@ -588,12 +586,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CanInteractable>k__BackingField: 1
   defaultColor: {r: 0.03203987, g: 0.4528302, b: 0.105325714, a: 0}
   highlightColor: {r: 0, g: 1, b: 0.2004807, a: 0}
   resetDelay: 0.25
   audioSource: {fileID: 1052420178497100384}
-  isStartButton: 0
-  isColorButton: 1
 --- !u!82 &1052420178497100384
 AudioSource:
   m_ObjectHideFlags: 0
@@ -720,8 +717,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052420178750618035}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.04, y: -0.252, z: -0.251}
-  m_LocalScale: {x: 0.39999992, y: 0.4, z: 5}
+  m_LocalPosition: {x: -2, y: -0.25, z: -0.25}
+  m_LocalScale: {x: 0.39999992, y: 0.4, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052420180061896366}
@@ -818,12 +815,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136916678c1db649bdf416e9dfa26eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CanInteractable>k__BackingField: 1
   defaultColor: {r: 0.15877625, g: 0.05918475, b: 0.6603774, a: 0}
   highlightColor: {r: 0, g: 0.34117648, b: 1, a: 0}
   resetDelay: 0.25
   audioSource: {fileID: 1052420178750618041}
-  isStartButton: 0
-  isColorButton: 1
 --- !u!82 &1052420178750618041
 AudioSource:
   m_ObjectHideFlags: 0
@@ -949,7 +945,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.184021, y: 0.00077700615, z: -0.40786743}
   m_LocalScale: {x: 0.20000009, y: 3, z: 3}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1052420178497100414}
   - {fileID: 1052420178399121544}

@@ -50,7 +50,6 @@ public class MoveObject : MonoBehaviour
             selectedObject.transform.position = GetMouseWorldPosition() + offset;
         }
     }
-
     private bool TryGetHitObject(out RaycastHit hit)
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -71,7 +70,6 @@ public class MoveObject : MonoBehaviour
         mousePoint.z = mainCamera.WorldToScreenPoint(selectedObject.transform.position).z;
         return mainCamera.ScreenToWorldPoint(mousePoint);
     }
-
     private void PopulateItemList(Transform parent, List<GameObject> itemList)
     {
         foreach (Transform child in parent)

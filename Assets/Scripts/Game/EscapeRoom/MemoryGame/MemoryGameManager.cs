@@ -20,6 +20,7 @@ public class MemoryGameManager : MonoBehaviour
     {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
         successObject = GameObject.FindGameObjectWithTag("Key");
+
         isAlreadyPlayed = false;
         sequenceManager.SetupSequence(cubes);
         successObject.SetActive(false);
@@ -64,8 +65,12 @@ public class MemoryGameManager : MonoBehaviour
     {
         playerWon = true;
         sequenceManager.isSequencePlaying = true;
+       
         successObject.SetActive(true);
         successSound.Play();
+
+        GameManager.Instance.AddKey();
+        GameManager.Instance.CompleteFirstGame();
     }
 
     private void SequenceFailure()
