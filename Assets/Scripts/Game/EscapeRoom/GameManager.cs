@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private GameObject mainMenu;
     private GameObject player;
 
-    public int KeysPossessed { get; set; } = 0;
+    //public int KeysPossessed { get; set; } = 0;
 
 
     #region Singleton
@@ -80,17 +80,17 @@ public class GameManager : MonoBehaviour
         secondGame.SetActive(currentState == GameState.SecondGame);
     }
 
-    public void AddKey()
-    {
-        KeysPossessed++;
-        Debug.Log("Keys Possessed: " + KeysPossessed);
-        //TODO: Added visual content like UI for nbr of key possessed
+    //public void AddKey()
+    //{
+    //    KeysPossessed++;
+    //    Debug.Log("Keys Possessed: " + KeysPossessed);
+    //    //TODO: Added visual content like UI for nbr of key possessed
 
-        if (KeysPossessed >= nbrLevel)
-        {
-            LoadDoorScene();
-        }
-    }
+    //    if (KeysPossessed >= nbrLevel)
+    //    {
+    //        LoadDoorScene();
+    //    }
+    //}
 
     private void RotateObject()
     {

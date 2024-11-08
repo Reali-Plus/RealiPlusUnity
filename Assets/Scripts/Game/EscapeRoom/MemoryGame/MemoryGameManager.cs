@@ -44,7 +44,7 @@ public class MemoryGameManager : MonoBehaviour
     {
         if (sequenceManager.isSequencePlaying || playerWon || !isAlreadyPlayed) return;
 
-        int cubeIndex = System.Array.IndexOf(cubes, cube);
+        int cubeIndex = Array.IndexOf(cubes, cube);
         userSequence.Add(cubeIndex);
 
         if (cubeIndex == sequenceManager.GetCurrentSequenceStep(currentStep))
@@ -69,8 +69,13 @@ public class MemoryGameManager : MonoBehaviour
         successObject.SetActive(true);
         successSound.Play();
 
-        GameManager.Instance.AddKey();
-        GameManager.Instance.CompleteFirstGame();
+        StartCoroutine(WaitAndResetGame());
+    }
+
+    private IEnumerator WaitAndResetGame()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        ResetGame();
     }
 
     private void SequenceFailure()
@@ -96,6 +101,14 @@ public class MemoryGameManager : MonoBehaviour
         isAlreadyPlayed = false;
         sequenceManager.isSequencePlaying = false;
         sequenceManager.GenerateRandomSequence();
+    }
+
+    private void ResetGame()
+    {
+        ResetSequence();
+
+        successObject.SetActive(false);
+        playerWon = false;
     }
 }
 
