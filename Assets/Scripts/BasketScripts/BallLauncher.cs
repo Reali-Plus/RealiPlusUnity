@@ -9,7 +9,7 @@ public class BallLauncher : MonoBehaviour
     void Start()
     {
         // Apply force to the ball at the start of the scene
-        LaunchBall();
+        //LaunchBall();
     }
 
     void LaunchBall()
