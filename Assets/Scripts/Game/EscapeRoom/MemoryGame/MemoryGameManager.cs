@@ -1,17 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class MemoryGameManager : MiniGameManager
+public class MemoryGameManager : MonoBehaviour
 {
     [SerializeField] private CubeButton[] cubes;
     [SerializeField] private AudioSource successSound;
     [SerializeField] private AudioSource failureSound;
-    [SerializeField] private TextMeshProUGUI successMessage;
 
     private SequenceManager sequenceManager;
+    private GameObject successObject;        
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
@@ -19,20 +18,12 @@ public class MemoryGameManager : MiniGameManager
 
     private void Start()
     {
-        Initialized();
-    }
-
-    private void Initialized()
-    {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
+        successObject = GameObject.FindGameObjectWithTag("Key");
 
         isAlreadyPlayed = false;
-        successMessage.gameObject.SetActive(false);
-    }
-
-    protected override void StartGame()
-    {
         sequenceManager.SetupSequence(cubes);
+        successObject.SetActive(false);
     }
 
     public bool IsStartButton(CubeButton cube)
@@ -74,8 +65,8 @@ public class MemoryGameManager : MiniGameManager
     {
         playerWon = true;
         sequenceManager.isSequencePlaying = true;
-
-        successMessage.gameObject.SetActive(true);
+       
+        successObject.SetActive(true);
         successSound.Play();
 
         StartCoroutine(WaitAndResetGame());
@@ -83,7 +74,7 @@ public class MemoryGameManager : MiniGameManager
 
     private IEnumerator WaitAndResetGame()
     {
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(2);
         ResetGame();
     }
 
@@ -92,7 +83,7 @@ public class MemoryGameManager : MiniGameManager
         playerWon = false;
         failureSound.Play();
         ShowFailureVisuals();
-        ResetGame();
+        ResetSequence();
     }
 
     private void ShowFailureVisuals()
@@ -106,17 +97,18 @@ public class MemoryGameManager : MiniGameManager
     private void ResetSequence()
     {
         currentStep = 0;
-        isAlreadyPlayed = false;
-        playerWon = false;
-        sequenceManager.isSequencePlaying = false;
-        successMessage.gameObject.SetActive(false);
         userSequence.Clear();
+        isAlreadyPlayed = false;
+        sequenceManager.isSequencePlaying = false;
         sequenceManager.GenerateRandomSequence();
     }
 
-    protected override void ResetGame()
+    private void ResetGame()
     {
         ResetSequence();
+
+        successObject.SetActive(false);
+        playerWon = false;
     }
 }
 
