@@ -11,7 +11,8 @@ public class ShopManager : MonoBehaviour
     private GameObject wonObject;
     private GroceryListHandler groceryListHandler;
     private List<GameObject> allItemsAvailable = new List<GameObject>();
-    
+    private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
+
     public bool alreadyWon = false;
 
     private void Start()
@@ -27,7 +28,12 @@ public class ShopManager : MonoBehaviour
     {
         foreach (Transform child in itemsInStore.transform)
         {
+            GameObject item = child.gameObject;
             allItemsAvailable.Add(child.gameObject);
+            if (!originalPositions.ContainsKey(item))
+            {
+                originalPositions[item] = item.transform.position;
+            }
         }
     }
 
@@ -57,7 +63,20 @@ public class ShopManager : MonoBehaviour
     private IEnumerator WaitAndResetGame()
     {
         yield return new WaitForSecondsRealtime(2);
+        Debug.Log("RESET");
         StartingState();
+        ResetItemsToOriginalPositions();
+    }
+
+    private void ResetItemsToOriginalPositions()
+    {
+        foreach (GameObject item in allItemsAvailable)
+        {
+            if (originalPositions.TryGetValue(item, out Vector3 originalPosition))
+            {
+                item.transform.position = originalPosition;
+            }
+        }
     }
 
     private void StartingState()
