@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private GameObject warningMessage;
+
+    [SerializeField]
+    private Button StartButton;
 
     private SleeveCommunication sleeveCommunication;
 
@@ -32,10 +36,12 @@ public class MenuManager : MonoBehaviour
         if (sleeveCommunication.IsInitialized)
         {
             warningMessage.SetActive(false);
+            StartButton.interactable = true;
         }
         else
         {
             warningMessage.SetActive(true);
+            StartButton.interactable = false;
         }
     }
 
