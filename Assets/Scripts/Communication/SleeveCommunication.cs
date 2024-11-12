@@ -25,16 +25,12 @@ public class SleeveCommunication : MonoBehaviour
 
     [SerializeField]
     private bool initializeOnStart = true;
-    [SerializeField]
-    private bool testMode = true;
 
     [SerializeField]
     private CommunicationMode communicationMode = CommunicationMode.Serial;
-    
-    private bool isInitialized = false;
 
-    // TODO : - Add a menu to choose the communication type
-    //        - Add a way to change communication type at runtime
+    public bool IsInitialized { get; set; }
+
     void Start()
     {
         if (communicationMode == CommunicationMode.Serial)
@@ -54,7 +50,7 @@ public class SleeveCommunication : MonoBehaviour
 
     public void TestCommunication()
     {
-        if (isInitialized)
+        if (IsInitialized)
         {
             communication.TestCommunication();
         }
@@ -74,7 +70,7 @@ public class SleeveCommunication : MonoBehaviour
         }
 
         communication.Initialize();
-        isInitialized = true;
+        IsInitialized = true;
     }
 
     private void Update()
@@ -116,6 +112,13 @@ public class SleeveCommunication : MonoBehaviour
 
     public void CalibrateSleeve()
     {
-        communication.SendData(new HapticsData(SensorID.Calibrate, true, true));
+        if (IsInitialized)
+        {
+            communication.SendData(new HapticsData(SensorID.Calibrate, true, true));
+        }
+        else
+        {
+            Debug.LogWarning("Tried to calibrate, communication not initialized");
+        }
     }
 }
