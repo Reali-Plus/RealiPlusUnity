@@ -11,6 +11,15 @@ public class GroceryListHandler : MonoBehaviour
     private List<GameObject> correctItems = new List<GameObject>();
     private List<GameObject> incorrectItems = new List<GameObject>();
 
+    public void ClearLists()
+    {
+        correctItems.Clear();
+        DisplayGroceryList();
+
+        incorrectItems.Clear();
+        DisplayIncorrectItems();
+    }
+
     public void GenerateGroceryList(int nbrItemsInGroceryList, List<GameObject> allItems)
     {
         if (allItems.Count < nbrItemsInGroceryList)
@@ -50,7 +59,6 @@ public class GroceryListHandler : MonoBehaviour
                 listText += "- " + item.name + "\n";
             }
         }
-        DisplayIncorrectItems();
         groceryListText.text = listText;
     }
 
@@ -76,6 +84,7 @@ public class GroceryListHandler : MonoBehaviour
         {
             correctItems.Remove(item);
             DisplayGroceryList();
+
         }
     }
 
@@ -84,12 +93,12 @@ public class GroceryListHandler : MonoBehaviour
         if (!incorrectItems.Contains(incorrectItem))
         {
             incorrectItems.Add(incorrectItem);
-            DisplayGroceryList();
+            DisplayIncorrectItems();
         }
         else
         {
             incorrectItems.Remove(incorrectItem);
-            DisplayGroceryList();
+            DisplayIncorrectItems();
         }
     }
 

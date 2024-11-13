@@ -24,12 +24,24 @@ public class ShopManager : MonoBehaviour
         StartingState();
     }
 
+    private void StartingState()
+    {
+        wonObject.SetActive(false);
+        alreadyWon = false;
+        allItemsAvailable.Clear();
+
+        PopulateItemList();
+        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
+    }
+
     private void PopulateItemList()
     {
         foreach (Transform child in itemsInStore.transform)
         {
             GameObject item = child.gameObject;
+
             allItemsAvailable.Add(child.gameObject);
+
             if (!originalPositions.ContainsKey(item))
             {
                 originalPositions[item] = item.transform.position;
@@ -47,6 +59,7 @@ public class ShopManager : MonoBehaviour
             { 
                 if (collectedSet.SetEquals(groceryListSet))
                 {
+                    Debug.Log("GroceryListe:" + groceryListHandler.GetGroceryList());
                      OnAllItemsCollected();
                 }
             }
@@ -55,6 +68,7 @@ public class ShopManager : MonoBehaviour
 
     private void OnAllItemsCollected()
     {
+        ResetItemsToOriginalPositions();
         alreadyWon = true;
         wonObject.SetActive(true);
         StartCoroutine(WaitAndResetGame());
@@ -63,9 +77,7 @@ public class ShopManager : MonoBehaviour
     private IEnumerator WaitAndResetGame()
     {
         yield return new WaitForSecondsRealtime(2);
-        Debug.Log("RESET");
         StartingState();
-        ResetItemsToOriginalPositions();
     }
 
     private void ResetItemsToOriginalPositions()
@@ -77,15 +89,5 @@ public class ShopManager : MonoBehaviour
                 item.transform.position = originalPosition;
             }
         }
-    }
-
-    private void StartingState()
-    {
-        wonObject.SetActive(false);
-        alreadyWon = false;
-        allItemsAvailable.Clear();
-
-        PopulateItemList();
-        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
     }
 }
