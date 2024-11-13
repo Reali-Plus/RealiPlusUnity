@@ -31,7 +31,7 @@ public class SerialCommunication : Communication
         {   
             try
             {
-                Debug.Log("Sending data: " + hapticsData.ToString());
+                // Debug.Log("Sending data: " + hapticsData.ToString());
                 serialPort.Write(hapticsData.ToString());
             }
             catch (TimeoutException)
