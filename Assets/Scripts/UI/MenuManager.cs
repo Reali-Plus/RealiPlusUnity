@@ -23,17 +23,19 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_InputField baudRateInput;
 
+    [SerializeField]
+    private TMPro.TMP_Text warningText;
+
     private SleeveCommunication sleeveCommunication;
 
     private void Start()
     {
         sleeveCommunication = FindObjectOfType<SleeveCommunication>();
+        warningText = warningMessage.GetComponentInChildren<TMPro.TMP_Text>();
 
-        SerialCommunication serialCommunication = sleeveCommunication.GetSerialCommunication();
+        SerialCommunication.OnCommunicationError += ShowCommunicationError;
 
-        portNameInput.text = serialCommunication.PortName;
-        baudRateInput.text = serialCommunication.BaudRate.ToString();
-
+        ActivateWarning("Communication non initialisée");
         ShowMainMenu();
     }
 
@@ -43,17 +45,11 @@ public class MenuManager : MonoBehaviour
         {
             ToggleMenu();
         }
+    }
 
-        if (sleeveCommunication.IsInitialized)
-        {
-            warningMessage.SetActive(false);
-            StartButton.interactable = true;
-        }
-        else
-        {
-            warningMessage.SetActive(true);
-            StartButton.interactable = false;
-        }
+    public void ShowCommunicationError(string message)
+    {
+        ActivateWarning(message);
     }
 
     public void ShowWarningMessage()
@@ -93,6 +89,10 @@ public class MenuManager : MonoBehaviour
     {
         mainMenu.SetActive(false);
         communicationMenu.SetActive(true);
+
+        SerialCommunication serialCommunication = sleeveCommunication.GetSerialCommunication();
+        portNameInput.text = serialCommunication.PortName;
+        baudRateInput.text = serialCommunication.BaudRate.ToString();
     }
 
     public void ShowMainMenu()
@@ -118,7 +118,22 @@ public class MenuManager : MonoBehaviour
         serialCommunication.PortName = portNameInput.text;
         serialCommunication.BaudRate = int.Parse(baudRateInput.text);
 
+        DeactivateWarning();
+
         sleeveCommunication.InitilializeCommunication();
+    }
+
+    public void DeactivateWarning()
+    {
+        warningMessage.SetActive(false);
+        StartButton.interactable = true;
+    }
+
+    public void ActivateWarning(string message)
+    {
+        warningText.text = message;
+        warningMessage.SetActive(true);
+        StartButton.interactable = false;
     }
 
     public void QuitOption()

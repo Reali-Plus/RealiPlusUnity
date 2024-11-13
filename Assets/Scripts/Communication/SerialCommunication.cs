@@ -7,7 +7,9 @@ public class SerialCommunication : Communication
     public string PortName { get; set; } = "COM8";
     public int BaudRate { get; set; } = 115200;
     private SerialPort serialPort;
-    
+
+    public static event Action<string> OnCommunicationError;
+
     public override void Initialize()
     {
         serialPort = new SerialPort(PortName, BaudRate);
@@ -21,6 +23,7 @@ public class SerialCommunication : Communication
         catch (Exception e)
         {
             Debug.LogError("Error opening serial port: " + e.Message);
+            OnCommunicationError?.Invoke("Le port " + PortName + " n'existe pas.");
         }
     }
 
