@@ -28,6 +28,8 @@ public class MenuManager : MonoBehaviour
 
     private SleeveCommunication sleeveCommunication;
 
+    private const string communicationError = "Erreur de communication: ";
+
     private void Start()
     {
         sleeveCommunication = FindObjectOfType<SleeveCommunication>();
@@ -131,7 +133,7 @@ public class MenuManager : MonoBehaviour
 
     public void ActivateWarning(string message)
     {
-        warningText.text = message;
+        warningText.text = communicationError + message;
         warningMessage.SetActive(true);
         StartButton.interactable = false;
     }
