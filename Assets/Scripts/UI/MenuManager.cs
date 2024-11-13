@@ -18,11 +18,22 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private Button StartButton;
 
+    [SerializeField]
+    private TMPro.TMP_InputField portNameInput;
+    [SerializeField]
+    private TMPro.TMP_InputField baudRateInput;
+
     private SleeveCommunication sleeveCommunication;
 
     private void Start()
     {
         sleeveCommunication = FindObjectOfType<SleeveCommunication>();
+
+        SerialCommunication serialCommunication = sleeveCommunication.GetSerialCommunication();
+
+        portNameInput.text = serialCommunication.PortName;
+        baudRateInput.text = serialCommunication.BaudRate.ToString();
+
         ShowMainMenu();
     }
 
@@ -98,6 +109,16 @@ public class MenuManager : MonoBehaviour
     public void StartOption()
     {
         // Call start game on game manager
+    }
+
+    public void InitilializeOption()
+    {
+        SerialCommunication serialCommunication = sleeveCommunication.GetSerialCommunication();
+
+        serialCommunication.PortName = portNameInput.text;
+        serialCommunication.BaudRate = int.Parse(baudRateInput.text);
+
+        sleeveCommunication.InitilializeCommunication();
     }
 
     public void QuitOption()

@@ -4,14 +4,13 @@ using System;
 
 public class SerialCommunication : Communication
 {
-    // TODO : List available ports and baud rates to choose from a menu
-    private string portName = "COM8";
-    private int baudRate = 115200;
+    public string PortName { get; set; } = "COM8";
+    public int BaudRate { get; set; } = 115200;
     private SerialPort serialPort;
     
     public override void Initialize()
     {
-        serialPort = new SerialPort(portName, baudRate);
+        serialPort = new SerialPort(PortName, BaudRate);
         serialPort.ReadTimeout = 2; // ms
         try
         {

@@ -31,7 +31,7 @@ public class SleeveCommunication : MonoBehaviour
 
     public bool IsInitialized { get; set; }
 
-    void Start()
+    void Awake()
     {
         if (communicationMode == CommunicationMode.Serial)
         {
@@ -60,7 +60,7 @@ public class SleeveCommunication : MonoBehaviour
         }
     }
 
-    private void InitilializeCommunication()
+    public void InitilializeCommunication()
     {         
         sensors = new Dictionary<SensorID, SensorController>();
         List<SensorController> sensorControllers = new List<SensorController>(FindObjectsOfType<SensorController>());
@@ -75,7 +75,7 @@ public class SleeveCommunication : MonoBehaviour
 
     private void Update()
     {
-        while (communication != null && communication.ReceiveData())
+        while (communication != null && IsInitialized && communication.ReceiveData())
         {
             SleeveData data = communication.GetData();
             if (sensors.ContainsKey(data.SensorID))
@@ -120,5 +120,10 @@ public class SleeveCommunication : MonoBehaviour
         {
             Debug.LogWarning("Tried to calibrate, communication not initialized");
         }
+    }
+
+    public SerialCommunication GetSerialCommunication()
+    {
+        return communication as SerialCommunication;
     }
 }
