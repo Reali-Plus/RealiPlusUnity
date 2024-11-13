@@ -158,7 +158,7 @@ Camera:
   m_GameObject: {fileID: 34707472}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.47058827, g: 0.24705884, b: 0.59607846, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -564,16 +564,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6603315295741071928, guid: a0746f7d5523f864ebb5df857e92916a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -305
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603315295741071928, guid: a0746f7d5523f864ebb5df857e92916a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -431
-      objectReference: {fileID: 0}
     - target: {fileID: 6603315295874255827, guid: a0746f7d5523f864ebb5df857e92916a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -638,21 +628,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603315296842727030, guid: a0746f7d5523f864ebb5df857e92916a,
-        type: 3}
-      propertyPath: m_text
-      value: 'Erreur de communication : '
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603315296842727031, guid: a0746f7d5523f864ebb5df857e92916a,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 947.9158
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603315296842727031, guid: a0746f7d5523f864ebb5df857e92916a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 337.22034
       objectReference: {fileID: 0}
     - target: {fileID: 6603315297352734309, guid: a0746f7d5523f864ebb5df857e92916a,
         type: 3}
