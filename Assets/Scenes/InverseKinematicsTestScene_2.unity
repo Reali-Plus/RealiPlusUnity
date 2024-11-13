@@ -463,7 +463,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 7
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!1 &508514733
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 1
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!1 &512850944
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 2
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!114 &614448906 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8528801066776611538, guid: 226edc62438f80241b01d94ea6f43bc9,
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 0
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!1 &695577139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1069,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 6
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!1 &771788597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 4
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!114 &954670959 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1365946941880331924, guid: 226edc62438f80241b01d94ea6f43bc9,
@@ -1545,7 +1545,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 3
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!1 &1358310441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1713,7 @@ MonoBehaviour:
   supportRotation: 1
   supportTranslation: 0
   sensorID: 5
-  stabilizerRate: 0.05
+  stabilizerRate: 0.2
 --- !u!1 &1652101582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,6 +1806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2009383657}
+  - component: {fileID: 2009383658}
   m_Layer: 0
   m_Name: IKGoals
   m_TagString: Untagged
@@ -1836,6 +1837,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2009383658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009383656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde1b77de76a7aa44aae180c97f8e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2028328100 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5776172111227920623, guid: 226edc62438f80241b01d94ea6f43bc9,
