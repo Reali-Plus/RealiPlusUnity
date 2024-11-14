@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] int nbrItemsInGroceryList = 3;
-    [SerializeField] private GroceryBox groceryBox;
 
+    private GroceryBox groceryBox;
     private GameObject itemsInStore;
     private GameObject wonObject;
     private GroceryListHandler groceryListHandler;
@@ -21,6 +21,7 @@ public class ShopManager : MonoBehaviour
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
         wonObject = GameObject.FindGameObjectWithTag("Key");
         itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
+        groceryBox = GameObject.FindGameObjectWithTag("GroceryBox").GetComponent<GroceryBox>();
         StartingState();
     }
 
@@ -59,7 +60,6 @@ public class ShopManager : MonoBehaviour
         {
             if (collectedItems.Count == groceryListHandler.GetGroceryList().Count)
             {
-                Debug.Log("Count:" + groceryListHandler.GetGroceryList().Count);
                 if (collectedSet.SetEquals(groceryListSet))
                 {
                     OnAllItemsCollected();
@@ -80,15 +80,7 @@ public class ShopManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2);
         StartingState();
-
-        //StartCoroutine(Wai()); //solution pas ideal...
     }
-
-    //private IEnumerator Wai()
-    //{
-    //    yield return new WaitForSecondsRealtime(0.5f);
-    //    groceryListHandler.ResetDisplay();
-    //}
 
     private void ResetItemsToOriginalPositions()
     {

@@ -21,10 +21,6 @@ public class GroceryListHandler : MonoBehaviour
 
         List<GameObject> itemsToSelectFrom = new List<GameObject>(allItems);
         groceryList = GetRandomItems(itemsToSelectFrom, nbrItemsInGroceryList);
-        foreach (GameObject item in groceryList)
-        {
-            Debug.Log("grocerylist: "+ item.name);
-        }
         UpdateGroceryListUI();
     }
 
@@ -103,23 +99,9 @@ public class GroceryListHandler : MonoBehaviour
 
     public void ResetDisplay()
     {
-        //Debug.Log("CORRECT ITEM:" + correctItems.Count);
-        //Debug.Log("INCORRECT ITEM:" + incorrectItems.Count);
         correctItems.Clear();
         incorrectItems.Clear();
         UpdateGroceryListUI(); 
         UpdateIncorrectItemsUI();
-        //Debug.Log("CORRECT ITEM:" + correctItems.Count);
-        //Debug.Log("INCORRECT ITEM:" + incorrectItems.Count);
-    }
-
-    public int GetCorrectItemsCount()
-    {
-        return correctItems.Count;
-    }
-
-    public int GetIncorrectItemsCount()
-    {
-        return incorrectItems.Count;
     }
 }

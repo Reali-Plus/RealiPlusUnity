@@ -22,13 +22,11 @@ public class GroceryBox : MonoBehaviour
             {
                 collectedItems.Add(other.gameObject);
                 groceryListHandler.MarkItemAsCorrect(other.gameObject);
-                Debug.Log(other.gameObject.name + " ajouté à la boîte et est dans la liste.");
             }
             else
             {
                 collectedItems.Add(other.gameObject);
                 groceryListHandler.MarkItemAsIncorrect(other.gameObject);
-                Debug.Log(other.gameObject.name + " ajouté à la boîte et pas bonnnn");
 
             }
             shopManager.CheckIfAllItemsCollected(collectedItems);
@@ -43,14 +41,11 @@ public class GroceryBox : MonoBehaviour
             if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
             {
                 groceryListHandler.MarkItemAsCorrect(other.gameObject);
-                Debug.Log(other.gameObject.name + " a ete retirer et etait bon.");
             }
             else
             {
                 groceryListHandler.MarkItemAsIncorrect(other.gameObject);
-                Debug.Log(other.gameObject.name + " retirer et netait pas bonnnn");
             }
-            Debug.Log("collecteditems:" + collectedItems.Count);
             shopManager.CheckIfAllItemsCollected(collectedItems);
         }
     }

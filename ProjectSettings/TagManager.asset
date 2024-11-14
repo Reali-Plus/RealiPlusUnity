@@ -17,6 +17,9 @@ TagManager:
   - Box
   - ItemsInStore
   - Ball
+  - MainMenu
+  - Key
+  - GroceryBox
   layers:
   - Default
   - TransparentFX
