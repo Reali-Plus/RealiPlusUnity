@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] int nbrItemsInGroceryList = 3;
+    [SerializeField] private GroceryBox groceryBox;
 
     private GameObject itemsInStore;
     private GameObject wonObject;
@@ -20,7 +21,6 @@ public class ShopManager : MonoBehaviour
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
         wonObject = GameObject.FindGameObjectWithTag("Key");
         itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
-
         StartingState();
     }
 
@@ -29,9 +29,11 @@ public class ShopManager : MonoBehaviour
         wonObject.SetActive(false);
         alreadyWon = false;
         allItemsAvailable.Clear();
+        groceryBox.collectedItems.Clear();
 
         PopulateItemList();
         groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
+        groceryListHandler.ResetDisplay();
     }
 
     private void PopulateItemList()
@@ -55,12 +57,12 @@ public class ShopManager : MonoBehaviour
         HashSet<GameObject> groceryListSet = new HashSet<GameObject>(groceryListHandler.GetGroceryList());
         if (!alreadyWon)
         {
-            if (collectedItems.Count == groceryListHandler.GetGroceryList().Count) 
-            { 
+            if (collectedItems.Count == groceryListHandler.GetGroceryList().Count)
+            {
+                Debug.Log("Count:" + groceryListHandler.GetGroceryList().Count);
                 if (collectedSet.SetEquals(groceryListSet))
                 {
-                    Debug.Log("GroceryListe:" + groceryListHandler.GetGroceryList());
-                     OnAllItemsCollected();
+                    OnAllItemsCollected();
                 }
             }
         }
@@ -70,24 +72,29 @@ public class ShopManager : MonoBehaviour
     {
         alreadyWon = true;
         wonObject.SetActive(true);
+        ResetItemsToOriginalPositions();
         StartCoroutine(WaitAndResetGame());
     }
 
     private IEnumerator WaitAndResetGame()
     {
         yield return new WaitForSecondsRealtime(2);
-        ResetItemsToOriginalPositions();
         StartingState();
+
+        //StartCoroutine(Wai()); //solution pas ideal...
     }
+
+    //private IEnumerator Wai()
+    //{
+    //    yield return new WaitForSecondsRealtime(0.5f);
+    //    groceryListHandler.ResetDisplay();
+    //}
 
     private void ResetItemsToOriginalPositions()
     {
-        foreach (GameObject item in allItemsAvailable)
+        for (int i = 0; i < allItemsAvailable.Count; i++)
         {
-            if (originalPositions.TryGetValue(item, out Vector3 originalPosition))
-            {
-                item.transform.position = originalPosition;
-            }
+            allItemsAvailable[i].transform.position = originalPositions[allItemsAvailable[i]];
         }
     }
 }
