@@ -2,28 +2,57 @@ using UnityEngine;
 
 public class BallLauncher : MonoBehaviour
 {
-    public Rigidbody ballRigidbody; // Reference to the Rigidbody of the ball
-    public float launchForce = 10f; // Force to launch the ball
-    public Transform hand;          // Reference to the hand position, used to calculate direction
+    public Rigidbody ballRigidbody;
+    public float launchForce = 10f;
+    public Transform hoop;
+    public Transform initialPosition;
+    public Collider hoopCollider;
+    private bool ballLaunched = false;
+
 
     void Start()
     {
-        // Apply force to the ball at the start of the scene
-        LaunchBall();
+        ballRigidbody.useGravity = false;
+        ballRigidbody.position = initialPosition.position;
+    }
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && !ballLaunched)
+        {
+            Time.timeScale = 0.5f;
+            LaunchBall();
+        }
     }
 
     void LaunchBall()
     {
-        if (ballRigidbody != null && hand != null)
+        if (ballRigidbody != null && hoop != null)
         {
-            // Calculate direction from hand to the target direction (e.g., hoop)
-            Vector3 launchDirection = (hand.forward).normalized;
+            ballRigidbody.useGravity = true;
 
-            // Apply force to the ball in the calculated direction
+            Vector3 launchDirection = (hoop.position - ballRigidbody.position).normalized;
+
             ballRigidbody.AddForce(launchDirection * launchForce, ForceMode.Impulse);
 
-            // Optionally, log the launch to the console for verification
-            Debug.Log("Ball launched with force: " + launchForce);
+            ballLaunched = true;
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other == hoopCollider)
+        {
+            StartCoroutine(ResetBall());
+        }
+    }
+
+    System.Collections.IEnumerator ResetBall()
+    {
+        yield return new WaitForSeconds(2);
+        ballRigidbody.velocity = Vector3.zero;
+        ballRigidbody.angularVelocity = Vector3.zero;
+        ballRigidbody.useGravity = false;
+        ballRigidbody.position = initialPosition.position;
+        ballLaunched = false;
     }
 }
