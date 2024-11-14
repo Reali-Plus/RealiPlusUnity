@@ -6,7 +6,7 @@ public class GroceryBox : MonoBehaviour
 {
     private ShopManager shopManager;
     private GroceryListHandler groceryListHandler;
-    private List<GameObject> collectedItems = new List<GameObject>();
+    public List<GameObject> collectedItems = new List<GameObject>();
 
     private void Start()
     {
@@ -43,15 +43,14 @@ public class GroceryBox : MonoBehaviour
             if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
             {
                 groceryListHandler.MarkItemAsCorrect(other.gameObject);
-                Debug.Log(other.gameObject.name + " a ete retirer.");
-
+                Debug.Log(other.gameObject.name + " a ete retirer et etait bon.");
             }
             else
             {
                 groceryListHandler.MarkItemAsIncorrect(other.gameObject);
-                Debug.Log(other.gameObject.name + " retirer et pas bonnnn");
-
+                Debug.Log(other.gameObject.name + " retirer et netait pas bonnnn");
             }
+            Debug.Log("collecteditems:" + collectedItems.Count);
             shopManager.CheckIfAllItemsCollected(collectedItems);
         }
     }

@@ -11,15 +11,6 @@ public class GroceryListHandler : MonoBehaviour
     private List<GameObject> correctItems = new List<GameObject>();
     private List<GameObject> incorrectItems = new List<GameObject>();
 
-    public void ClearLists()
-    {
-        correctItems.Clear();
-        //DisplayGroceryList();
-
-        incorrectItems.Clear();
-        //DisplayIncorrectItems();
-    }
-
     public void GenerateGroceryList(int nbrItemsInGroceryList, List<GameObject> allItems)
     {
         if (allItems.Count < nbrItemsInGroceryList)
@@ -34,7 +25,7 @@ public class GroceryListHandler : MonoBehaviour
         {
             Debug.Log("grocerylist: "+ item.name);
         }
-        //DisplayGroceryList();
+        UpdateGroceryListUI();
     }
 
     private List<GameObject> GetRandomItems(List<GameObject> sourceList, int itemCount)
@@ -49,46 +40,17 @@ public class GroceryListHandler : MonoBehaviour
         return selectedItems;
     }
 
-    //private void DisplayGroceryList()
-    //{
-    //    string listText = "Items:\n";
-    //    foreach (GameObject item in groceryList)
-    //    {
-    //        if (correctItems.Contains(item))
-    //        {
-    //            listText += "- " + "<s>" + item.name + "</s>\n";
-    //        }
-    //        else
-    //        {
-    //            listText += "- " + item.name + "\n";
-    //        }
-    //    }
-    //    groceryListText.text = listText;
-    //}
-
-    //private void DisplayIncorrectItems()
-    //{
-    //    string incorrectListText = "Items incorrect:\n";
-    //    foreach (GameObject incorrectItem in incorrectItems)
-    //    {
-    //        incorrectListText += "<color=red>" + incorrectItem.name + "</color>\n"; 
-    //    }
-
-    //    incorrectItemsText.text = incorrectListText;
-    //}
-
     public void MarkItemAsCorrect(GameObject item)
     {
         if (!correctItems.Contains(item))
         {
             correctItems.Add(item);
-            //DisplayGroceryList();
+            UpdateGroceryListUI();
         }
         else
         {
             correctItems.Remove(item);
-            //DisplayGroceryList();
-
+            UpdateGroceryListUI();
         }
     }
 
@@ -97,17 +59,67 @@ public class GroceryListHandler : MonoBehaviour
         if (!incorrectItems.Contains(incorrectItem))
         {
             incorrectItems.Add(incorrectItem);
-            //DisplayIncorrectItems();
+            UpdateIncorrectItemsUI();
         }
         else
         {
             incorrectItems.Remove(incorrectItem);
-            //DisplayIncorrectItems();
+            UpdateIncorrectItemsUI();
         }
     }
 
     public List<GameObject> GetGroceryList()
     {
         return groceryList;
+    }
+
+    private void UpdateGroceryListUI()
+    {
+        string listText = "Items:\n";
+        foreach (GameObject item in groceryList)
+        {
+            if (correctItems.Contains(item))
+            {
+                listText += "- " + "<s>" + item.name + "</s>\n";
+            }
+            else
+            {
+                listText += "- " + item.name + "\n";
+            }
+        }
+        groceryListText.text = listText;
+    }
+
+    private void UpdateIncorrectItemsUI()
+    {
+        string incorrectListText = "Items incorrect:\n";
+        foreach (GameObject incorrectItem in incorrectItems)
+        {
+            incorrectListText += "<color=red>" + incorrectItem.name + "</color>\n";
+        }
+
+        incorrectItemsText.text = incorrectListText;
+    }
+
+    public void ResetDisplay()
+    {
+        //Debug.Log("CORRECT ITEM:" + correctItems.Count);
+        //Debug.Log("INCORRECT ITEM:" + incorrectItems.Count);
+        correctItems.Clear();
+        incorrectItems.Clear();
+        UpdateGroceryListUI(); 
+        UpdateIncorrectItemsUI();
+        //Debug.Log("CORRECT ITEM:" + correctItems.Count);
+        //Debug.Log("INCORRECT ITEM:" + incorrectItems.Count);
+    }
+
+    public int GetCorrectItemsCount()
+    {
+        return correctItems.Count;
+    }
+
+    public int GetIncorrectItemsCount()
+    {
+        return incorrectItems.Count;
     }
 }
