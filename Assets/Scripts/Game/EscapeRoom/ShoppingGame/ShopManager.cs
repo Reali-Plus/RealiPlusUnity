@@ -68,7 +68,6 @@ public class ShopManager : MonoBehaviour
 
     private void OnAllItemsCollected()
     {
-        ResetItemsToOriginalPositions();
         alreadyWon = true;
         wonObject.SetActive(true);
         StartCoroutine(WaitAndResetGame());
@@ -77,6 +76,7 @@ public class ShopManager : MonoBehaviour
     private IEnumerator WaitAndResetGame()
     {
         yield return new WaitForSecondsRealtime(2);
+        ResetItemsToOriginalPositions();
         StartingState();
     }
 
