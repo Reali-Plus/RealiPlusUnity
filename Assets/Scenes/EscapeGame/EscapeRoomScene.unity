@@ -671,7 +671,18 @@ PrefabInstance:
       propertyPath: sequenceDifficulty
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 330042660013679094, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583361393994061930, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7531568486983912497, guid: 2aaa8cecda8e9254987edad2a4991ee2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2aaa8cecda8e9254987edad2a4991ee2, type: 3}
 --- !u!1 &1489519367
 GameObject:
