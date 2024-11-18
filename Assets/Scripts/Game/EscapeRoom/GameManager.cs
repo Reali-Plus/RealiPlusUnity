@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject firstGame;
     [SerializeField] private GameObject secondGame;
+    //[SerializeField] private GameObject thirdGame;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject miniGamesController;
 
-    private enum GameState { Menu, FirstGame, SecondGame }
+    private enum GameState { 
+        Menu = 0,
+        FirstGame = 1, 
+        SecondGame = 2, 
+        ThirdGame = 3 
+    }
     private GameState currentState;
-    private GameObject mainMenu;
-    private GameObject player;
-
 
     #region Singleton
     private static GameManager _instance;
@@ -44,29 +46,46 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
-        player = GameObject.FindGameObjectWithTag("Player");
-        currentState = GameState.SecondGame;
+        currentState = GameState.Menu;
         UpdateGameState();
+    }
+
+    void Update()
+    {
+        //NUM NAV
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            SwitchToState(GameState.Menu);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchToState(GameState.FirstGame);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchToState(GameState.SecondGame);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SwitchToState(GameState.ThirdGame);
+        }
+
+        //ARROW NAV
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Navigate(-1);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Navigate(1);
+        }
     }
 
     public void StartFirstGame()
     {
         if (currentState == GameState.Menu)
         {
-            currentState = GameState.FirstGame;
-            RotateObject();
-            UpdateGameState();
-        }
-    }
-
-    public void CompleteFirstGame()
-    {
-        if (currentState == GameState.FirstGame)
-        {
-            currentState = GameState.SecondGame;
-            RotateObject();
-            UpdateGameState();
+            SwitchToState(GameState.FirstGame);
         }
     }
 
@@ -75,14 +94,33 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(currentState == GameState.Menu);
         firstGame.SetActive(currentState == GameState.FirstGame);
         secondGame.SetActive(currentState == GameState.SecondGame);
+        //thirdGame.SetActive(currentState == GameState.ThirdGame);
     }
 
-    private void RotateObject()
+    private void SwitchToState(GameState targetState)
     {
-        if (player != null)
+        if (currentState != targetState)
         {
-            player.transform.Rotate(0, 90, 0);
+            RotateObject(targetState);
+            currentState = targetState;
+            UpdateGameState();
         }
     }
 
+    private void Navigate(int direction)
+    {
+        // Change l'état en ajoutant ou soustrayant
+        int newState = ((int)currentState + direction + System.Enum.GetValues(typeof(GameState)).Length)
+                        % System.Enum.GetValues(typeof(GameState)).Length;
+        SwitchToState((GameState)newState);
+    }
+
+    private void RotateObject(GameState targetState)
+    {
+        int angleDifference = ((int)targetState - (int)currentState) * -90;
+        if (miniGamesController != null)
+        {
+            miniGamesController.transform.Rotate(0, angleDifference, 0);
+        }
+    }
 }

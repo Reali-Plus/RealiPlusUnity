@@ -13,7 +13,6 @@ public class Menu : MonoBehaviour
     private void OnMouseDown()
     {
         GameManager.Instance.StartFirstGame();
-
     }
 
 }
