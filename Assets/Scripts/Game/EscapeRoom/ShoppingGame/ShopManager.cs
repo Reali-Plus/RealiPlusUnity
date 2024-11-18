@@ -7,9 +7,10 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField] int nbrItemsInGroceryList = 3;
 
-    private GroceryBox groceryBox;
     private GameObject itemsInStore;
     private GameObject wonObject;
+    private GameObject miniGamesController;
+    private GroceryBox groceryBox;
     private GroceryListHandler groceryListHandler;
     private List<GameObject> allItemsAvailable = new List<GameObject>();
     private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
@@ -19,9 +20,11 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
-        wonObject = GameObject.FindGameObjectWithTag("Key");
-        itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
         groceryBox = GameObject.FindGameObjectWithTag("GroceryBox").GetComponent<GroceryBox>();
+        miniGamesController = GameObject.FindGameObjectWithTag("GamesController");
+        itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
+        wonObject = GameObject.FindGameObjectWithTag("Key");
+
         StartingState();
     }
 
@@ -29,6 +32,7 @@ public class ShopManager : MonoBehaviour
     {
         wonObject.SetActive(false);
         alreadyWon = false;
+
         allItemsAvailable.Clear();
         groceryBox.collectedItems.Clear();
 
@@ -56,6 +60,7 @@ public class ShopManager : MonoBehaviour
     {
         HashSet<GameObject> collectedSet = new HashSet<GameObject>(collectedItems);
         HashSet<GameObject> groceryListSet = new HashSet<GameObject>(groceryListHandler.GetGroceryList());
+
         if (!alreadyWon)
         {
             if (collectedItems.Count == groceryListHandler.GetGroceryList().Count)
@@ -72,6 +77,7 @@ public class ShopManager : MonoBehaviour
     {
         alreadyWon = true;
         wonObject.SetActive(true);
+
         ResetItemsToOriginalPositions();
         StartCoroutine(WaitAndResetGame());
     }
@@ -84,9 +90,16 @@ public class ShopManager : MonoBehaviour
 
     private void ResetItemsToOriginalPositions()
     {
-        for (int i = 0; i < allItemsAvailable.Count; i++)
+       if (miniGamesController != null)
         {
-            allItemsAvailable[i].transform.position = originalPositions[allItemsAvailable[i]];
+            Quaternion currentRotation = miniGamesController.transform.rotation;
+
+            foreach (var item in allItemsAvailable)
+            {
+                Vector3 originalPosition = originalPositions[item];
+                Vector3 adjustedPosition = currentRotation * (originalPosition - miniGamesController.transform.position);
+                item.transform.position = miniGamesController.transform.position + adjustedPosition;
+            }
         }
     }
 }
