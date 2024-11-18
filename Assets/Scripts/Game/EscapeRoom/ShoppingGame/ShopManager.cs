@@ -84,7 +84,7 @@ public class ShopManager : MonoBehaviour
 
     private IEnumerator WaitAndResetGame()
     {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(1);
         StartingState();
     }
 
