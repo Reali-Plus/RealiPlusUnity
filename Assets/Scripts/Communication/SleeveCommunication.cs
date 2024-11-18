@@ -75,14 +75,14 @@ public class SleeveCommunication : MonoBehaviour
 
     private void Update()
     {
-        while (communication != null && IsInitialized && communication.ReceiveData())
+        /*while (communication != null && IsInitialized && communication.ReceiveData())
         {
             SleeveData data = communication.GetData();
             if (sensors.ContainsKey(data.SensorID))
             {
                 sensors[data.SensorID].ReceiveData(data);
             }
-        }
+        }*/
     }
 
     private void OnApplicationQuit()
