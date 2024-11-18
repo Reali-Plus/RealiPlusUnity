@@ -643,7 +643,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbrItemsInGroceryList: 3
-  miniGamesController: {fileID: 0}
   alreadyWon: 0
 --- !u!114 &4093902059110122990
 MonoBehaviour:
@@ -895,15 +894,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 35b0539c06d90884da7fb5a3a09953a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.765
+      value: 1.014
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 35b0539c06d90884da7fb5a3a09953a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.261
+      value: 0.088
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 35b0539c06d90884da7fb5a3a09953a3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.27
+      value: 0.089
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 35b0539c06d90884da7fb5a3a09953a3, type: 3}
       propertyPath: m_LocalRotation.w

@@ -20,6 +20,7 @@ TagManager:
   - MainMenu
   - Key
   - GroceryBox
+  - GamesController
   layers:
   - Default
   - TransparentFX
