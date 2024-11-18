@@ -4,15 +4,16 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject firstGame;
     [SerializeField] private GameObject secondGame;
-    //[SerializeField] private GameObject thirdGame;
+    [SerializeField] private GameObject thirdGame;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject miniGamesController;
 
-    private enum GameState { 
+    private enum GameState
+    {
         Menu = 0,
-        FirstGame = 1, 
-        SecondGame = 2, 
-        ThirdGame = 3 
+        FirstGame = 1,
+        SecondGame = 2,
+        ThirdGame = 3
     }
     private GameState currentState;
 
@@ -29,13 +30,13 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(this);
-    } 
+    }
 
     public static GameManager Instance
     {
         get
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 Debug.LogError("GameManager is Null");
             }
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
         mainMenu.SetActive(currentState == GameState.Menu);
         firstGame.SetActive(currentState == GameState.FirstGame);
         secondGame.SetActive(currentState == GameState.SecondGame);
-        //thirdGame.SetActive(currentState == GameState.ThirdGame);
+        thirdGame.SetActive(currentState == GameState.ThirdGame);
     }
 
     private void SwitchToState(GameState targetState)
@@ -109,7 +110,6 @@ public class GameManager : MonoBehaviour
 
     private void Navigate(int direction)
     {
-        // Change l'état en ajoutant ou soustrayant
         int newState = ((int)currentState + direction + System.Enum.GetValues(typeof(GameState)).Length)
                         % System.Enum.GetValues(typeof(GameState)).Length;
         SwitchToState((GameState)newState);
