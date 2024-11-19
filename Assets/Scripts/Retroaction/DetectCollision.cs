@@ -17,14 +17,12 @@ public class DetectCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected " + sensorID);
         hapticsData.UpdateFeedback(true, true);
         sleeveCommunication.SendData(hapticsData);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("Collision ended " + sensorID);
         hapticsData.UpdateFeedback(true, false);
         sleeveCommunication.SendData(hapticsData);
     }
