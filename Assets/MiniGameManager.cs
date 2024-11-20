@@ -9,7 +9,6 @@ public abstract class MiniGameManager : MonoBehaviour
     public virtual void Starting()
     {
         gameActive = true;
-        Debug.Log("Game started.");
         StartGame();
     }
 
@@ -17,12 +16,10 @@ public abstract class MiniGameManager : MonoBehaviour
     {
         if (!gameActive)
         {
-            Debug.LogWarning("Can't restart. Game is not active.");
             return;
         }
 
         gameActive = false;
-        Debug.Log("Game restarted.");
         ResetGame();
         gameActive = true;
     }
