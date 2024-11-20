@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MemoryGameManager : MonoBehaviour
+public class MemoryGameManager : MiniGameManager
 {
     [SerializeField] private CubeButton[] cubes;
     [SerializeField] private AudioSource successSound;
@@ -18,12 +18,21 @@ public class MemoryGameManager : MonoBehaviour
 
     private void Start()
     {
+        Initialized();
+    }
+
+    private void Initialized()
+    {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
         successObject = GameObject.FindGameObjectWithTag("Key");
 
         isAlreadyPlayed = false;
-        sequenceManager.SetupSequence(cubes);
         successObject.SetActive(false);
+    }
+
+    protected override void StartGame()
+    {
+        sequenceManager.SetupSequence(cubes);
     }
 
     public bool IsStartButton(CubeButton cube)
@@ -74,7 +83,7 @@ public class MemoryGameManager : MonoBehaviour
 
     private IEnumerator WaitAndResetGame()
     {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(1);
         ResetGame();
     }
 
@@ -83,7 +92,7 @@ public class MemoryGameManager : MonoBehaviour
         playerWon = false;
         failureSound.Play();
         ShowFailureVisuals();
-        ResetSequence();
+        ResetGame();
     }
 
     private void ShowFailureVisuals()
@@ -97,18 +106,17 @@ public class MemoryGameManager : MonoBehaviour
     private void ResetSequence()
     {
         currentStep = 0;
-        userSequence.Clear();
         isAlreadyPlayed = false;
+        playerWon = false;
         sequenceManager.isSequencePlaying = false;
+        successObject.SetActive(false);
+        userSequence.Clear();
         sequenceManager.GenerateRandomSequence();
     }
 
-    private void ResetGame()
+    protected override void ResetGame()
     {
         ResetSequence();
-
-        successObject.SetActive(false);
-        playerWon = false;
     }
 }
 
