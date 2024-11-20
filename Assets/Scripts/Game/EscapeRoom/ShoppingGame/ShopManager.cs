@@ -92,7 +92,7 @@ public class ShopManager : MiniGameManager
 
     private void ResetItemsToOriginalPositions()
     {
-       if (miniGamesController != null)
+        if (miniGamesController != null)
         {
             Quaternion currentRotation = miniGamesController.transform.rotation;
 
@@ -102,6 +102,18 @@ public class ShopManager : MiniGameManager
                 Vector3 adjustedPosition = currentRotation * (originalPosition - miniGamesController.transform.position);
                 item.transform.position = miniGamesController.transform.position + adjustedPosition;
             }
+        }
+    }
+
+    public void ResetItemPosition(GameObject item)
+    {
+        Quaternion currentRotation = miniGamesController.transform.rotation;
+
+        if (originalPositions.ContainsKey(item))
+        {
+            Vector3 originalPosition = originalPositions[item];
+            Vector3 adjustedPosition = currentRotation * (originalPosition - miniGamesController.transform.position);
+            item.transform.position = miniGamesController.transform.position + adjustedPosition;
         }
     }
 
@@ -119,5 +131,13 @@ public class ShopManager : MiniGameManager
         groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
         groceryListHandler.ResetDisplay();
     }
- 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject item = collision.collider.gameObject;
+        if (allItemsAvailable.Contains(item))
+        {
+            ResetItemPosition(item);
+        }
+    }
 }
