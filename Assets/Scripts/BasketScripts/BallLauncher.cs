@@ -47,9 +47,14 @@ public class BallLauncher : MiniGameManager
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        StartCoroutine(ResetBall());
+    }
+
     System.Collections.IEnumerator ResetBall()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         ResetBasket();
     }
 

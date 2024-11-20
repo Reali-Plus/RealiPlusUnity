@@ -853,6 +853,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 330042659038695610, guid: 2aaa8cecda8e9254987edad2a4991ee2,
         type: 3}
+      propertyPath: sequenceSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 330042659038695610, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
       propertyPath: sequenceDifficulty
       value: 2
       objectReference: {fileID: 0}
@@ -1310,6 +1315,19 @@ MonoBehaviour:
   hoop: {fileID: 4672415}
   initialPosition: {fileID: 420553340}
   hoopCollider: {fileID: 588515591}
+--- !u!65 &1578026999
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271760494}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 193.5161, y: 222.39342, z: 265.11484}
+  m_Center: {x: 6.6904364, y: 111.769104, z: 82.55761}
 --- !u!1 &1601195691
 GameObject:
   m_ObjectHideFlags: 0
