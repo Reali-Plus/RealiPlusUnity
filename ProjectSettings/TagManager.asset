@@ -21,6 +21,7 @@ TagManager:
   - Key
   - GroceryBox
   - GamesController
+  - Floor
   layers:
   - Default
   - TransparentFX

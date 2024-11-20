@@ -101,6 +101,7 @@ public class GroceryListHandler : MonoBehaviour
     {
         correctItems.Clear();
         incorrectItems.Clear();
+
         UpdateGroceryListUI(); 
         UpdateIncorrectItemsUI();
     }
