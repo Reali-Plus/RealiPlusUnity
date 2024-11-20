@@ -40,7 +40,7 @@ public class SequenceManager : MonoBehaviour
         foreach (int index in randomSequence)
         {
             cubes[index].Highlight();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(sequenceDelay);
         }
         isSequencePlaying = false;
     }

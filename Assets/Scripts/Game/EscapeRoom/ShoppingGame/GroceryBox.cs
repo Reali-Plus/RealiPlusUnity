@@ -6,7 +6,9 @@ public class GroceryBox : MonoBehaviour
 {
     private ShopManager shopManager;
     private GroceryListHandler groceryListHandler;
-    public List<GameObject> collectedItems = new List<GameObject>();
+    private List<GameObject> collectedItems = new List<GameObject>();
+
+    public List<GameObject> CollectedItems { get => collectedItems; set => collectedItems = value; }
 
     private void Start()
     {
