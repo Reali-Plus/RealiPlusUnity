@@ -54,19 +54,19 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //NUM NAV
-        if (Input.GetKeyDown(KeyCode.Alpha0) | Input.GetKeyDown(KeyCode.Keypad0))
+        if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
         {
             SwitchToState(GameState.Menu);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) | Input.GetKeyDown(KeyCode.Keypad1))
+        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             SwitchToState(GameState.FirstGame);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) | Input.GetKeyDown(KeyCode.Keypad2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
         {
             SwitchToState(GameState.SecondGame);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) | Input.GetKeyDown(KeyCode.Keypad3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) ||  Input.GetKeyDown(KeyCode.Keypad3))
         {
             SwitchToState(GameState.ThirdGame);
         }
