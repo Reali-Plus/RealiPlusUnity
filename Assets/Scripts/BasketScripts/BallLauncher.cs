@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BallLauncher : MonoBehaviour
+public class BallLauncher : MiniGameManager
 {
     public Rigidbody ballRigidbody;
     public float launchForce = 10f;
@@ -10,11 +10,12 @@ public class BallLauncher : MonoBehaviour
     private bool ballLaunched = false;
 
 
-    void Start()
+    protected override void StartGame()
     {
         ballRigidbody.useGravity = false;
         ballRigidbody.position = initialPosition.position;
     }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !ballLaunched)
@@ -48,11 +49,21 @@ public class BallLauncher : MonoBehaviour
 
     System.Collections.IEnumerator ResetBall()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+        ResetBasket();
+    }
+
+    private void ResetBasket()
+    {
         ballRigidbody.velocity = Vector3.zero;
         ballRigidbody.angularVelocity = Vector3.zero;
         ballRigidbody.useGravity = false;
         ballRigidbody.position = initialPosition.position;
         ballLaunched = false;
+    }
+
+    protected override void ResetGame()
+    {
+        ResetBasket();
     }
 }

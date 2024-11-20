@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : MiniGameManager
 {
     [SerializeField] int nbrItemsInGroceryList = 3;
 
@@ -19,26 +19,28 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
+        Initialized();
+    }
+
+    private void Initialized()
+    {
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
         groceryBox = GameObject.FindGameObjectWithTag("GroceryBox").GetComponent<GroceryBox>();
         miniGamesController = GameObject.FindGameObjectWithTag("GamesController");
         itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
         wonObject = GameObject.FindGameObjectWithTag("Key");
 
-        StartingState();
-    }
-
-    private void StartingState()
-    {
         wonObject.SetActive(false);
         alreadyWon = false;
 
         allItemsAvailable.Clear();
         groceryBox.collectedItems.Clear();
-
         PopulateItemList();
+    }
+
+    protected override void StartGame()
+    {
         groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
-        groceryListHandler.ResetDisplay();
     }
 
     private void PopulateItemList()
@@ -85,7 +87,7 @@ public class ShopManager : MonoBehaviour
     private IEnumerator WaitAndResetGame()
     {
         yield return new WaitForSecondsRealtime(1);
-        StartingState();
+        ResetGame();
     }
 
     private void ResetItemsToOriginalPositions()
@@ -102,4 +104,20 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
+
+    protected override void ResetGame()
+    {
+        ResetItemsToOriginalPositions();
+
+        wonObject.SetActive(false);
+        alreadyWon = false;
+
+        allItemsAvailable.Clear();
+        groceryBox.collectedItems.Clear();
+
+        PopulateItemList();
+        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
+        groceryListHandler.ResetDisplay();
+    }
+ 
 }
