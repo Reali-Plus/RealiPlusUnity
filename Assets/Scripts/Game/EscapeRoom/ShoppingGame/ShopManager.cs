@@ -34,7 +34,7 @@ public class ShopManager : MiniGameManager
         alreadyWon = false;
 
         allItemsAvailable.Clear();
-        groceryBox.collectedItems.Clear();
+        groceryBox.CollectedItems.Clear();
         PopulateItemList();
     }
 
@@ -113,7 +113,7 @@ public class ShopManager : MiniGameManager
         alreadyWon = false;
 
         allItemsAvailable.Clear();
-        groceryBox.collectedItems.Clear();
+        groceryBox.CollectedItems.Clear();
 
         PopulateItemList();
         groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
