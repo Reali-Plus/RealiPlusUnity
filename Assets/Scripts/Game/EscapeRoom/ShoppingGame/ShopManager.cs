@@ -1,30 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : MiniGameManager
 {
     [SerializeField] int nbrItemsInGroceryList = 3;
+    [SerializeField] private TextMeshProUGUI successMessage;
 
     private GameObject itemsInStore;
-    private GameObject wonObject;
+    private GameObject miniGamesController;
+    private GroceryBox groceryBox;
     private GroceryListHandler groceryListHandler;
     private List<GameObject> allItemsAvailable = new List<GameObject>();
-    
+    private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
+
     public bool alreadyWon = false;
 
     private void Start()
     {
+        Initialized();
+    }
+
+    private void Initialized()
+    {
         groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
-        wonObject = GameObject.FindGameObjectWithTag("Key");
+        groceryBox = GameObject.FindGameObjectWithTag("GroceryBox").GetComponent<GroceryBox>();
+        miniGamesController = GameObject.FindGameObjectWithTag("GamesController");
         itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
 
-        wonObject.SetActive(false);
+        successMessage.gameObject.SetActive(false);
         alreadyWon = false;
-        allItemsAvailable.Clear();
 
+        allItemsAvailable.Clear();
+        groceryBox.CollectedItems.Clear();
         PopulateItemList();
+    }
+
+    protected override void StartGame()
+    {
         groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
     }
 
@@ -32,7 +46,14 @@ public class ShopManager : MonoBehaviour
     {
         foreach (Transform child in itemsInStore.transform)
         {
+            GameObject item = child.gameObject;
+
             allItemsAvailable.Add(child.gameObject);
+
+            if (!originalPositions.ContainsKey(item))
+            {
+                originalPositions[item] = item.transform.position;
+            }
         }
     }
 
@@ -40,17 +61,14 @@ public class ShopManager : MonoBehaviour
     {
         HashSet<GameObject> collectedSet = new HashSet<GameObject>(collectedItems);
         HashSet<GameObject> groceryListSet = new HashSet<GameObject>(groceryListHandler.GetGroceryList());
+
         if (!alreadyWon)
         {
-            if (collectedItems.Count == groceryListHandler.GetGroceryList().Count) 
-            { 
+            if (collectedItems.Count == groceryListHandler.GetGroceryList().Count)
+            {
                 if (collectedSet.SetEquals(groceryListSet))
                 {
-                     OnAllItemsCollected();
-                }
-                else
-                {
-                    Debug.Log("There are incorrect or missing items in the box!");
+                    OnAllItemsCollected();
                 }
             }
         }
@@ -59,11 +77,65 @@ public class ShopManager : MonoBehaviour
     private void OnAllItemsCollected()
     {
         alreadyWon = true;
-        wonObject.SetActive(true);
-        foreach (Transform child in itemsInStore.transform)
+        successMessage.gameObject.SetActive(true);
+        ResetItemsToOriginalPositions();
+        StartCoroutine(WaitAndResetGame());
+    }
+
+    private IEnumerator WaitAndResetGame()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        ResetGame();
+    }
+
+    private void ResetItemsToOriginalPositions()
+    {
+        if (miniGamesController != null)
         {
-            //TODO: block interaction
+            Quaternion currentRotation = miniGamesController.transform.rotation;
+
+            foreach (var item in allItemsAvailable)
+            {
+                Vector3 originalPosition = originalPositions[item];
+                Vector3 adjustedPosition = currentRotation * (originalPosition - miniGamesController.transform.position);
+                item.transform.position = miniGamesController.transform.position + adjustedPosition;
+            }
         }
-        GameManager.Instance.AddKey();
+    }
+
+    public void ResetItemPosition(GameObject item)
+    {
+        Quaternion currentRotation = miniGamesController.transform.rotation;
+
+        if (originalPositions.ContainsKey(item))
+        {
+            Vector3 originalPosition = originalPositions[item];
+            Vector3 adjustedPosition = currentRotation * (originalPosition - miniGamesController.transform.position);
+            item.transform.position = miniGamesController.transform.position + adjustedPosition;
+        }
+    }
+
+    protected override void ResetGame()
+    {
+        ResetItemsToOriginalPositions();
+
+        successMessage.gameObject.SetActive(false);
+        alreadyWon = false;
+
+        allItemsAvailable.Clear();
+        groceryBox.CollectedItems.Clear();
+
+        PopulateItemList();
+        groceryListHandler.GenerateGroceryList(nbrItemsInGroceryList, allItemsAvailable);
+        groceryListHandler.ResetDisplay();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject item = collision.collider.gameObject;
+        if (allItemsAvailable.Contains(item))
+        {
+            ResetItemPosition(item);
+        }
     }
 }

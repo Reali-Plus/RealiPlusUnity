@@ -8,6 +8,8 @@ public class GroceryBox : MonoBehaviour
     private GroceryListHandler groceryListHandler;
     private List<GameObject> collectedItems = new List<GameObject>();
 
+    public List<GameObject> CollectedItems { get => collectedItems; set => collectedItems = value; }
+
     private void Start()
     {
         shopManager = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<ShopManager>();
@@ -27,6 +29,7 @@ public class GroceryBox : MonoBehaviour
             {
                 collectedItems.Add(other.gameObject);
                 groceryListHandler.MarkItemAsIncorrect(other.gameObject);
+
             }
             shopManager.CheckIfAllItemsCollected(collectedItems);
         }

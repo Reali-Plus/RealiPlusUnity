@@ -17,6 +17,11 @@ TagManager:
   - Box
   - ItemsInStore
   - Ball
+  - MainMenu
+  - Key
+  - GroceryBox
+  - GamesController
+  - Floor
   layers:
   - Default
   - TransparentFX

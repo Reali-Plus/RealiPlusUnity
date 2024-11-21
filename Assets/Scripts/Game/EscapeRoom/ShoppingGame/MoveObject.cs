@@ -77,5 +77,6 @@ public class MoveObject : MonoBehaviour
             itemList.Add(child.gameObject);
         }
     }
+ 
 }
 

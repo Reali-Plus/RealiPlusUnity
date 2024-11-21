@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int nbrLevel = 2;
-    [SerializeField] private GameObject firstGame;
-    [SerializeField] private GameObject secondGame;
+    [SerializeField] private MiniGameManager firstGame;
+    [SerializeField] private MiniGameManager secondGame;
+    [SerializeField] private MiniGameManager thirdGame;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject miniGamesController;
 
-    private enum GameState { Menu, FirstGame, SecondGame }
+    private enum GameState
+    {
+        Menu = 0,
+        FirstGame = 1,
+        SecondGame = 2,
+        ThirdGame = 3
+    }
     private GameState currentState;
-    private GameObject mainMenu;
-    private GameObject player;
-
-    public int KeysPossessed { get; set; } = 0;
-
 
     #region Singleton
     private static GameManager _instance;
@@ -30,13 +30,13 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(this);
-    } 
+    }
 
     public static GameManager Instance
     {
         get
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 Debug.LogError("GameManager is Null");
             }
@@ -47,61 +47,111 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
-        player = GameObject.FindGameObjectWithTag("Player");
         currentState = GameState.Menu;
         UpdateGameState();
+    }
+
+    void Update()
+    {
+        //NUM NAV
+        if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            SwitchToState(GameState.Menu);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            SwitchToState(GameState.FirstGame);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            SwitchToState(GameState.SecondGame);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) ||  Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            SwitchToState(GameState.ThirdGame);
+        }
+
+        //ARROW NAV
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Navigate(-1);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Navigate(1);
+        }
     }
 
     public void StartFirstGame()
     {
         if (currentState == GameState.Menu)
         {
-            currentState = GameState.FirstGame;
-            RotateObject();
-            UpdateGameState();
-        }
-    }
-
-    public void CompleteFirstGame()
-    {
-        if (currentState == GameState.FirstGame)
-        {
-            currentState = GameState.SecondGame;
-            RotateObject();
-            UpdateGameState();
+            SwitchToState(GameState.FirstGame);
         }
     }
 
     private void UpdateGameState()
     {
-        mainMenu.SetActive(currentState == GameState.Menu);
-        firstGame.SetActive(currentState == GameState.FirstGame);
-        secondGame.SetActive(currentState == GameState.SecondGame);
+        mainMenu.gameObject.SetActive(currentState == GameState.Menu);
+        firstGame.gameObject.SetActive(currentState == GameState.FirstGame);
+        secondGame.gameObject.SetActive(currentState == GameState.SecondGame);
+        thirdGame.gameObject.SetActive(currentState == GameState.ThirdGame);
     }
 
-    public void AddKey()
+    private void SwitchToState(GameState targetState)
     {
-        KeysPossessed++;
-        Debug.Log("Keys Possessed: " + KeysPossessed);
-        //TODO: Added visual content like UI for nbr of key possessed
-
-        if (KeysPossessed >= nbrLevel)
+        if (currentState != targetState)
         {
-            LoadDoorScene();
+            QuitCurrentGame(currentState);
+            RotateObject(targetState);
+            currentState = targetState;
+            StartNewGame(targetState);
+            UpdateGameState();
         }
     }
 
-    private void RotateObject()
+    private void StartNewGame(GameState state)
     {
-        if (player != null)
+        MiniGameManager game = GetGameByState(state);
+        if (game != null)
         {
-            player.transform.Rotate(0, 90, 0);
+            game.Starting();
         }
     }
 
-    private void LoadDoorScene()
+    private void QuitCurrentGame(GameState state)
     {
-        GameSceneManager.LoadScene("DoorScene");
+        MiniGameManager game = GetGameByState(state);
+        if (game != null)
+        {
+            game.Restart();
+        }
+    }
+
+    private MiniGameManager GetGameByState(GameState state)
+    {
+        return state switch
+        {
+            GameState.FirstGame => firstGame,
+            GameState.SecondGame => secondGame,
+            GameState.ThirdGame => thirdGame,
+            _ => null
+        };
+    }
+
+    private void Navigate(int direction)
+    {
+        int newState = ((int)currentState + direction + System.Enum.GetValues(typeof(GameState)).Length)
+                        % System.Enum.GetValues(typeof(GameState)).Length;
+        SwitchToState((GameState)newState);
+    }
+
+    private void RotateObject(GameState targetState)
+    {
+        int angleDifference = ((int)targetState - (int)currentState) * -90;
+        if (miniGamesController != null)
+        {
+            miniGamesController.transform.Rotate(0, angleDifference, 0);
+        }
     }
 }
