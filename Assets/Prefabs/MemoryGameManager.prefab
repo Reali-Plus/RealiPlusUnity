@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 330042659640164047}
   successSound: {fileID: 330042659038695611}
   failureSound: {fileID: 330042659038695612}
+  successMessage: {fileID: 0}
 --- !u!114 &330042659038695610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequenceDifficulty: 5
-  sequenceSpeed: 1
   isSequencePlaying: 0
 --- !u!82 &330042659038695612
 AudioSource:
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 7982161883591652099}
   m_Layer: 5
   m_Name: SuccessText
-  m_TagString: Key
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 8320977464812110108}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Key
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

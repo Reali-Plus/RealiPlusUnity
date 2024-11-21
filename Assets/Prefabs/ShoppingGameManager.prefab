@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbrItemsInGroceryList: 3
+  successMessage: {fileID: 0}
   alreadyWon: 0
 --- !u!114 &4093902059110122990
 MonoBehaviour:
@@ -834,7 +835,7 @@ GameObject:
   - component: {fileID: 6182727842415652863}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Key
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
