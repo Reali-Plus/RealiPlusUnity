@@ -8,7 +8,7 @@ public class ShopManager : MiniGameManager
     [SerializeField] int nbrItemsInGroceryList = 3;
 
     private GameObject itemsInStore;
-    private GameObject wonObject;
+    //private GameObject wonObject;
     private GameObject miniGamesController;
     private GroceryBox groceryBox;
     private GroceryListHandler groceryListHandler;
@@ -28,9 +28,9 @@ public class ShopManager : MiniGameManager
         groceryBox = GameObject.FindGameObjectWithTag("GroceryBox").GetComponent<GroceryBox>();
         miniGamesController = GameObject.FindGameObjectWithTag("GamesController");
         itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
-        wonObject = GameObject.FindGameObjectWithTag("Key");
+        //wonObject = GameObject.FindGameObjectWithTag("Key");
 
-        wonObject.SetActive(false);
+        //wonObject.SetActive(false);
         alreadyWon = false;
 
         allItemsAvailable.Clear();
@@ -78,7 +78,7 @@ public class ShopManager : MiniGameManager
     private void OnAllItemsCollected()
     {
         alreadyWon = true;
-        wonObject.SetActive(true);
+        //wonObject.SetActive(true);
 
         ResetItemsToOriginalPositions();
         StartCoroutine(WaitAndResetGame());
@@ -121,7 +121,7 @@ public class ShopManager : MiniGameManager
     {
         ResetItemsToOriginalPositions();
 
-        wonObject.SetActive(false);
+        //wonObject.SetActive(false);
         alreadyWon = false;
 
         allItemsAvailable.Clear();
