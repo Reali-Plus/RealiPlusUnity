@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MemoryGameManager : MiniGameManager
@@ -8,9 +9,9 @@ public class MemoryGameManager : MiniGameManager
     [SerializeField] private CubeButton[] cubes;
     [SerializeField] private AudioSource successSound;
     [SerializeField] private AudioSource failureSound;
+    [SerializeField] private TextMeshProUGUI successMessage;
 
     private SequenceManager sequenceManager;
-    //private GameObject successObject;        
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
@@ -24,10 +25,9 @@ public class MemoryGameManager : MiniGameManager
     private void Initialized()
     {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
-        //successObject = GameObject.FindGameObjectWithTag("Key");
 
         isAlreadyPlayed = false;
-        //successObject.SetActive(false);
+        successMessage.gameObject.SetActive(false);
     }
 
     protected override void StartGame()
@@ -74,8 +74,8 @@ public class MemoryGameManager : MiniGameManager
     {
         playerWon = true;
         sequenceManager.isSequencePlaying = true;
-       
-        //successObject.SetActive(true);
+
+        successMessage.gameObject.SetActive(true);
         successSound.Play();
 
         StartCoroutine(WaitAndResetGame());
@@ -109,7 +109,7 @@ public class MemoryGameManager : MiniGameManager
         isAlreadyPlayed = false;
         playerWon = false;
         sequenceManager.isSequencePlaying = false;
-        //successObject.SetActive(false);
+        successMessage.gameObject.SetActive(false);
         userSequence.Clear();
         sequenceManager.GenerateRandomSequence();
     }
