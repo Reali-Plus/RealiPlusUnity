@@ -10,7 +10,7 @@ public class MemoryGameManager : MiniGameManager
     [SerializeField] private AudioSource failureSound;
 
     private SequenceManager sequenceManager;
-    private GameObject successObject;        
+    //private GameObject successObject;        
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
@@ -24,10 +24,10 @@ public class MemoryGameManager : MiniGameManager
     private void Initialized()
     {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
-        successObject = GameObject.FindGameObjectWithTag("Key");
+        //successObject = GameObject.FindGameObjectWithTag("Key");
 
         isAlreadyPlayed = false;
-        successObject.SetActive(false);
+        //successObject.SetActive(false);
     }
 
     protected override void StartGame()
@@ -75,7 +75,7 @@ public class MemoryGameManager : MiniGameManager
         playerWon = true;
         sequenceManager.isSequencePlaying = true;
        
-        successObject.SetActive(true);
+        //successObject.SetActive(true);
         successSound.Play();
 
         StartCoroutine(WaitAndResetGame());
@@ -109,7 +109,7 @@ public class MemoryGameManager : MiniGameManager
         isAlreadyPlayed = false;
         playerWon = false;
         sequenceManager.isSequencePlaying = false;
-        successObject.SetActive(false);
+        //successObject.SetActive(false);
         userSequence.Clear();
         sequenceManager.GenerateRandomSequence();
     }
