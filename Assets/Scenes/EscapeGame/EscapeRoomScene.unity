@@ -728,6 +728,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2261740442301817963, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.1436346
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261740442301817963, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.737
+      objectReference: {fileID: 0}
     - target: {fileID: 2311907044333380240, guid: 110f0440fd1e4624a83d679a12d8ef93,
         type: 3}
       propertyPath: m_fontSizeBase
@@ -1178,7 +1188,7 @@ PrefabInstance:
     - target: {fileID: 4676623078465866758, guid: 226edc62438f80241b01d94ea6f43bc9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4676623078465866758, guid: 226edc62438f80241b01d94ea6f43bc9,
         type: 3}
@@ -6429,7 +6439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048483763}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: NaturePolyScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
