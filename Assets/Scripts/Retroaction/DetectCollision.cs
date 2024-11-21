@@ -7,18 +7,18 @@ public class DetectCollision : MonoBehaviour
     private SensorID sensorID;
 
     private HapticsData hapticsData;
-    private SleeveCommunication sleeveCommunication;
+    // private SleeveCommunication sleeveCommunication;
 
     private void Start()
     {
         hapticsData = new HapticsData(sensorID);
-        sleeveCommunication = FindObjectOfType<SleeveCommunication>();
+        // sleeveCommunication = FindObjectOfType<SleeveCommunication>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         hapticsData.UpdateFeedback(true, true);
-        sleeveCommunication.SendData(hapticsData);
+        // sleeveCommunication.SendData(hapticsData);
 
         if (collision.gameObject.TryGetComponent(out Interactable interactable))
         {
@@ -29,18 +29,18 @@ public class DetectCollision : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         hapticsData.UpdateFeedback(true, false);
-        sleeveCommunication.SendData(hapticsData);
+        // sleeveCommunication.SendData(hapticsData);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         hapticsData.UpdateFeedback(true, false);
-        sleeveCommunication.SendData(hapticsData);
+        // sleeveCommunication.SendData(hapticsData);
     }
 
     private void OnTriggerExit(Collider other)
     {
         hapticsData.UpdateFeedback(false, false);
-        sleeveCommunication.SendData(hapticsData);
+        // sleeveCommunication.SendData(hapticsData);
     }
 }
