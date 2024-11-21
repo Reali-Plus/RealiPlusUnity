@@ -19,6 +19,11 @@ public class DetectCollision : MonoBehaviour
     {
         hapticsData.UpdateFeedback(true, true);
         sleeveCommunication.SendData(hapticsData);
+
+        if (collision.gameObject.TryGetComponent(out Interactable interactable))
+        {
+            interactable.Interact(transform.position);
+        }
     }
 
     private void OnCollisionExit(Collision collision)
