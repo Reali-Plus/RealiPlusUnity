@@ -7,15 +7,15 @@ public enum SensorID
     Logic = 0,
     Hand = 1,
     Shoulder = 2,
-    Index = 6,
-    Major = 5,
-    Annular = 4,
-    Auricular = 3,
+    Index = 3,
+    Major = 4,
+    Annular = 5,
+    Auricular = 6,
     Thumb = 7,
     Calibrate = 8
 }
 
-public static class SensorOffsetLookup
+/*public static class SensorOffsetLookup
 {
     private static Dictionary<SensorID, Vector3> offset;
 
@@ -46,7 +46,7 @@ public static class SensorOffsetLookup
 
         return Vector3.zero;
     }
-}
+}*/
 
 public class SleeveData
 {
@@ -106,7 +106,7 @@ public class SleeveData
                 accelerations[i - 1] = float.TryParse(data[i], out float accel) ? accel : accelerations[i - 1];
             }
 
-            Accelerometer.UpdateData(accelerations, SensorOffsetLookup.GetOffset(SensorID));
+            Accelerometer.UpdateData(accelerations);
 
             // Gyroscope
             if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
@@ -129,6 +129,6 @@ public class SleeveData
 
     public override string ToString()
     {
-        return "[ID] " + SensorID.ToString() + " [Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
+        return (int) SensorID + " [Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
     }
 }

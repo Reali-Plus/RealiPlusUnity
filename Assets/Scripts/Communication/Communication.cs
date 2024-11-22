@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class Communication
 {
@@ -26,6 +27,7 @@ public abstract class Communication
         SleeveData sleeveData = new SleeveData();
         if (sleeveData.FromString(data))
         {
+            Debug.Log("data: " + sleeveData.ToString());
             dataQueue.Enqueue(sleeveData);
             return true;
         }
