@@ -21,14 +21,6 @@ public class CubeButton : Interactable
         audioSource = GetComponent<AudioSource>();
         ResetColor();
     }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (CanInteractable && collision.collider.CompareTag("Ball") && !sequenceManager.isSequencePlaying)
-        {
-            Interact(collision.transform.position);
-        }
-    }*/
     
     //FOR TESTING WITH MOUSE
     private void OnMouseDown()
@@ -38,7 +30,7 @@ public class CubeButton : Interactable
 
     public override void Interact(Vector3 position)
     {
-        if (!CanInteract && sequenceManager.isSequencePlaying) return;
+        if (!CanInteract || sequenceManager.isSequencePlaying) return;
 
         Highlight();
 
@@ -56,7 +48,7 @@ public class CubeButton : Interactable
 
     IEnumerator ReactivateInteraction()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(0.5f);
         CanInteract = true;
     }
 

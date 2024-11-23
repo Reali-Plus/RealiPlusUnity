@@ -573,10 +573,25 @@ PrefabInstance:
       propertyPath: successMessage
       value: 
       objectReference: {fileID: 1440424494}
+    - target: {fileID: 330042659038695610, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: sequenceDifficulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 330042659416023409, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 466730370694743915, guid: 2aaa8cecda8e9254987edad2a4991ee2,
         type: 3}
       propertyPath: m_Constraints
       value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055841914706950868, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1055841914706950868, guid: 2aaa8cecda8e9254987edad2a4991ee2,
         type: 3}
@@ -1563,6 +1578,7 @@ GameObject:
   - component: {fileID: 1734578725}
   - component: {fileID: 1734578724}
   - component: {fileID: 1734578727}
+  - component: {fileID: 1734578728}
   m_Layer: 0
   m_Name: StartGame
   m_TagString: Untagged
@@ -1663,6 +1679,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStartCube: 1
   isQuitCube: 0
+--- !u!54 &1734578728
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734578722}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1781954826
 GameObject:
   m_ObjectHideFlags: 0
