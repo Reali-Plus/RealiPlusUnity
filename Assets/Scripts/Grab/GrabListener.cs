@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public class GrabListener : MonoBehaviour
 
     private Grabbable grabbedObject = null;
     private bool isGrabbing = false;
+
+    private bool canRelease = false;
 
 
     public void OnEnable()
@@ -72,14 +75,11 @@ public class GrabListener : MonoBehaviour
         {
             fingersState.Add(sensorID, new FingerState(fingerState, hitObject));
         }
-
-        
     }
 
     private void CollisionDetected(SensorID sensorID, GameObject hitObject, bool fingerState)
     {
-        Grabbable grabbable = hitObject.GetComponent<Grabbable>();
-        if (grabbable == null)
+        if (!hitObject.TryGetComponent<Grabbable>(out var grabbable))
             return;
 
         UpdateFigerState(sensorID, grabbable, fingerState);
@@ -98,17 +98,22 @@ public class GrabListener : MonoBehaviour
         {
             if (ShouldGrab())
             {
+                Debug.Log("Grabbing");
+
                 grabbedObject = grabbable;
                 grabbable.Grab(transform);
+                Debug.Log("Grab parent " + grabbedObject.name);
                 isGrabbing = true;
-                Debug.Log("Grabbing");
+                canRelease = false;
+                StartCoroutine(WaitToRelease());
             }
         }
     }
 
-    public void OnDisable()
+    private IEnumerator WaitToRelease()
     {
-        DetectCollision.OnFingerTouch -= CollisionDetected;
+        yield return new WaitForSeconds(2);
+        canRelease = true;
     }
 
     // TODO: Check for palm
@@ -117,7 +122,10 @@ public class GrabListener : MonoBehaviour
         foreach (var obj in objectsTouching)
         {
             if (obj.Value == nbFingersRequired)
+            {
+                Debug.Log(obj.Key.name + " is grabbed by " + nbFingersRequired);
                 return true;
+            }
         }
 
         return false;
@@ -125,6 +133,12 @@ public class GrabListener : MonoBehaviour
 
     public bool ShouldRelease()
     {
-        return objectsTouching[grabbedObject] <= nbFingersRequired;
+        return false; // I AM TESTING IF THE MOVE POSITION WORKS, SO NEVER RELEASE
+        // Debug.Log("Should release: " + objectsTouching[grabbedObject] + "/" + nbFingersRequired);
+        // return canRelease && objectsTouching[grabbedObject] <= nbFingersRequired;
+    }
+    public void OnDisable()
+    {
+        DetectCollision.OnFingerTouch -= CollisionDetected;
     }
 }

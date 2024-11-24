@@ -30,7 +30,7 @@ public class DetectCollision : MonoBehaviour
         }
         Debug.Log(sensorID + " Collision detected");
 
-        OnFingerTouch?.Invoke(sensorID, true);
+        // OnFingerTouch?.Invoke(sensorID, collision.gameObject, true);
     }
 
     private void OnCollisionExit(Collision collision)
@@ -38,7 +38,7 @@ public class DetectCollision : MonoBehaviour
         UpdateHaptics(true, false);
         Debug.Log(sensorID + " Collision ended");
 
-        OnFingerTouch?.Invoke(sensorID, false);
+        // OnFingerTouch?.Invoke(sensorID, collision.gameObject, false);
     }
 
     private void OnTriggerEnter(Collider other)

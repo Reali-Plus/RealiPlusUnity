@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Grabbable : MonoBehaviour
@@ -7,22 +5,37 @@ public class Grabbable : MonoBehaviour
     private bool isGrabbed = false;
     private Vector3 grabPosition = Vector3.zero;
     private Vector3 grabDirection = Vector3.zero;
+    private Quaternion grabRotationOffset = Quaternion.identity;
     private Transform grabParent = null;
+    private Rigidbody rb;
 
-    void Update()
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
     {
         if (isGrabbed)
         {
-            UpdateTransform();
+            rb.MovePosition(grabParent.position + transform.TransformDirection(grabDirection));
+            rb.MoveRotation(grabParent.rotation * grabRotationOffset);
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 
     public void UpdateTransform()
     {
+        rb.MovePosition(grabParent.position + transform.TransformDirection(grabDirection));
+        rb.MoveRotation(grabParent.rotation * grabRotationOffset);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
         // Follow the grabParent with the same relative position
-        transform.position = grabParent.position + (transform.position - grabPosition);
+        // transform.position = grabParent.position + (transform.position - grabPosition);
         // Rotate the object to keep the same relative direction
-        transform.rotation = Quaternion.FromToRotation(grabDirection, transform.position - grabParent.position) * transform.rotation;
+        // transform.rotation = Quaternion.FromToRotation(grabDirection, transform.position - grabParent.position) * transform.rotation;
     }
 
     public void Grab(Transform grabParent)
@@ -30,7 +43,8 @@ public class Grabbable : MonoBehaviour
         isGrabbed = true;
         this.grabParent = grabParent;
         grabPosition = transform.position;
-        grabDirection = transform.position - grabParent.position;
+        grabDirection = transform.InverseTransformDirection(transform.position - grabParent.position);
+        grabRotationOffset = transform.rotation * Quaternion.Inverse(grabParent.rotation);
     }
 
     public void Release()
