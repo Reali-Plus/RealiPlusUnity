@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public enum SensorID
 {
@@ -14,39 +13,6 @@ public enum SensorID
     Thumb = 7,
     Calibrate = 8
 }
-
-/*public static class SensorOffsetLookup
-{
-    private static Dictionary<SensorID, Vector3> offset;
-
-    private static void Init()
-    {
-        offset = new();
-        offset.Add(SensorID.Logic,      Vector3.zero);
-        offset.Add(SensorID.Hand,       Vector3.zero);
-        offset.Add(SensorID.Shoulder,   new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Index,      new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Major,      new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Annular,    Vector3.zero);
-        offset.Add(SensorID.Auricular,  Vector3.zero);
-        offset.Add(SensorID.Thumb,      new Vector3(0, 0, 0.35f));
-    }
-
-    public static Vector3 GetOffset(SensorID id)
-    {
-        if (offset == null)
-        {
-            Init();
-        }
-
-        if (offset.ContainsKey(id))
-        {
-            return offset[id];
-        }
-
-        return Vector3.zero;
-    }
-}*/
 
 public class SleeveData
 {
