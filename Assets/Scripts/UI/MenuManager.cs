@@ -110,7 +110,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartOption()
     {
-        // Call start game on game manager
+        menu.SetActive(false);
     }
 
     public void InitilializeOption()
