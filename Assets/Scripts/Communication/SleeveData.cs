@@ -90,7 +90,7 @@ public class SleeveData
             return true;
         }
 
-        Debug.Log("Invalid data: " + message);
+        // Debug.Log("Invalid data: " + message);
         return false;
     }
 
