@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Grabbable : MonoBehaviour
 {
+    [SerializeField]
+    private GrabListener grabListener;
+
     private bool isGrabbed = false;
     private Vector3 grabDirection = Vector3.zero;
     private Quaternion grabRotationOffset = Quaternion.identity;
@@ -17,6 +20,7 @@ public class Grabbable : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        grabListener = GameObject.FindGameObjectWithTag("GrabListener").GetComponent<GrabListener>();
     }
 
 /*    private void Update()
@@ -77,8 +81,11 @@ public class Grabbable : MonoBehaviour
 
     public void Release()
     {
-        isGrabbed = false;
-        /*targetPosition = transform.position;
-        targetRotation = transform.rotation;*/
+        if (isGrabbed)
+        {
+            rb.isKinematic = false;
+            isGrabbed = false;
+            grabListener.Release();
+        }
     }
 }

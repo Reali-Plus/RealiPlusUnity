@@ -1328,25 +1328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d32ee97e9a5b74d8827d536d256982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2091223767 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8137874126869397735, guid: 7dc00142cdc494247812e0434729d59d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8074701472637963707}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2091223772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091223767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7357875844c094b8beab0ba8a6c988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nbFingersRequired: 3
 --- !u!114 &661817642678761194 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8074701472092083818, guid: 7dc00142cdc494247812e0434729d59d,
@@ -1725,21 +1706,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PF_RealiPlusSleeve
-      objectReference: {fileID: 0}
-    - target: {fileID: 8578159968048756610, guid: 7dc00142cdc494247812e0434729d59d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8578159968981103095, guid: 7dc00142cdc494247812e0434729d59d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8578159969113481523, guid: 7dc00142cdc494247812e0434729d59d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dc00142cdc494247812e0434729d59d, type: 3}

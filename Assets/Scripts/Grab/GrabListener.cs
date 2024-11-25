@@ -123,12 +123,20 @@ public class GrabListener : MonoBehaviour
         {
             if (obj.Value == nbFingersRequired)
             {
-                Debug.Log(obj.Key.name + " is grabbed by " + nbFingersRequired);
+                // Debug.Log(obj.Key.name + " is grabbed by " + nbFingersRequired);
                 return true;
             }
         }
 
         return false;
+    }
+
+    public void Release()
+    {
+        isGrabbing = false;
+        canRelease = false;
+        grabbedObject = null;
+        Debug.Log("Releasing grab");
     }
 
     public bool ShouldRelease()
