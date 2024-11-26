@@ -130,9 +130,8 @@ public class ShopManager : MiniGameManager
         groceryListHandler.ResetDisplay();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void ReturnGroceryItem(GameObject item)
     {
-        GameObject item = collision.collider.gameObject;
         if (allItemsAvailable.Contains(item))
         {
             ResetItemPosition(item);

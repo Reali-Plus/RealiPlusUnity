@@ -17,11 +17,6 @@ public class DetectCollision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         UpdateHaptics(true, true);
-
-        if (collision.gameObject.TryGetComponent(out Interactable interactable))
-        {
-            interactable.Interact(transform.position);
-        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -32,6 +27,10 @@ public class DetectCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         UpdateHaptics(true, false);
+        if (other.gameObject.TryGetComponent(out Interactable interactable))
+        {
+            interactable.Interact(transform.position);
+        }
     }
 
     private void OnTriggerExit(Collider other)
