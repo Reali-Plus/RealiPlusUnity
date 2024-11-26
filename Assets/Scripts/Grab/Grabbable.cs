@@ -70,7 +70,6 @@ public class Grabbable : MonoBehaviour
         grabPositionOffset = transform.InverseTransformDirection(transform.position - grabParent.position);
         grabRotationOffset = Quaternion.Inverse(transform.rotation) * grabParent.rotation;
         gameObject.layer = LayerMask.NameToLayer("GrabbedObject");
-        Debug.Log("Changes layer mask to " + grabbedObjectLayer.value);
         //rb.isKinematic = true;
     }
 
@@ -82,7 +81,6 @@ public class Grabbable : MonoBehaviour
             isGrabbed = false;
             grabListener.Release();
             gameObject.layer = LayerMask.NameToLayer("Default");
-            Debug.Log("On Release, changes layer mask to " + defaultLayer.value);
         }
     }
 }

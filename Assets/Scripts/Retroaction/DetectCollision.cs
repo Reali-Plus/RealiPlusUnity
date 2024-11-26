@@ -9,7 +9,7 @@ public class DetectCollision : MonoBehaviour
     private HapticsData hapticsData;
     private SleeveCommunication sleeveCommunication;
 
-    public static event Action<SensorID, GameObject, bool> OnFingerTouch;
+    //public static event Action<SensorID, GameObject, bool> OnFingerTouch;
 
     [SerializeField]
     private bool sendCollision = true;
@@ -28,29 +28,25 @@ public class DetectCollision : MonoBehaviour
         {
             interactable.Interact(transform.position);
         }
-
-        // OnFingerTouch?.Invoke(sensorID, collision.gameObject, true);
     }
 
     private void OnCollisionExit(Collision collision)
     {
         UpdateHaptics(true, false);
-
-        // OnFingerTouch?.Invoke(sensorID, collision.gameObject, false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         UpdateHaptics(true, false);
 
-        OnFingerTouch?.Invoke(sensorID, other.gameObject, true);
+        //OnFingerTouch?.Invoke(sensorID, other.gameObject, true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         UpdateHaptics(false, false);
      
-        OnFingerTouch?.Invoke(sensorID, other.gameObject, false);
+        //OnFingerTouch?.Invoke(sensorID, other.gameObject, false);
     }
 
     private void UpdateHaptics(bool retroaction, bool restriction)

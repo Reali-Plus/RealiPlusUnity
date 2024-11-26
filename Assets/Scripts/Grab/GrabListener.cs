@@ -4,114 +4,93 @@ using UnityEngine;
 
 public class GrabListener : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     private int nbFingersRequired = 3;
 
     [SerializeField]
-    private BasketZoneManager basketZoneManager;
+    private BasketZoneManager basketZoneManager;*/
 
-    struct FingerState
-    {
-        public bool isTouching;
-        public Grabbable hitObject;
+    [SerializeField]
+    private GrabZone grabZone;
 
-        public FingerState(bool isTouching, Grabbable hitObject)
-        {
-            this.isTouching = isTouching;
-            this.hitObject = hitObject;
-        }
-    }
+    [SerializeField]
+    private Transform palmTransform;
 
-    private Dictionary<SensorID, FingerState> fingersState = new Dictionary<SensorID, FingerState>();
-    Dictionary<Grabbable, int> objectsTouching = new Dictionary<Grabbable, int>();
+    [SerializeField]
+    private List<Transform> fingersTransforms;
 
+    [SerializeField]
+    private float grabDistance = 0.14f;
+
+    
     private Grabbable grabbedObject = null;
     private bool isGrabbing = false;
 
-    private bool canRelease = false;
 
+    private void Update()
+    {
+        if (isGrabbing)
+        {
+            if (ShouldRelease())
+            {
+                grabbedObject.Release();
+                isGrabbing = false;
+                Debug.Log("Releasing grab");
+            }
+        }
+        else
+        {
+            if (ShouldGrab())
+            {
+                grabbedObject = grabZone.GetClosestObjectTouching();
+                grabbedObject.Grab(transform);
+                isGrabbing = true;
+                Debug.Log("Grab parent " + grabbedObject.name);
+            }
+        }
+    }
 
-    public void OnEnable()
+    /*public void OnEnable()
     {
         DetectCollision.OnFingerTouch += CollisionDetected;
-    }
+    }*/
 
     private void Start()
     {
-        for (int i = 3; i < 8; ++i)
-        {
-            fingersState.Add((SensorID) i, new FingerState(false, null));
-        }
-        objectsTouching = new Dictionary<Grabbable, int>();
+        //fingersTransforms = new List<Transform>();
+
+ 
+        //objectsTouching = new Dictionary<Grabbable, int>();
+        //objectsTouching = new List<GameObject>();
     }
 
-    private void UpdateObjects(Grabbable hitObject, bool fingerState)
-    {
-        if (fingerState)
-        {
-            if (objectsTouching.ContainsKey(hitObject))
-                ++objectsTouching[hitObject];
-            else
-                objectsTouching.Add(hitObject, 1);
-        }
-        else
-        {
-            --objectsTouching[hitObject]; // Find a place to remove the object from the dictionary ?
-        }
-    }
 
-    private void UpdateFigerState(SensorID sensorID, Grabbable hitObject, bool fingerState)
-    {
-        if (fingersState.ContainsKey(sensorID))
-        {
-            FingerState state = fingersState[sensorID];
-            state.isTouching = fingerState;
 
-            if (fingerState)
-                state.hitObject = hitObject;
-            else
-                state.hitObject = null;
 
-            fingersState[sensorID] = state;
-        }
-        else
-        {
-            fingersState.Add(sensorID, new FingerState(fingerState, hitObject));
-        }
-    }
 
-    private void CollisionDetected(SensorID sensorID, GameObject hitObject, bool fingerState)
+    /*private void CollisionDetected(SensorID sensorID, GameObject hitObject, bool fingerState)
     {
         if (!hitObject.TryGetComponent<Grabbable>(out var grabbable))
             return;
 
         UpdateFigerState(sensorID, grabbable, fingerState);
         UpdateObjects(grabbable, fingerState);
-        
-/*        if (isGrabbing)
-        { 
-            if (ShouldRelease())
-            {
-                grabbable.Release();
-                isGrabbing = false;
-                Debug.Log("Releasing grab");
-            }
-        }*/
-/*        else
-        {*/
-            if (!isGrabbing && ShouldGrab()) // check if the object is in a grab zone
-            {
-                Debug.Log("Grabbing");
 
-                grabbedObject = grabbable;
-                grabbable.Grab(transform);
-                Debug.Log("Grab parent " + grabbedObject.name);
-                isGrabbing = true;
-                // canRelease = false;
-                // StartCoroutine(WaitToRelease());
-            }
-        // }
-    }
+        if (!fingerState && isGrabbing && ShouldRelease())
+        {
+            grabbable.Release();
+            isGrabbing = false;
+            Debug.Log("Releasing grab");
+        } 
+        else if (fingerState && !isGrabbing && ShouldGrab())
+        {
+            grabbedObject = grabbable;
+            grabbable.Grab(transform);
+            Debug.Log("Grab parent " + grabbedObject.name);
+            isGrabbing = true;
+        }
+
+    }*/
 
 /*    private IEnumerator WaitToRelease()
     {
@@ -119,21 +98,38 @@ public class GrabListener : MonoBehaviour
         canRelease = true;
     }*/
 
-    // TODO: Check for palm
-    public bool ShouldGrab()
+    public bool ShouldGrab() => CalculateGrabPosition() < grabDistance && grabZone.IsTouchingObject();
+
+    public bool ShouldRelease() => CalculateGrabPosition() > grabDistance;
+
+    public float CalculateGrabPosition()
     {
-        foreach (var obj in objectsTouching)
+        // Calculate the average position of the fingers
+        Vector3 averagePosition = Vector3.zero;
+        foreach (var finger in fingersTransforms)
         {
-            if (basketZoneManager.IsObjectInGrabZone(obj.Key))
-            {
-                if (obj.Value == nbFingersRequired)
-                {
-                    return true;
-                }
-            }
+            averagePosition += finger.position;
         }
 
-        return false;
+        averagePosition /= fingersTransforms.Count;
+
+        // Calculate the distance from the palm to the average position
+
+        float distance = Vector3.Distance(averagePosition, palmTransform.position);
+
+        Debug.Log("Distance : " + distance);
+
+        return distance;
+
+
+ /*       Debug.Log("Distance : " + distance);
+        if (distance > 0.14f) // around 0.16 when in the release position
+        {
+            Debug.Log("Release");
+        } else // around 0.09 when in the grab position
+        {
+            Debug.Log("Grab");
+        }*/
     }
 
     public void Release()
@@ -151,14 +147,4 @@ public class GrabListener : MonoBehaviour
         }
     }
 
-    /*public bool ShouldRelease()
-    {
-        return false; // I AM TESTING IF THE MOVE POSITION WORKS, SO NEVER RELEASE
-        // Debug.Log("Should release: " + objectsTouching[grabbedObject] + "/" + nbFingersRequired);
-        // return canRelease && objectsTouching[grabbedObject] <= nbFingersRequired;
-    }*/
-    public void OnDisable()
-    {
-        DetectCollision.OnFingerTouch -= CollisionDetected;
-    }
 }
