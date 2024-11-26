@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2589407673775506227}
   - component: {fileID: 7442022576610573875}
   - component: {fileID: 7304456870541384517}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PF_PianoWhiteKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4906054319149628623}
   - component: {fileID: 326294148588823442}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 2305090734718927822}
   - component: {fileID: 5763533231197069843}
   - component: {fileID: 8653913660203156078}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 7442022576610573875}
-  pivotBody: {fileID: 326294148588823442}
+  triggerAngleThreshold: 2
+  velocityMultiplier: 10
   decay: 2
   holdDecay: 0.2

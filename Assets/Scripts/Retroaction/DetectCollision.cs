@@ -42,6 +42,7 @@ public class DetectCollision : MonoBehaviour
 
     private void UpdateHaptics(bool retroaction, bool restriction)
     {
+        Debug.Log($"RETRO : {retroaction}, RESTRICT : {restriction}");
         hapticsData.UpdateFeedback(retroaction, restriction);
         sleeveCommunication.SendData(hapticsData);
     }
