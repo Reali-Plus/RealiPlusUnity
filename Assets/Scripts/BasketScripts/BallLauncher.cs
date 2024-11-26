@@ -8,7 +8,12 @@ public class BallLauncher : MiniGameManager
     public Transform initialPosition;
     public Collider hoopCollider;
     private bool ballLaunched = false;
+    private float lastLaunchTime = 0f;
 
+    private const float MIN_TIME_SCALE = 0.15f;
+    private const float MAX_TIME_SCALE = 0.8f;
+    private const float TIME_SCALE_SPEED = 1.5f;
+    private const float MAX_LAUNCH_TIME = 6f;
 
     protected override void StartGame()
     {
@@ -18,11 +23,20 @@ public class BallLauncher : MiniGameManager
 
     void Update()
     {
+        if (ballLaunched && Time.time > lastLaunchTime + MAX_LAUNCH_TIME)
+        {
+            ResetBasket();
+        }
+
         if (Input.GetMouseButtonDown(0) && !ballLaunched)
         {
-            Time.timeScale = 0.5f;
             LaunchBall();
         }
+
+        float timeSpeed = (Input.GetKey(KeyCode.Space) ? -1f : 1f) * TIME_SCALE_SPEED;
+
+        Time.timeScale = Mathf.Clamp(Time.timeScale + timeSpeed * Time.unscaledDeltaTime,
+                                     MIN_TIME_SCALE, MAX_TIME_SCALE);
     }
 
     void LaunchBall()
@@ -36,6 +50,7 @@ public class BallLauncher : MiniGameManager
             ballRigidbody.AddForce(launchDirection * launchForce, ForceMode.Impulse);
 
             ballLaunched = true;
+            lastLaunchTime = Time.time;
         }
     }
 
