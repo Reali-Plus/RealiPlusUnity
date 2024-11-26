@@ -1,67 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &872022715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 872022716}
-  - component: {fileID: 872022719}
-  - component: {fileID: 872022717}
-  m_Layer: 0
-  m_Name: DropZone (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &872022716
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872022715}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8537712820625057780}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &872022719
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872022715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.61347824, y: 0.2715653, z: 1.0443512}
-  m_Center: {x: 0.07878205, y: -0.19566841, z: -0.01847446}
---- !u!54 &872022717
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872022715}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &1601233463918950719
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,8 +336,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8569348568372225879}
-  - {fileID: 2795513807940303949}
-  - {fileID: 872022716}
   m_Father: {fileID: 4093902059110122984}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -672,68 +608,6 @@ Transform:
   m_Father: {fileID: 4093902059110122984}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7013466759349480541
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2795513807940303949}
-  - component: {fileID: 8781693025025746917}
-  - component: {fileID: 1145110457}
-  m_Layer: 0
-  m_Name: DropZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2795513807940303949
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7013466759349480541}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.984, y: 0.15899998, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8537712820625057780}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8781693025025746917
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7013466759349480541}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.85497016, y: 0.2060588, z: 1.0231655}
-  m_Center: {x: 0.0009817034, y: 0.2371467, z: -0.011582732}
---- !u!54 &1145110457
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7013466759349480541}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &7087737451025553168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1430,7 +1303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1800,7 +1672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1927,7 +1798,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2031,7 +1901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2258,7 +2127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2362,7 +2230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2489,7 +2356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2593,7 +2459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 985416e2fc71f7c4faefc6e85b89a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabListener: {fileID: 0}
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
