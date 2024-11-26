@@ -20,7 +20,6 @@ public class BallLauncher : MiniGameManager
     {
         if (Input.GetMouseButtonDown(0) && !ballLaunched)
         {
-            Time.timeScale = 0.5f;
             LaunchBall();
         }
     }
