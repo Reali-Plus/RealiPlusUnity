@@ -5,8 +5,13 @@ public class Grabbable : MonoBehaviour
     [SerializeField]
     private GrabListener grabListener;
 
+    [SerializeField]
+    private LayerMask grabbedObjectLayer;
+    [SerializeField]
+    private LayerMask defaultLayer;
+
     private bool isGrabbed = false;
-    private Vector3 grabDirection = Vector3.zero;
+    private Vector3 grabPositionOffset = Vector3.zero;
     private Quaternion grabRotationOffset = Quaternion.identity;
     private Transform grabParent = null;
     private Rigidbody rb;
@@ -32,12 +37,12 @@ public class Grabbable : MonoBehaviour
         }
     }*/
 
-    void Update()
+    void FixedUpdate()
     {
         if (isGrabbed)
         {
-            Vector3 targetPosition = grabParent.position + transform.TransformDirection(grabDirection);
-            Quaternion targetRotation = grabParent.rotation * grabRotationOffset;
+            Vector3 targetPosition = grabParent.position + transform.TransformDirection(grabPositionOffset);
+            Quaternion targetRotation = grabParent.rotation * Quaternion.Inverse(grabRotationOffset);
 
             // Smooth position
             // Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, Time.fixedDeltaTime * 5f);
@@ -57,35 +62,27 @@ public class Grabbable : MonoBehaviour
         }
     }
 
-    public void UpdateTransform()
-    {
-        rb.MovePosition(grabParent.position + transform.TransformDirection(grabDirection));
-        rb.MoveRotation(grabParent.rotation * grabRotationOffset);
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-        // Follow the grabParent with the same relative position
-        // transform.position = grabParent.position + (transform.position - grabPosition);
-        // Rotate the object to keep the same relative direction
-        // transform.rotation = Quaternion.FromToRotation(grabDirection, transform.position - grabParent.position) * transform.rotation;
-    }
 
     public void Grab(Transform grabParent)
     {
         isGrabbed = true;
         this.grabParent = grabParent;
-        grabDirection = transform.InverseTransformDirection(transform.position - grabParent.position);
-        grabRotationOffset = transform.rotation * Quaternion.Inverse(grabParent.rotation);
-        rb.isKinematic = true;
+        grabPositionOffset = transform.InverseTransformDirection(transform.position - grabParent.position);
+        grabRotationOffset = Quaternion.Inverse(transform.rotation) * grabParent.rotation;
+        gameObject.layer = LayerMask.NameToLayer("GrabbedObject");
+        Debug.Log("Changes layer mask to " + grabbedObjectLayer.value);
+        //rb.isKinematic = true;
     }
 
     public void Release()
     {
         if (isGrabbed)
         {
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
             isGrabbed = false;
             grabListener.Release();
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            Debug.Log("On Release, changes layer mask to " + defaultLayer.value);
         }
     }
 }

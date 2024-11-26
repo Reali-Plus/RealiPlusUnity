@@ -7,6 +7,9 @@ public class GrabListener : MonoBehaviour
     [SerializeField]
     private int nbFingersRequired = 3;
 
+    [SerializeField]
+    private BasketZoneManager basketZoneManager;
+
     struct FingerState
     {
         public bool isTouching;
@@ -85,7 +88,7 @@ public class GrabListener : MonoBehaviour
         UpdateFigerState(sensorID, grabbable, fingerState);
         UpdateObjects(grabbable, fingerState);
         
-        if (isGrabbing)
+/*        if (isGrabbing)
         { 
             if (ShouldRelease())
             {
@@ -93,10 +96,10 @@ public class GrabListener : MonoBehaviour
                 isGrabbing = false;
                 Debug.Log("Releasing grab");
             }
-        }
-        else
-        {
-            if (ShouldGrab())
+        }*/
+/*        else
+        {*/
+            if (!isGrabbing && ShouldGrab()) // check if the object is in a grab zone
             {
                 Debug.Log("Grabbing");
 
@@ -104,27 +107,29 @@ public class GrabListener : MonoBehaviour
                 grabbable.Grab(transform);
                 Debug.Log("Grab parent " + grabbedObject.name);
                 isGrabbing = true;
-                canRelease = false;
-                StartCoroutine(WaitToRelease());
+                // canRelease = false;
+                // StartCoroutine(WaitToRelease());
             }
-        }
+        // }
     }
 
-    private IEnumerator WaitToRelease()
+/*    private IEnumerator WaitToRelease()
     {
         yield return new WaitForSeconds(2);
         canRelease = true;
-    }
+    }*/
 
     // TODO: Check for palm
     public bool ShouldGrab()
     {
         foreach (var obj in objectsTouching)
         {
-            if (obj.Value == nbFingersRequired)
+            if (basketZoneManager.IsObjectInGrabZone(obj.Key))
             {
-                // Debug.Log(obj.Key.name + " is grabbed by " + nbFingersRequired);
-                return true;
+                if (obj.Value == nbFingersRequired)
+                {
+                    return true;
+                }
             }
         }
 
@@ -134,17 +139,24 @@ public class GrabListener : MonoBehaviour
     public void Release()
     {
         isGrabbing = false;
-        canRelease = false;
-        grabbedObject = null;
+        grabbedObject = null; // TODO remove this vrariable
         Debug.Log("Releasing grab");
     }
 
-    public bool ShouldRelease()
+    public void ReleaseCurrentObject()
+    {
+        if (isGrabbing)
+        {
+            grabbedObject.Release();
+        }
+    }
+
+    /*public bool ShouldRelease()
     {
         return false; // I AM TESTING IF THE MOVE POSITION WORKS, SO NEVER RELEASE
         // Debug.Log("Should release: " + objectsTouching[grabbedObject] + "/" + nbFingersRequired);
         // return canRelease && objectsTouching[grabbedObject] <= nbFingersRequired;
-    }
+    }*/
     public void OnDisable()
     {
         DetectCollision.OnFingerTouch -= CollisionDetected;
