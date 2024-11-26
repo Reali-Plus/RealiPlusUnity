@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class GrabListener : MonoBehaviour
 {
-    /*[SerializeField]
-    private int nbFingersRequired = 3;
-
-    [SerializeField]
-    private BasketZoneManager basketZoneManager;*/
-
     [SerializeField]
     private GrabZone grabZone;
 
@@ -49,54 +43,6 @@ public class GrabListener : MonoBehaviour
             }
         }
     }
-
-    /*public void OnEnable()
-    {
-        DetectCollision.OnFingerTouch += CollisionDetected;
-    }*/
-
-    private void Start()
-    {
-        //fingersTransforms = new List<Transform>();
-
- 
-        //objectsTouching = new Dictionary<Grabbable, int>();
-        //objectsTouching = new List<GameObject>();
-    }
-
-
-
-
-
-    /*private void CollisionDetected(SensorID sensorID, GameObject hitObject, bool fingerState)
-    {
-        if (!hitObject.TryGetComponent<Grabbable>(out var grabbable))
-            return;
-
-        UpdateFigerState(sensorID, grabbable, fingerState);
-        UpdateObjects(grabbable, fingerState);
-
-        if (!fingerState && isGrabbing && ShouldRelease())
-        {
-            grabbable.Release();
-            isGrabbing = false;
-            Debug.Log("Releasing grab");
-        } 
-        else if (fingerState && !isGrabbing && ShouldGrab())
-        {
-            grabbedObject = grabbable;
-            grabbable.Grab(transform);
-            Debug.Log("Grab parent " + grabbedObject.name);
-            isGrabbing = true;
-        }
-
-    }*/
-
-/*    private IEnumerator WaitToRelease()
-    {
-        yield return new WaitForSeconds(2);
-        canRelease = true;
-    }*/
 
     public bool ShouldGrab() => CalculateGrabPosition() < grabDistance && grabZone.IsTouchingObject();
 
