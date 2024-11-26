@@ -33,7 +33,6 @@ public class SerialCommunication : Communication
         {   
             try
             {
-                Debug.Log("Sending data: " + hapticsData.ToString());
                 serialPort.Write(hapticsData.ToString());
             }
             catch (TimeoutException)
@@ -48,7 +47,6 @@ public class SerialCommunication : Communication
             try
             {
                 string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
-                Debug.Log("Received data: " + serialInput);
                 return AddData(serialInput);
             }
             catch (TimeoutException) { }
