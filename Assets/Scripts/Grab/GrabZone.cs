@@ -4,7 +4,7 @@ using UnityEngine;
 public class GrabZone : MonoBehaviour
 {
     [SerializeField]
-    private Transform palmTransform;
+    private Transform grabPivot;
 
     private List<GameObject> objectsTouching = new List<GameObject>();
 
@@ -33,12 +33,12 @@ public class GrabZone : MonoBehaviour
             return null;
 
         GameObject closestObject = objectsTouching[0];
-        float minDistance = Vector3.Distance(palmTransform.position, closestObject.transform.position);
+        float minDistance = Vector3.Distance(grabPivot.position, closestObject.transform.position);
         float distance;
 
         for (int i = 0; i < objectsTouching.Count; ++i)
         {
-            distance = Vector3.Distance(palmTransform.position, objectsTouching[i].transform.position);
+            distance = Vector3.Distance(grabPivot.position, objectsTouching[i].transform.position);
             if (distance < minDistance)
             {
                 minDistance = distance;
