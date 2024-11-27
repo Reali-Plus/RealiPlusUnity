@@ -67,7 +67,7 @@ public class SensorController : MonoBehaviour
 
     private float GetStabilizerFactor()
     {
-        float beta = stabilizerFactor / Mathf.Clamp(stabilizerError, 0.1f, 1f); // TODO -> Parameter
+        float beta = stabilizerFactor / Mathf.Clamp(stabilizerError, 0.1f, 1f);
         float kTime = Mathf.Exp(-Mathf.Pow(stabilizerError, 2));
         float kNorm = Mathf.Exp(-Mathf.Pow(currentAccel.sqrMagnitude - 1, 2));
         float k = kNorm * kTime;
