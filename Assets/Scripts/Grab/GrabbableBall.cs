@@ -13,6 +13,9 @@ public class GrabbableBall : Grabbable
     [SerializeField]
     private Collider hoopCollider;
 
+    [SerializeField]
+    private BallTrajectory ballTrajectory;
+
 
     private bool ballLaunched = false;
 
@@ -27,6 +30,8 @@ public class GrabbableBall : Grabbable
 
     private void Update()
     {
+        if (!ballLaunched)
+            ballTrajectory.ShowTrajectoryLine(ballRigidbody.position, (hoop.position - ballRigidbody.position).normalized * launchForce / ballRigidbody.mass);
         if (Input.GetMouseButtonDown(0) && !ballLaunched)
         {
             LaunchBall();
