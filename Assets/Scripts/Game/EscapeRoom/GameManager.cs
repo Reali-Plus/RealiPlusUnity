@@ -50,9 +50,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        interactionsEnabled = true;
+        interactionsEnabled = false;
         currentState = GameState.Menu;
         UpdateGameState();
+        mainMenu.gameObject.SetActive(false);
     }
 
     void Update()
@@ -160,4 +161,20 @@ public class GameManager : MonoBehaviour
             miniGamesController.transform.Rotate(0, angleDifference, 0);
         }
     }
+
+    public void DeactivateGame(bool interaction)
+    {
+        interactionsEnabled = interaction;
+        if (interaction == true)
+        {
+            Debug.Log("interaction: setActive true");
+            mainMenu.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("interaction: setActive false");
+            mainMenu.gameObject.SetActive(false);
+        }
+    }
+
 }

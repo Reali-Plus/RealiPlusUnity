@@ -41,10 +41,11 @@ public class MenuManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         warningText = warningMessage.GetComponentInChildren<TMPro.TMP_Text>();
 
-        gameManager.InteractionsEnabled = false;
+        gameManager.DeactivateGame(true);
 
         if (isTestMode)
         {
+            gameManager.DeactivateGame(false);
             menu.SetActive(false);
             DeactivateWarning();
             sleeveCommunication.InitilializeCommunication();
@@ -128,6 +129,7 @@ public class MenuManager : MonoBehaviour
     public void StartOption()
     {
         menu.SetActive(false);
+        gameManager.DeactivateGame(true);
     }
 
     public void InitilializeOption()
