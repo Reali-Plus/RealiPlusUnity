@@ -167,12 +167,10 @@ public class GameManager : MonoBehaviour
         interactionsEnabled = interaction;
         if (interaction == true)
         {
-            Debug.Log("interaction: setActive true");
             mainMenu.gameObject.SetActive(true);
         }
         else
         {
-            Debug.Log("interaction: setActive false");
             mainMenu.gameObject.SetActive(false);
         }
     }

@@ -34,7 +34,6 @@ public class MenuManager : MonoBehaviour
 
     private const string communicationError = "Erreur de communication: ";
 
-
     private void Start()
     {
         sleeveCommunication = FindObjectOfType<SleeveCommunication>();
