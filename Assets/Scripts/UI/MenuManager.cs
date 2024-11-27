@@ -43,6 +43,7 @@ public class MenuManager : MonoBehaviour
         {
             menu.SetActive(false);
             DeactivateWarning();
+            sleeveCommunication.InitilializeCommunication();
         }
         else
         {
