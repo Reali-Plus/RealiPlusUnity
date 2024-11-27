@@ -13,6 +13,8 @@ public class SensorController : MonoBehaviour
     [Header("Gravity stabilizer")]
     [SerializeField, Range(0f, 1f)]
     private float stabilizerRate = 0.05f;
+    [SerializeField, Min(0.01f)]
+    private float stabilizerFactor = 50f;
 
     private SleeveData sleeveData;
     private Vector3 currentAccel;
@@ -65,7 +67,7 @@ public class SensorController : MonoBehaviour
 
     private float GetStabilizerFactor()
     {
-        float beta = 50 / Mathf.Clamp(stabilizerError, 0.1f, 1f); // TODO -> Parameter
+        float beta = stabilizerFactor / Mathf.Clamp(stabilizerError, 0.1f, 1f);
         float kTime = Mathf.Exp(-Mathf.Pow(stabilizerError, 2));
         float kNorm = Mathf.Exp(-Mathf.Pow(currentAccel.sqrMagnitude - 1, 2));
         float k = kNorm * kTime;
