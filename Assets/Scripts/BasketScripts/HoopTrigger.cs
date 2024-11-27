@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class HoopTrigger : MonoBehaviour
 {
-    public int score = 0;
+    [SerializeField] private ParticleSystem goalVFX;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ball"))
+        if (other.gameObject.CompareTag("Ball") && goalVFX != null)
         {
-            score += 2;
-            Debug.Log("Score: " + score);
+            goalVFX.Play();
         }
     }
 }

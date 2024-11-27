@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1101,10 +1101,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1102058514}
     m_Modifications:
-    - target: {fileID: 1578026998, guid: e2b10957e6dc6da4aa4f1a290dce42a7, type: 3}
-      propertyPath: grabbableBall
-      value: 
-      objectReference: {fileID: 1949240846}
     - target: {fileID: 2447087823979252692, guid: e2b10957e6dc6da4aa4f1a290dce42a7,
         type: 3}
       propertyPath: m_Name
@@ -3190,12 +3186,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5440707293445741943, guid: 494f6d43e170e9145bc7865d243ee00b,
     type: 3}
   m_PrefabInstance: {fileID: 1341288757}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &763141560 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8923648216427889627, guid: e2b10957e6dc6da4aa4f1a290dce42a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 191131894}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &796036300
 PrefabInstance:
@@ -5433,12 +5423,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 978556748}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1470145296 stripped
-MeshCollider:
-  m_CorrespondingSourceObject: {fileID: 1918267117, guid: e2b10957e6dc6da4aa4f1a290dce42a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 191131894}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1482502711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1686021177305034388, guid: ebee340de387f334f9ac44e044abd8fb,
@@ -6776,12 +6760,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1823517429}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1824684690 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8898391900887464020, guid: e2b10957e6dc6da4aa4f1a290dce42a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 191131894}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1840711543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7405846476849834440, guid: c6308cb7062fac34e8e50600086b12a1,
@@ -6872,39 +6850,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 9.945, y: 93.419, z: -0.071}
---- !u!1 &1949240840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1196438970354727087, guid: e2b10957e6dc6da4aa4f1a290dce42a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 191131894}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1949240843 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 1701445217, guid: e2b10957e6dc6da4aa4f1a290dce42a7,
-    type: 3}
-  m_PrefabInstance: {fileID: 191131894}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1949240846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949240840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 351da9e9d0847d846934edba5bde8f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbedObjectLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  grabbableLayerMask: GrabbedObject
-  rb: {fileID: 1949240843}
-  launchForce: 0.52
-  hoop: {fileID: 1824684690}
-  initialPosition: {fileID: 763141560}
-  hoopCollider: {fileID: 1470145296}
 --- !u!1001 &1983783014
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ public class Grabbable : MonoBehaviour
     }
 
 
-    public void Grab(Transform grabParent)
+    public virtual void Grab(Transform grabParent)
     {
         isGrabbed = true;
         this.grabParent = grabParent;

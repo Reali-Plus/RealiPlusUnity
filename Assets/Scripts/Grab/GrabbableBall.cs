@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GrabbableBall : Grabbable
@@ -11,7 +12,9 @@ public class GrabbableBall : Grabbable
     [SerializeField]
     private Transform initialPosition;
     [SerializeField]
-    private Collider hoopCollider;
+    private float resetDelay = 5f;
+
+    private Coroutine resetCoroutine;
 
     [SerializeField]
     private BallTrajectory ballTrajectory;
@@ -28,14 +31,30 @@ public class GrabbableBall : Grabbable
         ballRigidbody.position = initialPosition.position;
     }
 
+    private void OnDestroy()
+    {
+        StopResetCoroutine();
+    }
+
     private void Update()
     {
         if (!ballLaunched)
             ballTrajectory.ShowTrajectoryLine(ballRigidbody.position, (hoop.position - ballRigidbody.position).normalized * launchForce / ballRigidbody.mass);
+        
+        if (!gameObject.activeInHierarchy)
+            return;
+
         if (Input.GetMouseButtonDown(0) && !ballLaunched)
         {
             LaunchBall();
         }
+    }
+
+    public override void Grab(Transform grabParent)
+    {
+        base.Grab(grabParent);
+        ballLaunched = false;
+        StopResetCoroutine();
     }
 
     public override void Release()
@@ -49,35 +68,36 @@ public class GrabbableBall : Grabbable
 
     private void LaunchBall()
     {
-        if (ballRigidbody != null && hoop != null)
+        if (ballRigidbody == null || hoop == null)
         {
-            ballRigidbody.useGravity = true;
-
-            Vector3 launchDirection = (hoop.position - ballRigidbody.position).normalized;
-
-            ballRigidbody.AddForce(launchDirection * launchForce, ForceMode.Impulse);
-
-            ballLaunched = true;
+            Debug.LogWarning($"Failed to launch ball, make sure all fields are set correctly.");
+            return;
         }
+
+        ballRigidbody.useGravity = true;
+
+        Vector3 launchDirection = (hoop.position - ballRigidbody.position).normalized;
+
+        ballRigidbody.AddForce(launchDirection * launchForce, ForceMode.Impulse);
+
+        ballLaunched = true;
+
+        resetCoroutine = StartCoroutine(ResetAfterDelay(resetDelay));
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator ResetAfterDelay(float duration)
     {
-        if (other == hoopCollider)
-        {
-            StartCoroutine(ResetBall());
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        StartCoroutine(ResetBall());
-    }
-
-    System.Collections.IEnumerator ResetBall()
-    {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(duration);
         ResetGrabbableBall();
+    }
+
+    private void StopResetCoroutine()
+    {
+        if (resetCoroutine != null)
+        {
+            StopCoroutine(resetCoroutine);
+            resetCoroutine = null;
+        }
     }
 
     public void ResetGrabbableBall()
@@ -87,5 +107,7 @@ public class GrabbableBall : Grabbable
         ballRigidbody.useGravity = false;
         ballRigidbody.position = initialPosition.position;
         ballLaunched = false;
+
+        StopResetCoroutine();
     }
 }
