@@ -26,20 +26,31 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private TMPro.TMP_Text warningText;
 
+    [SerializeField] 
+    private bool isTestMode = false;
+
     private SleeveCommunication sleeveCommunication;
 
     private const string communicationError = "Erreur de communication: ";
+
 
     private void Start()
     {
         sleeveCommunication = FindObjectOfType<SleeveCommunication>();
         warningText = warningMessage.GetComponentInChildren<TMPro.TMP_Text>();
 
-        SerialCommunication.OnCommunicationError += ShowCommunicationError;
+        if (isTestMode)
+        {
+            menu.SetActive(false);
+            DeactivateWarning();
+        }
+        else
+        {
+            SerialCommunication.OnCommunicationError += ShowCommunicationError;
 
-        ActivateWarning("Communication non initialisée");
-        ShowMainMenu();
-        Debug.Log("ALLO");
+            ActivateWarning("Communication non initialisée");
+            ShowMainMenu();
+        }
     }
 
     private void Update()
