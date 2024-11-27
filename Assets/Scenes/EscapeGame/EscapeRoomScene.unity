@@ -544,6 +544,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2979089628493838858, guid: 7dc00142cdc494247812e0434729d59d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3456673818454044479, guid: 7dc00142cdc494247812e0434729d59d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -567,6 +572,11 @@ PrefabInstance:
     - target: {fileID: 4163180381686134612, guid: 7dc00142cdc494247812e0434729d59d,
         type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5561324393996453149, guid: 7dc00142cdc494247812e0434729d59d,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8074701473207349274, guid: 7dc00142cdc494247812e0434729d59d,
@@ -628,6 +638,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PF_RealiPlusSleeve
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679577637125346651, guid: 7dc00142cdc494247812e0434729d59d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dc00142cdc494247812e0434729d59d, type: 3}
@@ -4387,7 +4402,7 @@ PrefabInstance:
     - target: {fileID: 9143125453186198875, guid: c06a18049b7845f488b9b6664c39471e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.217
+      value: -1.475
       objectReference: {fileID: 0}
     - target: {fileID: 9143125453186198875, guid: c06a18049b7845f488b9b6664c39471e,
         type: 3}
