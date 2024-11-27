@@ -1,23 +1,31 @@
 using UnityEngine;
 
-public class BallLauncher : MiniGameManager
+public class GrabbableBall : Grabbable
 {
-    public Rigidbody ballRigidbody;
-    public float launchForce = 10f;
-    public Transform hoop;
-    public Transform initialPosition;
-    public Collider hoopCollider;
+    private Rigidbody ballRigidbody;
+
+    [SerializeField]
+    private float launchForce = 10f;
+    [SerializeField]
+    private Transform hoop;
+    [SerializeField]
+    private Transform initialPosition;
+    [SerializeField]
+    private Collider hoopCollider;
+
+
     private bool ballLaunched = false;
 
     public override void Initialize() {  }
-
-    protected override void StartGame()
+    
+    private void Start()
     {
+        ballRigidbody = GetComponent<Rigidbody>();
         ballRigidbody.useGravity = false;
         ballRigidbody.position = initialPosition.position;
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !ballLaunched)
         {
@@ -25,7 +33,16 @@ public class BallLauncher : MiniGameManager
         }
     }
 
-    void LaunchBall()
+    public override void Release()
+    {
+        base.Release();
+        if (!ballLaunched)
+        {
+            LaunchBall();
+        }
+    }
+
+    private void LaunchBall()
     {
         if (ballRigidbody != null && hoop != null)
         {
@@ -39,7 +56,7 @@ public class BallLauncher : MiniGameManager
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other == hoopCollider)
         {
@@ -55,20 +72,15 @@ public class BallLauncher : MiniGameManager
     System.Collections.IEnumerator ResetBall()
     {
         yield return new WaitForSeconds(0.5f);
-        ResetBasket();
+        ResetGrabbableBall();
     }
 
-    private void ResetBasket()
+    public void ResetGrabbableBall()
     {
         ballRigidbody.velocity = Vector3.zero;
         ballRigidbody.angularVelocity = Vector3.zero;
         ballRigidbody.useGravity = false;
         ballRigidbody.position = initialPosition.position;
         ballLaunched = false;
-    }
-
-    protected override void ResetGame()
-    {
-        ResetBasket();
     }
 }
