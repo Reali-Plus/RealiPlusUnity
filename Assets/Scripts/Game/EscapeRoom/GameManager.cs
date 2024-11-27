@@ -5,9 +5,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MiniGameManager firstGame;
     [SerializeField] private MiniGameManager secondGame;
     [SerializeField] private MiniGameManager thirdGame;
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] public GameObject mainMenu;
     [SerializeField] private GameObject miniGamesController;
     private bool interactionsEnabled = true;
+    private MenuManager menuManager;
 
     private enum GameState
     {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     #region Singleton
     private static GameManager _instance;
+
     private void Awake()
     {
         if (_instance)
@@ -50,10 +52,19 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        menuManager = FindObjectOfType<MenuManager>();
+
         interactionsEnabled = false;
         currentState = GameState.Menu;
         UpdateGameState();
         mainMenu.gameObject.SetActive(false);
+
+        Debug.Log("IsTESTMODE:" + menuManager.isTestMode);
+        if (menuManager.isTestMode)
+        {
+            interactionsEnabled = true;
+            mainMenu.gameObject.SetActive(true);
+        }
     }
 
     void Update()
@@ -167,10 +178,12 @@ public class GameManager : MonoBehaviour
         interactionsEnabled = interaction;
         if (interaction == true)
         {
+            Debug.Log("true");
             mainMenu.gameObject.SetActive(true);
         }
         else
         {
+            Debug.Log("false");
             mainMenu.gameObject.SetActive(false);
         }
     }

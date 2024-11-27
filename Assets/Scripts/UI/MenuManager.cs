@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour
     private TMPro.TMP_Text warningText;
 
     [SerializeField] 
-    private bool isTestMode = false;
+    public bool isTestMode = false;
 
     private SleeveCommunication sleeveCommunication;
     private GameManager gameManager;
@@ -40,17 +40,18 @@ public class MenuManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         warningText = warningMessage.GetComponentInChildren<TMPro.TMP_Text>();
 
-        gameManager.DeactivateGame(true);
 
         if (isTestMode)
         {
             gameManager.DeactivateGame(false);
+            gameManager.mainMenu.gameObject.SetActive(false);
             menu.SetActive(false);
             DeactivateWarning();
             sleeveCommunication.InitilializeCommunication();
         }
         else
         {
+            gameManager.DeactivateGame(false);
             SerialCommunication.OnCommunicationError += ShowCommunicationError;
 
             ActivateWarning("Communication non initialisée");
