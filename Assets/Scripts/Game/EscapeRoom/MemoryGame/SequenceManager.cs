@@ -7,7 +7,7 @@ public class SequenceManager : MonoBehaviour
 {
 
     [SerializeField] int sequenceDifficulty = 5;
-    [SerializeField] float sequenceSpeed = 1f; 
+    private float sequenceDelay = 0.5f;
     private int[] randomSequence;  
     private CubeButton[] cubes;
     public bool isSequencePlaying = false;
@@ -40,7 +40,7 @@ public class SequenceManager : MonoBehaviour
         foreach (int index in randomSequence)
         {
             cubes[index].Highlight();
-            yield return new WaitForSeconds(sequenceSpeed);
+            yield return new WaitForSeconds(sequenceDelay);
         }
         isSequencePlaying = false;
     }

@@ -108,4 +108,9 @@ public class SocketCommunication : Communication
 
         return isValid;
     }
+
+    public override bool TestCommunication()
+    {
+        return udpClient != null && endPoint != null;
+    }
 }

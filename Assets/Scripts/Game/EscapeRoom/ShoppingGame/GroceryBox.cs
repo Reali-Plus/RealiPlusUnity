@@ -8,6 +8,8 @@ public class GroceryBox : MonoBehaviour
     private GroceryListHandler groceryListHandler;
     private List<GameObject> collectedItems = new List<GameObject>();
 
+    public List<GameObject> CollectedItems { get => collectedItems; set => collectedItems = value; }
+
     private void Start()
     {
         shopManager = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<ShopManager>();
@@ -18,17 +20,21 @@ public class GroceryBox : MonoBehaviour
     {
         if (!shopManager.alreadyWon)
         {
-            if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
+            if (other.gameObject.CompareTag("GroceryItem"))
             {
-                collectedItems.Add(other.gameObject);
-                groceryListHandler.MarkItemAsCorrect(other.gameObject);
+                if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
+                {
+                    collectedItems.Add(other.gameObject);
+                    groceryListHandler.MarkItemAsCorrect(other.gameObject);
+                }
+                else
+                {
+                    collectedItems.Add(other.gameObject);
+                    groceryListHandler.MarkItemAsIncorrect(other.gameObject);
+
+                }
+                shopManager.CheckIfAllItemsCollected(collectedItems);
             }
-            else
-            {
-                collectedItems.Add(other.gameObject);
-                groceryListHandler.MarkItemAsIncorrect(other.gameObject);
-            }
-            shopManager.CheckIfAllItemsCollected(collectedItems);
         }
     }
 
@@ -36,16 +42,19 @@ public class GroceryBox : MonoBehaviour
     {
         if (!shopManager.alreadyWon)
         {
-            collectedItems.Remove(other.gameObject);
-            if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
+            if (other.gameObject.CompareTag("GroceryItem"))
             {
-                groceryListHandler.MarkItemAsCorrect(other.gameObject);
+                collectedItems.Remove(other.gameObject);
+                if (groceryListHandler.GetGroceryList().Contains(other.gameObject))
+                {
+                    groceryListHandler.MarkItemAsCorrect(other.gameObject);
+                }
+                else
+                {
+                    groceryListHandler.MarkItemAsIncorrect(other.gameObject);
+                }
+                shopManager.CheckIfAllItemsCollected(collectedItems);
             }
-            else
-            {
-                groceryListHandler.MarkItemAsIncorrect(other.gameObject);
-            }
-            shopManager.CheckIfAllItemsCollected(collectedItems);
         }
     }
 }

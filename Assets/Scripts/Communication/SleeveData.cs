@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public enum SensorID
 {
@@ -7,45 +6,12 @@ public enum SensorID
     Logic = 0,
     Hand = 1,
     Shoulder = 2,
-    Index = 6,
-    Major = 5,
-    Annular = 4,
-    Auricular = 3,
+    Index = 3,
+    Major = 4,
+    Annular = 5,
+    Auricular = 6,
     Thumb = 7,
     Calibrate = 8
-}
-
-public static class SensorOffsetLookup
-{
-    private static Dictionary<SensorID, Vector3> offset;
-
-    private static void Init()
-    {
-        offset = new();
-        offset.Add(SensorID.Logic,      Vector3.zero);
-        offset.Add(SensorID.Hand,       Vector3.zero);
-        offset.Add(SensorID.Shoulder,   new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Index,      new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Major,      new Vector3(0, 0, 0.35f));
-        offset.Add(SensorID.Annular,    Vector3.zero);
-        offset.Add(SensorID.Auricular,  Vector3.zero);
-        offset.Add(SensorID.Thumb,      new Vector3(0, 0, 0.35f));
-    }
-
-    public static Vector3 GetOffset(SensorID id)
-    {
-        if (offset == null)
-        {
-            Init();
-        }
-
-        if (offset.ContainsKey(id))
-        {
-            return offset[id];
-        }
-
-        return Vector3.zero;
-    }
 }
 
 public class SleeveData
@@ -106,7 +72,7 @@ public class SleeveData
                 accelerations[i - 1] = float.TryParse(data[i], out float accel) ? accel : accelerations[i - 1];
             }
 
-            Accelerometer.UpdateData(accelerations, SensorOffsetLookup.GetOffset(SensorID));
+            Accelerometer.UpdateData(accelerations);
 
             // Gyroscope
             if (data.Length >= 7) // Gyroscope data (GyroX, GyroY, GyroZ)
@@ -123,12 +89,11 @@ public class SleeveData
             return true;
         }
 
-        Debug.Log("Invalid data: " + message);
         return false;
     }
 
     public override string ToString()
     {
-        return "[ID] " + SensorID.ToString() + " [Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
+        return (int) SensorID + " [Acc] " + Accelerometer.ToString() + " [Gyro] " + Gyroscope.ToString();
     }
 }

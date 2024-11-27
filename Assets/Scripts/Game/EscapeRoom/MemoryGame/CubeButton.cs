@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeButton : Interactable
@@ -22,35 +21,17 @@ public class CubeButton : Interactable
         audioSource = GetComponent<AudioSource>();
         ResetColor();
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (CanInteractable && collision.collider.CompareTag("Ball") && !sequenceManager.isSequencePlaying)
-        {
-            Interact(collision.transform.position);
-        }
-    }
     
     //FOR TESTING WITH MOUSE
     private void OnMouseDown()
     {
-        if (!sequenceManager.isSequencePlaying)
-        {
-            Highlight();
-
-            if (memoryManager.IsStartButton(this))
-            {
-                memoryManager.PlaySequence();
-            }
-            else
-            {
-                memoryManager.CheckSequence(this);
-            }
-        }
+        Interact(transform.position);
     }
 
     public override void Interact(Vector3 position)
     {
+        if (!CanInteract || sequenceManager.isSequencePlaying) return;
+
         Highlight();
 
         if (memoryManager.IsStartButton(this))
@@ -59,9 +40,18 @@ public class CubeButton : Interactable
         }
         else
         {
+            CanInteract = false;
             memoryManager.CheckSequence(this);
+            StartCoroutine(ReactivateInteraction());
         }
     }
+
+    IEnumerator ReactivateInteraction()
+    {
+        yield return new WaitForSeconds(0.5f);
+        CanInteract = true;
+    }
+
 
     public void Highlight()
     {

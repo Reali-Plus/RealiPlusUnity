@@ -13,6 +13,8 @@ public class SensorController : MonoBehaviour
     [Header("Gravity stabilizer")]
     [SerializeField, Range(0f, 1f)]
     private float stabilizerRate = 0.05f;
+    [SerializeField, Min(0.01f)]
+    private float stabilizerFactor = 50f;
 
     private SleeveData sleeveData;
     private Vector3 currentAccel;
@@ -29,9 +31,11 @@ public class SensorController : MonoBehaviour
         if (supportRotation)
         {
             // Apply rotation
-            Quaternion gyroRot = Quaternion.Euler(new Vector3(sleeveData.Gyroscope.X, sleeveData.Gyroscope.Y, sleeveData.Gyroscope.Z) * Time.deltaTime);
-            Quaternion gravRot = Quaternion.FromToRotation(currentAccel, transform.InverseTransformDirection(Vector3.down));
-            transform.localRotation *= Quaternion.Slerp(gyroRot, gravRot, GetStabilizerFactor());
+            Vector3 gyroRot = new Vector3(sleeveData.Gyroscope.X, sleeveData.Gyroscope.Y, sleeveData.Gyroscope.Z) * Time.deltaTime;
+            Quaternion rawRot = Quaternion.Euler(gyroRot);
+            Quaternion gravRot = Quaternion.Euler(Vector3.Scale(gyroRot, new Vector3(Mathf.Abs(currentAccel.x), Mathf.Abs(currentAccel.y), Mathf.Abs(currentAccel.z))));
+            Quaternion stabilizerRot = gravRot * Quaternion.FromToRotation(currentAccel, transform.InverseTransformDirection(Vector3.down));
+            transform.localRotation *= Quaternion.Slerp(rawRot, stabilizerRot, GetStabilizerFactor());
         }
 
         if (supportTranslation)
@@ -51,8 +55,9 @@ public class SensorController : MonoBehaviour
 
         Vector3 oldAccel = currentAccel;
         currentAccel = new Vector3(sleeveData.Accelerometer.X, sleeveData.Accelerometer.Y, sleeveData.Accelerometer.Z);
-        stabilizerError = (1 - stabilizerRate) * stabilizerError + 
-                           stabilizerRate * 100 * (oldAccel - currentAccel).sqrMagnitude; // 100 : Amplify error by an arbitrary amount
+        float currentError = 100 * (oldAccel - currentAccel).sqrMagnitude + 
+                             0.05f * Mathf.Abs(sleeveData.Gyroscope.X * sleeveData.Gyroscope.Y * sleeveData.Gyroscope.Z); // Amplify error by an arbitrary amount
+        stabilizerError = (1 - stabilizerRate) * stabilizerError + stabilizerRate * currentError;
     }
 
     public SensorID GetSensorID()
@@ -62,7 +67,7 @@ public class SensorController : MonoBehaviour
 
     private float GetStabilizerFactor()
     {
-        float beta = 50; // TODO -> Parameter
+        float beta = stabilizerFactor / Mathf.Clamp(stabilizerError, 0.1f, 1f);
         float kTime = Mathf.Exp(-Mathf.Pow(stabilizerError, 2));
         float kNorm = Mathf.Exp(-Mathf.Pow(currentAccel.sqrMagnitude - 1, 2));
         float k = kNorm * kTime;

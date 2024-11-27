@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DetectCollision : MonoBehaviour
@@ -17,25 +16,31 @@ public class DetectCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        hapticsData.UpdateFeedback(true, true);
-        sleeveCommunication.SendData(hapticsData);
+        UpdateHaptics(true, true);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        hapticsData.UpdateFeedback(true, false);
-        sleeveCommunication.SendData(hapticsData);
+        UpdateHaptics(true, false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        hapticsData.UpdateFeedback(true, false);
-        sleeveCommunication.SendData(hapticsData);
+        UpdateHaptics(true, false);
+        if (other.gameObject.TryGetComponent(out Interactable interactable))
+        {
+            interactable.Interact(transform.position);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        hapticsData.UpdateFeedback(false, false);
+        UpdateHaptics(false, false);
+    }
+
+    private void UpdateHaptics(bool retroaction, bool restriction)
+    {
+        hapticsData.UpdateFeedback(retroaction, restriction);
         sleeveCommunication.SendData(hapticsData);
     }
 }

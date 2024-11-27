@@ -4,14 +4,15 @@ using System;
 
 public class SerialCommunication : Communication
 {
-    // TODO : List available ports and baud rates to choose from a menu
-    private string portName = "COM8";
-    private int baudRate = 115200;
+    public string PortName { get; set; } = "COM8";
+    public int BaudRate { get; set; } = 115200;
     private SerialPort serialPort;
-    
+
+    public static event Action<string> OnCommunicationError;
+
     public override void Initialize()
     {
-        serialPort = new SerialPort(portName, baudRate);
+        serialPort = new SerialPort(PortName, BaudRate);
         serialPort.ReadTimeout = 2; // ms
         try
         {
@@ -22,6 +23,7 @@ public class SerialCommunication : Communication
         catch (Exception e)
         {
             Debug.LogError("Error opening serial port: " + e.Message);
+            OnCommunicationError?.Invoke("Le port " + PortName + " n'existe pas.");
         }
     }
 
@@ -31,7 +33,6 @@ public class SerialCommunication : Communication
         {   
             try
             {
-                Debug.Log("Sending data: " + hapticsData.ToString());
                 serialPort.Write(hapticsData.ToString());
             }
             catch (TimeoutException)
@@ -60,5 +61,17 @@ public class SerialCommunication : Communication
         {
             serialPort.Close();
         }
+    }
+
+    public override bool TestCommunication()
+    {
+        if (serialPort != null && serialPort.IsOpen)
+        {
+            serialPort.WriteLine("Test");
+            string serialInput = serialPort.ReadLine();
+            return serialInput == "Test";
+        }
+
+        return false;
     }
 }

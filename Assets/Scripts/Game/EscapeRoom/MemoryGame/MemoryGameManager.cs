@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class MemoryGameManager : MonoBehaviour
+public class MemoryGameManager : MiniGameManager
 {
     [SerializeField] private CubeButton[] cubes;
     [SerializeField] private AudioSource successSound;
     [SerializeField] private AudioSource failureSound;
+    [SerializeField] private TextMeshProUGUI successMessage;
 
     private SequenceManager sequenceManager;
-    private GameObject successObject;        
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
@@ -18,12 +19,20 @@ public class MemoryGameManager : MonoBehaviour
 
     private void Start()
     {
+        Initialized();
+    }
+
+    private void Initialized()
+    {
         sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
-        successObject = GameObject.FindGameObjectWithTag("Key");
 
         isAlreadyPlayed = false;
+        successMessage.gameObject.SetActive(false);
+    }
+
+    protected override void StartGame()
+    {
         sequenceManager.SetupSequence(cubes);
-        successObject.SetActive(false);
     }
 
     public bool IsStartButton(CubeButton cube)
@@ -44,7 +53,7 @@ public class MemoryGameManager : MonoBehaviour
     {
         if (sequenceManager.isSequencePlaying || playerWon || !isAlreadyPlayed) return;
 
-        int cubeIndex = System.Array.IndexOf(cubes, cube);
+        int cubeIndex = Array.IndexOf(cubes, cube);
         userSequence.Add(cubeIndex);
 
         if (cubeIndex == sequenceManager.GetCurrentSequenceStep(currentStep))
@@ -65,12 +74,17 @@ public class MemoryGameManager : MonoBehaviour
     {
         playerWon = true;
         sequenceManager.isSequencePlaying = true;
-       
-        successObject.SetActive(true);
+
+        successMessage.gameObject.SetActive(true);
         successSound.Play();
 
-        GameManager.Instance.AddKey();
-        GameManager.Instance.CompleteFirstGame();
+        StartCoroutine(WaitAndResetGame());
+    }
+
+    private IEnumerator WaitAndResetGame()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        ResetGame();
     }
 
     private void SequenceFailure()
@@ -78,7 +92,7 @@ public class MemoryGameManager : MonoBehaviour
         playerWon = false;
         failureSound.Play();
         ShowFailureVisuals();
-        ResetSequence();
+        ResetGame();
     }
 
     private void ShowFailureVisuals()
@@ -92,10 +106,17 @@ public class MemoryGameManager : MonoBehaviour
     private void ResetSequence()
     {
         currentStep = 0;
-        userSequence.Clear();
         isAlreadyPlayed = false;
+        playerWon = false;
         sequenceManager.isSequencePlaying = false;
+        successMessage.gameObject.SetActive(false);
+        userSequence.Clear();
         sequenceManager.GenerateRandomSequence();
+    }
+
+    protected override void ResetGame()
+    {
+        ResetSequence();
     }
 }
 

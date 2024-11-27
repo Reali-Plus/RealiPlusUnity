@@ -7,6 +7,5 @@ public class FeedbackTest : MonoBehaviour
     public void ToggleFeedback(bool enable)
     {
         float command = enable ? 1f : 0f;
-        XRSleeveCommunicationManager.Instance.LeftDevice.SendHapticCommand(command, command);
     }
 }

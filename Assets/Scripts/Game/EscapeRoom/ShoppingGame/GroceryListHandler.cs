@@ -15,13 +15,13 @@ public class GroceryListHandler : MonoBehaviour
     {
         if (allItems.Count < nbrItemsInGroceryList)
         {
-            Debug.LogWarning("Not enough items to select from!");
+            Debug.LogWarning("Not enough items");
             return;
         }
 
         List<GameObject> itemsToSelectFrom = new List<GameObject>(allItems);
         groceryList = GetRandomItems(itemsToSelectFrom, nbrItemsInGroceryList);
-        DisplayGroceryList();
+        UpdateGroceryListUI();
     }
 
     private List<GameObject> GetRandomItems(List<GameObject> sourceList, int itemCount)
@@ -36,7 +36,40 @@ public class GroceryListHandler : MonoBehaviour
         return selectedItems;
     }
 
-    private void DisplayGroceryList()
+    public void MarkItemAsCorrect(GameObject item)
+    {
+        if (!correctItems.Contains(item))
+        {
+            correctItems.Add(item);
+            UpdateGroceryListUI();
+        }
+        else
+        {
+            correctItems.Remove(item);
+            UpdateGroceryListUI();
+        }
+    }
+
+    public void MarkItemAsIncorrect(GameObject incorrectItem)
+    {
+        if (!incorrectItems.Contains(incorrectItem))
+        {
+            incorrectItems.Add(incorrectItem);
+            UpdateIncorrectItemsUI();
+        }
+        else
+        {
+            incorrectItems.Remove(incorrectItem);
+            UpdateIncorrectItemsUI();
+        }
+    }
+
+    public List<GameObject> GetGroceryList()
+    {
+        return groceryList;
+    }
+
+    private void UpdateGroceryListUI()
     {
         string listText = "Items:\n";
         foreach (GameObject item in groceryList)
@@ -50,51 +83,26 @@ public class GroceryListHandler : MonoBehaviour
                 listText += "- " + item.name + "\n";
             }
         }
-        DisplayIncorrectItems();
         groceryListText.text = listText;
     }
 
-    private void DisplayIncorrectItems()
+    private void UpdateIncorrectItemsUI()
     {
         string incorrectListText = "Items incorrect:\n";
         foreach (GameObject incorrectItem in incorrectItems)
         {
-            incorrectListText += "<color=red>" + incorrectItem.name + "</color>\n"; 
+            incorrectListText += "<color=red>" + incorrectItem.name + "</color>\n";
         }
 
         incorrectItemsText.text = incorrectListText;
     }
 
-    public void MarkItemAsCorrect(GameObject item)
+    public void ResetDisplay()
     {
-        if (!correctItems.Contains(item))
-        {
-            correctItems.Add(item);
-            DisplayGroceryList();
-        }
-        else
-        {
-            correctItems.Remove(item);
-            DisplayGroceryList();
-        }
-    }
+        correctItems.Clear();
+        incorrectItems.Clear();
 
-    public void MarkItemAsIncorrect(GameObject incorrectItem)
-    {
-        if (!incorrectItems.Contains(incorrectItem))
-        {
-            incorrectItems.Add(incorrectItem);
-            DisplayGroceryList();
-        }
-        else
-        {
-            incorrectItems.Remove(incorrectItem);
-            DisplayGroceryList();
-        }
-    }
-
-    public List<GameObject> GetGroceryList()
-    {
-        return groceryList;
+        UpdateGroceryListUI(); 
+        UpdateIncorrectItemsUI();
     }
 }

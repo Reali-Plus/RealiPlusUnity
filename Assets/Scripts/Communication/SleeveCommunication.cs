@@ -3,27 +3,65 @@ using UnityEngine;
 
 public class SleeveCommunication : MonoBehaviour
 {
+    public static SleeveCommunication Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject().AddComponent<SleeveCommunication>();
+                instance.name = instance.GetType().ToString();
+                DontDestroyOnLoad(instance.gameObject);
+            }
+            return instance;
+        }
+    }
+    private static SleeveCommunication instance;
+
     private Communication communication;
     private Dictionary<SensorID, SensorController> sensors;
 
-    public enum CommunicationTypes { Serial, BLE };
+    public enum CommunicationMode { Serial, BLE };
 
     [SerializeField]
-    private CommunicationTypes communicationType = CommunicationTypes.Serial;
-    
-    // TODO : - Add a menu to choose the communication type
-    //        - Add a way to change communication type at runtime
-    void Start()
+    private bool initializeOnStart = true;
+
+    [SerializeField]
+    private CommunicationMode communicationMode = CommunicationMode.Serial;
+
+    public bool IsInitialized { get; set; }
+
+    void Awake()
     {
-        if (communicationType == CommunicationTypes.Serial)
+        if (communicationMode == CommunicationMode.Serial)
         {
             communication = new SerialCommunication();
         }
-        else if (communicationType == CommunicationTypes.BLE)
+        else if (communicationMode == CommunicationMode.BLE)
         {
             communication = new SocketCommunication();
         }
 
+        if (initializeOnStart)
+        {
+            InitilializeCommunication();
+        }
+    }
+
+    public void TestCommunication()
+    {
+        if (IsInitialized)
+        {
+            communication.TestCommunication();
+        }
+        else
+        {
+            InitilializeCommunication();
+        }
+    }
+
+    public void InitilializeCommunication()
+    {         
         sensors = new Dictionary<SensorID, SensorController>();
         List<SensorController> sensorControllers = new List<SensorController>(FindObjectsOfType<SensorController>());
         for (int i = 0; i < sensorControllers.Count; ++i)
@@ -32,11 +70,12 @@ public class SleeveCommunication : MonoBehaviour
         }
 
         communication.Initialize();
+        IsInitialized = true;
     }
 
     private void Update()
     {
-        while (communication != null && communication.ReceiveData())
+        while (communication != null && IsInitialized && communication.ReceiveData())
         {
             SleeveData data = communication.GetData();
             if (sensors.ContainsKey(data.SensorID))
@@ -73,6 +112,18 @@ public class SleeveCommunication : MonoBehaviour
 
     public void CalibrateSleeve()
     {
-        communication.SendData(new HapticsData(SensorID.Calibrate, true, true));
+        if (IsInitialized)
+        {
+            communication.SendData(new HapticsData(SensorID.Calibrate, true, true));
+        }
+        else
+        {
+            Debug.LogWarning("Tried to calibrate, communication not initialized");
+        }
+    }
+
+    public SerialCommunication GetSerialCommunication()
+    {
+        return communication as SerialCommunication;
     }
 }
