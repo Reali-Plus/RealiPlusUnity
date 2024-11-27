@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviour
     private bool isTestMode = false;
 
     private SleeveCommunication sleeveCommunication;
+    private GameManager gameManager;
 
     private const string communicationError = "Erreur de communication: ";
 
@@ -37,7 +38,10 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         sleeveCommunication = FindObjectOfType<SleeveCommunication>();
+        gameManager = FindObjectOfType<GameManager>();
         warningText = warningMessage.GetComponentInChildren<TMPro.TMP_Text>();
+
+        gameManager.InteractionsEnabled = false;
 
         if (isTestMode)
         {

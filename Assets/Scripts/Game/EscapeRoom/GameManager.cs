@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MiniGameManager thirdGame;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject miniGamesController;
+    private bool interactionsEnabled = true;
 
     private enum GameState
     {
@@ -43,16 +44,21 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+
+    public bool InteractionsEnabled { get => interactionsEnabled; set => interactionsEnabled = value; }
     #endregion
 
     void Start()
     {
+        interactionsEnabled = true;
         currentState = GameState.Menu;
         UpdateGameState();
     }
 
     void Update()
     {
+        if (!interactionsEnabled) return;
+
         //NUM NAV
         if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
         {
