@@ -22,7 +22,7 @@ public class ParentHelper : MonoBehaviour
     }
 
     [ContextMenu("Reset children")]
-    private void ResetChildren()
+    public void ResetChildren()
     {
         for (int i = 0; i < transform.childCount; i++)
         {

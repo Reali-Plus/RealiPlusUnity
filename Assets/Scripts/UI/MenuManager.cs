@@ -39,6 +39,7 @@ public class MenuManager : MonoBehaviour
 
         ActivateWarning("Communication non initialisée");
         ShowMainMenu();
+        Debug.Log("ALLO");
     }
 
     private void Update()
@@ -110,7 +111,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartOption()
     {
-        // Call start game on game manager
+        menu.SetActive(false);
     }
 
     public void InitilializeOption()

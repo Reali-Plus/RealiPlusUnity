@@ -22,7 +22,7 @@ public class SerialCommunication : Communication
         }
         catch (Exception e)
         {
-            Debug.LogError("Error opening serial port: " + e.Message);
+            Debug.LogWarning("Error opening serial port: " + e.Message);
             OnCommunicationError?.Invoke("Le port " + PortName + " n'existe pas.");
         }
     }
