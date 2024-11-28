@@ -48,9 +48,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public bool InteractionsEnabled { get => interactionsEnabled; set => interactionsEnabled = value; }
-    
-
     void Start()
     {
         menuManager = FindObjectOfType<MenuManager>();

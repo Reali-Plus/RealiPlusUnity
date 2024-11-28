@@ -11,7 +11,7 @@ public class DetectCollision : MonoBehaviour
     private void Start()
     {
         hapticsData = new HapticsData(sensorID);
-        sleeveCommunication = FindObjectOfType<SleeveCommunication>();
+        sleeveCommunication = SleeveCommunication.Instance;
     }
 
     private void OnCollisionEnter(Collision collision)

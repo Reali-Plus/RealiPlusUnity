@@ -36,8 +36,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        sleeveCommunication = FindObjectOfType<SleeveCommunication>();
-        gameManager = FindObjectOfType<GameManager>();
+        sleeveCommunication = SleeveCommunication.Instance;
+        gameManager = GameManager.Instance;
         warningText = warningMessage.GetComponentInChildren<TMPro.TMP_Text>();
         gameManager.ActivateGame(false);
 
