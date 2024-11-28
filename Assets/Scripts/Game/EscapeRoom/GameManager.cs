@@ -46,24 +46,28 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+    #endregion
 
     public bool InteractionsEnabled { get => interactionsEnabled; set => interactionsEnabled = value; }
-    #endregion
+    
 
     void Start()
     {
         menuManager = FindObjectOfType<MenuManager>();
 
+        firstGame.Initialize();
+        secondGame.Initialize();
+        thirdGame.Initialize();
+
         interactionsEnabled = false;
         currentState = GameState.Menu;
         UpdateGameState();
-        mainMenu.gameObject.SetActive(false);
+        miniGamesController.SetActive(false);
 
-        Debug.Log("IsTESTMODE:" + menuManager.isTestMode);
         if (menuManager.isTestMode)
         {
             interactionsEnabled = true;
-            mainMenu.gameObject.SetActive(true);
+            miniGamesController.SetActive(true);
         }
     }
 
@@ -173,19 +177,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DeactivateGame(bool interaction)
+    public void ActivateGame(bool interaction)
     {
         interactionsEnabled = interaction;
-        if (interaction == true)
-        {
-            Debug.Log("true");
-            mainMenu.gameObject.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("false");
-            mainMenu.gameObject.SetActive(false);
-        }
+        miniGamesController.SetActive(interaction);
     }
 
 }

@@ -10,6 +10,15 @@ public class SerialCommunication : Communication
 
     public static event Action<string> OnCommunicationError;
 
+
+    public override void Close()
+    {
+        if (serialPort != null && serialPort.IsOpen)
+        {
+            serialPort.Close();
+        }
+    }
+
     public override void Initialize()
     {
         serialPort = new SerialPort(PortName, BaudRate);

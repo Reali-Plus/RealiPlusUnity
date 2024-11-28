@@ -39,19 +39,16 @@ public class MenuManager : MonoBehaviour
         sleeveCommunication = FindObjectOfType<SleeveCommunication>();
         gameManager = FindObjectOfType<GameManager>();
         warningText = warningMessage.GetComponentInChildren<TMPro.TMP_Text>();
-
+        gameManager.ActivateGame(false);
 
         if (isTestMode)
         {
-            gameManager.DeactivateGame(false);
-            gameManager.mainMenu.gameObject.SetActive(false);
             menu.SetActive(false);
             DeactivateWarning();
             sleeveCommunication.InitilializeCommunication();
         }
         else
         {
-            gameManager.DeactivateGame(false);
             SerialCommunication.OnCommunicationError += ShowCommunicationError;
 
             ActivateWarning("Communication non initialisée");
@@ -64,6 +61,7 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
+            gameManager.ActivateGame(!menu.activeSelf);
         }
     }
 
@@ -128,8 +126,8 @@ public class MenuManager : MonoBehaviour
 
     public void StartOption()
     {
-        menu.SetActive(false);
-        gameManager.DeactivateGame(true);
+        HideMenu(); // todo change to ToggleMenu()
+        gameManager.ActivateGame(true);
     }
 
     public void InitilializeOption()

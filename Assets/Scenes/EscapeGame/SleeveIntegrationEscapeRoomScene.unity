@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -943,6 +943,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShoppingGameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4093902059110122989, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: groceryBox
+      value: 
+      objectReference: {fileID: 651637833}
+    - target: {fileID: 4093902059110122989, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: itemsInStore
+      value: 
+      objectReference: {fileID: 585304714}
+    - target: {fileID: 4093902059110122989, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: groceryListHandler
+      value: 
+      objectReference: {fileID: 650832650}
+    - target: {fileID: 4093902059110122989, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: miniGamesController
+      value: 
+      objectReference: {fileID: 1102058513}
     - target: {fileID: 5196493004300241950, guid: 110f0440fd1e4624a83d679a12d8ef93,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1732,6 +1752,11 @@ PrefabInstance:
       propertyPath: successMessage
       value: 
       objectReference: {fileID: 1440424494}
+    - target: {fileID: 330042659038695609, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: sequenceManager
+      value: 
+      objectReference: {fileID: 1109489779}
     - target: {fileID: 330042659640164042, guid: 2aaa8cecda8e9254987edad2a4991ee2,
         type: 3}
       propertyPath: m_Layer
@@ -3228,6 +3253,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 945564740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &585304714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4093902058222950326, guid: 110f0440fd1e4624a83d679a12d8ef93,
+    type: 3}
+  m_PrefabInstance: {fileID: 112524128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &593647880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4385080170327957909, guid: ff62b58c5a9ea164fa8ddf8038e10cd1,
@@ -3414,6 +3445,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6800491061e1ad34d963090a523023f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &650832650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4093902059110122990, guid: 110f0440fd1e4624a83d679a12d8ef93,
+    type: 3}
+  m_PrefabInstance: {fileID: 112524128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea126a71f2a33745884260eb5328a69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &651637833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2416740411395089078, guid: 110f0440fd1e4624a83d679a12d8ef93,
+    type: 3}
+  m_PrefabInstance: {fileID: 112524128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73940e4aa263d8468ce5203b10e8ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &669609169 stripped
@@ -4980,6 +5035,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e53a8af7622e846ac7585e0ac9ce34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1109489779 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 330042659038695610, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+    type: 3}
+  m_PrefabInstance: {fileID: 246114140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d47c41ecb50cc84ea1a8492e7e46878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1110356854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5899,7 +5966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489519369}
   m_Layer: 0
-  m_Name: MainMenu
+  m_Name: GameMenu
   m_TagString: MainMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5913,7 +5980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489519367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.984, y: -0.030999899, z: -0.432}
+  m_LocalPosition: {x: 1.9839993, y: -0.030999899, z: -0.43200004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -8,27 +8,21 @@ public class ShopManager : MiniGameManager
     [SerializeField] int nbrItemsInGroceryList = 3;
     [SerializeField] private TextMeshProUGUI successMessage;
 
+    [SerializeField]
     private GameObject itemsInStore;
+    [SerializeField]
     private GameObject miniGamesController;
+    [SerializeField]
     private GroceryBox groceryBox;
+    [SerializeField]
     private GroceryListHandler groceryListHandler;
     private List<GameObject> allItemsAvailable = new List<GameObject>();
     private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
 
     public bool alreadyWon = false;
 
-    private void Start()
+    public override void Initialize()
     {
-        Initialized();
-    }
-
-    private void Initialized()
-    {
-        groceryListHandler = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<GroceryListHandler>();
-        groceryBox = GameObject.FindGameObjectWithTag("GroceryBox").GetComponent<GroceryBox>();
-        miniGamesController = GameObject.FindGameObjectWithTag("GamesController");
-        itemsInStore = GameObject.FindGameObjectWithTag("ItemsInStore");
-
         successMessage.gameObject.SetActive(false);
         alreadyWon = false;
 

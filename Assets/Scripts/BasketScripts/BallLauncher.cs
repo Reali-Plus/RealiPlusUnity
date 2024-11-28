@@ -9,6 +9,7 @@ public class BallLauncher : MiniGameManager
     public Collider hoopCollider;
     private bool ballLaunched = false;
 
+    public override void Initialize() {  }
 
     protected override void StartGame()
     {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class MiniGameManager : MonoBehaviour
@@ -24,7 +22,7 @@ public abstract class MiniGameManager : MonoBehaviour
         gameActive = true;
     }
 
+    public abstract void Initialize();
     protected abstract void StartGame();
     protected abstract void ResetGame();
-
 }
