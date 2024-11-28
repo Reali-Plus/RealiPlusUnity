@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MiniGameManager thirdGame;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject miniGamesController;
+    private bool interactionsEnabled = true;
+    private MenuManager menuManager;
 
     private enum GameState
     {
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     #region Singleton
     private static GameManager _instance;
+
     private void Awake()
     {
         if (_instance)
@@ -47,12 +50,28 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        menuManager = FindObjectOfType<MenuManager>();
+
+        firstGame.Initialize();
+        secondGame.Initialize();
+        thirdGame.Initialize();
+
+        interactionsEnabled = false;
         currentState = GameState.Menu;
         UpdateGameState();
+        miniGamesController.SetActive(false);
+
+        if (menuManager.isTestMode)
+        {
+            interactionsEnabled = true;
+            miniGamesController.SetActive(true);
+        }
     }
 
     void Update()
     {
+        if (!interactionsEnabled) return;
+
         //NUM NAV
         if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
         {
@@ -154,4 +173,11 @@ public class GameManager : MonoBehaviour
             miniGamesController.transform.Rotate(0, angleDifference, 0);
         }
     }
+
+    public void ActivateGame(bool interaction)
+    {
+        interactionsEnabled = interaction;
+        miniGamesController.SetActive(interaction);
+    }
+
 }

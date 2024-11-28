@@ -11,21 +11,15 @@ public class MemoryGameManager : MiniGameManager
     [SerializeField] private AudioSource failureSound;
     [SerializeField] private TextMeshProUGUI successMessage;
 
+    [SerializeField]
     private SequenceManager sequenceManager;
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;
     private bool isAlreadyPlayed = false;
 
-    private void Start()
+    public override void Initialize()
     {
-        Initialized();
-    }
-
-    private void Initialized()
-    {
-        sequenceManager = GameObject.FindGameObjectWithTag("MemoryManager").GetComponent<SequenceManager>();
-
         isAlreadyPlayed = false;
         successMessage.gameObject.SetActive(false);
     }

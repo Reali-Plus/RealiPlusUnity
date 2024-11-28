@@ -62,6 +62,9 @@ public class SleeveCommunication : MonoBehaviour
 
     public void InitilializeCommunication()
     {         
+        if (IsInitialized)
+            communication.Close();
+
         sensors = new Dictionary<SensorID, SensorController>();
         List<SensorController> sensorControllers = new List<SensorController>(FindObjectsOfType<SensorController>());
         for (int i = 0; i < sensorControllers.Count; ++i)

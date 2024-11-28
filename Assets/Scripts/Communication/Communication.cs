@@ -14,7 +14,7 @@ public abstract class Communication
     public abstract bool ReceiveData();
     public abstract void SendData(HapticsData hapticsData);
     public abstract bool TestCommunication();
-
+    public abstract void Close();
 
     protected void AddData(SleeveData sleeveData)
     {
