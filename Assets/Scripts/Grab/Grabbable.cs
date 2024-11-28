@@ -5,7 +5,9 @@ public class Grabbable : MonoBehaviour
     [SerializeField]
     private LayerMask grabbedObjectLayer;
     [SerializeField]
-    private LayerMask defaultLayer;
+    private string grabbableLayerMask = "GrabbedObject";
+
+    private LayerMask defaultLayer; 
 
     private bool isGrabbed = false;
     private Vector3 grabPositionOffset = Vector3.zero;
@@ -34,21 +36,22 @@ public class Grabbable : MonoBehaviour
     }
 
 
-    public void Grab(Transform grabParent)
+    public virtual void Grab(Transform grabParent)
     {
         isGrabbed = true;
         this.grabParent = grabParent;
         grabPositionOffset = transform.InverseTransformDirection(transform.position - grabParent.position);
         grabRotationOffset = Quaternion.Inverse(transform.rotation) * grabParent.rotation;
-        gameObject.layer = LayerMask.NameToLayer("GrabbedObject");
+        defaultLayer = gameObject.layer;
+        gameObject.layer = LayerMask.NameToLayer(grabbableLayerMask);
     }
 
-    public void Release()
+    public virtual void Release()
     {
         if (isGrabbed)
         {
             isGrabbed = false;
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = defaultLayer;
         }
     }
 }
