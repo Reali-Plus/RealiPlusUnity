@@ -40,7 +40,12 @@ public class SerialCommunication : Communication
     {
         if (serialPort != null && serialPort.IsOpen)
         {
-            serialPort.Write(hapticsData.ToString());
+            try
+            {
+                serialPort.Write(hapticsData.ToString());
+            }
+            catch (TimeoutException)
+            { }
         }
     }
 
