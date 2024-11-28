@@ -5,24 +5,27 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: cf815a6be3c46ab40927e10e7d1afa59
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PianoTestScene_1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EscapeGame/EscapeRoomScene.unity
     guid: 2881ac6862fe16e4c9cb0aaa8ef9e2b8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EscapeGame/MemoryScene.unity
     guid: 622b58f0a8adef140820f16baaf77e5c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EscapeGame/ShoppingScene.unity
     guid: a0a80c3106418e5489fd34ae78661c27
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EscapeGame/DoorScene.unity
     guid: 332a08660a4fdf049b0186f852d3cba6
+  - enabled: 1
+    path: Assets/Scenes/HapticsDemoScene.unity
+    guid: a26002fe3cd3c4941a91378428983812
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

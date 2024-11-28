@@ -21,12 +21,14 @@ public class DetectCollision : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        UpdateHaptics(true, false);
+        //UpdateHaptics(true, false);
+        UpdateHaptics(false, false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        UpdateHaptics(true, false);
+        //UpdateHaptics(true, false);
+        UpdateHaptics(true, true);
         if (other.gameObject.TryGetComponent(out Interactable interactable))
         {
             interactable.Interact(transform.position);
@@ -42,5 +44,6 @@ public class DetectCollision : MonoBehaviour
     {
         hapticsData.UpdateFeedback(retroaction, restriction);
         sleeveCommunication.SendData(hapticsData);
+        //Debug.Log(hapticsData);
     }
 }
