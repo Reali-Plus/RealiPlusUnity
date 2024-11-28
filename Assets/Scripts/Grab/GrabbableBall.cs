@@ -22,8 +22,6 @@ public class GrabbableBall : Grabbable
 
     private bool ballLaunched = false;
 
-    public override void Initialize() {  }
-    
     private void Start()
     {
         ballRigidbody = GetComponent<Rigidbody>();
