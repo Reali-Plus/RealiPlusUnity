@@ -12,6 +12,4 @@ public class BasketballManager : MiniGameManager
     {
         grabbableBall.ResetGrabbableBall();
     }
-
-    
 }

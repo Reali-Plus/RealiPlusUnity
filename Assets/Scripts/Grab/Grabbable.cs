@@ -13,7 +13,7 @@ public class Grabbable : MonoBehaviour
     private Vector3 grabPositionOffset = Vector3.zero;
     private Quaternion grabRotationOffset = Quaternion.identity;
     private Transform grabParent = null;
-    public Rigidbody rb;
+    private Rigidbody rb;
 
     private void Start()
     {

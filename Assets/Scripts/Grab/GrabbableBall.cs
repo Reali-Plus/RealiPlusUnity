@@ -19,7 +19,6 @@ public class GrabbableBall : Grabbable
     [SerializeField]
     private BallTrajectory ballTrajectory;
 
-
     private bool ballLaunched = false;
 
     private void Start()
