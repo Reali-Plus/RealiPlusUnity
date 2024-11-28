@@ -1188,6 +1188,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b71b0f8d2f881c743a85228f3030d1cb, type: 3}
+--- !u!114 &156811307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 214530224, guid: 7dc00142cdc494247812e0434729d59d,
+    type: 3}
+  m_PrefabInstance: {fileID: 354837098}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde1b77de76a7aa44aae180c97f8e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &158744120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1279437348525638701, guid: e2e682b966e3f644392ffbfab511e0e2,
@@ -1757,6 +1769,11 @@ PrefabInstance:
       propertyPath: sequenceManager
       value: 
       objectReference: {fileID: 1109489779}
+    - target: {fileID: 330042659038695610, guid: 2aaa8cecda8e9254987edad2a4991ee2,
+        type: 3}
+      propertyPath: sequenceDifficulty
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 330042659640164042, guid: 2aaa8cecda8e9254987edad2a4991ee2,
         type: 3}
       propertyPath: m_Layer
@@ -2246,10 +2263,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6603315295874255827, guid: a0746f7d5523f864ebb5df857e92916a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 156811307}
+    - target: {fileID: 6603315295874255827, guid: a0746f7d5523f864ebb5df857e92916a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetChildren
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603315295874255827, guid: a0746f7d5523f864ebb5df857e92916a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ParentHelper, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6603315296118734392, guid: a0746f7d5523f864ebb5df857e92916a,
         type: 3}
       propertyPath: isTestMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6603315296183367888, guid: a0746f7d5523f864ebb5df857e92916a,
         type: 3}
