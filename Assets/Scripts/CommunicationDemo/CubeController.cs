@@ -15,7 +15,7 @@ public class CubeController : MonoBehaviour
     {
         if (socketCommunication.ReceiveData())
         {
-            sleeveData = socketCommunication.GetData();
+            sleeveData = socketCommunication.GetDataToReceive();
         }
     }
 

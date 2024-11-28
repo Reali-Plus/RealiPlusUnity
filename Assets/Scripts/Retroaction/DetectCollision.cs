@@ -14,15 +14,6 @@ public class DetectCollision : MonoBehaviour
         sleeveCommunication = SleeveCommunication.Instance;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        UpdateHaptics(true, true);
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        UpdateHaptics(true, false);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,14 +24,9 @@ public class DetectCollision : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        UpdateHaptics(false, false);
-    }
 
     private void UpdateHaptics(bool retroaction, bool restriction)
     {
         hapticsData.UpdateFeedback(retroaction, restriction);
-        sleeveCommunication.SendData(hapticsData);
     }
 }

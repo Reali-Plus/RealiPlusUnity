@@ -17,7 +17,7 @@ public class BallFeedback : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             HapticsData hapticsData = new HapticsData();
-            socketCommunication.SendData(hapticsData);
+            socketCommunication.AddDataToSend(hapticsData);
         }
     }
 }
