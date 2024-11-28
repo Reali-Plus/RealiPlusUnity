@@ -23,7 +23,7 @@ public class GrabListener : MonoBehaviour
 
     private void Start()
     {
-        sleeveCommunication = FindObjectOfType<SleeveCommunication>();
+        sleeveCommunication = SleeveCommunication.Instance;
     }
 
     private void Update()
