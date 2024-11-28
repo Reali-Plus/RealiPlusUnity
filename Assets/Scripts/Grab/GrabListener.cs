@@ -15,9 +15,16 @@ public class GrabListener : MonoBehaviour
     [SerializeField]
     private float grabDistance = 0.14f;
 
+    private SleeveCommunication sleeveCommunication;
+
     private Grabbable grabbedObject = null;
     private bool isGrabbing = false;
 
+
+    private void Start()
+    {
+        sleeveCommunication = SleeveCommunication.Instance;
+    }
 
     private void Update()
     {
@@ -25,19 +32,14 @@ public class GrabListener : MonoBehaviour
         {
             if (ShouldRelease())
             {
-                grabbedObject.Release();
-                grabbedObject = null;
-                isGrabbing = false;
-
+                Release();
             }
         }
         else
         {
             if (ShouldGrab())
             {
-                grabbedObject = grabZone.GetClosestObjectTouching();
-                grabbedObject.Grab(transform);
-                isGrabbing = true;
+                Grab();
             }
         }
     }
@@ -45,6 +47,24 @@ public class GrabListener : MonoBehaviour
     public bool ShouldGrab() => CalculateGrabPosition() < grabDistance && grabZone.IsTouchingObject();
 
     public bool ShouldRelease() => CalculateGrabPosition() > grabDistance;
+
+    public void Release()
+    {
+        grabbedObject.Release();
+        grabbedObject = null;
+        isGrabbing = false;
+
+        sleeveCommunication.SendToAllFingers(false);
+    }
+
+    public void Grab()
+    {
+        grabbedObject = grabZone.GetClosestObjectTouching();
+        grabbedObject.Grab(transform);
+        isGrabbing = true;
+
+        sleeveCommunication.SendToAllFingers(true);
+    }
 
     public float CalculateGrabPosition()
     {

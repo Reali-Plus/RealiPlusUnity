@@ -33,7 +33,6 @@ public class SocketCommunication : Communication
         DirectoryInfo dir = Directory.GetParent(Application.dataPath);
         string daemonPath = Path.Combine(dir.FullName, "Assets", "Scripts", "Communication", dameonFileName);
 
-        dataQueue = new Queue<SleeveData>();
         RunProcess(daemonPath);
     }
 
@@ -66,7 +65,7 @@ public class SocketCommunication : Communication
 
                 if (receivedString != null && ValidateResponse(receivedString))
                 {
-                    return AddData(receivedString);
+                    return AddDataToReceive(receivedString);
                 }
             }
             catch (SocketException e)

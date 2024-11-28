@@ -1,12 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 
 public abstract class Communication
 {
-    protected Queue<SleeveData> dataQueue;
+    protected Queue<SleeveData> rcvDataQueue;
+    protected Queue<HapticsData> sendDataQueue;
 
     public Communication()
     {
-        dataQueue = new Queue<SleeveData>();
+        rcvDataQueue = new Queue<SleeveData>();
+        sendDataQueue = new Queue<HapticsData>();
     }
 
     public abstract void Initialize();
@@ -18,31 +21,45 @@ public abstract class Communication
 
     protected void AddData(SleeveData sleeveData)
     {
-        dataQueue.Enqueue(sleeveData);
+        rcvDataQueue.Enqueue(sleeveData);
     }
 
-    protected bool AddData(string data)
+    protected bool AddDataToReceive(string data)
     {
         SleeveData sleeveData = new SleeveData();
         if (sleeveData.FromString(data))
         {
-            dataQueue.Enqueue(sleeveData);
+            rcvDataQueue.Enqueue(sleeveData);
             return true;
         }
         return false;
     }
-
-    public SleeveData GetData()
+    public void AddDataToSend(HapticsData data)
     {
-        if (HasData())
+        sendDataQueue.Enqueue(data);
+    }
+
+    public SleeveData GetDataToReceive()
+    {
+        if (HasDataToReceive())
         {
-            return dataQueue.Dequeue();
+            return rcvDataQueue.Dequeue();
         }
         return new SleeveData();
     }
 
-    public bool HasData()
+    public HapticsData GetDataToSend()
     {
-        return dataQueue.Count > 0;
+        return sendDataQueue.Dequeue();
+    }
+
+    public bool HasDataToReceive()
+    {
+        return rcvDataQueue.Count > 0;
+    }
+
+    public bool HasDataToSend()
+    {
+        return sendDataQueue.Count > 0;
     }
 }

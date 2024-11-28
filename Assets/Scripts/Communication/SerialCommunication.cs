@@ -39,7 +39,7 @@ public class SerialCommunication : Communication
     public override void SendData(HapticsData hapticsData)
     {
         if (serialPort != null && serialPort.IsOpen)
-        {   
+        {
             try
             {
                 serialPort.Write(hapticsData.ToString());
@@ -56,7 +56,7 @@ public class SerialCommunication : Communication
             try
             {
                 string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
-                return AddData(serialInput);
+                return AddDataToReceive(serialInput);
             }
             catch (TimeoutException) { }
         }
