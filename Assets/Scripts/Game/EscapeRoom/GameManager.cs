@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MiniGameManager firstGame;
     [SerializeField] private MiniGameManager secondGame;
     [SerializeField] private MiniGameManager thirdGame;
-    [SerializeField] public GameObject mainMenu;
+    [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject miniGamesController;
     private bool interactionsEnabled = true;
     private MenuManager menuManager;
