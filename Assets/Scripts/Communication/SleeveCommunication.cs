@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,11 @@ public class SleeveCommunication : MonoBehaviour
     [SerializeField]
     private CommunicationMode communicationMode = CommunicationMode.Serial;
 
+    [SerializeField]
+    private float senderDelay = 0.1f;
+
+    private float lastSendTime = 0;
+
     public bool IsInitialized { get; set; }
 
     void Awake()
@@ -46,6 +52,8 @@ public class SleeveCommunication : MonoBehaviour
         {
             InitilializeCommunication();
         }
+
+        lastSendTime = Time.time;
     }
 
     public void TestCommunication()
@@ -61,7 +69,10 @@ public class SleeveCommunication : MonoBehaviour
     }
 
     public void InitilializeCommunication()
-    {         
+    {
+        if (IsInitialized)
+            communication.Close();
+
         sensors = new Dictionary<SensorID, SensorController>();
         List<SensorController> sensorControllers = new List<SensorController>(FindObjectsOfType<SensorController>());
         for (int i = 0; i < sensorControllers.Count; ++i)
@@ -77,11 +88,17 @@ public class SleeveCommunication : MonoBehaviour
     {
         while (communication != null && IsInitialized && communication.ReceiveData())
         {
-            SleeveData data = communication.GetData();
+            SleeveData data = communication.GetDataToReceive();
             if (sensors.ContainsKey(data.SensorID))
             {
                 sensors[data.SensorID].ReceiveData(data);
             }
+        }
+
+        if (Time.time - lastSendTime > senderDelay && communication.HasDataToSend())
+        {
+            communication.SendData(communication.GetDataToSend());
+            lastSendTime = Time.time;
         }
     }
 
@@ -92,17 +109,22 @@ public class SleeveCommunication : MonoBehaviour
 
     public SleeveData GetData()
     {
-        return communication.GetData();
+        return communication.GetDataToReceive();
     }
 
     public bool HasData()
     {
-        return communication.HasData();
+        return communication.HasDataToReceive();
     }
 
     public void SendData(HapticsData hapticsData)
     {
-        communication.SendData(hapticsData);
+        communication.AddDataToSend(hapticsData);
+    }
+
+    public void SendToAllFingers(bool shouldRestrict)
+    {
+        communication.AddDataToSend(new HapticsData((SensorID)3, shouldRestrict, shouldRestrict));
     }
 
     public bool ReceiveData()
@@ -114,7 +136,7 @@ public class SleeveCommunication : MonoBehaviour
     {
         if (IsInitialized)
         {
-            communication.SendData(new HapticsData(SensorID.Calibrate, true, true));
+            communication.AddDataToSend(new HapticsData(SensorID.Calibrate, true, true));
         }
         else
         {
@@ -125,5 +147,17 @@ public class SleeveCommunication : MonoBehaviour
     public SerialCommunication GetSerialCommunication()
     {
         return communication as SerialCommunication;
+    }
+
+    [ContextMenu("Grab All Finders")]
+    public void GrabAllFinders()
+    {
+        SendToAllFingers(true);
+    }
+
+    [ContextMenu("Release All Finders")]
+    public void ReleaseAllFinders()
+    {
+        SendToAllFingers(false);
     }
 }

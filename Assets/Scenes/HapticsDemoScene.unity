@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initializeOnStart: 1
   communicationMode: 0
+  senderDelay: 0.1
 --- !u!4 &662199851
 Transform:
   m_ObjectHideFlags: 0
@@ -4311,6 +4312,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8578159967443744922, guid: 7dc00142cdc494247812e0434729d59d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8578159967735234900, guid: 7dc00142cdc494247812e0434729d59d,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -4385,6 +4391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: -0.001075757
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578159968981103095, guid: 7dc00142cdc494247812e0434729d59d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dc00142cdc494247812e0434729d59d, type: 3}

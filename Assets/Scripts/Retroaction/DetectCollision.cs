@@ -24,9 +24,13 @@ public class DetectCollision : MonoBehaviour
         //UpdateHaptics(true, false);
         UpdateHaptics(false, false);
     }
-
+    /*
     private void OnTriggerEnter(Collider other)
     {
+        if (hapticsData.FingerId == SensorID.Annular)
+        {
+            Debug.Log(other);
+        }
         //UpdateHaptics(true, false);
         UpdateHaptics(true, true);
         if (other.gameObject.TryGetComponent(out Interactable interactable))
@@ -38,12 +42,12 @@ public class DetectCollision : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         UpdateHaptics(false, false);
-    }
+    }*/
 
     private void UpdateHaptics(bool retroaction, bool restriction)
     {
         hapticsData.UpdateFeedback(retroaction, restriction);
         sleeveCommunication.SendData(hapticsData);
-        //Debug.Log(hapticsData);
+        Debug.Log(hapticsData);
     }
 }

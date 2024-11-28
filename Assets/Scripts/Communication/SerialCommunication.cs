@@ -1,3 +1,4 @@
+
 using System.IO.Ports;
 using UnityEngine;
 using System;
@@ -9,6 +10,15 @@ public class SerialCommunication : Communication
     private SerialPort serialPort;
 
     public static event Action<string> OnCommunicationError;
+
+
+    public override void Close()
+    {
+        if (serialPort != null && serialPort.IsOpen)
+        {
+            serialPort.Close();
+        }
+    }
 
     public override void Initialize()
     {
@@ -22,7 +32,7 @@ public class SerialCommunication : Communication
         }
         catch (Exception e)
         {
-            Debug.LogError("Error opening serial port: " + e.Message);
+            Debug.LogWarning("Error opening serial port: " + e.Message);
             OnCommunicationError?.Invoke("Le port " + PortName + " n'existe pas.");
         }
     }
@@ -30,7 +40,7 @@ public class SerialCommunication : Communication
     public override void SendData(HapticsData hapticsData)
     {
         if (serialPort != null && serialPort.IsOpen)
-        {   
+        {
             try
             {
                 serialPort.Write(hapticsData.ToString());
@@ -47,7 +57,7 @@ public class SerialCommunication : Communication
             try
             {
                 string serialInput = serialPort.ReadLine(); // Blocks execution if there's nothing to read in serial port
-                return AddData(serialInput);
+                return AddDataToReceive(serialInput);
             }
             catch (TimeoutException) { }
         }
