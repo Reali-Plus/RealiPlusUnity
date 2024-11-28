@@ -126,7 +126,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartOption()
     {
-        HideMenu(); // todo change to ToggleMenu()
+        HideMenu();
         gameManager.ActivateGame(true);
     }
 
