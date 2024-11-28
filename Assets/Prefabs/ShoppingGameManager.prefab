@@ -134,7 +134,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 5385727468029387188, guid: 6e7b17083f23ff44e9531497223b4118, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,8 +178,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6e7b17083f23ff44e9531497223b4118, type: 2}
+  m_sharedMaterial: {fileID: 5385727468029387188, guid: 6e7b17083f23ff44e9531497223b4118,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -274,8 +275,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2978286687197587393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8486, y: 1.8486, z: 1.8486}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00004232}
+  m_LocalScale: {x: 4.859988, y: 4.859988, z: 4.859988}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6895994013854520925}
@@ -283,7 +284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.00012207, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3092302685049289627
@@ -314,10 +315,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "R\xE9ussite!"
+  m_text: Bravo!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6e7b17083f23ff44e9531497223b4118, type: 2}
+  m_sharedMaterial: {fileID: 5385727468029387188, guid: 6e7b17083f23ff44e9531497223b4118,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -328,10 +330,10 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 1
   m_fontColorGradient:
-    topLeft: {r: 0.27450982, g: 0.37647063, b: 0.48627454, a: 1}
-    topRight: {r: 0.6039216, g: 0.7176471, b: 0.8352942, a: 1}
-    bottomLeft: {r: 0.27450982, g: 0.37647063, b: 0.48627454, a: 1}
-    bottomRight: {r: 0.6039216, g: 0.7176471, b: 0.8352942, a: 1}
+    topLeft: {r: 0.7254715, g: 0.2113207, b: 1, a: 1}
+    topRight: {r: 0.93113464, g: 0.35283017, b: 1, a: 1}
+    bottomLeft: {r: 0.7254715, g: 0.2113207, b: 1, a: 1}
+    bottomRight: {r: 0.93113464, g: 0.35283017, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -341,10 +343,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.25
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -510,6 +512,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nbrItemsInGroceryList: 2
   successMessage: {fileID: 92681319848033530}
+  itemsInStore: {fileID: 4093902058222950326}
+  miniGamesController: {fileID: 0}
+  groceryBox: {fileID: 2416740411395089078}
+  groceryListHandler: {fileID: 4093902059110122990}
   alreadyWon: 0
 --- !u!114 &4093902059110122990
 MonoBehaviour:
@@ -660,7 +666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6135273957646002017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003, y: 0.77, z: 1.801}
+  m_LocalPosition: {x: -0.003, y: 0.691, z: 1.801}
   m_LocalScale: {x: 0.46573275, y: 0.46573275, z: 0.46573275}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -729,7 +735,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 5385727468029387188, guid: 6e7b17083f23ff44e9531497223b4118, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -773,8 +779,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: -------------------
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6e7b17083f23ff44e9531497223b4118, type: 2}
+  m_sharedMaterial: {fileID: 5385727468029387188, guid: 6e7b17083f23ff44e9531497223b4118,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -901,7 +908,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 5385727468029387188, guid: 6e7b17083f23ff44e9531497223b4118, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -945,8 +952,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Liste d'\xE9picerie"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6e7b17083f23ff44e9531497223b4118, type: 2}
+  m_sharedMaterial: {fileID: 5385727468029387188, guid: 6e7b17083f23ff44e9531497223b4118,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1242,9 +1250,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!4 &4196351259892556592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4497155794289983868, guid: 1c6865324f95c004293d5d1efe86d559,
@@ -1369,9 +1375,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!4 &5715808123728488521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4910463518253401372, guid: 90eef2986e5621946bc6c49fa7c1bb59,
@@ -1673,7 +1677,7 @@ PrefabInstance:
     - target: {fileID: 1021826422970944747, guid: d0ddd93953187fd4195f9cea4a7b8a56,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.097
+      value: -0.348
       objectReference: {fileID: 0}
     - target: {fileID: 1021826422970944747, guid: d0ddd93953187fd4195f9cea4a7b8a56,
         type: 3}
@@ -1738,9 +1742,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!4 &4070582859016569094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1021826422970944747, guid: d0ddd93953187fd4195f9cea4a7b8a56,
@@ -1762,7 +1764,7 @@ PrefabInstance:
     - target: {fileID: 67095054217103622, guid: d6846055e97b9ac42a6e11a3ea4f1237,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.169
+      value: -0.192
       objectReference: {fileID: 0}
     - target: {fileID: 67095054217103622, guid: d6846055e97b9ac42a6e11a3ea4f1237,
         type: 3}
@@ -1864,9 +1866,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!1001 &4166004596631296511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1887,7 +1887,7 @@ PrefabInstance:
     - target: {fileID: 1425885333043045066, guid: cff631b005b811944a846f281776d825,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.121
+      value: 0.142
       objectReference: {fileID: 0}
     - target: {fileID: 1425885333043045066, guid: cff631b005b811944a846f281776d825,
         type: 3}
@@ -1897,7 +1897,7 @@ PrefabInstance:
     - target: {fileID: 1425885333043045066, guid: cff631b005b811944a846f281776d825,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.301
+      value: 0.039
       objectReference: {fileID: 0}
     - target: {fileID: 1425885333043045066, guid: cff631b005b811944a846f281776d825,
         type: 3}
@@ -1967,9 +1967,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!4 &3033557238601104181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1425885333043045066, guid: cff631b005b811944a846f281776d825,
@@ -2101,7 +2099,7 @@ PrefabInstance:
     - target: {fileID: 5301791894072929692, guid: aa7a7f86756d6264089705ff022c30c0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.061
+      value: -0.009
       objectReference: {fileID: 0}
     - target: {fileID: 5301791894072929692, guid: aa7a7f86756d6264089705ff022c30c0,
         type: 3}
@@ -2111,7 +2109,7 @@ PrefabInstance:
     - target: {fileID: 5301791894072929692, guid: aa7a7f86756d6264089705ff022c30c0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.167
+      value: -0.033
       objectReference: {fileID: 0}
     - target: {fileID: 5301791894072929692, guid: aa7a7f86756d6264089705ff022c30c0,
         type: 3}
@@ -2193,9 +2191,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!1001 &5711879160247779139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2216,7 +2212,7 @@ PrefabInstance:
     - target: {fileID: 2616296381338965445, guid: e46a842bf3694a84cadd43bb62ba0348,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.104
+      value: 0.128
       objectReference: {fileID: 0}
     - target: {fileID: 2616296381338965445, guid: e46a842bf3694a84cadd43bb62ba0348,
         type: 3}
@@ -2226,7 +2222,7 @@ PrefabInstance:
     - target: {fileID: 2616296381338965445, guid: e46a842bf3694a84cadd43bb62ba0348,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.069
+      value: -0.182
       objectReference: {fileID: 0}
     - target: {fileID: 2616296381338965445, guid: e46a842bf3694a84cadd43bb62ba0348,
         type: 3}
@@ -2296,9 +2292,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!4 &7713074512008260230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2616296381338965445, guid: e46a842bf3694a84cadd43bb62ba0348,
@@ -2330,7 +2324,7 @@ PrefabInstance:
     - target: {fileID: 3174142855120362651, guid: 6b5c801f5ca0b3e4aa2780dbe3ba0538,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.174
+      value: -0.032
       objectReference: {fileID: 0}
     - target: {fileID: 3174142855120362651, guid: 6b5c801f5ca0b3e4aa2780dbe3ba0538,
         type: 3}
@@ -2340,7 +2334,7 @@ PrefabInstance:
     - target: {fileID: 3174142855120362651, guid: 6b5c801f5ca0b3e4aa2780dbe3ba0538,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.309
+      value: 0.187
       objectReference: {fileID: 0}
     - target: {fileID: 3174142855120362651, guid: 6b5c801f5ca0b3e4aa2780dbe3ba0538,
         type: 3}
@@ -2422,9 +2416,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!1001 &9178491367919362765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2440,7 +2432,7 @@ PrefabInstance:
     - target: {fileID: 3765891863754373071, guid: 7ad882d92260f6d42900c84561064dd3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.016
+      value: -0.132
       objectReference: {fileID: 0}
     - target: {fileID: 3765891863754373071, guid: 7ad882d92260f6d42900c84561064dd3,
         type: 3}
@@ -2525,9 +2517,7 @@ MonoBehaviour:
   grabbedObjectLayer:
     serializedVersion: 2
     m_Bits: 1024
-  defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  grabbableLayerMask: GrabbedObject
 --- !u!4 &5414364649859470594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3765891863754373071, guid: 7ad882d92260f6d42900c84561064dd3,

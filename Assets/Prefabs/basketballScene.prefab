@@ -78,7 +78,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -7645,7 +7645,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   grabbableLayerMask: GrabbedObject
-  rb: {fileID: 409892716999262855}
   launchForce: 0.55
   hoop: {fileID: 8898391900887464020}
   initialPosition: {fileID: 8923648216427889627}
