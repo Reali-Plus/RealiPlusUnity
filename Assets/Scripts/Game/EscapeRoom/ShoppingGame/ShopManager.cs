@@ -90,10 +90,21 @@ public class ShopManager : MiniGameManager
 
             foreach (var item in allItemsAvailable)
             {
+                Rigidbody rb = item.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.isKinematic = true; 
+                }
                 Vector3 originalPosition = originalPositions[item];
                 Vector3 adjustedPosition = currentRotation * (originalPosition - miniGamesController.transform.position);
                 item.transform.position = miniGamesController.transform.position + adjustedPosition;
+
+                if (rb != null)
+                {
+                    rb.isKinematic = false;
+                }
             }
+
         }
     }
 
@@ -103,9 +114,19 @@ public class ShopManager : MiniGameManager
 
         if (originalPositions.ContainsKey(item))
         {
+            Rigidbody rb = item.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
             Vector3 originalPosition = originalPositions[item];
             Vector3 adjustedPosition = currentRotation * (originalPosition - miniGamesController.transform.position);
             item.transform.position = miniGamesController.transform.position + adjustedPosition;
+
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+            }
         }
     }
 
