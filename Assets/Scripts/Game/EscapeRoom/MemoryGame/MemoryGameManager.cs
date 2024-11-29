@@ -11,8 +11,8 @@ public class MemoryGameManager : MiniGameManager
     [SerializeField] private AudioSource failureSound;
     [SerializeField] private TextMeshProUGUI successMessage;
 
-    [SerializeField]
-    private SequenceManager sequenceManager;
+    [SerializeField] private SequenceManager sequenceManager;
+
     private List<int> userSequence = new List<int>();
     private int currentStep = 0;
     private bool playerWon = false;

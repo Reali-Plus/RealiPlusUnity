@@ -7,13 +7,17 @@ public class Grabbable : MonoBehaviour
     [SerializeField]
     private string grabbableLayerMask = "GrabbedObject";
 
+    [SerializeField]
+    private Rigidbody rb;
+
     private LayerMask defaultLayer; 
 
     private bool isGrabbed = false;
     private Vector3 grabPositionOffset = Vector3.zero;
     private Quaternion grabRotationOffset = Quaternion.identity;
     private Transform grabParent = null;
-    private Rigidbody rb;
+
+    public bool IsGrabbed() => isGrabbed;
 
     private void Start()
     {

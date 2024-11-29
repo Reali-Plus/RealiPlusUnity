@@ -998,6 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7357875844c094b8beab0ba8a6c988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabZone: {fileID: 0}
   palmTransform: {fileID: 4203542530031383116}
   fingersTransforms:
   - {fileID: 1712691481}
@@ -1094,8 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensorID: 4
-  sendCollision: 1
+  sensorID: 5
 --- !u!114 &1712963549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,8 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensorID: 5
-  sendCollision: 1
+  sensorID: 4
 --- !u!114 &290964863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,8 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensorID: 6
-  sendCollision: 1
+  sensorID: 3
 --- !u!4 &3962363458712102803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7603396013350595475, guid: 8ed0c0f65aeef6d4faf8c7d239d4cf5d,
@@ -1437,7 +1435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensorID: 7
-  sendCollision: 1
 --- !u!1 &4429339327046168996 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2161243659144069724, guid: 8ed0c0f65aeef6d4faf8c7d239d4cf5d,
@@ -1602,8 +1599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05f9db3d8af2ae4eae76a27bbb96aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensorID: 3
-  sendCollision: 1
+  sensorID: 6
 --- !u!1 &6949899467069670278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4680765791468351610, guid: 8ed0c0f65aeef6d4faf8c7d239d4cf5d,

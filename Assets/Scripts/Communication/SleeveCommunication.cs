@@ -92,14 +92,14 @@ public class SleeveCommunication : MonoBehaviour
             {
                 sensors[data.SensorID].ReceiveData(data);
             }
+        }
 
-            if (Time.time - lastSendTime > senderDelay)
+        if (Time.time - lastSendTime > senderDelay)
+        {
+            if (communication.HasDataToSend())
             {
-                if (communication.HasDataToSend())
-                {
-                    communication.SendData(communication.GetDataToSend());
-                    lastSendTime = Time.time;
-                }
+                communication.SendData(communication.GetDataToSend());
+                lastSendTime = Time.time;
             }
         }
     }

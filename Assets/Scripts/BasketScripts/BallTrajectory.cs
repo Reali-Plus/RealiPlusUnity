@@ -19,6 +19,12 @@ public class BallTrajectory : MonoBehaviour
         
         lineRenderer.SetPositions(linePoints);
         lineRenderer.positionCount = lineSegments;
+        lineRenderer.enabled = true;
+    }
+
+    public void HideLine()
+    {
+        lineRenderer.enabled = false;
     }
 
     public Vector3[] CalculateTrajectoryLine(Vector3 initialPosition, Vector3 initialVelocity)
