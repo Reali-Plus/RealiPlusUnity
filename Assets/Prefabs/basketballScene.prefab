@@ -6104,6 +6104,7 @@ MonoBehaviour:
   grabbableBall: {fileID: 0}
   playerHead: {fileID: 0}
   playerHeadAngle: {x: -30, y: 0, z: 0}
+  playerHeadPosition: {x: 0, y: 0.13, z: -0.154}
 --- !u!1 &2528433080426275536
 GameObject:
   m_ObjectHideFlags: 0

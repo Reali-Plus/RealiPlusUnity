@@ -26,7 +26,6 @@ public class GrabbableBall : Grabbable
     private void Start()
     {
         ballRigidbody = GetComponent<Rigidbody>();
-        ballRigidbody.useGravity = false;
         ballRigidbody.position = initialPosition.position;
     }
 
@@ -37,16 +36,13 @@ public class GrabbableBall : Grabbable
 
     private void Update()
     {
-        if (!isLaunched)
-            ballTrajectory.ShowTrajectoryLine(ballRigidbody.position, (hoop.position - ballRigidbody.position).normalized * launchForce / ballRigidbody.mass);
-        
         if (!gameObject.activeInHierarchy)
             return;
 
-        if (Input.GetMouseButtonDown(0) && !isLaunched)
-        {
-            LaunchBall();
-        }
+        if (!isLaunched)
+            ballTrajectory.ShowTrajectoryLine(ballRigidbody.position, (hoop.position - ballRigidbody.position).normalized * launchForce / ballRigidbody.mass);
+        else
+            ballTrajectory.HideLine();
     }
 
     public override void Grab(Transform grabParent)
