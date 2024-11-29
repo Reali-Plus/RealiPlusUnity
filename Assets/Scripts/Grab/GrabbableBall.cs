@@ -19,7 +19,9 @@ public class GrabbableBall : Grabbable
     [SerializeField]
     private BallTrajectory ballTrajectory;
 
-    private bool ballLaunched = false;
+    private bool isLaunched = false;
+
+    public bool IsLaunched() => isLaunched;
 
     private void Start()
     {
@@ -35,13 +37,13 @@ public class GrabbableBall : Grabbable
 
     private void Update()
     {
-        if (!ballLaunched)
+        if (!isLaunched)
             ballTrajectory.ShowTrajectoryLine(ballRigidbody.position, (hoop.position - ballRigidbody.position).normalized * launchForce / ballRigidbody.mass);
         
         if (!gameObject.activeInHierarchy)
             return;
 
-        if (Input.GetMouseButtonDown(0) && !ballLaunched)
+        if (Input.GetMouseButtonDown(0) && !isLaunched)
         {
             LaunchBall();
         }
@@ -50,14 +52,14 @@ public class GrabbableBall : Grabbable
     public override void Grab(Transform grabParent)
     {
         base.Grab(grabParent);
-        ballLaunched = false;
+        isLaunched = false;
         StopResetCoroutine();
     }
 
     public override void Release()
     {
         base.Release();
-        if (!ballLaunched)
+        if (!isLaunched)
         {
             LaunchBall();
         }
@@ -77,7 +79,7 @@ public class GrabbableBall : Grabbable
 
         ballRigidbody.AddForce(launchDirection * launchForce, ForceMode.Impulse);
 
-        ballLaunched = true;
+        isLaunched = true;
 
         resetCoroutine = StartCoroutine(ResetAfterDelay(resetDelay));
     }
@@ -103,8 +105,9 @@ public class GrabbableBall : Grabbable
         ballRigidbody.angularVelocity = Vector3.zero;
         ballRigidbody.useGravity = false;
         ballRigidbody.position = initialPosition.position;
-        ballLaunched = false;
+        isLaunched = false;
 
         StopResetCoroutine();
     }
+
 }

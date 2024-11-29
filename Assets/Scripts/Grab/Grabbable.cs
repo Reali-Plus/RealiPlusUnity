@@ -16,7 +16,8 @@ public class Grabbable : MonoBehaviour
     private Vector3 grabPositionOffset = Vector3.zero;
     private Quaternion grabRotationOffset = Quaternion.identity;
     private Transform grabParent = null;
-    
+
+    public bool IsGrabbed() => isGrabbed;
 
     private void Start()
     {
