@@ -942,6 +942,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.527
       objectReference: {fileID: 0}
+    - target: {fileID: 6560100265454802481, guid: 110f0440fd1e4624a83d679a12d8ef93,
+        type: 3}
+      propertyPath: m_Name
+      value: Chocolat Chaud
+      objectReference: {fileID: 0}
     - target: {fileID: 7598599485651587012, guid: 110f0440fd1e4624a83d679a12d8ef93,
         type: 3}
       propertyPath: m_LocalScale.z
