@@ -21,6 +21,14 @@ public class ParentHelper : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ResetChildren();
+        }
+    }
+
     [ContextMenu("Reset children")]
     public void ResetChildren()
     {
