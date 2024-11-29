@@ -5442,8 +5442,11 @@ GameObject:
   - component: {fileID: 1029103250592259660}
   - component: {fileID: 4767845507480793596}
   - component: {fileID: 1701445218}
+  - component: {fileID: 191131898}
+  - component: {fileID: 191131899}
+  - component: {fileID: 191131900}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5457,12 +5460,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196438970354727087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.899902, y: 89.49999, z: 203.20001}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6603521200140088591}
-  m_RootOrder: 0
+  m_Father: {fileID: 3079931930213863790}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1029103250592259660
 MeshFilter:
@@ -5527,6 +5530,59 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &191131898
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196438970354727087}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &191131899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196438970354727087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55419ae6c9aded14f838486ae123d57c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 998874433}
+  lineSegments: 50
+  timeOfFlight: 5
+--- !u!114 &191131900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196438970354727087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351da9e9d0847d846934edba5bde8f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbedObjectLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  grabbableLayerMask: GrabbedObject
+  rb: {fileID: 191131898}
+  launchForce: 0.55
+  hoop: {fileID: 8898391900887464020}
+  initialPosition: {fileID: 8923648216427889627}
+  resetDelay: 3
+  ballTrajectory: {fileID: 191131899}
 --- !u!1 &1623539218313161094
 GameObject:
   m_ObjectHideFlags: 0
@@ -6025,7 +6081,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8105903322230982497}
-  - {fileID: 6603521200140088591}
+  - {fileID: 4997338931053915609}
   - {fileID: 8898391900887464020}
   - {fileID: 8923648216427889627}
   - {fileID: 5034234994039505812}
@@ -6045,7 +6101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a839dbcd2011b3a459d01abda48c7cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbableBall: {fileID: 4311791453537806844}
+  grabbableBall: {fileID: 0}
+  playerHead: {fileID: 0}
+  playerHeadAngle: {x: -30, y: 0, z: 0}
 --- !u!1 &2528433080426275536
 GameObject:
   m_ObjectHideFlags: 0
@@ -7578,93 +7636,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 905485977951547768, guid: 535f701f06ae64d4899493a88e3537bd, type: 3}
---- !u!1 &6085165371267905591
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6603521200140088591}
-  - component: {fileID: 409892716999262855}
-  - component: {fileID: 4311791453537806844}
-  - component: {fileID: 1266848608}
-  m_Layer: 0
-  m_Name: Ball
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6603521200140088591
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085165371267905591}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8999557, y: 89.49999, z: 203.20001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4997338931053915609}
-  m_Father: {fileID: 3079931930213863790}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &409892716999262855
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085165371267905591}
-  serializedVersion: 2
-  m_Mass: 0.1
-  m_Drag: 0.1
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 2
---- !u!114 &4311791453537806844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085165371267905591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 351da9e9d0847d846934edba5bde8f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbedObjectLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  grabbableLayerMask: GrabbedObject
-  launchForce: 0.55
-  hoop: {fileID: 8898391900887464020}
-  initialPosition: {fileID: 8923648216427889627}
-  resetDelay: 3
-  ballTrajectory: {fileID: 1266848608}
---- !u!114 &1266848608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085165371267905591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55419ae6c9aded14f838486ae123d57c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 998874433}
-  lineSegments: 20
-  timeOfFlight: 1
 --- !u!1 &6526700687268720656
 GameObject:
   m_ObjectHideFlags: 0
