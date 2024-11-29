@@ -39,7 +39,7 @@ public class GrabbableBall : Grabbable
         if (!gameObject.activeInHierarchy)
             return;
 
-        if (!isLaunched)
+        if (!isLaunched && IsGrabbed())
             ballTrajectory.ShowTrajectoryLine(ballRigidbody.position, (hoop.position - ballRigidbody.position).normalized * launchForce / ballRigidbody.mass);
         else
             ballTrajectory.HideLine();
