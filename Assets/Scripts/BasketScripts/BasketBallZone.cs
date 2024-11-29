@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BasketBallZone : MonoBehaviour
 {
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent(out GrabbableBall ball))

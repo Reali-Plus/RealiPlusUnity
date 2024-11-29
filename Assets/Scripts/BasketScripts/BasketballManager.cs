@@ -28,7 +28,6 @@ public class BasketballManager : MiniGameManager
 
     protected override void ResetGame()
     {
-        Debug.Log("Resetting Basketball Game");
         playerHead.transform.localEulerAngles = lastHeadAngle;
         playerHead.transform.localPosition = lastHeadPosition;
         grabbableBall.ResetGrabbableBall();
